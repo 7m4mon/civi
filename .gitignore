@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+config.toml
+certs/
+*.log
+tmp/
+.env
+.env.*
+# Vendor reference manual: keep locally; link to the official download in README.
+docs/IC-7300_JPN_Supp_8.pdf

@@ -1,0 +1,24 @@
+backend = "mock" # mock / civ
+manufacturer = "CIVI Project"
+serial_number = "CIVI-0001"
+bind = "0.0.0.0"
+scpi_port = 5025
+web_port = 8443
+password_env = "CIVI_PASSWORD"
+tls_cert = "certs/cert.pem"
+tls_key = "certs/key.pem"
+discovery = true
+profile = "ic7300"
+radio_firmware = "" # Optional manual value; empty = Unknown. Not read over CI-V.
+
+[serial]
+port = "COM3" # Linux: /dev/serial/by-id/...
+baud = 19200
+radio_address = 148 # 0x94
+controller_address = 224 # 0xE0
+timeout = 1.0
+
+[transmit]
+enabled = false
+max_seconds = 10.0
+web_lease_seconds = 10.0

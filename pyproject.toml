@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "civi-gateway"
+version = "0.1.0"
+description = "Windows/Linux SCPI to Icom CI-V gateway"
+authors = [{name = "7M4MON"}]
+requires-python = ">=3.11"
+dependencies = ["aiohttp>=3.10,<4", "pyserial>=3.5,<4", "zeroconf>=0.140,<1", "psutil>=6,<8", "cryptography>=43"]
+
+[project.optional-dependencies]
+test = ["pytest>=8", "pytest-asyncio>=0.24"]
+
+[project.scripts]
+civi = "civi.__main__:main"
+
+[tool.setuptools.package-data]
+civi = ["profiles/*.json", "static/*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

@@ -1,0 +1,58 @@
+import argparse
+import asyncio
+import os
+import ssl
+from aiohttp import web
+from .backend import CivBackend, MockBackend, load_profile
+from .config import load
+from .network import Discovery
+from .server import make_web, scpi_client
+from .service import ControlService
+
+
+async def run(config):
+    password = os.environ.get(config["password_env"], "")
+    if len(password) < 12: raise ValueError("Set password environment variable to at least 12 characters")
+    context = ssl.SSLContext(ssl.PROTOCOL_TLS_SERVER)
+    context.minimum_version = ssl.TLSVersion.TLSv1_2
+    context.load_cert_chain(config["tls_cert"], config["tls_key"])
+    profile = load_profile(config["profile"])
+    backend = MockBackend(profile) if config["backend"] == "mock" else CivBackend(profile, config["serial"])
+    service, discovery = ControlService(backend, config), Discovery()
+    runner = web.AppRunner(make_web(service, password))
+    tcp = None
+    await service.start()
+    try:
+        tcp = await asyncio.start_server(lambda r, w: scpi_client(r, w, service), config["bind"], config["scpi_port"], limit=4096)
+        await runner.setup()
+        await web.TCPSite(runner, config["bind"], config["web_port"], ssl_context=context).start()
+        print(f'CIVI {config["backend"]}: SCPI :{config["scpi_port"]}; HTTPS https://localhost:{config["web_port"]}', flush=True)
+        print("Web is ready. Radio connection runs in the background; the radio may be powered on later.", flush=True)
+        if config.get("discovery"):
+            try: await discovery.start(config)
+            except Exception as e: service.log(None, f"Discovery unavailable: {type(e).__name__}", -310)
+        await asyncio.Event().wait()
+    finally:
+        if tcp: tcp.close(); await tcp.wait_closed()
+        await discovery.close()
+        await runner.cleanup()
+        await service.close()
+
+
+def main():
+    p = argparse.ArgumentParser(description="CIVI SCPI/CI-V gateway")
+    p.add_argument("--config", default="config.toml")
+    p.add_argument("--make-cert", metavar="DIRECTORY")
+    p.add_argument("--host", action="append", default=[], help="Certificate SAN hostname or IP")
+    args = p.parse_args()
+    try:
+        if args.make_cert:
+            from .tls import generate
+            cert, key = generate(args.make_cert, args.host)
+            print(f"Created {cert} and {key}")
+        else: asyncio.run(run(load(args.config)))
+    except KeyboardInterrupt: pass
+    except (ValueError, OSError) as e: p.exit(1, f"CIVI: {e}\n")
+
+
+if __name__ == "__main__": main()

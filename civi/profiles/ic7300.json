@@ -1,0 +1,14 @@
+{
+  "model": "IC-7300",
+  "model_id": 148,
+  "address": 148,
+  "frequency_ranges": [[30000, 60000000]],
+  "modes": {"LSB": 0, "USB": 1, "AM": 2, "CW": 3, "RTTY": 4, "FM": 5, "CW-R": 7, "RTTY-R": 8},
+  "features": ["frequency", "mode", "smeter", "ptt"],
+  "commands": {"model_id_get": "1900", "frequency_get": "03", "frequency_set": "05", "mode_get": "04", "mode_set": "06", "smeter_get": "1502", "ptt_get": "1c00", "ptt_set": "1c00"},
+  "smeter": {"unit": "raw", "min": 0, "max": 255, "calibrated": false},
+  "source": "https://www.icom.co.jp/support/manual/2557/",
+  "source_section": "IC-7300_JPN_Supp_8.pdf, printed pages 2-4, 8-9 (202312)",
+  "hardware_verified": false,
+  "notes": "Base HF/50 MHz receive range; region-specific 70 MHz extension is not enabled. Mode command 06 selects the target mode's default filter when filter is omitted; DATA mode is not exposed."
+}
