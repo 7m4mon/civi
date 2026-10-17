@@ -36,7 +36,15 @@ def fake_backend(config, replies):
     ('RAD:SCOPE:FIXEDGE','101,00001007000000001400','271e010100001007000000001400'),
     ('RAD:MENU:0112','001007002007','1a050112001007002007'),
     ('RAD:TXBAND:USER','1,00001007002D0000200700','1e030100001007002d0000200700'),
-    ('RAD:SCOPE:REFERENCE','0,000500','271900000500'),
+    ('RAD:SCOPE:REFERENCE','0,005000','271900005000'),
+    ('RAD:SCOPE:ENABLE','0,ON','271001'),
+    ('RAD:SCOPE:DISPLAY','0,0','271200'),
+    ('RAD:SCOPE:DUAL','0,0','271300'),
+    ('RAD:SCOPE:TXDISPLAY','0,ON','271b01'),
+    ('RAD:SCOPE:CENTER','0,2','271c02'),
+    ('RAD:SCOPE:MARKER','0,ON','272001'),
+    ('RAD:SCOPE:HOLD','0,ON','27170001'),
+    ('RAD:BAND:STACK','101,9520940100030200000885000885','1a0101019520940100030200000885000885'),
 ])
 def test_independent_wire_vectors(config,header,arg,wire):
     b,p = fake_backend(config,[[frame(b'\xfb')]])
@@ -56,6 +64,13 @@ def test_independent_wire_vectors(config,header,arg,wire):
     ('RAD:MENU:0096',None,'1a050096093001','-09:30'),
     ('RAD:DATA',None,'1a060001','0001'),
     ('RAD:BAND:EDGES',None,'0200001007002d0000200700','00001007002D0000200700'),
+    ('RAD:SCOPE:ENABLE','0','271001','ON'),
+    ('RAD:SCOPE:STREAM','0','271101','ON'),
+    ('RAD:SCOPE:CENTER','0','271c02','2'),
+    ('RAD:SCOPE:HOLD','0','27170001','ON'),
+    ('RAD:BAND:STACK','101','1a0101019520940100030200000885000885','9520940100030200000885000885'),
+    ('RAD:SCOPE:REFERENCE','0','271900005000','005000'),
+    ('RAD:SCOPE:REFERENCE','0','271900005001','005001'),
 ])
 def test_query_vectors(config,header,args,payload,result):
     b,_=fake_backend(config,[[frame(bytes.fromhex(payload))]])
@@ -73,7 +88,7 @@ def test_query_vectors(config,header,args,payload,result):
     'RAD:BAND:STACK? 104','RAD:SCOPE:FIXEDGE? 105',
     'RAD:MEM:CONTENT 100,FF',
     'RAD:MENU:0014 40','RAD:MENU:0001 2005','RAD:MENU:0112 00001007000000200700',
-    'RAD:SCOPE:REFERENCE 0,200500','RAD:TXBAND:USER 1,0000100700000000200700',
+    'RAD:SCOPE:REFERENCE 0,200500','RAD:SCOPE:REFERENCE 0,205000','RAD:SCOPE:REFERENCE 0,000500','RAD:TXBAND:USER 1,0000100700000000200700',
 ])
 def test_invalid_parameters_rejected_before_io(command):
     with pytest.raises(CiviError): scpi.parse(command)
@@ -201,6 +216,7 @@ async def test_mock_scope_stream_via_shared_queue(service):
 
 
 def test_scope_prerequisites_prevent_wrong_serial_configuration(config):
+    config["serial"]["baud"] = 19200
     b,p=fake_backend(config,[])
     spec=CATALOG['RAD:SCOPE:STREAM']
     with pytest.raises(CiviError,match='115200'):
@@ -208,7 +224,31 @@ def test_scope_prerequisites_prevent_wrong_serial_configuration(config):
     assert p.writes==[]
 
 
+def test_scope_stream_wire_format_after_prerequisite_check(config):
+    config['serial']['baud']=115200
+    b,p=fake_backend(config,[[frame(bytes.fromhex('1a05007401'))],[frame(b'\xfb')],[frame(b'\xfb')]])
+    spec=CATALOG['RAD:SCOPE:STREAM']
+    b.execute_command(spec,False,*spec.prepare(False,'0,ON'))
+    b.execute_command(spec,False,*spec.prepare(False,'0,OFF'))
+    assert p.writes==[frame(bytes.fromhex(payload),dest=0x94,source=0xe0) for payload in ('1a050074','271101','271100')]
+
+
+def test_nak_reports_rejected_wire_command(config):
+    b,_=fake_backend(config,[[frame(b'\xfa')]])
+    spec=CATALOG['RAD:SCOPE:ENABLE']
+    with pytest.raises(CiviError,match='Radio rejected CI-V 27 10 01'):
+        b.execute_command(spec,False,*spec.prepare(False,'0,ON'))
+
+
+def test_stack_record_is_one_14_byte_record_not_memory_dual_record():
+    codec=CATALOG['RAD:BAND:STACK'].codec
+    captured=bytes.fromhex('9520940100030200000885000885')
+    assert codec.decode(captured)=='9520940100030200000885000885'
+    with pytest.raises(CiviError): codec.decode(captured*2)
+
+
 def test_power_on_uses_baud_dependent_wake_preamble(config):
+    config["serial"]["baud"] = 19200
     b,p=fake_backend(config,[[],[frame(b'\xfb')]])
     spec=CATALOG['RAD:POWER:ON']
     b.execute_command(spec,False,*spec.prepare(False,None))

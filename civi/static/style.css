@@ -5,3 +5,5 @@
 
 .explorer-actions{justify-content:flex-start;margin-top:16px}#scope-plot{width:100%;height:220px;background:#0e1c24;border:1px solid #30434d;border-radius:6px}#command-select{max-width:100%}
 #scope-waterfall{width:100%;height:160px;background:#0e1c24;image-rendering:pixelated;border:1px solid #30434d;border-radius:6px}
+
+.smeter-reading{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:center}.smeter-reading meter{width:100%;margin:0}.smeter-reading span{white-space:nowrap;font:14px Consolas,monospace}

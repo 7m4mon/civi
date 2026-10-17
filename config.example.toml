@@ -13,10 +13,12 @@ radio_firmware = "" # Optional manual value; empty = Unknown. Not read over CI-V
 
 [serial]
 port = "COM3" # Linux: /dev/serial/by-id/...
-baud = 19200
+baud = 115200
 radio_address = 148 # 0x94
 controller_address = 224 # 0xE0
 timeout = 1.0
+trace_frames = true # Log CI-V TX/RX frames to stdout and authenticated Web logs
+trace_scope_frames = false # false: sample continuous scope frames every 2 seconds; true: log all
 
 [transmit]
 enabled = false

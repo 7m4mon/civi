@@ -42,6 +42,73 @@ def test_parser_split_concatenated_noise_and_preamble():
     assert p.feed(a[4:] + frame(b"\xfb")) == [a, frame(b"\xfb")]
 
 
+def test_serial_open_success_and_failed_retries_logged(config,caplog):
+    caplog.set_level('INFO',logger='civi.serial')
+    b,_=backend(config,[])
+    b._open()
+    b._open()
+    assert caplog.text.count('opened successfully; waiting for a CI-V response') == 1
+    b.close()
+    caplog.clear()
+    def unavailable(): raise PermissionError('Port busy')
+    b=CivBackend(load_profile(),config['serial'],unavailable)
+    for _ in range(2):
+        with pytest.raises(CiviError): b._open()
+    assert caplog.text.count('Cannot open serial port') == 1
+    assert 'PermissionError: Port busy' in caplog.text
+    b.factory=lambda:FakeSerial([])
+    b._open()
+    assert 'opened successfully' in caplog.text
+
+
+def test_wire_trace_captures_tx_rx_echo_and_nak(config,caplog):
+    caplog.set_level('INFO',logger='civi.wire')
+    request=frame(b'\x05'+bcd_encode(7100000,5),dest=0x94,source=0xe0)
+    wrong=frame(b'\xfb',source=0x95)
+    b,_=backend(config,[[request+wrong+frame(b'\xfa')]])
+    messages=[]
+    b.trace_sink=messages.append
+    with pytest.raises(CiviError,match='NAK'): b.call('frequency_set',7100000)
+    assert messages==['CI-V TX: '+request.hex(' ').upper()] + ['CI-V RX: '+f.hex(' ').upper() for f in (request,wrong,frame(b'\xfa'))]
+    assert all(message in caplog.text for message in messages)
+
+
+def test_scope_wire_trace_is_sampled_without_sampling_normal_replies(config,monkeypatch):
+    b,_=backend(config,[])
+    messages=[]
+    b.trace_sink=messages.append
+    clock=[10.0]
+    monkeypatch.setattr('civi.backend.time.monotonic',lambda:clock[0])
+    scope=frame(bytes.fromhex('2700000211')+b'\x10'*50)
+    for _ in range(20): b._trace('RX',scope)
+    b._trace('RX',frame(b'\xfb'))
+    assert len(messages)==2 and 'scope sample; 1 packet(s)' in messages[0]
+    assert messages[1]=='CI-V RX: FE FE E0 94 FB FD'
+    clock[0]+=2
+    b._trace('RX',scope)
+    assert 'scope sample; 20 packet(s)' in messages[-1]
+    b.settings['trace_scope_frames']=True
+    b._trace('RX',scope); b._trace('RX',scope)
+    assert len(messages)==5
+    b.settings['trace_frames']=False
+    b._trace('TX',frame(b'\x03'))
+    assert len(messages)==5
+
+
+async def test_wire_trace_reaches_web_log_from_serial_worker(config):
+    from civi.service import ControlService
+    b,_=backend(config,[[frame(b'\x03'+bcd_encode(7100000,5))]])
+    service=ControlService(b,config)
+    service.connect('test')
+    await service.start()
+    try:
+        assert await service.execute('test','SENS:FREQ?') == '7100000'
+        messages=[entry['message'] for entry in service.snapshot()['logs']]
+        assert 'CI-V TX: FE FE 94 E0 03 FD' in messages
+        assert 'CI-V RX: FE FE E0 94 03 00 00 10 07 00 FD' in messages
+    finally: await service.close()
+
+
 def test_frequency_echo_notifications_and_address_match(config):
     request = frame(b"\x03", 0x94, 0xe0)
     valid = frame(b"\x03" + bcd_encode(7100000, 5))

@@ -144,13 +144,13 @@ class Codec:
             if unpack_bcd(data, True) not in (2500,5000,10000,25000,50000,100000,250000,500000): raise invalid("Unsupported scope span")
         elif self.kind == "scope_ref":
             whole=unpack_bcd(data[:1])
-            if data[2] not in (0,1) or data[1] not in (0,5) or whole > 20 or whole == 20 and data[1]:
-                raise invalid("Reference: whole-dB BCD byte, tenths byte 00/05, sign byte 00/01; magnitude <=20 dB")
+            if data[2] not in (0,1) or data[1] not in (0,0x50) or whole > 20 or whole == 20 and data[1]:
+                raise invalid("Reference: whole-dB BCD byte, fractional byte 00/50, sign byte 00/01; magnitude <=20 dB")
         elif self.kind == "scope_edge":
             if not 1 <= unpack_bcd(data[:1]) <= 13 or not 1 <= unpack_bcd(data[1:2]) <= 4: raise invalid("Invalid scope band/edge")
             Codec('edge', minimum=10, maximum=10).validate_bytes(data[2:])
         elif self.kind == 'stack':
-            Codec('memory',minimum=39,maximum=39).validate_bytes(b'\x00'+data+b' '*10)
+            Codec('memory',minimum=39,maximum=39).validate_bytes(b'\x00'+data*2+b' '*10)
         elif self.kind == "memory":
             if data[0] >> 4 not in (0,1) or data[0] & 15 not in (0,1,2,3): raise invalid("Invalid memory split/select flags")
             # Two 14-byte frequency/mode/tone records and ten name bytes.
@@ -216,7 +216,7 @@ class Codec:
                    'memory':'00'+'0000100700010100000885000885'*2+'20'*10}
         if self.kind == 'menu_edge': return '001007002007'
         if self.kind == 'bandedge': return '00001007002D0000200700'
-        if self.kind == 'stack': return '0000100700010100000885000885'*2
+        if self.kind == 'stack': return '0000100700010100000885000885'
         if self.kind == 'band_selector': return '101'
         if self.kind == 'scope_edge_selector': return '101'
         if self.kind == 'hex': return '00'*self.minimum
@@ -239,6 +239,7 @@ class Command:
     guard: str = ''
     page: str = '3-8'
     fixed: str = ''
+    selector_on_wire: bool = True
 
     def prepare(self, query, text):
         if ('r' if query else 'w') not in self.access: raise CiviError(-113, 'Read/write direction not supported')
@@ -246,7 +247,8 @@ class Command:
         prefix = bytes.fromhex(self.wire)
         if self.selector:
             if not parts: raise CiviError(-109, 'Missing selector')
-            prefix += self.selector.encode(parts.pop(0))
+            selector = self.selector.encode(parts.pop(0))
+            if self.selector_on_wire: prefix += selector
         expected = 0 if query or self.access == 'w' and (self.fixed or self.header in NO_DATA_ACTIONS) else 1
         if len(parts) != expected: raise CiviError(-109 if len(parts) < expected else -108, 'Wrong number of parameters')
         data = b'' if query or self.header in NO_DATA_ACTIONS else bytes.fromhex(self.fixed) if self.fixed else self.codec.encode(parts[0])
@@ -267,8 +269,8 @@ class Command:
 CATALOG = {}
 
 
-def add(header, wire, description, codec=BOOL, access='rw', selector=None, guard='', page='3-8', fixed=''):
-    c = Command(header,wire,description,codec,access,selector,guard,page,fixed)
+def add(header, wire, description, codec=BOOL, access='rw', selector=None, guard='', page='3-8', fixed='', selector_on_wire=True):
+    c = Command(header,wire,description,codec,access,selector,guard,page,fixed,selector_on_wire)
     if header in CATALOG: raise ValueError(f'Duplicate command {header}')
     CATALOG[header] = c
     return c
@@ -333,7 +335,7 @@ def build_catalog():
         add('RAD:MEM:'+name,wire,desc,access='w',fixed='',guard='memory' if name in ('WRITE','CLEAR') else '')
     add('RAD:MEM:CONTENT','1a00','Memory record hex (channel selector omitted from payload)',Codec('memory',minimum=39,maximum=39),
         selector=Codec(size=2,minimum=1,maximum=101),guard='memory')
-    add('RAD:BAND:STACK','1a01','Band stack record (band*100+slot selector)',Codec('stack',minimum=28,maximum=28),
+    add('RAD:BAND:STACK','1a01','Band stack record (band*100+slot selector)',Codec('stack',minimum=14,maximum=14),
         selector=Codec('band_selector',size=2,minimum=101,maximum=1103),guard='memory')
     add('RAD:KEYER:TEXT','1a02','Keyer memory text',Codec('keyer'),selector=Codec(minimum=1,maximum=8),guard='memory')
     add('RAD:CW:SEND','17','Send CW text (up to 30 characters)',Codec('text',minimum=1,maximum=30),'w',guard='tx')
@@ -352,7 +354,10 @@ def build_catalog():
         ('HOLD','17',BOOL),('REFERENCE','19',Codec('scope_ref',minimum=3,maximum=3)),('SPEED','1a',Codec(maximum=2)),
         ('TXDISPLAY','1b',BOOL),('CENTER','1c',Codec(maximum=2)),('VBW','1d',BOOL),
         ('FIXEDGE','1e',Codec('scope_edge',minimum=12,maximum=12)),('MARKER','20',BOOL)]:
-        add('RAD:SCOPE:'+name,'27'+sub,'Scope '+name,codec,selector=Codec(maximum=0),guard='stream' if name=='STREAM' else '')
+        # Some scope commands have only a value, unlike MODE/SPAN/HOLD etc.
+        # Retain CIVI's logical main-scope selector 0 without adding a CI-V byte.
+        add('RAD:SCOPE:'+name,'27'+sub,'Scope '+name,codec,selector=Codec(maximum=0),guard='stream' if name=='STREAM' else '',
+            selector_on_wire=sub not in ('10','11','12','13','1b','1c','20'))
     # FIX edge reads need a band/edge selector as well as the main-scope byte.
     CATALOG.pop('RAD:SCOPE:FIXEDGE')
     add('RAD:SCOPE:FIXEDGE','271e','Scope FIX edge (band*100+edge selector)',Codec('edge',minimum=10,maximum=10),

@@ -16,6 +16,19 @@ async function api(path, data) {
   return jsonRequest('/api/' + path, {method: data === undefined ? 'GET' : 'POST', headers, body: data === undefined ? undefined : JSON.stringify(data)});
 }
 function notice(e) { $('notice').textContent = e instanceof Error ? e.message : e; }
+function formatSmeter(raw, profile) {
+  if(!Number.isInteger(raw) || raw < 0 || raw > 255) return '—';
+  const suffix = ` (raw ${raw})`, curve = profile?.display_curve;
+  if(!curve?.length) return `raw ${raw}`;
+  const last = curve[curve.length - 1];
+  if(raw > last[0]) return `≈ S9 +${last[1]} dB or more${suffix}`;
+  let db = curve[0][1];
+  for(let i = 1; i < curve.length; i++) {
+    const [x0,y0] = curve[i-1], [x1,y1] = curve[i];
+    if(raw <= x1) { db = y0 + (raw-x0)*(y1-y0)/(x1-x0); break; }
+  }
+  return (db <= 0 ? `≈ S${Math.max(0, Math.round(9+db/6))}` : `≈ S9 +${Math.round(db)} dB`) + suffix;
+}
 function readiness(state) {
   const messages = {
     connected: ['Radio ready', 'The radio is connected. Sign in to operate it.'],
@@ -56,7 +69,7 @@ async function refresh() {
   $('mode-value').textContent = s.values.mode ?? '—';
   $('ptt-value').textContent = s.values.ptt == null ? 'PTT unknown' : s.values.ptt ? 'TRANSMITTING' : 'RECEIVING';
   $('smeter').value = s.values.smeter ?? 0;
-  $('smeter-value').textContent = s.values.smeter ?? '—';
+  $('smeter-value').textContent = formatSmeter(s.values.smeter, s.smeter);
   $('ptt-on').disabled = !s.tx_enabled || s.connection !== 'connected';
   $('identity').textContent = `${s.manufacturer}\n${s.model} / ${s.serial}\nCIVI software: ${s.version}\nRadio: ${s.radio_model}\nRadio firmware: ${s.radio_firmware}${s.radio_firmware_source === 'manual' ? ' (manually configured)' : ''}\nRadio profile: ${s.radio}\nConnection: ${s.connection}`;
   $('network').textContent = s.network.hostname + '\n\n' + s.network.interfaces.map(i => `${i.name}\nIP: ${i.ipv4.join(', ')}\nMAC: ${i.mac ?? 'Unknown'}\n${i.visa.join('\n')}`).join('\n\n');
@@ -68,6 +81,9 @@ async function refresh() {
     $('serial-port').value = x.port; $('serial-baud').value = x.baud; $('radio-address').value = x.radio_address; $('controller-address').value = x.controller_address; $('serial-timeout').value = x.timeout;
     settingsLoaded = true;
   }
+  $('scope-settings').textContent = s.backend === 'mock' ? 'Simulated scope — no radio required.' : `CIVI USB baud rate: ${s.serial_settings.baud}${s.serial_settings.baud !== 115200 ? ' — change both the radio and CIVI to 115200 for scope data.' : ''}`;
+  $('scope-start').disabled = scopeChanging || s.connection !== 'connected';
+  $('scope-stop').disabled = scopeChanging || s.connection !== 'connected';
   $('logs').textContent = s.logs.map(l => `${new Date(l.time * 1000).toLocaleTimeString()} ${l.code || 'INFO'} ${l.message}`).reverse().join('\n');
 }
 $('login-form').onsubmit = async e => {
@@ -112,7 +128,7 @@ window.addEventListener('pagehide', () => { if(session) fetch('/api/release', {m
 tick();
 setInterval(tick, 2000);
 
-let catalog = [], lastWaterfallTimestamp = null;
+let catalog = [], lastWaterfallTimestamp = null, scopeError = '', scopeChanging = false;
 async function loadCommands() {
   if(catalog.length) return;
   const result = await api('commands');
@@ -128,7 +144,7 @@ async function loadCommands() {
 function selectedCommand() { return catalog.find(s => s.header === $('command-select').value); }
 function selectCommand() {
   const spec = selectedCommand(); if(!spec) return;
-  $('command-description').textContent = `CI-V ${spec.civ} · ${spec.format} · ${spec.guard ? 'Write permission: ' + spec.guard : 'Normal control'} · Hardware not verified`;
+  $('command-description').textContent = `CI-V ${spec.civ} · ${spec.format} · ${spec.guard ? 'Write permission: ' + spec.guard : 'Normal control'} · Hardware coverage: see validation report`;
   $('command-args').value = spec.access.includes('w') ? spec.set_example : spec.query_example;
   $('command-read').disabled = !spec.access.includes('r');
   $('command-write').disabled = !spec.access.includes('w');
@@ -148,7 +164,7 @@ async function refreshScope() {
     const canvas = $('scope-plot'), context = canvas.getContext('2d');
     context.clearRect(0,0,canvas.width,canvas.height);
     const wave = result.sweep;
-    if(!wave) { $('scope-status').textContent = 'No fresh complete scope sweep received.'; return; }
+    if(!wave) { $('scope-status').textContent = scopeError || (result.enabled ? 'Waveform transfer enabled; waiting for a complete sweep. Check that the radio scope is on, USB baud is 115200, and the USB port is unlinked from [REMOTE].' : 'Scope stopped. Select Start scope to receive waveforms.'); return; }
     const frequencyInfo = wave.mode === 0 || wave.mode === 2 ? `Center ${wave.frequency_1_hz/1e6} MHz · Span ${wave.frequency_2_hz/1000} kHz` : `${wave.frequency_1_hz/1e6}–${wave.frequency_2_hz/1e6} MHz`;
     $('scope-status').textContent = wave.out_of_range ? 'Scope out of range.' : `${frequencyInfo} · ${wave.points.length} samples · ${new Date(wave.timestamp*1000).toLocaleTimeString()} · Raw levels 0–160`;
     if(!wave.points.length) return;
@@ -164,3 +180,32 @@ async function refreshScope() {
   } catch(e) { notice(e); }
 }
 $('scope-refresh').onclick = refreshScope;
+
+async function setScope(enabled) {
+  if(scopeChanging) return;
+  scopeChanging = true;
+  scopeError = '';
+  $('scope-start').disabled = $('scope-stop').disabled = true;
+  $('scope-status').textContent = enabled ? 'Starting scope…' : 'Stopping scope…';
+  try {
+    // Separate calls allow a failed prerequisite to stop the sequence.
+    // Fully qualified SCPI headers share the normal authenticated control queue.
+    const commands = enabled ? ['RAD:SCOPE:STREAM 0,ON', 'RAD:SCOPE:ENABLE 0,ON'] : ['RAD:SCOPE:STREAM 0,OFF'];
+    for(const text of commands) {
+      const r = await api('scpi', {command:text});
+      $('scpi-output').textContent = `${text}\n${r.response ?? '(Set command: no normal response)'}\n${r.error}`;
+      if(!r.error.startsWith('0,')) throw new Error(`${text}: ${r.error}`);
+    }
+    notice('');
+  } catch(e) {
+    scopeError = `Scope ${enabled ? 'start' : 'stop'} failed: ${e.message}`;
+    notice(e);
+  } finally {
+    scopeChanging = false;
+    await refresh().catch(notice);
+    await refreshScope();
+    if(scopeError) $('scope-status').textContent = scopeError;
+  }
+}
+$('scope-start').onclick = () => setScope(true);
+$('scope-stop').onclick = () => setScope(false);

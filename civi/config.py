@@ -20,6 +20,9 @@ def load(path):
         if type(c.get(key)) is not int or not 1 <= c[key] <= 65535:
             raise ValueError(f"Invalid {key}")
     s = c["serial"]
+    for key, default in (('trace_frames', True), ('trace_scope_frames', False)):
+        value = s.setdefault(key, default)
+        if type(value) is not bool: raise ValueError(f'Invalid serial.{key}: expected boolean')
     for key in ("radio_address", "controller_address"):
         if type(s[key]) is not int or not 1 <= s[key] <= 239:
             raise ValueError(f"Invalid {key}")

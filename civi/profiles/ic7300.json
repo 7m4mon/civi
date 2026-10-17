@@ -2,13 +2,78 @@
   "model": "IC-7300",
   "model_id": 148,
   "address": 148,
-  "frequency_ranges": [[30000, 60000000]],
-  "modes": {"LSB": 0, "USB": 1, "AM": 2, "CW": 3, "RTTY": 4, "FM": 5, "CW-R": 7, "RTTY-R": 8},
-  "features": ["frequency", "mode", "smeter", "ptt"],
-  "commands": {"model_id_get": "1900", "frequency_get": "03", "frequency_set": "05", "mode_get": "04", "mode_set": "06", "smeter_get": "1502", "ptt_get": "1c00", "ptt_set": "1c00"},
-  "smeter": {"unit": "raw", "min": 0, "max": 255, "calibrated": false},
+  "frequency_ranges": [
+    [
+      30000,
+      60000000
+    ]
+  ],
+  "modes": {
+    "LSB": 0,
+    "USB": 1,
+    "AM": 2,
+    "CW": 3,
+    "RTTY": 4,
+    "FM": 5,
+    "CW-R": 7,
+    "RTTY-R": 8
+  },
+  "features": [
+    "frequency",
+    "mode",
+    "smeter",
+    "ptt"
+  ],
+  "commands": {
+    "model_id_get": "1900",
+    "frequency_get": "03",
+    "frequency_set": "05",
+    "mode_get": "04",
+    "mode_set": "06",
+    "smeter_get": "1502",
+    "ptt_get": "1c00",
+    "ptt_set": "1c00"
+  },
+  "smeter": {
+    "unit": "raw",
+    "min": 0,
+    "max": 255,
+    "calibrated": false,
+    "display_curve": [
+      [
+        0,
+        -54
+      ],
+      [
+        10,
+        -48
+      ],
+      [
+        30,
+        -36
+      ],
+      [
+        60,
+        -24
+      ],
+      [
+        90,
+        -12
+      ],
+      [
+        120,
+        0
+      ],
+      [
+        241,
+        64
+      ]
+    ],
+    "display_reference": "dB relative to S9; approximate, not dBm",
+    "display_source": "https://github.com/Hamlib/Hamlib/blob/master/rigs/icom/ic7300.c#L54-L66"
+  },
   "source": "https://www.icom.co.jp/support/manual/2557/",
   "source_section": "IC-7300_JPN_Supp_8.pdf, printed pages 2-4, 8-9 (202312)",
   "hardware_verified": false,
-  "notes": "Base HF/50 MHz receive range; region-specific 70 MHz extension is not enabled. Mode command 06 selects the target mode's default filter when filter is omitted; DATA mode is not exposed."
+  "notes": "Base HF/50 MHz receive range; region-specific 70 MHz extension is not enabled. Mode command 06 selects the target mode's default filter when filter is omitted; DATA/filter control is available through the extended command catalog. Direction-specific hardware checks are recorded in docs/HARDWARE_2026-10-17.md; the hardware_verified flag does not certify untested writes or transmission."
 }

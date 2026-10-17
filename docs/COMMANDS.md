@@ -1,7 +1,7 @@
 # IC-7300 command implementation inventory
 
 339 extended command definitions, including 216 menu items. Generated from the runtime catalog.
-These are software implementations verified with a simulated backend and selected independent wire vectors. New commands have not been verified on physical hardware.
+These are software implementations verified with a simulated backend and selected independent wire vectors. Direction-specific physical IC-7300 results and untested operations are recorded in [the hardware report](HARDWARE_2026-10-17.md); a successful representative query does not verify writes or every selector/mode.
 
 Reference: [Icom IC-7300 supplement A7290-2J-8 (202312)](https://www.icom.co.jp/support/manual/2557/), printed pages 3-15. The vendor PDF is not redistributed.
 
@@ -46,7 +46,7 @@ calibration = false
 | mode | Exactly 3 hex bytes: mode, DATA(00/01), filter(01/02/03) |
 | data | Exactly 2 hex bytes: DATA, filter; OFF requires 0000 |
 | memory | 39-byte hex record excluding the 2-byte channel selector; FF clears channels 1-99 only. Two validated frequency/mode/tone records and 10 name bytes. P1/P2 require split/select flags zero |
-| stack | 28-byte hex dual frequency/mode/tone record; selector is band*100+slot, band 1-11, slot 1-3 |
+| stack | 14-byte hex single frequency/mode/tone record; selector is band*100+slot, band 1-11, slot 1-3 |
 | color | 6 hex bytes: three big-endian 2-byte BCD components, each 0-255 |
 | hpf | 2 hex BCD index bytes: HPF 00-20, LPF 05-25; HPF < LPF unless either side is bypassed |
 | bandwidth | 1 hex byte, high nibble upper-edge index 0-3, low nibble lower-edge index 0-3 |
@@ -54,7 +54,7 @@ calibration = false
 | menu_edge | 6 hex BCD bytes for stored scope edges: low/high 3 bytes each, little endian in 100 Hz units, whole kHz |
 | bandedge | 11 hex bytes for transmit band edges: low frequency (5 little-endian BCD bytes), literal 2D separator, high frequency (5 bytes) |
 | scope_span | 5 hex little-endian BCD bytes; 2500/5000/10000/25000/50000/100000/250000/500000 Hz |
-| scope_ref | 3 hex bytes after main-scope selector: whole dB (BCD 00-20), tenths byte 00/05, sign 00/01; magnitude <=20 dB |
+| scope_ref | 3 hex bytes after main-scope selector: whole dB (BCD 00-20), fractional byte 00/50 (0.00/0.50 dB), sign 00/01; magnitude <=20 dB |
 | date / time / timezone | YYYY-MM-DD / HH:MM / +/-HH:MM |
 | opening / keyer / text | ASCII text, quote text containing commas; field-specific character/length checks apply |
 
@@ -62,7 +62,9 @@ Mode-dependent limits are ultimately checked by the radio (for example IF width 
 
 ## Spectrum and waterfall
 
-`RAD:SCOPE:STREAM 0,ON` requires 115200 baud and an unlinked CI-V USB port on IC-7300. CIVI checks the configured baud and menu 0074 before enabling. The selector 0 is the only main scope supported by this radio.
+The Web scope panel has Start scope / Stop scope buttons; the explorer is not needed. Start enables waveform transfer and then scope operation. Stop disables waveform transfer and leaves the radio display setting unchanged.
+`RAD:SCOPE:STREAM 0,ON` requires 115200 baud and an unlinked CI-V USB port on IC-7300. CIVI checks the configured baud and menu 0074 before enabling. The selector 0 is the only main scope supported by this radio. For SCPI operation, also send `RAD:SCOPE:ENABLE 0,ON`; STREAM enables transfer only. Configure the radio USB CI-V port to Unlink from [REMOTE], radio CI-V USB baud rate to 115200, and CIVI serial baud to 115200 before starting. Refresh scope only reads cached data; it does not start transfer.
+The leading SCPI selector 0 is a CIVI convention. CI-V 27 10/11/12/13/1B/1C/20 do not carry that selector byte; MODE/SPAN/EDGE/HOLD/REFERENCE/SPEED/VBW do. For example STREAM 0,ON sends 27 11 01, and ENABLE 0,ON sends 27 10 01.
 `RAD:SCOPE:WAVE?` returns the latest complete sweep as JSON, or an error if no fresh sweep exists. The Web UI plots a spectrum and waterfall history. The receiver checks packet order/count, BCD headers, raw levels 0-160 and 475 samples. Dropped/incomplete sweeps are discarded. Cached sweeps expire after 5 seconds.
 Receive data are drained by the single worker between commands and during transactions. Ordinary command replies are never satisfied by scope packets. The Web refresh rate is 2 seconds, so the browser shows sampled sweeps rather than every incoming RF sweep.
 
@@ -81,7 +83,7 @@ Receive data are drained by the single worker between commands and during transa
 
 ## Extended command table
 
-R = query; W = set/action. An empty parameter example means the action takes no argument. All new entries are hardware-unverified.
+R = query; W = set/action. An empty parameter example means the action takes no argument. Hardware query/write evidence is separate; see HARDWARE_2026-10-17.md. The API hardware_verified flag remains conservative and does not certify full coverage.
 
 | Header | CI-V | Access | Description | Format | Write gate | Query parameters | Set/action parameters |
 |---|---|---|---|---|---|---|---|
@@ -180,7 +182,7 @@ R = query; W = set/action. An empty parameter example means the action takes no 
 | RAD:MEM:TOVFO | 0A | W | Copy memory to VFO | number | - | - | - |
 | RAD:MEM:CLEAR | 0B | W | Clear selected memory | number | memory | - | - |
 | RAD:MEM:CONTENT | 1A00 | RW | Memory record hex (channel selector omitted from payload) | memory | memory | 1 | 1,000000100700010100000885000885000010070001010000088500088520202020202020202020 |
-| RAD:BAND:STACK | 1A01 | RW | Band stack record (band*100+slot selector) | stack | memory | 101 | 101,00001007000101000008850008850000100700010100000885000885 |
+| RAD:BAND:STACK | 1A01 | RW | Band stack record (band*100+slot selector) | stack | memory | 101 | 101,0000100700010100000885000885 |
 | RAD:KEYER:TEXT | 1A02 | RW | Keyer memory text | keyer | memory | 1 | 1,CQ |
 | RAD:CW:SEND | 17 | W | Send CW text (up to 30 characters) | text | tx | - | TEST |
 | RAD:CW:STOP | 17 | W | Stop CI-V CW output | number | - | - | - |

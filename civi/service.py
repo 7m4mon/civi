@@ -2,6 +2,7 @@ import asyncio
 import time
 import itertools
 import json
+import logging
 from .commands import CATALOG, unpack_bcd
 from collections import deque
 from . import __version__, scpi
@@ -38,6 +39,10 @@ class ControlService:
             self.identified_model = self.backend.profile["model"]
 
     async def start(self):
+        if hasattr(self.backend, 'trace_sink'):
+            loop = asyncio.get_running_loop()
+            # Serial work runs in a thread; only the event loop mutates Web logs.
+            self.backend.trace_sink = lambda message: loop.call_soon_threadsafe(self.log, None, message)
         self.tasks = [asyncio.create_task(self._worker()), asyncio.create_task(self._watchdog()), asyncio.create_task(self._monitor()), asyncio.create_task(self._events())]
 
     def connect(self, client, web=False):
@@ -76,13 +81,18 @@ class ControlService:
         self.log(client, error.message, error.code)
 
     async def radio(self, op, value=None):
+        previous_state = self.backend.state
         try:
             result = await asyncio.to_thread(self.backend.call, op, value)
-        except CiviError:
+        except CiviError as e:
+            if self.backend.state != previous_state:
+                logging.getLogger('civi.radio').warning('Radio connection %s -> %s: %s', previous_state, self.backend.state, e.message)
             self.cache = dict.fromkeys(self.cache)
             self.clear_identity()
             self.backend.scope.latest = None
             raise
+        if self.backend.state != previous_state:
+            logging.getLogger('civi.radio').info('Radio connection %s -> %s: CI-V response validated (%s)', previous_state, self.backend.state, op)
         key = op.rsplit("_", 1)[0]
         if key in self.cache: self.cache[key] = result if op.endswith("get") else value
         return result
@@ -129,7 +139,7 @@ class ControlService:
                 if not any(lo <= hz <= hi for lo,hi in self.backend.profile['frequency_ranges']):
                     raise CiviError(-222,'VFO frequency outside selected profile range')
             if spec.codec.kind in ('memory','stack') and data != b'\xff':
-                for offset in ((1,15) if spec.codec.kind == 'memory' else (0,14)):
+                for offset in ((1,15) if spec.codec.kind == 'memory' else (0,)):
                     hz = unpack_bcd(data[offset:offset+5],True)
                     if not any(lo <= hz <= hi for lo,hi in self.backend.profile['frequency_ranges']):
                         raise CiviError(-222,'Stored frequency outside selected profile range')

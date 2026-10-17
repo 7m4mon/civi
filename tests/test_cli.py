@@ -56,4 +56,13 @@ def test_production_entrypoint_mock_https_and_tcp(tmp_path, radio_available):
         assert proc.poll() is None
     finally:
         proc.terminate()
-        proc.communicate(timeout=5)
+        stdout,stderr=proc.communicate(timeout=5)
+    assert 'CIVI 0.1.0' in stdout and 'Author: 7M4MON' in stdout
+    assert 'SCPI listening on 127.0.0.1:' in stdout
+    assert 'HTTPS listening on 127.0.0.1:' in stdout
+    if radio_available:
+        assert 'Mock backend enabled; no serial port will be opened' in stdout
+    else:
+        assert 'Opening serial port' in stdout
+        assert 'Cannot open serial port' in stdout
+        assert 'Retrying in the background; Web remains available.' in stdout

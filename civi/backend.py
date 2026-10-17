@@ -1,4 +1,5 @@
 import json
+import logging
 import time
 from .scope import ScopeReceiver
 from pathlib import Path
@@ -186,11 +187,29 @@ class CivBackend:
     def __init__(self, profile, settings, factory=None):
         self.profile, self.settings = profile, settings.copy()
         self.factory, self.port = factory, None
+        self._open_error = None
+        self.trace_sink = None
+        self._scope_trace_time = None
+        self._scope_trace_count = 0
         self.parser = FrameParser()
         self.state = "disconnected"
         self.notifications = []
         self.scope_stream = False
         self.scope = ScopeReceiver()
+
+    def _trace(self, direction, data):
+        if not self.settings.get('trace_frames', True): return
+        detail = ''
+        if direction == 'RX' and data[4:6] == b'\x27\x00' and not self.settings.get('trace_scope_frames', False):
+            self._scope_trace_count += 1
+            now = time.monotonic()
+            if self._scope_trace_time is not None and now - self._scope_trace_time < 2: return
+            detail = f' [scope sample; {self._scope_trace_count} packet(s) since previous sample]'
+            self._scope_trace_time = now
+            self._scope_trace_count = 0
+        message = f'CI-V {direction}{detail}: {data.hex(" ").upper()}'
+        logging.getLogger('civi.wire').info(message)
+        if self.trace_sink is not None: self.trace_sink(message)
 
     def _event(self, frame):
         radio, controller = self.settings['radio_address'],self.settings['controller_address']
@@ -213,7 +232,9 @@ class CivBackend:
                 chunk = self.port.read(min(count,remaining))
                 if not chunk: break
                 remaining -= len(chunk)
-                for frame in self.parser.feed(chunk): self._event(frame)
+                for frame in self.parser.feed(chunk):
+                    self._trace('RX', frame)
+                    self._event(frame)
         except Exception as e:
             self.state = 'quarantined'
             self.scope.latest = None
@@ -244,6 +265,11 @@ class CivBackend:
 
     def _open(self):
         if self.port is None:
+            logger = logging.getLogger('civi.serial')
+            if self._open_error is None:
+                logger.info('Opening serial port %s at %s baud (radio 0x%02X, controller 0x%02X)',
+                            self.settings['port'], self.settings['baud'],
+                            self.settings['radio_address'], self.settings['controller_address'])
             try:
                 if self.factory is None:
                     import serial
@@ -259,8 +285,15 @@ class CivBackend:
                 else:
                     self.port = self.factory()
                 self.parser = FrameParser()
+                self._open_error = None
+                logger.info('Serial port %s opened successfully; waiting for a CI-V response', self.settings['port'])
             except Exception as e:
                 self.state = "disconnected"
+                error = (self.settings['port'], self.settings['baud'], type(e).__name__, str(e))
+                if error != self._open_error:
+                    logger.warning('Cannot open serial port %s at %s baud: %s: %s. Retrying in the background; Web remains available.',
+                                   self.settings['port'], self.settings['baud'], type(e).__name__, e)
+                    self._open_error = error
                 raise CiviError(-365, "USB serial unavailable") from e
 
     def _exchange(self, command, ack=False, emergency=False, preamble=0):
@@ -280,18 +313,22 @@ class CivBackend:
             if preamble:
                 wake = b'\xfe'*preamble
                 if self.port.write(wake) != len(wake): raise OSError('Short wake preamble write')
+                self._trace('TX wake preamble', wake)
             if self.port.write(request) != len(request):
                 raise OSError("Short serial write")
+            self._trace('TX', request)
             deadline = time.monotonic() + self.settings["timeout"]
             while time.monotonic() < deadline:
-                for frame in self.parser.feed(self.port.read(256)):
+                frames = self.parser.feed(self.port.read(256))
+                for frame in frames: self._trace('RX', frame)
+                for frame in frames:
                     if frame == request: continue
                     if self._event(frame): continue
                     dest, source, payload = frame[2], frame[3], frame[4:-1]
                     if source != radio or dest != controller: continue
                     if payload == b"\xfa":
                         self.state = "connected" if not emergency else self.state
-                        raise CiviError(-200, "Radio rejected command (NAK)")
+                        raise CiviError(-200, f"Radio rejected CI-V {command.hex(' ').upper()} (NAK)")
                     if ack and payload == b"\xfb":
                         if not emergency: self.state = "connected"
                         return b""
