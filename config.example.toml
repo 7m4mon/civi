@@ -22,3 +22,10 @@ timeout = 1.0
 enabled = false
 max_seconds = 10.0
 web_lease_seconds = 10.0
+
+[permissions]
+menu = false # Allow persistent radio menu writes (reads always available)
+memory = false # Allow memory/keyer/band-stack writes and erasure
+power = false # Allow physical radio power commands
+link = false # Allow changes that may break the CI-V/USB connection
+calibration = false # Reference-frequency / transmit-band changes

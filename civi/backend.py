@@ -1,5 +1,6 @@
 import json
 import time
+from .scope import ScopeReceiver
 from pathlib import Path
 from .errors import CiviError
 
@@ -56,6 +57,95 @@ class MockBackend:
         self.state = "connected"
         self.frequency, self.mode, self.ptt = 7100000, "LSB", False
         self.failure = None
+        self.command_values = {}
+        self.scope_stream = False
+        self.scope = ScopeReceiver()
+        self.vfos = [{'frequency':7100000,'mode':0,'data':0,'filter':1},
+                     {'frequency':14074000,'mode':1,'data':0,'filter':1}]
+        self.selected_vfo = 0
+        self.memory_mode = False
+        self.memory_channel = 1
+        self.memory_records = {}
+
+    def _sync_display(self):
+        if self.memory_mode:
+            data = self.memory_records.get(self.memory_channel)
+            if data and data != b'\xff':
+                self.frequency = bcd_decode(data[1:6])
+                self.mode = next(k for k,v in self.profile['modes'].items() if v == data[6])
+        else:
+            vfo = self.vfos[self.selected_vfo]
+            self.frequency = vfo['frequency']
+            self.mode = next(k for k,v in self.profile['modes'].items() if v == vfo['mode'])
+
+    def _memory_record(self):
+        mode = self.profile['modes'][self.mode]
+        record = bcd_encode(self.frequency,5)+bytes([mode,1,0])+bytes.fromhex('000885000885')
+        return b'\x00'+record*2+b' '*10
+
+    def execute_command(self, spec, query, prefix, data):
+        if self.failure:
+            self.state = 'disconnected'
+            raise CiviError(-365,self.failure)
+        self.state = 'connected'
+        key = prefix.hex()
+        key = {'1a050081':'1419','1a07':'1665'}.get(key,key)
+        header = spec.header
+        if query:
+            if header in ('RAD:VFO:FREQ','RAD:VFO:MODE'):
+                vfo = self.vfos[self.selected_vfo ^ prefix[-1]]
+                encoded = bcd_encode(vfo['frequency'],5) if header.endswith('FREQ') else bytes([vfo['mode'],vfo['data'],vfo['filter']])
+            elif header == 'RAD:MEM:CONTENT':
+                channel = bcd_decode(prefix[-2:],little=False)
+                encoded = self.memory_records.get(channel,b'\xff')
+            else:
+                encoded = self.command_values.get(key, spec.codec.encode(spec.codec.sample()))
+            if spec.codec.kind == 'tone': encoded = b'\x00'+encoded
+            return spec.codec.decode(encoded)
+        self.command_values[key] = data
+        if header in ('RAD:VFO:FREQ','RAD:VFO:MODE'):
+            vfo = self.vfos[self.selected_vfo ^ prefix[-1]]
+            if header.endswith('FREQ'): vfo['frequency'] = bcd_decode(data)
+            else: vfo.update(zip(('mode','data','filter'),data))
+            self._sync_display()
+        elif header == 'RAD:VFO:SELECT':
+            self.selected_vfo = data[0]
+            self.memory_mode = False
+            self._sync_display()
+        elif header == 'RAD:VFO:ENABLE':
+            self.memory_mode = False; self._sync_display()
+        elif header == 'RAD:VFO:COPY':
+            self.vfos[self.selected_vfo ^ 1] = self.vfos[self.selected_vfo].copy()
+        elif header == 'RAD:VFO:SWAP':
+            self.vfos.reverse(); self._sync_display()
+        elif header == 'RAD:MEM:CONTENT':
+            self.memory_records[bcd_decode(prefix[-2:],little=False)] = data
+            self._sync_display()
+        elif header == 'RAD:MEM:SELECT':
+            self.memory_channel = bcd_decode(data,little=False)
+            self.memory_mode = True; self._sync_display()
+        elif header == 'RAD:MEM:ENABLE':
+            self.memory_mode = True; self._sync_display()
+        elif header == 'RAD:MEM:WRITE':
+            self.memory_records[self.memory_channel] = self._memory_record()
+        elif header == 'RAD:MEM:CLEAR':
+            self.memory_records[self.memory_channel] = b'\xff'
+        elif header == 'RAD:MEM:TOVFO':
+            rec = self.memory_records.get(self.memory_channel)
+            if rec and rec != b'\xff':
+                self.vfos[self.selected_vfo].update(frequency=bcd_decode(rec[1:6]),mode=rec[6],filter=rec[7],data=rec[8]>>4)
+        if spec.header in ('RAD:CW:SEND','RAD:VOICE'):
+            self.ptt = spec.header == 'RAD:CW:SEND' or data != b'\x00'
+        if spec.header == 'RAD:CW:STOP': self.ptt = False
+        if spec.header == 'RAD:SCOPE:STREAM':
+            self.scope_stream = data == b'\x01'
+            self.scope.reset(); self.scope.latest = None
+        return None
+
+    def poll_events(self):
+        if self.scope_stream:
+            self.scope.latest = {'mode':0,'frequency_1_hz':self.frequency,'frequency_2_hz':50000,
+                                 'out_of_range':False,'points':[40 + i % 80 for i in range(475)],'timestamp':time.time()}
 
     def call(self, op, value=None):
         if self.failure:
@@ -67,16 +157,24 @@ class MockBackend:
         if op == "mode_get": return self.mode
         if op == "smeter_get": return 96
         if op == "ptt_get": return self.ptt
-        if op == "frequency_set": self.frequency = value
-        elif op == "mode_set": self.mode = value
+        if op == "frequency_set":
+            self.frequency = value
+            if not self.memory_mode: self.vfos[self.selected_vfo]['frequency'] = value
+        elif op == "mode_set":
+            self.mode = value
+            if not self.memory_mode: self.vfos[self.selected_vfo].update(mode=self.profile['modes'][value],filter=1)
         elif op == "ptt_set": self.ptt = value
 
     def recover(self):
         self.failure = None
         self.state = "connected"
+        self.scope_stream = False
+        self.scope.latest = None
 
     def close(self):
         self.state = "disconnected"
+        self.scope_stream = False
+        self.scope.latest = None
 
 
 class CivBackend:
@@ -91,6 +189,58 @@ class CivBackend:
         self.parser = FrameParser()
         self.state = "disconnected"
         self.notifications = []
+        self.scope_stream = False
+        self.scope = ScopeReceiver()
+
+    def _event(self, frame):
+        radio, controller = self.settings['radio_address'],self.settings['controller_address']
+        if frame[3] != radio or frame[2] not in (0,controller): return False
+        payload = frame[4:-1]
+        if payload[:2] == b'\x27\x00':
+            if self.scope_stream: self.scope.feed(payload[2:])
+            return True
+        if frame[2] == 0 and payload[:1] in (b'\x00',b'\x01'):
+            self.notifications.append(payload.hex())
+            self.notifications[:] = self.notifications[-32:]
+            return True
+        return False
+
+    def poll_events(self):
+        if not self.port or not self.scope_stream: return
+        try:
+            remaining = 16384
+            while remaining > 0 and (count := getattr(self.port,'in_waiting',0)):
+                chunk = self.port.read(min(count,remaining))
+                if not chunk: break
+                remaining -= len(chunk)
+                for frame in self.parser.feed(chunk): self._event(frame)
+        except Exception as e:
+            self.state = 'quarantined'
+            self.scope.latest = None
+            raise CiviError(-365,'USB scope read failed; link quarantined') from e
+
+    def execute_command(self, spec, query, prefix, data):
+        if not query and spec.header == 'RAD:SCOPE:STREAM' and data == b'\x01':
+            if self.settings['baud'] != 115200: raise CiviError(-221,'IC-7300 scope requires 115200 baud')
+            if self._exchange(bytes.fromhex('1a050074')) != b'\x01':
+                raise CiviError(-221,'Scope requires CI-V USB port unlinked from REMOTE')
+        preamble = 0
+        if not query and spec.header == 'RAD:POWER:ON':
+            baud = self.settings['baud']
+            preamble = {115200:150,57600:75,38400:50,19200:25,9600:13,4800:7}.get(baud, max(7,int(baud/768)))
+        stop = not query and (spec.header in ('RAD:CW:STOP','RAD:POWER:ON','RAD:POWER:OFF') or spec.header in ('RAD:VOICE','RAD:VOX','RAD:BKIN','RAD:TUNER','RAD:SCOPE:STREAM') and data == b'\x00')
+        uncertain_stop = stop and self.state == 'quarantined'
+        response = self._exchange(prefix+data,ack=not query,preamble=preamble,emergency=stop)
+        if uncertain_stop: raise CiviError(-365,'Recovery/stop action attempted; quarantined ACK cannot confirm completion')
+        if not query:
+            if spec.header == 'RAD:SCOPE:STREAM':
+                self.scope_stream = data == b'\x01'
+                self.scope.reset(); self.scope.latest = None
+            return None
+        try: return spec.codec.decode(response)
+        except (CiviError,ValueError,UnicodeError) as e:
+            self.state = 'quarantined'
+            raise CiviError(-310,'Malformed extended CI-V response') from e
 
     def _open(self):
         if self.port is None:
@@ -113,7 +263,7 @@ class CivBackend:
                 self.state = "disconnected"
                 raise CiviError(-365, "USB serial unavailable") from e
 
-    def _exchange(self, command, ack=False, emergency=False):
+    def _exchange(self, command, ack=False, emergency=False, preamble=0):
         if self.state == "quarantined" and not emergency:
             raise CiviError(-365, "Link quarantined; reset radio/link and recover explicitly")
         self._open()
@@ -122,19 +272,22 @@ class CivBackend:
         request = b"\xfe\xfe" + bytes([radio, controller]) + command + b"\xfd"
         try:
             # Flush frames received before this operation, never treat them as replies.
-            self.port.reset_input_buffer()
-            self.parser = FrameParser()
+            if self.scope_stream:
+                self.poll_events()
+            else:
+                self.port.reset_input_buffer()
+                self.parser = FrameParser()
+            if preamble:
+                wake = b'\xfe'*preamble
+                if self.port.write(wake) != len(wake): raise OSError('Short wake preamble write')
             if self.port.write(request) != len(request):
                 raise OSError("Short serial write")
             deadline = time.monotonic() + self.settings["timeout"]
             while time.monotonic() < deadline:
                 for frame in self.parser.feed(self.port.read(256)):
                     if frame == request: continue
+                    if self._event(frame): continue
                     dest, source, payload = frame[2], frame[3], frame[4:-1]
-                    if source == radio and dest == 0 and payload[:1] in (b"\x00", b"\x01"):
-                        self.notifications.append(payload.hex())
-                        self.notifications[:] = self.notifications[-32:]
-                        continue
                     if source != radio or dest != controller: continue
                     if payload == b"\xfa":
                         self.state = "connected" if not emergency else self.state
@@ -196,6 +349,8 @@ class CivBackend:
 
     def recover(self):
         self._close_port()
+        self.scope_stream = False
+        self.scope.latest = None
         self.state = "disconnected"
         self._open()
         self.call("frequency_get")
@@ -203,3 +358,5 @@ class CivBackend:
     def close(self):
         self._close_port()
         self.state = "disconnected"
+        self.scope_stream = False
+        self.scope.latest = None

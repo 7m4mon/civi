@@ -75,7 +75,7 @@ $('login-form').onsubmit = async e => {
   auth = 'Basic ' + btoa(String.fromCharCode(...new TextEncoder().encode('admin:' + $('password').value)));
   try {
     session = (await api('session', {})).session; $('password').value = '';
-    await refresh(); $('login').hidden = true; $('dashboard').hidden = false;
+    await refresh(); await loadCommands(); $('login').hidden = true; $('dashboard').hidden = false;
     notice('');
   } catch(e) { notice(e); }
 };
@@ -86,6 +86,7 @@ async function tick() {
     if(!await refreshHealth() || !session) return;
     await api('heartbeat', {});
     await refresh();
+    await refreshScope();
   } catch(e) {
     notice(e);
     $('ptt-on').disabled = true;
@@ -110,3 +111,56 @@ $('recover').onclick = async () => { try { await api('recover', {link_reset_conf
 window.addEventListener('pagehide', () => { if(session) fetch('/api/release', {method:'POST', headers:{Authorization:auth,'X-CIVI-Request':'1','X-CIVI-Session':session},keepalive:true}); });
 tick();
 setInterval(tick, 2000);
+
+let catalog = [], lastWaterfallTimestamp = null;
+async function loadCommands() {
+  if(catalog.length) return;
+  const result = await api('commands');
+  catalog = result.commands;
+  for(const spec of catalog) {
+    const option = document.createElement('option');
+    option.value = spec.header;
+    option.textContent = spec.header + ' — ' + spec.description;
+    $('command-select').append(option);
+  }
+  selectCommand();
+}
+function selectedCommand() { return catalog.find(s => s.header === $('command-select').value); }
+function selectCommand() {
+  const spec = selectedCommand(); if(!spec) return;
+  $('command-description').textContent = `CI-V ${spec.civ} · ${spec.format} · ${spec.guard ? 'Write permission: ' + spec.guard : 'Normal control'} · Hardware not verified`;
+  $('command-args').value = spec.access.includes('w') ? spec.set_example : spec.query_example;
+  $('command-read').disabled = !spec.access.includes('r');
+  $('command-write').disabled = !spec.access.includes('w');
+}
+$('command-select').onchange = selectCommand;
+$('command-read').onclick = () => {
+  const spec = selectedCommand(); if(!spec) return;
+  command(spec.header + '?' + (spec.query_example ? ' ' + $('command-args').value.split(',')[0] : ''));
+};
+$('command-write').onclick = () => {
+  const spec = selectedCommand(); if(!spec) return;
+  command(spec.header + ($('command-args').value ? ' ' + $('command-args').value : ''));
+};
+async function refreshScope() {
+  try {
+    const result = await api('scope');
+    const canvas = $('scope-plot'), context = canvas.getContext('2d');
+    context.clearRect(0,0,canvas.width,canvas.height);
+    const wave = result.sweep;
+    if(!wave) { $('scope-status').textContent = 'No fresh complete scope sweep received.'; return; }
+    const frequencyInfo = wave.mode === 0 || wave.mode === 2 ? `Center ${wave.frequency_1_hz/1e6} MHz · Span ${wave.frequency_2_hz/1000} kHz` : `${wave.frequency_1_hz/1e6}–${wave.frequency_2_hz/1e6} MHz`;
+    $('scope-status').textContent = wave.out_of_range ? 'Scope out of range.' : `${frequencyInfo} · ${wave.points.length} samples · ${new Date(wave.timestamp*1000).toLocaleTimeString()} · Raw levels 0–160`;
+    if(!wave.points.length) return;
+    context.strokeStyle = '#a8e5c2'; context.lineWidth = 2; context.beginPath();
+    wave.points.forEach((p,i) => { const x=i*canvas.width/(wave.points.length-1), y=canvas.height-p*canvas.height/160; i ? context.lineTo(x,y) : context.moveTo(x,y); });
+    context.stroke();
+    if(wave.timestamp !== lastWaterfallTimestamp) {
+      const waterfall = $('scope-waterfall'), wc = waterfall.getContext('2d');
+      wc.drawImage(waterfall,0,0,475,159,0,1,475,159);
+      wave.points.forEach((p,i) => { const f=p/160; wc.fillStyle=`rgb(${Math.round(f*168)},${Math.round(f*229)},${Math.round(f*194)})`; wc.fillRect(i,0,1,1); });
+      lastWaterfallTimestamp = wave.timestamp;
+    }
+  } catch(e) { notice(e); }
+}
+$('scope-refresh').onclick = refreshScope;

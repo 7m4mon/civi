@@ -1,6 +1,8 @@
 import re
 from decimal import Decimal, DecimalException
 from .errors import CiviError
+from .commands import CATALOG
+from . import menus # Registers IC-7300 menu commands.
 
 
 HEADERS = {
@@ -32,6 +34,17 @@ def parse(part, parent=""):
     # Independently accept each documented short or long mnemonic.
     normalized = header.replace("SYSTEM", "SYST").replace("ERROR", "ERR").replace("SENSE", "SENS").replace("FREQUENCY", "FREQ").replace("RADIO", "RAD").replace("SMETER", "SMET").replace("FIRMWARE", "FIRM")
     key = HEADERS.get(normalized)
+    if normalized == 'RAD:SCOPE:WAVE':
+        if not query or arg is not None: raise CiviError(-113,'Scope waveform is query only')
+        return 'scope_wave',True,None,next_parent
+    if normalized in CATALOG:
+        spec = CATALOG[normalized]
+        # The descriptor validates selectors/parameters before touching serial.
+        try: spec.prepare(query,arg)
+        except CiviError: raise
+        except (ValueError,UnicodeError,DecimalException) as e:
+            raise CiviError(-222,'Invalid extended command parameter') from e
+        return 'catalog:'+normalized,query,arg,next_parent
     if not key: raise CiviError(-113, "Undefined header")
     if query:
         if arg is not None: raise CiviError(-108, "Parameter not allowed")
@@ -52,3 +65,18 @@ def frequency(text):
         return int(value)
     except DecimalException as e:
         raise CiviError(-222, "Frequency out of range") from e
+
+
+def split_program(line):
+    """SCPI separators inside quoted strings are data, including doubled quotes."""
+    parts, start, quoted, i = [],0,False,0
+    while i < len(line):
+        if line[i] == '"':
+            if quoted and i+1 < len(line) and line[i+1] == '"': i += 2; continue
+            quoted = not quoted
+        elif line[i] == ';' and not quoted:
+            parts.append(line[start:i]); start = i+1
+        i += 1
+    if quoted: raise CiviError(-102,'Unterminated SCPI string')
+    parts.append(line[start:])
+    return parts

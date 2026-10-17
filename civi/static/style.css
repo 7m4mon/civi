@@ -2,3 +2,6 @@
 #network{max-height:280px;overflow:auto;padding-right:8px}.grid{align-items:start}
 
 .readiness{border-left:4px solid #e0b76b}.readiness h2{margin-bottom:10px}.readiness p:last-child{font-size:14px;line-height:1.7;margin-bottom:0;color:#b8cbd3}.readiness[data-state=connected]{border-left-color:#a8e5c2}.readiness[data-state=quarantined],.readiness[data-state=offline]{border-left-color:#e5ae9b}
+
+.explorer-actions{justify-content:flex-start;margin-top:16px}#scope-plot{width:100%;height:220px;background:#0e1c24;border:1px solid #30434d;border-radius:6px}#command-select{max-width:100%}
+#scope-waterfall{width:100%;height:160px;background:#0e1c24;image-rendering:pixelated;border:1px solid #30434d;border-radius:6px}

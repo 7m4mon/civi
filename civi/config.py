@@ -12,6 +12,10 @@ def load(path):
     if not isinstance(firmware, str) or len(firmware) > 64 or any(ord(ch) < 32 or ch in ',;"' for ch in firmware):
         raise ValueError("radio_firmware must be a single-line version string (up to 64 characters)")
     c["radio_firmware"] = firmware.strip()
+    permissions = c.setdefault('permissions',{})
+    for key in ('menu','memory','power','link','calibration'):
+        value = permissions.setdefault(key,False)
+        if type(value) is not bool: raise ValueError(f'permissions.{key} must be true or false')
     for key in ("scpi_port", "web_port"):
         if type(c.get(key)) is not int or not 1 <= c[key] <= 65535:
             raise ValueError(f"Invalid {key}")

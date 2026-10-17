@@ -6,6 +6,7 @@ from pathlib import Path
 from aiohttp import web
 from .errors import CiviError
 from .network import network_info
+from .commands import CATALOG
 
 
 async def scpi_client(reader, writer, service):
@@ -85,6 +86,13 @@ def make_web(service, password):
         data = service.snapshot()
         data["network"] = network_info(service.config["scpi_port"])
         return web.json_response(data)
+    async def commands(request):
+        return web.json_response({'commands':[spec.public() for spec in CATALOG.values()],
+                                  'permissions':service.config.get('permissions',{}),
+                                  'note':'Protocol codes and raw meter values; hardware verification is separate.'})
+    async def scope(request):
+        wave = service.backend.scope.snapshot()
+        return web.json_response({'enabled':service.backend.scope_stream,'sweep':wave})
     async def session(request):
         if sum(webclient for _, webclient in service.clients.values()) >= 64: raise web.HTTPServiceUnavailable()
         token = secrets.token_hex(24)
@@ -121,6 +129,8 @@ def make_web(service, password):
     app.router.add_get("/lxi", index) # Welcome alias; no claim of LXI compliance.
     app.router.add_static("/static/", Path(__file__).parent / "static")
     app.router.add_get("/api/status", status)
+    app.router.add_get('/api/commands',commands)
+    app.router.add_get('/api/scope',scope)
     app.router.add_post("/api/session", session)
     app.router.add_post("/api/heartbeat", heartbeat)
     app.router.add_post("/api/scpi", command)

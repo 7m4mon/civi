@@ -56,6 +56,13 @@ async def test_https_auth_csrf_and_shared_operations(service,tmp_path):
                 s=await r.json(); assert s["backend"]=="mock"; assert s["lxi_certified"] is False
                 assert s['radio_firmware'] == 'Unknown'
                 assert s['radio_firmware_source'] == 'unknown'
+            async with client.get(url+'/api/commands',headers=auth,ssl=trust) as r:
+                catalog=(await r.json())['commands']
+                assert len(catalog)==339
+                readonly=next(c for c in catalog if c['header']=='RAD:MENU:0074')
+                assert readonly['access']=='r' and readonly['set_example'] is None
+            async with client.get(url+'/api/scope',headers=auth,ssl=trust) as r:
+                assert await r.json()=={'enabled':False,'sweep':None}
             async with client.post(url+"/api/heartbeat",headers={**headers,"Origin":"https://evil.invalid"},json={},ssl=trust) as r: assert r.status==403
             async with client.post(url+"/api/recover",headers=headers,json={},ssl=trust) as r: assert r.status==400
             async with client.post(url+"/api/release",headers=headers,json={},ssl=trust) as r: assert r.status==200
