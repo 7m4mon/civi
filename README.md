@@ -6,7 +6,7 @@ Author: **7M4MON**
 
 CIVI is a Python SCPI-to-Icom CI-V network gateway. It connects an Icom radio to VISA clients and an English web interface through a shared control service and a single serialized USB connection.
 
-The initial radio is the **IC-7300**. Development currently targets **Windows**, with **Raspberry Pi OS 64-bit** planned as the deployment platform. The current version is **0.1.0**. CIVI is **not LXI certified**.
+The initial radio is the **IC-7300**. Development uses **Windows**; basic operation on **Raspberry Pi 4** has also been verified over LAN. **Raspberry Pi OS 64-bit** is the intended deployment platform. The current version is **0.1.0**. CIVI is **not LXI certified**.
 
 ## Run on Windows
 
@@ -113,7 +113,11 @@ Automated tests use the simulated backend and fake serial ports only. They do no
 
 Physical IC-7300 checks on **2026-10-17** covered five basic and 303 extended queries: **307 succeeded**, while `RAD:TXINHIBIT?` returned a NAK. Additional change/readback/restore checks covered 233 setting targets, including 189 ordinary menu items. A complete 475-point scope sweep and VFO copy/swap operations were also verified. These results do not establish support for every value, mode, channel, or write operation.
 
-Actual transmission, calibration changes, end-to-end TCP/HTTPS operation with the physical radio, Linux operation, and LXI certification remain unverified. See the [hardware validation report](docs/HARDWARE_2026-10-17.md) for tested directions, parameters, limitations, and excluded operations. Some supporting documents are currently in Japanese.
+On **2026-10-18**, real-radio operation through localhost TCP 5025, PyVISA `@py` RAW SOCKET, and concurrent authenticated HTTPS API calls was verified, including scope data over TCP. See the [TCP/VISA/HTTPS validation report](docs/TCP_VALIDATION_2026-10-18.md).
+
+On **2026-10-19**, CIVI running on a **Raspberry Pi 4 with a USB-connected IC-7300** was tested from a separate Windows computer over LAN. TCP and PyVISA RAW SOCKET queries, frequency change/readback/restore, 20 concurrent read/error pairs across two connections, and a 475-point scope sweep succeeded. Of 303 extended queries, 301 succeeded; `TXINHIBIT?` and `FILTER:SHAPE?` in AM returned the same NAK responses seen on Windows. The user also confirmed the web scope display. See the [Raspberry Pi LAN validation report](docs/RPI_LAN_2026-10-19.md).
+
+Actual transmission, calibration changes, NI-VISA, Linux USB fault recovery, long-term operation, and LXI certification remain unverified. The Pi OS version, architecture, and Python version were not recorded during this test. See the [hardware validation report](docs/HARDWARE_2026-10-17.md) for tested directions, parameters, limitations, and excluded operations. Some supporting documents are currently in Japanese.
 
 - [SCPI commands and VISA examples](docs/SCPI.md)
 - [Full command inventory and argument examples](docs/COMMANDS.md)
@@ -121,9 +125,17 @@ Actual transmission, calibration changes, end-to-end TCP/HTTPS operation with th
 - [LXI requirements matrix](docs/LXI.md)
 - [Validation history and acceptance procedure](docs/VALIDATION.md)
 - [IC-7300 hardware validation and untested operations](docs/HARDWARE_2026-10-17.md)
+- [TCP, PyVISA SOCKET, and HTTPS hardware validation](docs/TCP_VALIDATION_2026-10-18.md)
+- [Raspberry Pi 4 LAN and PyVISA validation](docs/RPI_LAN_2026-10-19.md)
 - [Raspberry Pi porting plan](docs/PORTING.md)
 
-Raspberry Pi installation instructions and systemd service configuration are deferred to the porting phase.
+For manual experiments on Raspberry Pi, after preparing `.venv`, `config.toml`, and TLS certificates, run:
+
+```bash
+bash ~/civi/start.sh
+```
+
+The script uses the existing configuration and prompts for the web password if its environment variable is empty. Keep the terminal open and press Ctrl+C to stop. It does not install a service or enable automatic startup. Further installation and recovery validation remains part of the [porting work](docs/PORTING.md).
 
 ## References
 

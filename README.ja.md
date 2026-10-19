@@ -4,7 +4,7 @@
 
 Author: 7M4MON
 
-Python製のSCPI → Icom CI-Vネットワークゲートウェイ。初期対象はIC-7300、開発環境はWindows、運用先はRaspberry Pi OS 64bitです。WebとSCPIは1つの制御サービスを共有します。現在の版は0.1.0、LXI未認証です。
+Python製のSCPI → Icom CI-Vネットワークゲートウェイ。初期対象はIC-7300、開発環境はWindows、運用先はRaspberry Pi OS 64bitを想定しています。Raspberry Pi 4でのLAN経由の基本動作も確認済みです。WebとSCPIは1つの制御サービスを共有します。現在の版は0.1.0、LXI未認証です。
 
 ## Windowsで起動
 
@@ -75,9 +75,27 @@ WebのSメーターは`≈ S7 (raw 96)`のように推定S値とraw値を併記�
 - [LXI対応表](docs/LXI.md)
 - [検証結果・実機確認手順](docs/VALIDATION.md)
 - [IC-7300実機確認範囲と未確認操作](docs/HARDWARE_2026-10-17.md)
+- [TCP・PyVISA SOCKET・HTTPSの実機通し試験](docs/TCP_VALIDATION_2026-10-18.md)
+- [Raspberry Pi 4のLAN・PyVISA実機確認](docs/RPI_LAN_2026-10-19.md)
 - [Raspberry Pi移植計画](docs/PORTING.md)
 
-Raspberry Piへの導入手順とsystemd設定は、指定された移植段階の納品物として延期しています。2026-10-17のIC-7300実機確認では、基本5件＋拡張303件の取得中307件が成功し、`RAD:TXINHIBIT?`の1件はNAKでした。通常メニュー189項目を含む追加233種類の設定対象で変更・読み戻し・復元を確認し、実スコープ475点の受信とVFOコピー・交換も確認しました。実送信、校正値の変更、実機を接続したTCP/HTTPS経由の通し操作、Linux運用、LXI認証は未確認です。全値・全モード・全チャンネルを検証したものではありません。詳細は実機確認記録を参照してください。
+2026-10-17のIC-7300実機確認では、基本5件＋拡張303件の取得中307件が成功し、`RAD:TXINHIBIT?`の1件はNAKでした。通常メニュー189項目を含む追加233種類の設定対象で変更・読み戻し・復元を確認し、実スコープ475点の受信とVFOコピー・交換も確認しました。全値・全モード・全チャンネルを検証したものではありません。詳細は実機確認記録を参照してください。
+
+2026-10-18には、localhostのTCP 5025・PyVISA `@py` RAW SOCKET・認証付きHTTPS APIと実機の通し操作、同時操作、TCP経由のスコープ波形を確認しました。[TCP/VISA/HTTPS通し試験記録](docs/TCP_VALIDATION_2026-10-18.md)を参照してください。
+
+**2026-10-19には、IC-7300をUSB接続したRaspberry Pi 4を、別のWindows端末からLAN経由で確認しました。** TCPとPyVISA RAW SOCKETでの取得、周波数の変更・読み戻し・復元、2接続で計20組の同時取得とエラー確認、475点のスコープ取得が成功しました。拡張303項目は301成功、`TXINHIBIT?`とAM時の`FILTER:SHAPE?`はWindowsと同じNAKでした。Webスコープ表示はユーザーが確認しています。[ラズパイLAN実機記録](docs/RPI_LAN_2026-10-19.md)を参照してください。
+
+実送信、校正値の変更、NI-VISA、LinuxでのUSB障害復旧、長時間運用、LXI認証は未確認です。今回の試験ではPi側のOS版・アーキテクチャ・Python版は未採取です。
+
+### Raspberry Piで実験時に手動起動
+
+`.venv`、`config.toml`、TLS証明書を準備した環境で実行します。
+
+```bash
+bash ~/civi/start.sh
+```
+
+既存設定で起動し、パスワード環境変数が空ならWeb用パスワードを非表示で入力します。ターミナルを開いたまま使用し、Ctrl+Cで終了します。サービス登録・自動起動は設定しません。導入・障害復旧の残作業は[移植計画](docs/PORTING.md)を参照してください。
 
 ### CI-V通信ログ
 
