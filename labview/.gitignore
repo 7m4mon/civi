@@ -1,0 +1,4 @@
+*.aliases
+*.lvlps
+*.UserState/
+SOURCE_MANIFEST.json
