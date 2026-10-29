@@ -20,6 +20,7 @@
 		</Item>
 		<Item Name="03 Examples" Type="Folder">
 			<Item Name="CIVI Basic Control Example.vi" Type="VI" URL="../VIs/CIVI Basic Control Example.vi"/>
+			<Item Name="CIVI Frequency Sweep Example.vi" Type="VI" URL="../VIs/CIVI Frequency Sweep Example.vi"/>
 			<Item Name="CIVI Initialize Close Example.vi" Type="VI" URL="../VIs/CIVI Initialize Close Example.vi"/>
 			<Item Name="CIVI Read Session Example.vi" Type="VI" URL="../VIs/CIVI Read Session Example.vi"/>
 			<Item Name="CIVI Set Frequency Example.vi" Type="VI" URL="../VIs/CIVI Set Frequency Example.vi"/>

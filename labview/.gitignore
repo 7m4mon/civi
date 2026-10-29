@@ -2,3 +2,5 @@
 *.lvlps
 *.UserState/
 SOURCE_MANIFEST.json
+__pycache__/
+CIVI/VIs/*.csv

@@ -1,0 +1,24 @@
+VI,PNG,Icon text
+CIVI Initialize.vi,CIVI Initialize.png,CIVI / INIT
+CIVI Close.vi,CIVI Close.png,CIVI / CLOSE
+CIVI Ensure LF.vi,CIVI Ensure LF.png,CIVI / LF
+CIVI Query.vi,CIVI Query.png,CIVI / QUERY
+CIVI Write.vi,CIVI Write.png,CIVI / WRITE
+CIVI Error Query.vi,CIVI Error Query.png,CIVI / ERR / QUERY
+CIVI Set Frequency.vi,CIVI Set Frequency.png,CIVI / SET / FREQ
+CIVI Set Mode.vi,CIVI Set Mode.png,CIVI / SET / MODE
+CIVI Read Frequency Session.vi,CIVI Read Frequency Session.png,CIVI / READ / FREQ
+CIVI Read Mode Session.vi,CIVI Read Mode Session.png,CIVI / READ / MODE
+CIVI Read S Meter Session.vi,CIVI Read S Meter Session.png,CIVI / READ / SMET
+CIVI Basic Control Example.vi,CIVI Basic Control Example.png,CIVI / EX / CTRL
+CIVI Frequency Sweep Example.vi,CIVI Frequency Sweep Example.png,CIVI / EX / SWEEP
+CIVI Initialize Close Example.vi,CIVI Initialize Close Example.png,CIVI / EX / INIT
+CIVI Read Session Example.vi,CIVI Read Session Example.png,CIVI / EX / READ
+CIVI Set Frequency Example.vi,CIVI Set Frequency Example.png,CIVI / EX-SET / FREQ
+CIVI Set Mode Example.vi,CIVI Set Mode Example.png,CIVI / EX-SET / MODE
+CIVI IDN Test.vi,CIVI IDN Test.png,CIVI / TEST / IDN
+CIVI Query Once.vi,CIVI Query Once.png,CIVI / QUERY / ONCE
+CIVI Read Frequency.vi,CIVI Read Frequency.png,CIVI / OLD / FREQ
+CIVI Read Mode.vi,CIVI Read Mode.png,CIVI / OLD / MODE
+CIVI Read S Meter.vi,CIVI Read S Meter.png,CIVI / OLD / SMET
+CIVI Read Frequency Example.vi,CIVI Read Frequency Example.png,CIVI / EX-OLD / FREQ
