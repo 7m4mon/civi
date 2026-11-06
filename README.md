@@ -1,5 +1,7 @@
 # CIVI
 
+This is the **Raspberry Pi LXI development branch** (`codex/rpi-lxi`), maintained in a separate worktree from the Windows working copy. Common SCPI/CI-V functions are retained. Pi-specific NetworkManager inspection and change previews are under `civi/pi/`; settings are not applied yet. See the [Pi development scope](docs/RPI_DEVELOPMENT.md). Startup remains manual, and LXI conformance is not claimed.
+
 **English** | [日本語](README.ja.md)
 
 Author: **7M4MON**
