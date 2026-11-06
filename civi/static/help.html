@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CIVI — Local documentation</title><link rel="stylesheet" href="/static/style.css"></head><body><main><section class="card">
+<h1>CIVI local documentation</h1><p><a href="/">Radio control</a> · <a href="/lxi">Welcome</a> · <a href="/network">LAN information / discovery</a></p>
+<h2>SCPI / VISA</h2><p>Use the Instrument Address String on the Welcome page as a VISA RAW SOCKET resource.
+Use ASCII commands terminated by LF. Set commands have no normal response; queries return LF-terminated lines.
+Multiple query responses in one command line are separated by semicolons. Quoted error messages may also contain semicolons.</p>
+<pre>*IDN?
+SENS:FREQ?
+RAD:MODE?
+READ:SMET?
+RAD:PTT?
+SENS:FREQ 7.1MHz
+*OPC?
+SYST:ERR?</pre>
+<p>OPC confirms completion. Always check SYST:ERR? to determine success. S-meter values are uncalibrated raw 0–255; no dBm conversion is made.</p>
+<h2>Scope</h2><p>IC-7300 USB CI-V must use 115200 baud and be unlinked from [REMOTE]. Use Start scope on the radio control page,
+or RAD:SCOPE:STREAM 0,ON followed by RAD:SCOPE:ENABLE 0,ON. Wait for a complete sweep before RAD:SCOPE:WAVE?. Levels are uncalibrated.</p>
+<h2>Connections and safety</h2><p>Web operations require administrator authentication. The SCPI port has no authentication;
+restrict access to the intended LAN. Transmit control is disabled by default. A USB disconnect prevents guaranteed TX stop.</p>
+<p>A CI-V timeout quarantines the radio link. Restore the radio to RX and reset its USB link before using Recover connection.</p>
+<h2>LXI implementation status</h2><p>CIVI provides identification XML, a Welcome page and discovery services as part of ongoing LXI work.
+It does not claim LXI conformance, certification or extended functions. LAN configuration/reset, physical indicators, IVI drivers and full validation remain incomplete.
+Discovery settings do not change the host OS network adapter configuration. CIVI is started manually; no automatic startup is installed.</p>
+</section></main></body></html>

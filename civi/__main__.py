@@ -11,6 +11,7 @@ from .network import Discovery
 from .server import make_web, scpi_client
 from .service import ControlService
 from . import __version__, __author__
+from .identification import identity
 
 
 async def run(config):
@@ -24,13 +25,17 @@ async def run(config):
     profile = load_profile(config["profile"])
     backend = MockBackend(profile) if config["backend"] == "mock" else CivBackend(profile, config["serial"])
     service, discovery = ControlService(backend, config), Discovery()
-    runner = web.AppRunner(make_web(service, password))
+    runner = web.AppRunner(make_web(service, password, discovery))
     tcp = None
+    discovery_task = None
     await service.start()
     try:
         tcp = await asyncio.start_server(lambda r, w: scpi_client(r, w, service), config["bind"], config["scpi_port"], limit=4096)
         await runner.setup()
         await web.TCPSite(runner, config["bind"], config["web_port"], ssl_context=context).start()
+        for port in config.get('web_extra_ports', []):
+            await web.TCPSite(runner, config['bind'], port, ssl_context=context).start()
+            logger.info('Additional HTTPS listening on %s:%s', config['bind'], port)
         logger.info('Backend: %s | Radio profile: %s | Device ID: %s', config['backend'], profile['model'], config['serial_number'])
         logger.info('SCPI listening on %s:%s', config['bind'], config['scpi_port'])
         logger.info('HTTPS listening on %s:%s | Browser: https://localhost:%s', config['bind'], config['web_port'], config['web_port'])
@@ -41,11 +46,18 @@ async def run(config):
                                            s['port'], s['baud'], s['radio_address'])
         else:
             logging.getLogger('civi').info('Mock backend enabled; no serial port will be opened')
-        if config.get("discovery"):
-            try: await discovery.start(config)
-            except Exception as e: service.log(None, f"Discovery unavailable: {type(e).__name__}", -310)
+        async def monitor_discovery():
+            while True:
+                try: await discovery.refresh(config, identity(service))
+                except Exception as e:
+                    service.log(None, f'Discovery unavailable: {type(e).__name__}', -310)
+                await asyncio.sleep(5)
+        discovery_task = asyncio.create_task(monitor_discovery())
         await asyncio.Event().wait()
     finally:
+        if discovery_task:
+            discovery_task.cancel()
+            await asyncio.gather(discovery_task, return_exceptions=True)
         if tcp: tcp.close(); await tcp.wait_closed()
         await discovery.close()
         await runner.cleanup()

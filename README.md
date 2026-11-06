@@ -16,9 +16,8 @@ Install Python 3.11 or later, then run these commands in PowerShell from this re
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e '.[test]'
 Copy-Item config.example.toml config.toml
-$env:CIVI_PASSWORD = 'replace-with-your-own-long-password'
 .\.venv\Scripts\python.exe -m civi --make-cert certs --host 192.168.1.20
-.\.venv\Scripts\python.exe -m civi --config config.toml
+.\start.cmd
 ```
 
 Replace `192.168.1.20` with the LAN IP address or DNS name clients will use. `localhost` is included automatically. This generates a self-signed certificate without overwriting an existing certificate. Verify and trust the certificate on each client, or configure a trusted CA certificate and key in `config.toml`. Keep the private key private.
@@ -27,6 +26,8 @@ Replace `192.168.1.20` with the LAN IP address or DNS name clients will use. `lo
 - SCPI: `localhost:5025`
 - Web username: `admin`
 - Web password: the environment variable specified by `password_env`; at least 12 characters
+
+For subsequent launches, run `.\start.cmd` from PowerShell or `start.cmd` from Command Prompt. On first use, it prompts for the web password without displaying it and saves a Windows DPAPI-encrypted credential in `.civi-password.xml` (ignored by Git). Only the same Windows account on the same computer can decrypt it. Later launches reuse it and supply the configured password environment variable to CIVI. To change it, stop CIVI and run `.\start.cmd -ResetPassword`. The launcher runs in the foreground; Ctrl+C stops it. No automatic startup is configured. Direct `python -m civi` launches still require the password environment variable.
 
 The example configuration uses a **simulated radio**, so no hardware is needed to try CIVI. Passwords are not stored in the source or configuration file.
 
@@ -104,6 +105,8 @@ INFO civi.wire: CI-V RX: FE FE E0 94 FB FD
 Under `[serial]`, `trace_frames = true` enables logging by default. Continuous scope frames (27 00) are sampled once every two seconds with a packet count; reception and plotting still process the full data stream. Set `trace_scope_frames = true` to log every scope frame, or `trace_frames = false` to disable frame logging. Restart CIVI to apply these settings. The web log retains the latest 200 entries; CIVI does not automatically save it to a file.
 
 ## Validation and documentation
+
+LXI work in progress: `/lxi` now provides public device and LAN information, `/lxi/identification` returns XML with a locally served official schema, and `/network` provides authenticated, persistent description/discovery settings. Discovery advertises HTTP/LXI/SCPI/HTTPS services with identification TXT records. Additional HTTPS ports are configurable. These are partial implementations; CIVI still does not claim LXI conformance or certification. See [implementation details and remaining requirements](docs/LXI_IMPLEMENTATION.md). Restart CIVI to load the updated code; existing port and radio settings are unchanged.
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q

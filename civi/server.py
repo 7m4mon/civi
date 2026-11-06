@@ -5,7 +5,8 @@ import secrets
 from pathlib import Path
 from aiohttp import web
 from .errors import CiviError
-from .network import network_info
+from .network import network_info, Discovery
+from .identification import identification_xml, information_page, identity, SCHEMA_PATH
 from .commands import CATALOG
 
 
@@ -47,7 +48,8 @@ async def scpi_client(reader, writer, service):
         except (ConnectionError, OSError): pass
 
 
-def make_web(service, password):
+def make_web(service, password, discovery=None):
+    discovery = discovery or Discovery()
     @web.middleware
     async def security(request, handler):
         if request.path.startswith("/api/"):
@@ -78,6 +80,28 @@ def make_web(service, password):
         return client
 
     async def index(request): return web.FileResponse(Path(__file__).parent / "static/index.html")
+    def network_snapshot(): return network_info(service.config['scpi_port'])
+    async def welcome(request):
+        return web.Response(text=information_page(service, network_snapshot(), discovery), content_type='text/html')
+    async def lan_page(request):
+        return web.Response(text=information_page(service, network_snapshot(), discovery, settings=True), content_type='text/html')
+    async def identification(request):
+        return web.Response(body=identification_xml(service, network_snapshot(), f'{request.scheme}://{request.host}',
+                            discovery.description or service.config['description']), content_type='application/xml')
+    async def radio_identification(request):
+        if not service.identified_model: raise web.HTTPNotFound(text='No identified radio')
+        return web.Response(body=identification_xml(service, network_snapshot(), f'{request.scheme}://{request.host}',
+                            'Connected CI-V radio', connected=True), content_type='application/xml')
+    async def schema(request):
+        return web.FileResponse(Path(__file__).parent / 'schemas/InstrumentIdentification-2.0.xsd',
+                                headers={'Content-Type':'application/xml'})
+    async def help_page(request): return web.FileResponse(Path(__file__).parent / 'static/help.html')
+    async def network_settings(request):
+        data = await request.json()
+        try: await discovery.configure(service.config, data, identity(service))
+        except OSError: raise web.HTTPServiceUnavailable(text='Could not save discovery settings')
+        service.log(None, 'Discovery settings saved; network adapter configuration unchanged')
+        return web.json_response({'saved':True, 'active':bool(discovery.services), 'error':discovery.last_error})
     async def health(request):
         # Public readiness only: no serial settings, identity, or operation logs.
         return web.json_response({"gateway": "online", "radio": service.backend.state,
@@ -126,9 +150,16 @@ def make_web(service, password):
         await service.disconnect(owner(request)); return web.json_response({"ok": True})
     app.router.add_get("/", index)
     app.router.add_get("/health", health)
-    app.router.add_get("/lxi", index) # Welcome alias; no claim of LXI compliance.
+    app.router.add_get('/lxi', welcome)
+    app.router.add_get('/lxi/', welcome)
+    app.router.add_get('/network', lan_page)
+    app.router.add_get('/lxi/identification', identification)
+    app.router.add_get('/devices/radio/lxi/identification', radio_identification)
+    app.router.add_get(SCHEMA_PATH, schema)
+    app.router.add_get('/help', help_page)
     app.router.add_static("/static/", Path(__file__).parent / "static")
     app.router.add_get("/api/status", status)
+    app.router.add_post('/api/network', network_settings)
     app.router.add_get('/api/commands',commands)
     app.router.add_get('/api/scope',scope)
     app.router.add_post("/api/session", session)

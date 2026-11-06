@@ -14,14 +14,15 @@ Python 3.11以上を用意し、PowerShellでこのフォルダーから実行�
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e '.[test]'
 Copy-Item config.example.toml config.toml
-$env:CIVI_PASSWORD = 'replace-with-your-own-long-password'
 .\.venv\Scripts\python.exe -m civi --make-cert certs --host 192.168.1.20
-.\.venv\Scripts\python.exe -m civi --config config.toml
+.\start.cmd
 ```
 
 `--host`には実際のLAN IPやDNS名を指定できます。localhostは自動で含まれます。自己署名証明書を生成します。利用する端末で証明書を確認して信頼するか、信頼されたCAの証明書と鍵をconfig.tomlに指定してください。秘密鍵は共有しないでください。既存証明書は上書きしません。
 
 Webは `https://localhost:8443`、SCPIは `localhost:5025`。初期設定は模擬無線機なので実機がなくても操作できます。Webログインユーザーは `admin`、パスワードは環境変数。12文字以上が必要です。パスワードをソースや設定ファイルには保存しません。
+
+次回からはPowerShellで `.\start.cmd`、コマンドプロンプトで `start.cmd` を実行します。初回だけWebパスワードを非表示で入力し、WindowsのDPAPIで暗号化した資格情報を `.civi-password.xml` に保存します（Git対象外）。同じPCの同じWindowsアカウントでのみ復号でき、次回から保存値を設定済みのパスワード環境変数へ渡して起動します。変更する場合はCIVIを停止して `.\start.cmd -ResetPassword` を実行してください。Ctrl+Cで終了でき、自動起動は設定しません。`python -m civi`で直接起動する場合は従来どおり環境変数の設定が必要です。
 
 `*IDN?`は`CIVI Project,CIVI/IC-7300,CIVI-0001,0.1.0`のようにCIVIと識別済みの接続機種を返します。未接続・未知の機種IDでは機種部分が`Unknown`になります。末尾はCIVIのソフトウェア版です。無線機のファームウェア版はWebの`Radio firmware`と`RAD:FIRM?`に分けて表示します。自動取得は行わず、未設定では`Unknown`、config.tomlトップレベルの`radio_firmware`に手動登録できます。
 
@@ -62,6 +63,8 @@ RAD:MENU:0094?
 WebのSメーターは`≈ S7 (raw 96)`のように推定S値とraw値を併記します。IC-7300の近似表を使用し、プリアンプ・ATTによる補正やdBm変換は行いません。`READ:SMET?`の応答は未校正のraw整数のままです。
 
 ## 検証と文書
+
+LXI対応の一部として、`/lxi`の公開機器・LAN情報、`/lxi/identification`のXMLと公式スキーマのローカル配信、`/network`での認証付き機器説明・発見設定の変更と保存を追加しました。HTTP/LXI/SCPI/HTTPSサービスの識別TXT広告、追加HTTPSポートにも対応します。必須要件は残っており、LXI適合・認証は主張しません。[実装範囲と残作業](docs/LXI_IMPLEMENTATION.md)を参照してください。更新反映にはCIVIを再起動します。既存のポート・無線機設定は変更しません。
 
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q

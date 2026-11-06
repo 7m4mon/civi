@@ -1,11 +1,26 @@
 import tomllib
+import json
 from pathlib import Path
+from .network import validate_settings
 
 
 def load(path):
     path = Path(path).resolve()
     with path.open("rb") as f:
         c = tomllib.load(f)
+    c.setdefault('description', f'CIVI {c["serial_number"]}')
+    c.setdefault('discovery', True)
+    c['network_settings_file'] = str(path.parent / '.civi-network.json')
+    if Path(c['network_settings_file']).exists():
+        settings = json.loads(Path(c['network_settings_file']).read_text(encoding='utf-8'))
+        validate_settings(settings)
+        c.update(settings)
+    validate_settings({key:c[key] for key in ('description','discovery')})
+    extra = c.setdefault('web_extra_ports', [])
+    if not isinstance(extra, list) or any(type(p) is not int or not 1 <= p <= 65535 for p in extra):
+        raise ValueError('Invalid web_extra_ports')
+    if len(set([c['web_port'], *extra])) != 1 + len(extra) or c['scpi_port'] in [c['web_port'], *extra]:
+        raise ValueError('Ports must be distinct')
     if c.get("backend") not in ("mock", "civ"):
         raise ValueError("backend must be mock or civ")
     firmware = c.get("radio_firmware", "")
