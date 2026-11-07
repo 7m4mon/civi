@@ -25,7 +25,12 @@ async def run(config):
     profile = load_profile(config["profile"])
     backend = MockBackend(profile) if config["backend"] == "mock" else CivBackend(profile, config["serial"])
     service, discovery = ControlService(backend, config), Discovery()
-    runner = web.AppRunner(make_web(service, password, discovery))
+    lan_manager = None
+    if config.get('pi_network', {}).get('enabled'):
+        if sys.platform != 'linux': raise ValueError('Pi LAN configuration requires Linux')
+        from .pi.broker import BrokerClient
+        lan_manager = BrokerClient(config['pi_network']['socket'])
+    runner = web.AppRunner(make_web(service, password, discovery, lan_manager))
     tcp = None
     discovery_task = None
     await service.start()

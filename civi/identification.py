@@ -88,6 +88,21 @@ def information_page(service, network, discovery, settings=False):
 <button>Save and apply</button></form><p id="network-result" role="status"></p>
 <p>Hostname, DHCP/AutoIP, static IP, gateway, DNS and LAN configuration reset are not implemented here.</p>'''
     body += interfaces
+    if settings and service.config.get('pi_network',{}).get('enabled'):
+        body += '''<h2>Pi wired LAN configuration</h2>
+<p>Changes are temporary until confirmed through the new wired IPv4 address. NetworkManager rolls back after 90 seconds without confirmation.</p>
+<form id="pi-network-form"><label>Administrator password<input id="pi-password" type="password" autocomplete="current-password" required></label>
+<button id="pi-read" type="button">Read wired LAN</button>
+<label>IPv4 mode<select id="pi-mode"><option value="static">Static IPv4</option><option value="automatic">DHCP with AutoIP fallback</option></select></label>
+<label>IPv4 address<input id="pi-address" placeholder="192.168.73.2"></label>
+<label>Prefix length<input id="pi-prefix" type="number" min="1" max="32" value="24"></label>
+<label>Gateway (leave empty for direct connection)<input id="pi-gateway"></label>
+<label>DNS servers (comma separated, optional)<input id="pi-dns"></label>
+<div class="row"><button id="pi-preview" type="button">Preview</button><button id="pi-apply" type="button">Apply temporarily</button></div>
+</form><p id="pi-result" role="status"></p><pre id="pi-state"></pre><p id="pi-reconnect"></p>
+<button id="pi-confirm" type="button" disabled>Confirm and save</button>
+<button id="pi-rollback" type="button" disabled>Restore previous settings</button>
+<p class="small">Hostname changes and LAN reset are not yet implemented. Keep WLAN available as a management path during experiments.</p>'''
     script = '<script src="/static/network.js" defer></script>' if settings else ''
     return f'''<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><title>CIVI — {'LAN information' if settings else 'Welcome'}</title>

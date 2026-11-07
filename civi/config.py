@@ -50,4 +50,9 @@ def load(path):
         raise ValueError("Invalid transmit configuration")
     for key in ("tls_cert", "tls_key"):
         c[key] = str((path.parent / c[key]).resolve())
+    pi = c.setdefault('pi_network', {})
+    pi.setdefault('enabled', False)
+    pi.setdefault('socket', '/run/civi-lan/control.sock')
+    if type(pi['enabled']) is not bool or not isinstance(pi['socket'],str) or not pi['socket'].startswith('/'):
+        raise ValueError('Invalid Pi LAN helper configuration')
     return c

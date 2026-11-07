@@ -107,7 +107,8 @@ class NetworkManager:
         uuid = matches[0]
         if not re.fullmatch(r'[0-9a-fA-F]{8}(?:-[0-9a-fA-F]{4}){3}-[0-9a-fA-F]{12}', uuid):
             raise NetworkError('Invalid active connection UUID')
-        fields = ('connection.id','connection.type','ipv4.method','ipv4.addresses','ipv4.gateway','ipv4.dns')
+        fields = ('connection.id','connection.type','ipv4.method','ipv4.addresses','ipv4.gateway','ipv4.dns',
+                  'ipv4.ignore-auto-dns','ipv4.never-default','ipv4.link-local')
         values = {field:self._read('-g',field,'connection','show','uuid',uuid) for field in fields}
         if values['connection.type'] != '802-3-ethernet':
             raise NetworkError('The initial Raspberry Pi target requires a wired Ethernet profile')
@@ -135,6 +136,7 @@ def plan_changes(snapshot, data):
     command += ['ipv4.addresses', f'{settings.address}/{settings.prefix}' if settings.mode == 'static' else '']
     command += ['ipv4.gateway', settings.gateway,
                 'ipv4.dns', ','.join(settings.dns), 'ipv4.ignore-auto-dns', 'yes' if settings.dns else 'no']
+    command += ['ipv4.never-default', 'yes' if not settings.gateway else 'no']
     if snapshot['autoip_fallback_supported']:
         command += ['ipv4.link-local', 'fallback' if settings.mode == 'automatic' else 'disabled']
     commands += [command, ['nmcli','connection','up','uuid',uuid,'ifname',interface]]

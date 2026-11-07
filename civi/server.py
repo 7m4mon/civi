@@ -48,7 +48,7 @@ async def scpi_client(reader, writer, service):
         except (ConnectionError, OSError): pass
 
 
-def make_web(service, password, discovery=None):
+def make_web(service, password, discovery=None, lan_manager=None):
     discovery = discovery or Discovery()
     @web.middleware
     async def security(request, handler):
@@ -102,6 +102,35 @@ def make_web(service, password, discovery=None):
         except OSError: raise web.HTTPServiceUnavailable(text='Could not save discovery settings')
         service.log(None, 'Discovery settings saved; network adapter configuration unchanged')
         return web.json_response({'saved':True, 'active':bool(discovery.services), 'error':discovery.last_error})
+    async def pi_lan(request):
+        if lan_manager is None: raise web.HTTPNotImplemented(text='Pi LAN helper is not enabled')
+        from .pi.network import NetworkError
+        operation = request.match_info.get('operation','status')
+        try:
+            if operation == 'status': return web.json_response(await asyncio.to_thread(lan_manager.request,'status'))
+            data = await request.json()
+            if operation in ('preview','apply'):
+                if set(data) != {'settings'}: raise ValueError('Expected settings')
+                if operation == 'apply' and (service.owner or service.cache.get('ptt')):
+                    raise web.HTTPConflict(text='Stop transmission before changing LAN settings')
+                values = {'settings':data['settings']}
+                if operation == 'apply': values['timeout'] = 90
+            else:
+                if operation not in ('confirm','rollback') or set(data) != {'token'}: raise ValueError('Invalid LAN operation')
+                values = {'token':data['token']}
+                if operation == 'confirm':
+                    status = await asyncio.to_thread(lan_manager.request,'status')
+                    pending = status.get('pending')
+                    addresses = status['snapshot']['active_ipv4'].splitlines()
+                    local_ip = request.transport.get_extra_info('sockname')[0]
+                    expected = pending.get('expected_ipv4') if pending else None
+                    if (expected and local_ip != expected) or (not expected and local_ip not in [ip.split('/')[0] for ip in addresses]):
+                        raise web.HTTPConflict(text='Reconnect through the changed wired IPv4 address before confirming')
+            result = await asyncio.to_thread(lan_manager.request,operation,**values)
+            service.log(None,f'Pi LAN operation: {operation}')
+            return web.json_response(result)
+        except NetworkError as error:
+            return web.json_response({'error':str(error)},status=409)
     async def health(request):
         # Public readiness only: no serial settings, identity, or operation logs.
         return web.json_response({"gateway": "online", "radio": service.backend.state,
@@ -160,6 +189,9 @@ def make_web(service, password, discovery=None):
     app.router.add_static("/static/", Path(__file__).parent / "static")
     app.router.add_get("/api/status", status)
     app.router.add_post('/api/network', network_settings)
+    app.router.add_get('/api/pi/network',pi_lan)
+    for operation in ('preview','apply','confirm','rollback'):
+        app.router.add_post('/api/pi/network/{operation:'+operation+'}',pi_lan)
     app.router.add_get('/api/commands',commands)
     app.router.add_get('/api/scope',scope)
     app.router.add_post("/api/session", session)

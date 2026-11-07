@@ -57,7 +57,8 @@ def test_snapshot_reads_actual_fields_using_uuid_not_profile_name(monkeypatch):
     calls = []
     fields = {'connection.id':'Wired profile with spaces', 'connection.type':'802-3-ethernet',
               'ipv4.method':'auto', 'ipv4.addresses':'', 'ipv4.gateway':'', 'ipv4.dns':'',
-              'IP4.ADDRESS':'192.0.2.10/24', 'IP4.GATEWAY':'192.0.2.1', 'IP4.DNS':'192.0.2.1', 'VERSION':'1.52.0'}
+              'IP4.ADDRESS':'192.0.2.10/24', 'IP4.GATEWAY':'192.0.2.1', 'IP4.DNS':'192.0.2.1', 'VERSION':'1.52.0',
+              'ipv4.ignore-auto-dns':'no','ipv4.never-default':'yes','ipv4.link-local':'0'}
     def runner(command, **kwargs):
         calls.append(command)
         assert kwargs['timeout'] == 10 and kwargs['env']['LC_ALL'] == 'C'
