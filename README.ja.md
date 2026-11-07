@@ -1,6 +1,6 @@
 # CIVI
 
-このブランチは**Raspberry Pi向けLXI開発版**（`codex/rpi-lxi`）です。Windowsの作業フォルダーとは別のworktreeで開発します。共通SCPI/CI-V機能を維持し、Pi固有のNetworkManager読み取り・変更プレビューを`civi/pi/`に追加しています。設定の適用はまだ行いません。[開発範囲](docs/RPI_DEVELOPMENT.md)を参照してください。起動は手動のままで、LXI準拠は主張しません。
+このブランチは**Raspberry Pi向けLXI開発版**（`codex/rpi-lxi`）です。Windowsの作業フォルダーとは別のworktreeで開発します。Pi固有のNetworkManager処理は`civi/pi/`に分離し、任意で[手動起動するLAN補助プロセス](docs/RPI_LAN_SETTINGS.md)により、有線IPv4の一時変更・新アドレスからの確認保存・チェックポイント復元に対応します。ホスト名変更・LCIなどは未完了です。起動は手動のままで、LXI準拠は主張しません。
 
 [English](README.md) | **日本語**
 

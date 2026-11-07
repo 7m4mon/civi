@@ -61,12 +61,21 @@ if(document.getElementById('pi-network-form')) {
       const result = await request(operation,data);
       if(operation==='preview') pi('state').textContent = JSON.stringify(result,null,2);
       else show(result);
+      return result;
     } catch(error) {
       pi('result').textContent = `${error.message}. If the address changed, reconnect through the new wired address. Without confirmation the change will be rolled back.`;
     }
   }
   pi('read').onclick = async () => {
-    await act('',undefined);
+    const state = await act('',undefined);
+    if(!state) return;
+    const snapshot=state.snapshot, profile=snapshot.profile;
+    pi('mode').value=profile['ipv4.method']==='auto' ? 'automatic':'static';
+    const address=snapshot.active_ipv4.split('\n')[0].split('/');
+    pi('address').value=address[0] || '';
+    pi('prefix').value=address[1] || 24;
+    pi('gateway').value=profile['ipv4.gateway'] || '';
+    pi('dns').value=profile['ipv4.dns'] || '';
   };
   pi('preview').onclick = () => { const value=settings(); reconnect(value); act('preview',{settings:value}); };
   pi('apply').onclick = () => { const value=settings(); reconnect(value); act('apply',{settings:value}); };

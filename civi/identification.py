@@ -79,6 +79,9 @@ def information_page(service, network, discovery, settings=False):
         interfaces += '</dl>'
         if not item.get('up'): interfaces += '</details>'
     if settings:
+        limitation = ('Hostname changes and LAN configuration reset are not implemented. Pi wired IPv4 settings are available below.'
+                      if service.config.get('pi_network',{}).get('enabled') else
+                      'Hostname, DHCP/AutoIP, static IP, gateway, DNS and LAN configuration reset are not implemented here.')
         body += f'''<h2>Discovery settings</h2>
 <p>Changes are saved for future manual launches. IP configuration remains managed by the OS.</p>
 <form id="network-form"><label>Description / service name (up to 63 UTF-8 bytes)
@@ -86,7 +89,7 @@ def information_page(service, network, discovery, settings=False):
 <label><input id="discovery" type="checkbox" {'checked' if service.config.get('discovery') else ''}> Enable mDNS / DNS-SD</label>
 <label>Administrator password<input id="network-password" type="password" autocomplete="current-password" required></label>
 <button>Save and apply</button></form><p id="network-result" role="status"></p>
-<p>Hostname, DHCP/AutoIP, static IP, gateway, DNS and LAN configuration reset are not implemented here.</p>'''
+<p>{limitation}</p>'''
     body += interfaces
     if settings and service.config.get('pi_network',{}).get('enabled'):
         body += '''<h2>Pi wired LAN configuration</h2>
