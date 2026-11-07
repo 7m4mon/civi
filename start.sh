@@ -20,7 +20,7 @@ if [[ ! "$password_env" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; then
     exit 1
 fi
 if [[ -z "${!password_env:-}" ]]; then
-    read -r -s -p "CIVI Web password (at least 12 characters): " password
+    read -r -s -p "CIVI Web password (not Linux/sudo; at least 12 characters): " password
     printf '\n'
     if [[ ${#password} -lt 12 ]]; then
         echo "The password must contain at least 12 characters." >&2
@@ -28,7 +28,10 @@ if [[ -z "${!password_env:-}" ]]; then
     fi
     export "$password_env=$password"
     unset password
+else
+    echo "Using the existing CIVI Web password from environment variable $password_env."
 fi
 
+echo "Web login username: admin"
 echo "Starting CIVI. Press Ctrl+C to stop."
 exec "$python" -m civi --config config.toml

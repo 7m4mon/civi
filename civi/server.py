@@ -58,7 +58,12 @@ def make_web(service, password, discovery=None, lan_manager=None):
                 user, supplied = base64.b64decode(token, validate=True).decode().split(":", 1)
                 valid = scheme.lower() == "basic" and user == "admin" and hmac.compare_digest(supplied.encode(), password.encode())
             except (ValueError, UnicodeError): valid = False
-            if not valid: return web.json_response({"error": "Authentication required"}, status=401, headers={"WWW-Authenticate": 'Basic realm="CIVI"'})
+            if not valid:
+                # Form-based fetch requests handle authentication in the page.
+                # A Basic challenge here would open a second browser login dialog.
+                challenge = {} if request.headers.get('X-CIVI-Request') == '1' else {'WWW-Authenticate':'Basic realm="CIVI"'}
+                return web.json_response({'error':'Invalid or missing CIVI Web password. Use the Web password entered when starting CIVI, not the Linux/sudo password.'},
+                                         status=401, headers={**challenge,'Cache-Control':'no-store'})
             if request.method != "GET" and request.headers.get("X-CIVI-Request") != "1":
                 raise web.HTTPForbidden(text="X-CIVI-Request required")
             origin = request.headers.get("Origin")

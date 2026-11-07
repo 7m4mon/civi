@@ -18,6 +18,12 @@ async def test_pi_web_authentication_apply_tx_guard_and_wired_confirmation(servi
     auth={'Authorization':'Basic '+base64.b64encode(b'admin:mock-test-password').decode(),'X-CIVI-Request':'1'}
     async with TestClient(TestServer(make_web(service,'mock-test-password',lan_manager=client))) as web:
         assert (await web.get('/api/pi/network')).status==401
+        invalid=await web.get('/api/pi/network',headers={'Authorization':'Basic '+base64.b64encode(b'admin:wrong-password').decode(),'X-CIVI-Request':'1'})
+        assert invalid.status==401
+        assert 'WWW-Authenticate' not in invalid.headers
+        assert 'Linux/sudo' in (await invalid.json())['error']
+        challenge=await web.get('/api/pi/network')
+        assert challenge.status==401 and challenge.headers['WWW-Authenticate'].startswith('Basic')
         assert (await web.get('/api/pi/network',headers=auth)).status==200
         assert (await web.post('/api/pi/network/apply',json={'settings':{}},headers={'Authorization':auth['Authorization']})).status==403
         assert (await web.post('/api/pi/network/apply',json={'settings':{}},headers={**auth,'Origin':'https://evil.invalid'})).status==403

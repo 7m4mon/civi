@@ -3,6 +3,7 @@ document.getElementById('network-form').addEventListener('submit', async event =
   const result = document.getElementById('network-result');
   const button = event.target.querySelector('button');
   const password = document.getElementById('network-password');
+  if(!password.reportValidity()) return;
   button.disabled = true;
   result.textContent = 'Saving and applying discovery settings…';
   try {
@@ -30,13 +31,20 @@ if(document.getElementById('pi-network-form')) {
     return value;
   }
   async function request(operation, data) {
+    if(!pi('password').reportValidity() || pi('password').value.length < 12) {
+      const error = new Error('Enter the CIVI Web password (at least 12 characters), not the Linux/sudo password.');
+      error.status=401; throw error;
+    }
     const bytes = new TextEncoder().encode('admin:' + pi('password').value);
     const response = await fetch('/api/pi/network' + (operation ? '/' + operation : ''), {
       method:data ? 'POST':'GET', headers:{Authorization:'Basic '+btoa(String.fromCharCode(...bytes)),
       'X-CIVI-Request':'1','Content-Type':'application/json'}, body:data ? JSON.stringify(data):undefined,
       signal:AbortSignal.timeout(50000)});
     const result = await response.json().catch(()=>({}));
-    if(!response.ok) throw new Error(result.error || `HTTP ${response.status}`);
+    if(!response.ok) {
+      const error = new Error(result.error || `HTTP ${response.status}`);
+      error.status=response.status; throw error;
+    }
     return result;
   }
   function show(state) {
@@ -63,7 +71,10 @@ if(document.getElementById('pi-network-form')) {
       else show(result);
       return result;
     } catch(error) {
-      pi('result').textContent = `${error.message}. If the address changed, reconnect through the new wired address. Without confirmation the change will be rolled back.`;
+      if(error.status===401) {
+        if(polling) clearInterval(polling);
+        pi('result').textContent=error.message;
+      } else pi('result').textContent = `${error.message}. If the address changed, reconnect through the new wired address. Without confirmation the change will be rolled back.`;
     }
   }
   pi('read').onclick = async () => {

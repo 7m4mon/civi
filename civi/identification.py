@@ -87,14 +87,16 @@ def information_page(service, network, discovery, settings=False):
 <form id="network-form"><label>Description / service name (up to 63 UTF-8 bytes)
 <input id="description" value="{e(service.config['description'])}" required></label>
 <label><input id="discovery" type="checkbox" {'checked' if service.config.get('discovery') else ''}> Enable mDNS / DNS-SD</label>
-<label>Administrator password<input id="network-password" type="password" autocomplete="current-password" required></label>
+<label>CIVI Web password (username: admin)<input id="network-password" type="password" autocomplete="current-password" minlength="12" required></label>
+<p class="small">Use the Web password entered when starting CIVI. This is separate from the Linux/sudo password.</p>
 <button>Save and apply</button></form><p id="network-result" role="status"></p>
 <p>{limitation}</p>'''
     body += interfaces
     if settings and service.config.get('pi_network',{}).get('enabled'):
         body += '''<h2>Pi wired LAN configuration</h2>
 <p>Changes are temporary until confirmed through the new wired IPv4 address. NetworkManager rolls back after 90 seconds without confirmation.</p>
-<form id="pi-network-form"><label>Administrator password<input id="pi-password" type="password" autocomplete="current-password" required></label>
+<form id="pi-network-form"><label>CIVI Web password (username: admin)<input id="pi-password" type="password" autocomplete="current-password" minlength="12" required></label>
+<p class="small">Use the Web password entered when starting CIVI, not the Linux/sudo password.</p>
 <button id="pi-read" type="button">Read wired LAN</button>
 <label>IPv4 mode<select id="pi-mode"><option value="static">Static IPv4</option><option value="automatic">DHCP with AutoIP fallback</option></select></label>
 <label>IPv4 address<input id="pi-address" placeholder="192.168.73.2"></label>
