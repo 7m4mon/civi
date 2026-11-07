@@ -114,9 +114,9 @@ class Transactions:
                             'deadline':self.clock()+timeout, 'before':before, 'modify':modify}
             self.last_result = None
             try:
-                # Only the in-memory profile changes until the user confirms.
-                self._command([*modify[:3],'--temporary',*modify[3:]])
-                self._command(plan['commands'][-1], wait=20)
+                # Reapply to the device only. Editing a Netplan-backed profile with
+                # --temporary can leave a tombstone when it is later persisted.
+                self._command(['nmcli','device','modify',self.interface,*modify[5:]], wait=20)
                 current = self.manager.snapshot(self.interface)
                 if settings['mode'] == 'static':
                     wanted = f"{settings['address']}/{settings['prefix']}"
@@ -149,6 +149,11 @@ class Transactions:
             if self.clock() >= pending['deadline']: raise NetworkError('Confirmation deadline expired')
             try:
                 self._command(pending['modify'])
+                current = self.manager.snapshot(self.interface)
+                if current['uuid'] != pending['before']['uuid']:
+                    raise NetworkError('The saved connection profile changed unexpectedly')
+                if pending['expected_ipv4'] and pending['expected_ipv4'] not in [ip.split('/')[0] for ip in current['active_ipv4'].splitlines()]:
+                    raise NetworkError('The confirmed wired IPv4 is no longer active')
                 self.checkpoints.destroy(pending['checkpoint'])
             except Exception:
                 try: self.rollback(token)

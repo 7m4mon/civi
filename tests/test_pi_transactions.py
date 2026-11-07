@@ -22,9 +22,10 @@ class Manager:
         if self.fail: return SimpleNamespace(returncode=1,stderr='Activation failed')
         if 'modify' in command:
             value=command[command.index('ipv4.addresses')+1]
-            self.value['profile']['ipv4.addresses']=value
             self.value['active_ipv4']=value
-            if '--temporary' not in command: self.saved=value
+            if 'connection' in command:
+                self.value['profile']['ipv4.addresses']=value
+                self.saved=value
         return SimpleNamespace(returncode=0,stderr='')
 
 
@@ -48,7 +49,8 @@ def test_apply_is_temporary_confirm_persists_and_token_required(transaction):
     result=tx.apply(SETTINGS,60)
     token=result['pending']['token']
     assert manager.saved=='192.0.2.2/24' and checkpoint.timeout==60
-    assert '--temporary' in manager.commands[0]
+    assert 'device' in manager.commands[0] and '--temporary' not in manager.commands[0]
+    assert result['snapshot']['profile']['ipv4.addresses']=='192.0.2.2/24'
     assert result['snapshot']['active_ipv4']=='192.0.2.3/24'
     with pytest.raises(NetworkError): tx.confirm('invalid')
     with pytest.raises(NetworkError): tx.apply(SETTINGS)
