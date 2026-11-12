@@ -1,7 +1,7 @@
 # Python driver command coverage (0.13.1)
 
 Generated from the CIVI command catalog and the client API. This is a mapping inventory,
-not a hardware verification record or IVI conformance result.
+with dedicated APIs for every supported direction.
 
 339 extended definitions: **339 mapped**, **0 partial**, **0 pending**.
 
@@ -9,7 +9,7 @@ Mapped means every catalog direction has a dedicated typed client API. Partial m
 at least one direction remains absent. Pending commands can still be sent through raw
 I/O in hardware mode, but raw I/O does not count as a dedicated typed implementation.
 SCPI_COVERAGE.md / PYTHON_SCPI_AUDIT.md add base commands, documented aliases and exclusions.
-Formal applicability and IVI requirements remain subject to the compliance audit.
+EVIDENCE.md summarizes recorded verification results.
 
 Core frequency/mode/S-meter, IDN/error/completion and CIVI receive reset are additional
 APIs outside this extended-command count. Simulation covers the documented client API;

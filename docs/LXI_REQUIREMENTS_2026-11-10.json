@@ -178,9 +178,9 @@
     "tools/ivi_readonly_acceptance.py": "d16306e9dc07107c99726d3f0af270dc84516d7c971545c762a5decd28f55804",
     "tools/ivi_receiver_settings_acceptance.py": "3b0700a2da0c2a311aa65b1ccb59423c2634c375988f4173d4014c54d1385e50",
     "drivers/civi-ic7300/src/civi_ic7300/API.md": "0b1f8f0c50f3dd619c642840d1af50b1b366363f7cb2195eefba70b1abe92fef",
-    "drivers/civi-ic7300/src/civi_ic7300/OPERATIONS.md": "9baa5d03b5544aa799035a7c4c26ac8c9e00bc349bc33b7da04e4225f589e678",
-    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "7cbdf44c37d2de94fbe2c31368abf4a01eaa3487fd568e4549d730e47d3b42dd",
-    "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md": "b9fbf6088a924d4e7f22e48860acd6be8f590cb02e1c65d0517ad63ed07db387",
+    "drivers/civi-ic7300/src/civi_ic7300/OPERATIONS.md": "2334d27e676dad28b0d47876131847232cb15c00f47f2591335f407965d4af53",
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "ccf855ea89cbec3d4f04ec1c9ef54e5ef2ec14aa1322b5c7b064ebff253e70a7",
+    "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md": "8a50dbbb9db93446b294d4e86f21a7f27b8f79f25b7f32428b60233e03fe4d97",
     "tools/ivi_tx_inhibit_acceptance.py": "592267e65f877d03132c1293286cc99d473503a40f8da4c87e8981caa3f98932",
     "civi/backend.py": "8ce5436af88bfa0228f814ddfe059f3c38e6a657b0aa175e8de66faf8e9cef29",
     "civi/service.py": "d717dad1f59684cb2164292018023102e4cb61200a03f9728b4a4abd9484cf5d",
@@ -195,11 +195,11 @@
     "tools/ivi_stack_keyer_write_acceptance.py": "e8704c179098639f44067d64f4b549db1de595f4b3a9b99d30ce5df2f47eca20",
     "tools/ivi_scan_span_acceptance.py": "7ae8dc220b2481d1e55103ec3f2553fbce54908097f815473e9e3a297d6272fc",
     "tools/ivi_scan_select_acceptance.py": "47f4eb21d755ee73fed67eca3b5c91a85ea049aed94a1d75a7445101350c28d0",
-    "tools/ivi_verification_reconcile.py": "22e5068867f8f89be1abbf36b1b43bb0f6e4942eedba4438f100557468307ec5",
+    "tools/ivi_verification_reconcile.py": "dfcbf948386d078786511fffed36470393bd017d4a8429e011cec215b4322b1f",
     "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv": "d1a12b3c1d85434a9e122ac732b935e05f1b51f95b706dc0c90bc249c0962d51",
     "docs/IVI_MENU_VERIFICATION_2026-11-12.csv": "76a2dc86e329a84d5263dfc457c71cfd8d6759b51ff78eeac6f18627739e6573",
-    "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json": "5e22928331794356503a6d8cd6643c0f73e78415fb62995d2da9581a49b2ca76",
-    "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md": "a69c254de666c0b0eb00d4b2f2936f823edb2563287dc89c028729180dab994e"
+    "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json": "31fdede1598ed50a0688df78c82ab00cdb8f7d285d83f358381b35ec479ed95b",
+    "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md": "6946e101998198023d362c60f2594bf639860ae33372f3ce6016cd56c9694852"
   },
   "rows": [
     {
@@ -5782,5 +5782,34 @@
   },
   "pre_ivi_reconciliation_fingerprints": {
     "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "4bab739cd9d63ce1617698ab5cb45a1552d0d6e17a9e144ab204767b8394c378"
+  },
+  "documentation_reorganization_2026_11_12": {
+    "purpose": "Consolidate final results and centralize completion criteria; no additional hardware pass",
+    "fingerprint_changes": {
+      "drivers/civi-ic7300/src/civi_ic7300/OPERATIONS.md": {
+        "before": "9baa5d03b5544aa799035a7c4c26ac8c9e00bc349bc33b7da04e4225f589e678",
+        "after": "2334d27e676dad28b0d47876131847232cb15c00f47f2591335f407965d4af53"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": {
+        "before": "7cbdf44c37d2de94fbe2c31368abf4a01eaa3487fd568e4549d730e47d3b42dd",
+        "after": "ccf855ea89cbec3d4f04ec1c9ef54e5ef2ec14aa1322b5c7b064ebff253e70a7"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md": {
+        "before": "b9fbf6088a924d4e7f22e48860acd6be8f590cb02e1c65d0517ad63ed07db387",
+        "after": "8a50dbbb9db93446b294d4e86f21a7f27b8f79f25b7f32428b60233e03fe4d97"
+      },
+      "tools/ivi_verification_reconcile.py": {
+        "before": "22e5068867f8f89be1abbf36b1b43bb0f6e4942eedba4438f100557468307ec5",
+        "after": "dfcbf948386d078786511fffed36470393bd017d4a8429e011cec215b4322b1f"
+      },
+      "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json": {
+        "before": "5e22928331794356503a6d8cd6643c0f73e78415fb62995d2da9581a49b2ca76",
+        "after": "31fdede1598ed50a0688df78c82ab00cdb8f7d285d83f358381b35ec479ed95b"
+      },
+      "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md": {
+        "before": "a69c254de666c0b0eb00d4b2f2936f823edb2563287dc89c028729180dab994e",
+        "after": "6946e101998198023d362c60f2594bf639860ae33372f3ce6016cd56c9694852"
+      }
+    }
   }
 }

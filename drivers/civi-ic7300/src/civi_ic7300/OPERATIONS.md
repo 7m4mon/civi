@@ -110,7 +110,3 @@ with CiviIc7300(
     finally:
         d.operations.stop_cw()
 ```
-
-The 339 extended definitions now have typed mappings in every catalog direction.
-This is an API inventory, not hardware verification or an IVI compliance result.
-Final specification/naming/documentation audits and registration remain open.

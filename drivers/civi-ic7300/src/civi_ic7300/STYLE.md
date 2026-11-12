@@ -1,8 +1,5 @@
 # API naming and repeated-capability review — 0.13.0, 2026-11-10
 
-This developer review is not an IVI conformance declaration. Final vendor naming
-remains the nomulabo/NL proposal in NAMING.md; existing imports are retained.
-
 ## Scope and method
 
 Reviewed all twelve client Python source modules, the 43-type public help

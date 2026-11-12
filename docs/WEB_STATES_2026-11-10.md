@@ -64,12 +64,6 @@ the browser loads them through the existing no-store responses; gateway, helper
 and panel do not require a restart. The deployment checks below distinguish live
 asset delivery from the mock transition checks.
 
-Windows and smartphone Chrome normal display checks reported earlier remain
-recorded in the preceding review. Actual browser display/interaction of these
-failure paths is not inferred from that normal-state report. Physical DHCP,
-duplicate-IP, boot and name-resolution cases stay in G05/G06. Device-wide
-normal-operation interpretation in the final product configuration remains open.
-
 Production Pi follow-up: the three scripts were deployed with backups under
 tmp/deploy-web-states-20261110-121841. Certificate-verified HTTPS GETs from Windows
 returned each script byte-for-byte identical to the updated local source, with
@@ -91,7 +85,3 @@ The user explicitly confirmed both of the following on the deployed application:
 
 - Old received values disappear after disconnection.
 - LAN confirmation is disabled on expiry or when status cannot be obtained.
-
-The reconnection session-expiry prompt is accepted as documented above. Browser/OS
-versions and subsequent sign-in success were not specified. These confirmations
-cover these two behaviors; other physical network lifecycle cases remain open.

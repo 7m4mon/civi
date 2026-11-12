@@ -399,5 +399,5 @@ provided. OS/LAN/authentication administration remains outside this client SCPI 
 Protected menu/calibration/link commands that the gateway does provide are included, not
 removed from coverage merely because their write gates default OFF.
 
-BASIC.md documents base APIs and their semantics. COMPLIANCE.md and AUDIT.md record
-remaining naming, documentation, hardware/platform and registration work.
+BASIC.md documents base APIs; EVIDENCE.md summarizes results. The verification
+completion plan is linked from COMPLIANCE.md.

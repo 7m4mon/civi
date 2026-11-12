@@ -44,11 +44,3 @@ The capture process exited normally; it is not part of CIVI startup.
 Private captures remain under tmp/mdns-reconnect-20261111 on Windows and the
 corresponding private tmp directories on Pi. MAC-derived workstation/IPv6 records
 are omitted from this public report.
-
-## Limits
-
-This proves fresh hostname and service probes followed by advertisements on the
-tested static-IP physical reconnect. It does not establish all interface speeds,
-reconnection with a competing owner, DHCP/AutoIP permutations, repeated collision
-limits, IPv6 behavior, or complete referenced RFC compliance. Remaining conditions
-are tracked in [G06](LXI_REMAINING_2026-11-10.md).

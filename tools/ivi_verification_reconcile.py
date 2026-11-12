@@ -246,9 +246,9 @@ def render():
                             'followup_counts':dict(Counter(r['followup_ids'] or 'read_only' for r in menus))},
              'private_artifacts_are_not_embedded':True,
              'input_sha256_normalized_utf8_lf':{p:hashlib.sha256((ROOT/p).read_text(encoding='utf-8').encode()).hexdigest() for p in [HISTORY,'drivers/civi-ic7300/src/civi_ic7300/public-api.json']}}
-    plan=(ROOT/'docs/IVI_ADDITIONAL_TESTS_2026-11-12.md').read_text(encoding='utf-8')
+    plan=json.loads((ROOT/'docs/IVI_6_1_COMPLETION_2026-11-12.json').read_text(encoding='utf-8'))
     for key in summary['followups']:
-        if '### '+key+' ' not in plan:raise ValueError('Missing reviewed followup description: '+key)
+        if key not in plan['followup_cases']:raise ValueError('Missing reviewed followup description: '+key)
     return {CSV:csv_text(rows,fields),MENU:csv_text(menus,list(menus[0])),OUT:json.dumps(summary,indent=2,ensure_ascii=False)+'\n'}
 
 

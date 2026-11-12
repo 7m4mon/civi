@@ -58,8 +58,6 @@ To intentionally return to environment-based authentication, stop CIVI, back up 
 
 ## Standards mapping
 
-Reference: [LXI Device Specification 1.6.2](https://public.lxistandard.org/specifications/LXI_1.6_Specifications/LXI_Device_Specification_1.6.2_2026-04-02.pdf), sections 2.4.5 (local mechanism and protection), 8.13 (reset state), 8.13.1 (auto-negotiation recommendation), 10.5.1 (discovery enable), and 10.7.1 (last user-configured hostname/service name). The attached-console design and confirmation prompt implement the local UI/protection approach; complete physical appliance and protocol compliance remain unverified.
-
-## Helper connection errors (2026-11-11)
+## ヘルパーに接続できない場合
 
 LAN RESET now states when it cannot connect to the CIVI LAN helper, before changes. Open the CIVI desktop shortcut, enter the Linux/sudo password if requested, keep the helper terminal open and run lan-reset.sh in a separate new terminal. Losing contact during initialization instead warns that completion is unverified and wired settings may already have changed. See [the boot/reset follow-up](RPI_DHCP_BOOT_2026-11-11.md).

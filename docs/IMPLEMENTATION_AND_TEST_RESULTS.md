@@ -64,8 +64,8 @@ Each row links to the detailed record. A pass applies to the named procedure and
 | mDNS/Ping persistence | Web enable/disable saved to Pi | Disable, reboot, verify, then re-enable | Owner confirmed disabled Ping after reboot and restored both controls ([progress](PROGRESS_2026-11-07.md)) |
 | Unplugged boot and recovery | Saved static profile and LAN panel | Pi reboot with cable absent; manual app start; reconnect | Fault with cable absent; original static IP, Normal, HTTPS and SCPI returned ([boot](RPI_UNPLUGGED_BOOT_2026-11-08.md)) |
 | Local configuration initialization | LAN RESET + recovery credentials | Reset; reboot with cable absent; reconnect | DHCP/AutoIP and authentication persisted; automatic address/discovery returned ([LCI boot](RPI_LCI_BOOT_2026-11-08.md)) |
-| Local status / Identify | Attached display POWER ON, Normal/Fault and flashing Identify | Owner visual checks; cable removal during Identify; restart/stop | Power/status visible, Fault took priority, Identify restarted and stopped ([Pi checks](RPI_LXI_FIXES_2026-11-10.md), [readiness](LXI_READINESS_2026-11-11.md)) |
-| Ethernet operation | Unrestricted auto-negotiation | Physical 100 Mbps full/half; restore gigabit auto-negotiation | Links and instrument access verified ([Ethernet](RPI_ETHERNET_2026-11-08.md), [readiness](LXI_READINESS_2026-11-11.md)) |
+| Local status / Identify | Attached display POWER ON, Normal/Fault and flashing Identify | Owner visual checks; cable removal during Identify; restart/stop | Power/status visible, Fault took priority, Identify restarted and stopped ([Pi checks](RPI_LXI_FIXES_2026-11-10.md)) |
+| Ethernet operation | Unrestricted auto-negotiation | Physical 100 Mbps full/half; restore gigabit auto-negotiation | Links and instrument access verified ([Ethernet](RPI_ETHERNET_2026-11-08.md)) |
 | Auto-MDIX applicability | Unmodified Pi 4 onboard PHY | Review BCM54213PE crossover-correction capability documentation | Auto-MDIX supported; non-support label clause does not apply to this configuration ([device boundary](LXI_DEVICE_CONFIGURATION.md#auto-mdix-applicability-decision)) |
 
 ## Review package and reproducibility
@@ -76,4 +76,4 @@ Each row links to the detailed record. A pass applies to the named procedure and
 - Acceptance tools in `tools/ivi_*_acceptance.py` preserve the read/change/readback/restore procedures. Physical instrument execution is separate from automated regression tests.
 - The publication regression run on November 12 completed with **619 passed, one Linux-only skip** (47.44 seconds). Strict typing passed for all 12 Python driver source files. The six generated documentation/evidence consistency checks also passed. The recorded Pi full run on November 11 was **594 passed, ten environment skips**; later Pi checks are recorded individually. They are separate runs, not a combined total.
 
-The source, package documentation, examples, mock backend, dated test records and clause mapping form a reviewable implementation dossier. Detailed historical records are retained with their original conditions and observed corrections.
+Operating guides and final results are indexed in [the documentation index](INDEX.md). Verification and registration work is maintained in [one completion plan](IVI_6_1_COMPLETION_2026-11-12.md).

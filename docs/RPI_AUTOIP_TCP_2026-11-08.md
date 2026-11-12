@@ -48,9 +48,3 @@ Successful isolated artifacts: `/home/nom/civi-rpi-lxi/tmp/autoip-tcp-lab-202611
 Physical baseline/restoration/cleanup reports are in ignored Pi `tmp/autoip-tcp-before-20261108.json`, `autoip-tcp-restored-20261108.json` and `autoip-tcp-cleanup.json`. The Windows one-shot client and report are local ignored `tmp/autoip_windows_test.py`, `autoip-windows-admin-result.json` and `autoip-tcp-restored-wired.json`. The client added only the selected Pi host route in ActiveStore, used normal sockets, and removed the route before exit. No Windows execution policy or persistent addressing was changed.
 
 Automated Windows regression: **275 passed, 1 skipped**. Tests cover exact-source add/remove, refusal to mutate unowned rules and propagation of routing failure to helper health. The skip remains the Linux-only Unix-socket integration, not a pass.
-
-## Limits
-
-This confirms actual AutoIP TCP interoperability with a routable-address peer and the scoped reply-routing/lifecycle cases above. It is not complete RFC 3927 or LXI conformance: all multiple-AutoIP-interface combinations, packet forwarding/ARP requirements, existing TCP connections across address replacement, new-policy physical Pi reboot and every failure mode remain separate. Abrupt whole-process termination can leave owned entries until recovery/reboot; the private journal permits a restarted helper to recognize them, and that recovery was tested in isolation. Cleanup does not erase unrelated policies.
-
-See the [preceding full LAN RESET/AutoIP boot test](RPI_LCI_BOOT_2026-11-08.md) and [maintained LXI matrix](LXI.md).

@@ -10,8 +10,6 @@ The Pi LAN helper now includes a receive-only ARP guard for its selected wired i
 - The conflict remains visible to CIVI's Web/local-panel status through a private helper request. The message distinguishes verified disconnection from an unverified attempt. An unavailable, stale or failed guard prevents a healthy LAN from being reported as Normal.
 - Remove the conflicting peer/configuration first. Through WLAN, apply the intended wired configuration and **Confirm and save** from the wired address; successful confirmation clears the guard's fault. Local LAN RESET also clears it after successful initialization. A failed confirmation does not clear the fault. NetworkManager's device-disconnect operation prevents automatic reactivation until an explicit connection activation.
 
-After installing this update, manually stop and restart **both CIVI and the LAN helper** using the existing commands in [LAN settings](RPI_LAN_SETTINGS.md). Starting only the updated CIVI with the older helper reports that the updated helper is needed. The panel can remain open and reconnect to CIVI. No production restart is performed by the acceptance script.
-
 ## Verification
 
 Run manually as root on the Pi:

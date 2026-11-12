@@ -2,12 +2,10 @@
 
 ## Driver Documentation
 
-STYLE.md records the 0.13.0 public naming, layout and repeated-capability
-review, tool commands and compatibility exceptions.
+STYLE.md describes public naming, layout, repeated capabilities and compatibility.
 
 `README.md` in the distribution provides initial setup. `API.md` documents the
-implemented API and SCPI mapping. `COMPLIANCE.md` records remaining requirements
-and test scope. These documents are bundled alongside the importable source. REFERENCE.md
+implemented API and SCPI mapping. `COMPLIANCE.md` records package metadata and test environments. These documents are bundled alongside the importable source. REFERENCE.md
 and public-api.json index public members; EVIDENCE.md defines verification scope.
 The prescribed Foundation notice is in IVI_NOTICE.md and REFERENCE.md.
 
@@ -19,7 +17,7 @@ The distribution contains Python source. The repository also contains
 ```console
 python -m pip install build
 python -m build ./drivers/civi-ic7300
-python -m pip install ./drivers/civi-ic7300/dist/civi_ic7300-0.12.1-py3-none-any.whl
+python -m pip install ./drivers/civi-ic7300/dist/civi_ic7300-0.13.1-py3-none-any.whl
 ```
 
 Use a clean virtual environment to test installation. No C compiler is needed.
@@ -59,16 +57,6 @@ but the pair is not atomic: callers must synchronize such pairs. Responses are
 LF-framed, at most one MiB; no binary block protocol is supplied.
 
 ## Instrument Command Coverage
-
-Typed controls cover the base APIs and 339 extended definitions in all catalog directions,
-with no partial mappings. CONTROLS.md, MENUS.md, STORAGE.md, SCAN.md, BANDS.md, OPERATIONS.md and HIERARCHY.md document mappings. The repository's
-docs/PYTHON_DRIVER_COVERAGE.md lists all 339 definitions and pending directions.
-SCPI_COVERAGE.md combines 339 extended and eleven base/special headers, with
-validated documented aliases and unsupported forms. BASIC.md documents base APIs.
-Hardware behavior and the full IVI applicability review remain open.
-Raw I/O is available in hardware mode but does not complete typed coverage.
-Simulation supports the documented control surface and basic raw SCPI; unsupported
-commands raise NotImplementedError instead of claiming successful execution.
 
 ## Known Issues
 
