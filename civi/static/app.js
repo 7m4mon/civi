@@ -1,4 +1,4 @@
-let auth = '', session = '', busy = false, settingsLoaded = false;
+let auth = '', session = '', busy = false, settingsLoaded = false, radioReady = false;
 const $ = id => document.getElementById(id);
 async function jsonRequest(path, options = {}) {
   const r = await fetch(path, {...options, signal: AbortSignal.timeout(5000)});
@@ -30,9 +30,12 @@ function formatSmeter(raw, profile) {
   return (db <= 0 ? `≈ S${Math.max(0, Math.round(9+db/6))}` : `≈ S9 +${Math.round(db)} dB`) + suffix;
 }
 function readiness(state) {
+  radioReady = state === 'connected';
   const messages = {
     connected: ['Radio ready', 'The radio is connected. Sign in to operate it.'],
     disconnected: ['Waiting for radio', 'CIVI is running. Turn on your radio and connect its USB cable. If the serial port is unavailable, CIVI retries automatically. Sign in to check the CI-V settings.'],
+    connecting: ['Connecting to radio', 'CIVI is running and checking the radio connection. Wait for a validated radio response before operating it.'],
+    'status-unavailable': ['Radio status unavailable', 'CIVI is reachable, but the latest radio status could not be read. Readings are hidden until a fresh status is available.'],
     quarantined: ['Radio not ready — recovery required', 'CIVI is running, but the radio did not respond or the CI-V connection failed. Turn on the radio, check the USB cable and CI-V settings, then reset the radio and USB link. Sign in and use Recover connection under CI-V connection settings.'],
     offline: ['CIVI server unavailable', 'The browser cannot reach CIVI. Check that the CIVI program is still running, then retry. This is separate from the radio connection.']
   };
@@ -43,13 +46,22 @@ function readiness(state) {
   $('radio-status').querySelector('.eyebrow').textContent = state === 'offline' ? 'GATEWAY UNREACHABLE' : 'GATEWAY ONLINE';
   $('connection').textContent = state === 'connected' ? 'Radio ready' : state === 'offline' ? 'Gateway offline' : 'Radio not ready';
   for(const button of document.querySelectorAll('#frequency-form button, #mode-form button')) button.disabled = state !== 'connected';
+  $('scope-start').disabled = $('scope-stop').disabled = !radioReady || scopeChanging;
+  $('scope-refresh').disabled = !radioReady;
+  selectCommand();
   if(state !== 'connected') {
+    $('command-read').disabled = $('command-write').disabled = true;
     $('ptt-on').disabled = true;
     $('frequency').textContent = '— MHz';
     $('mode-value').textContent = '—';
     $('ptt-value').textContent = 'PTT unknown';
     $('smeter').value = 0;
     $('smeter-value').textContent = '—';
+    for(const id of ['scope-plot', 'scope-waterfall']) {
+      const canvas=$(id); canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+    }
+    lastWaterfallTimestamp = null;
+    $('scope-status').textContent = 'Radio not ready; scope data is unavailable.';
   }
 }
 async function refreshHealth() {
@@ -63,20 +75,22 @@ async function command(text) {
 async function refresh() {
   const s = await api('status');
   readiness(s.connection);
+  const values = radioReady ? s.values : {};
   $('radio-model').textContent = s.radio_model === 'Unknown' ? 'Radio not identified' : s.radio_model;
   $('backend').textContent = s.backend === 'mock' ? 'Simulated radio' : 'USB / CI-V';
-  $('frequency').textContent = s.values.frequency == null ? '— MHz' : (s.values.frequency / 1e6).toFixed(6) + ' MHz';
-  $('mode-value').textContent = s.values.mode ?? '—';
-  $('ptt-value').textContent = s.values.ptt == null ? 'PTT unknown' : s.values.ptt ? 'TRANSMITTING' : 'RECEIVING';
-  $('smeter').value = s.values.smeter ?? 0;
-  $('smeter-value').textContent = formatSmeter(s.values.smeter, s.smeter);
+  const unavailable = radioReady ? (s.unavailable_values ?? []) : [];
+  $('frequency').textContent = values.frequency == null ? (unavailable.includes('frequency') ? 'Not set (empty memory)' : '— MHz') : (values.frequency / 1e6).toFixed(6) + ' MHz';
+  $('mode-value').textContent = values.mode ?? (unavailable.includes('mode') ? 'Not set' : '—');
+  $('ptt-value').textContent = values.ptt == null ? 'PTT unknown' : values.ptt ? 'TRANSMITTING' : 'RECEIVING';
+  $('smeter').value = values.smeter ?? 0;
+  $('smeter-value').textContent = formatSmeter(values.smeter, s.smeter);
   $('ptt-on').disabled = !s.tx_enabled || s.connection !== 'connected';
   $('identity').textContent = `${s.manufacturer}\n${s.model} / ${s.serial}\nCIVI software: ${s.version}\nRadio: ${s.radio_model}\nRadio firmware: ${s.radio_firmware}${s.radio_firmware_source === 'manual' ? ' (manually configured)' : ''}\nRadio profile: ${s.radio}\nConnection: ${s.connection}`;
   $('network').textContent = s.network.hostname + '\n\n' + s.network.interfaces.map(i => `${i.name}\nIP: ${i.ipv4.join(', ')}\nMAC: ${i.mac ?? 'Unknown'}\n${i.visa.join('\n')}`).join('\n\n');
   if (!settingsLoaded) {
     for (const mode of s.modes) { const o = document.createElement('option'); o.value = o.textContent = mode; $('mode-input').append(o); }
-    if(s.values.mode != null) $('mode-input').value = s.values.mode;
-    if(s.values.frequency != null) $('frequency-input').value = (s.values.frequency / 1e6).toFixed(6);
+    if(values.mode != null) $('mode-input').value = values.mode;
+    if(values.frequency != null) $('frequency-input').value = (values.frequency / 1e6).toFixed(6);
     const x = s.serial_settings;
     $('serial-port').value = x.port; $('serial-baud').value = x.baud; $('radio-address').value = x.radio_address; $('controller-address').value = x.controller_address; $('serial-timeout').value = x.timeout;
     settingsLoaded = true;
@@ -111,7 +125,7 @@ async function tick() {
       $('login').hidden = false;
       $('dashboard').hidden = true;
       notice('Your session expired. Sign in again.');
-    }
+    } else readiness(e.status ? 'status-unavailable' : 'offline');
   } finally { busy = false; }
 }
 $('frequency-form').onsubmit = e => { e.preventDefault(); command('SENS:FREQ ' + $('frequency-input').value + ' MHz'); };
@@ -146,8 +160,8 @@ function selectCommand() {
   const spec = selectedCommand(); if(!spec) return;
   $('command-description').textContent = `CI-V ${spec.civ} · ${spec.format} · ${spec.guard ? 'Write permission: ' + spec.guard : 'Normal control'} · Hardware coverage: see validation report`;
   $('command-args').value = spec.access.includes('w') ? spec.set_example : spec.query_example;
-  $('command-read').disabled = !spec.access.includes('r');
-  $('command-write').disabled = !spec.access.includes('w');
+  $('command-read').disabled = !radioReady || !spec.access.includes('r');
+  $('command-write').disabled = !radioReady || !spec.access.includes('w');
 }
 $('command-select').onchange = selectCommand;
 $('command-read').onclick = () => {
@@ -159,6 +173,7 @@ $('command-write').onclick = () => {
   command(spec.header + ($('command-args').value ? ' ' + $('command-args').value : ''));
 };
 async function refreshScope() {
+  if(!radioReady) return;
   try {
     const result = await api('scope');
     const canvas = $('scope-plot'), context = canvas.getContext('2d');

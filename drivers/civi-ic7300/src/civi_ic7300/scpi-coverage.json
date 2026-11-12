@@ -1,0 +1,5671 @@
+{
+  "schema_version": 1,
+  "client_version": "0.13.1",
+  "source_sha256": {
+    "civi/scpi.py": "dd6e467d6a372394b6ca1c42b1ad32e9252790e45cd30c4342ad612c85c94299",
+    "civi/commands.py": "7ce2af81ebc85097a61f72fd5d29b5652518ce591085f9f482ccf659894efe7c",
+    "civi/menus.py": "b89e2836f62aa69f99011e4ac676f11b3bcdde978ae4c359f96455245ce0ec0e"
+  },
+  "commands": [
+    {
+      "header": "*IDN",
+      "source": "base/special",
+      "gateway_access": "r",
+      "handler": "*IDN",
+      "sample": null,
+      "note": "Constructor and identity properties",
+      "typed_access": "r",
+      "apis": [
+        "ivi_utility.instrument_manufacturer/model",
+        "ivi_utility.identification"
+      ],
+      "aliases": [
+        "*IDN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "*CLS",
+      "source": "base/special",
+      "gateway_access": "w",
+      "handler": "*CLS",
+      "sample": null,
+      "note": "Explicit queue clear only; not quarantine recovery",
+      "typed_access": "w",
+      "apis": [
+        "ivi_utility.clear_status()"
+      ],
+      "aliases": [
+        "*CLS"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "*OPC",
+      "source": "base/special",
+      "gateway_access": "r",
+      "handler": "*OPC",
+      "sample": null,
+      "note": "Setter completion and explicit wait; does not prove success",
+      "typed_access": "r",
+      "apis": [
+        "ivi_utility.wait_for_complete()"
+      ],
+      "aliases": [
+        "*OPC"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "SYST:ERR",
+      "source": "base/special",
+      "gateway_access": "r",
+      "handler": "error",
+      "sample": null,
+      "note": "Explicit/error-policy queue queries",
+      "typed_access": "r",
+      "apis": [
+        "ivi_utility.error_query/all/raise_on_device_error()"
+      ],
+      "aliases": [
+        "SYST:ERR",
+        "SYST:ERROR",
+        "SYSTEM:ERR",
+        "SYSTEM:ERROR"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "SENS:FREQ",
+      "source": "base/special",
+      "gateway_access": "rw",
+      "handler": "frequency",
+      "sample": "7100000",
+      "note": "Selected VFO/memory working frequency",
+      "typed_access": "rw",
+      "apis": [
+        "radio.frequency_hz"
+      ],
+      "aliases": [
+        "SENS:FREQ",
+        "SENS:FREQUENCY",
+        "SENSE:FREQ",
+        "SENSE:FREQUENCY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MODE",
+      "source": "base/special",
+      "gateway_access": "rw",
+      "handler": "mode",
+      "sample": "USB",
+      "note": "Basic mode; use VfoMode for DATA/filter",
+      "typed_access": "rw",
+      "apis": [
+        "radio.mode"
+      ],
+      "aliases": [
+        "RAD:MODE",
+        "RADIO:MODE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:SMET",
+      "source": "base/special",
+      "gateway_access": "r",
+      "handler": "smeter",
+      "sample": null,
+      "note": "Uncalibrated raw meter",
+      "typed_access": "r",
+      "apis": [
+        "meters.smeter_raw",
+        "radio.smeter_raw"
+      ],
+      "aliases": [
+        "READ:SMET",
+        "READ:SMETER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:PTT",
+      "source": "base/special",
+      "gateway_access": "rw",
+      "handler": "ptt",
+      "sample": "OFF",
+      "note": "Explicit start/stop; gateway guards and ownership apply",
+      "typed_access": "rw",
+      "apis": [
+        "radio.transmitting",
+        "operations.start_transmit() / stop_transmit()"
+      ],
+      "aliases": [
+        "RAD:PTT",
+        "RADIO:PTT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:FIRM",
+      "source": "base/special",
+      "gateway_access": "r",
+      "handler": "firmware",
+      "sample": null,
+      "note": "Manual metadata or Unknown; not CI-V firmware auto-read",
+      "typed_access": "r",
+      "apis": [
+        "radio.firmware_revision"
+      ],
+      "aliases": [
+        "RAD:FIRM",
+        "RAD:FIRMWARE",
+        "RADIO:FIRM",
+        "RADIO:FIRMWARE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:RESET",
+      "source": "base/special",
+      "gateway_access": "w",
+      "handler": "receive_reset",
+      "sample": null,
+      "note": "Receive baseline; distinct from *RST/Partial/LAN RESET",
+      "typed_access": "w",
+      "apis": [
+        "ivi_utility.reset()"
+      ],
+      "aliases": [
+        "RAD:RESET",
+        "RADIO:RESET"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:WAVE",
+      "source": "base/special",
+      "gateway_access": "r",
+      "handler": "scope_wave",
+      "sample": null,
+      "note": "Latest complete gateway sweep",
+      "typed_access": "r",
+      "apis": [
+        "scope.read_sweep()"
+      ],
+      "aliases": [
+        "RAD:SCOPE:WAVE",
+        "RADIO:SCOPE:WAVE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:AFGAIN",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:AFGAIN",
+      "note": "AF gain",
+      "typed_access": "rw",
+      "apis": [
+        "gains.af_raw"
+      ],
+      "aliases": [
+        "RAD:AFGAIN",
+        "RADIO:AFGAIN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:RFGAIN",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:RFGAIN",
+      "note": "RF gain",
+      "typed_access": "rw",
+      "apis": [
+        "gains.rf_raw"
+      ],
+      "aliases": [
+        "RAD:RFGAIN",
+        "RADIO:RFGAIN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SQL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SQL",
+      "note": "Squelch level",
+      "typed_access": "rw",
+      "apis": [
+        "gains.squelch_raw"
+      ],
+      "aliases": [
+        "RAD:SQL",
+        "RADIO:SQL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:NR:LEVEL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:NR:LEVEL",
+      "note": "Noise reduction level",
+      "typed_access": "rw",
+      "apis": [
+        "gains.noise_reduction_raw"
+      ],
+      "aliases": [
+        "RAD:NR:LEVEL",
+        "RADIO:NR:LEVEL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:PBT:INNER",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:PBT:INNER",
+      "note": "Inner PBT",
+      "typed_access": "rw",
+      "apis": [
+        "gains.pbt_inner_raw"
+      ],
+      "aliases": [
+        "RAD:PBT:INNER",
+        "RADIO:PBT:INNER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:PBT:OUTER",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:PBT:OUTER",
+      "note": "Outer PBT",
+      "typed_access": "rw",
+      "apis": [
+        "gains.pbt_outer_raw"
+      ],
+      "aliases": [
+        "RAD:PBT:OUTER",
+        "RADIO:PBT:OUTER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:CW:PITCH",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:CW:PITCH",
+      "note": "CW pitch code",
+      "typed_access": "rw",
+      "apis": [
+        "gains.cw_pitch_raw"
+      ],
+      "aliases": [
+        "RAD:CW:PITCH",
+        "RADIO:CW:PITCH"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:POWER",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:POWER",
+      "note": "RF power code",
+      "typed_access": "rw",
+      "apis": [
+        "gains.rf_power_raw"
+      ],
+      "aliases": [
+        "RAD:POWER",
+        "RADIO:POWER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MICGAIN",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MICGAIN",
+      "note": "Microphone gain",
+      "typed_access": "rw",
+      "apis": [
+        "gains.microphone_raw"
+      ],
+      "aliases": [
+        "RAD:MICGAIN",
+        "RADIO:MICGAIN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:CW:SPEED",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:CW:SPEED",
+      "note": "Key speed code",
+      "typed_access": "rw",
+      "apis": [
+        "gains.cw_speed_raw"
+      ],
+      "aliases": [
+        "RAD:CW:SPEED",
+        "RADIO:CW:SPEED"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:NOTCH:LEVEL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:NOTCH:LEVEL",
+      "note": "Notch position",
+      "typed_access": "rw",
+      "apis": [
+        "gains.notch_raw"
+      ],
+      "aliases": [
+        "RAD:NOTCH:LEVEL",
+        "RADIO:NOTCH:LEVEL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:COMP:LEVEL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:COMP:LEVEL",
+      "note": "Compression level",
+      "typed_access": "rw",
+      "apis": [
+        "gains.compression_raw"
+      ],
+      "aliases": [
+        "RAD:COMP:LEVEL",
+        "RADIO:COMP:LEVEL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:CW:DELAY",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:CW:DELAY",
+      "note": "Break-in delay code",
+      "typed_access": "rw",
+      "apis": [
+        "gains.cw_delay_raw"
+      ],
+      "aliases": [
+        "RAD:CW:DELAY",
+        "RADIO:CW:DELAY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:NB:LEVEL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:NB:LEVEL",
+      "note": "Noise blanker level",
+      "typed_access": "rw",
+      "apis": [
+        "gains.noise_blanker_raw"
+      ],
+      "aliases": [
+        "RAD:NB:LEVEL",
+        "RADIO:NB:LEVEL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MONITOR:LEVEL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MONITOR:LEVEL",
+      "note": "Monitor gain",
+      "typed_access": "rw",
+      "apis": [
+        "gains.monitor_raw"
+      ],
+      "aliases": [
+        "RAD:MONITOR:LEVEL",
+        "RADIO:MONITOR:LEVEL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VOX:GAIN",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:VOX:GAIN",
+      "note": "VOX gain",
+      "typed_access": "rw",
+      "apis": [
+        "gains.vox_raw"
+      ],
+      "aliases": [
+        "RAD:VOX:GAIN",
+        "RADIO:VOX:GAIN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VOX:ANTIGAIN",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:VOX:ANTIGAIN",
+      "note": "Anti-VOX gain",
+      "typed_access": "rw",
+      "apis": [
+        "gains.anti_vox_raw"
+      ],
+      "aliases": [
+        "RAD:VOX:ANTIGAIN",
+        "RADIO:VOX:ANTIGAIN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:BACKLIGHT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:BACKLIGHT",
+      "note": "LCD brightness",
+      "typed_access": "rw",
+      "apis": [
+        "gains.backlight_raw"
+      ],
+      "aliases": [
+        "RAD:BACKLIGHT",
+        "RADIO:BACKLIGHT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:SQL",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:SQL",
+      "note": "SQL status",
+      "typed_access": "r",
+      "apis": [
+        "meters.squelch_open"
+      ],
+      "aliases": [
+        "READ:SQL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:SQL:ALL",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:SQL:ALL",
+      "note": "SQL:ALL status",
+      "typed_access": "r",
+      "apis": [
+        "meters.all_squelches_open"
+      ],
+      "aliases": [
+        "READ:SQL:ALL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:OVF",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:OVF",
+      "note": "OVF status",
+      "typed_access": "r",
+      "apis": [
+        "meters.overflow"
+      ],
+      "aliases": [
+        "READ:OVF"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:POWER",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:POWER",
+      "note": "POWER meter (raw, uncalibrated)",
+      "typed_access": "r",
+      "apis": [
+        "meters.power_raw"
+      ],
+      "aliases": [
+        "READ:POWER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:SWR",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:SWR",
+      "note": "SWR meter (raw, uncalibrated)",
+      "typed_access": "r",
+      "apis": [
+        "meters.swr_raw"
+      ],
+      "aliases": [
+        "READ:SWR"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:ALC",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:ALC",
+      "note": "ALC meter (raw, uncalibrated)",
+      "typed_access": "r",
+      "apis": [
+        "meters.alc_raw"
+      ],
+      "aliases": [
+        "READ:ALC"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:COMP",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:COMP",
+      "note": "COMP meter (raw, uncalibrated)",
+      "typed_access": "r",
+      "apis": [
+        "meters.compression_raw"
+      ],
+      "aliases": [
+        "READ:COMP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:VOLTAGE",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:VOLTAGE",
+      "note": "VOLTAGE meter (raw, uncalibrated)",
+      "typed_access": "r",
+      "apis": [
+        "meters.voltage_raw"
+      ],
+      "aliases": [
+        "READ:VOLTAGE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "READ:CURRENT",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:READ:CURRENT",
+      "note": "CURRENT meter (raw, uncalibrated)",
+      "typed_access": "r",
+      "apis": [
+        "meters.current_raw"
+      ],
+      "aliases": [
+        "READ:CURRENT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:NB",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:NB",
+      "note": "NB enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.noise_blanker_enabled"
+      ],
+      "aliases": [
+        "RAD:NB",
+        "RADIO:NB"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:NR",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:NR",
+      "note": "NR enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.noise_reduction_enabled"
+      ],
+      "aliases": [
+        "RAD:NR",
+        "RADIO:NR"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:ANOTCH",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:ANOTCH",
+      "note": "ANOTCH enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.automatic_notch_enabled"
+      ],
+      "aliases": [
+        "RAD:ANOTCH",
+        "RADIO:ANOTCH"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TONE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TONE",
+      "note": "TONE enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.tone_enabled"
+      ],
+      "aliases": [
+        "RAD:TONE",
+        "RADIO:TONE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TSQL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TSQL",
+      "note": "TSQL enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.tone_squelch_enabled"
+      ],
+      "aliases": [
+        "RAD:TSQL",
+        "RADIO:TSQL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:COMP",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:COMP",
+      "note": "COMP enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.compressor_enabled"
+      ],
+      "aliases": [
+        "RAD:COMP",
+        "RADIO:COMP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MONITOR",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MONITOR",
+      "note": "MONITOR enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.monitor_enabled"
+      ],
+      "aliases": [
+        "RAD:MONITOR",
+        "RADIO:MONITOR"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VOX",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:VOX",
+      "note": "VOX enable",
+      "typed_access": "rw",
+      "apis": [
+        "operations.vox_enabled"
+      ],
+      "aliases": [
+        "RAD:VOX",
+        "RADIO:VOX"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:NOTCH",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:NOTCH",
+      "note": "NOTCH enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.manual_notch_enabled"
+      ],
+      "aliases": [
+        "RAD:NOTCH",
+        "RADIO:NOTCH"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TPF",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TPF",
+      "note": "TPF enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.twin_peak_filter_enabled"
+      ],
+      "aliases": [
+        "RAD:TPF",
+        "RADIO:TPF"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:LOCK",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:LOCK",
+      "note": "LOCK enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.lock_enabled"
+      ],
+      "aliases": [
+        "RAD:LOCK",
+        "RADIO:LOCK"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:IPPLUS",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:IPPLUS",
+      "note": "IPPLUS enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.ip_plus_enabled"
+      ],
+      "aliases": [
+        "RAD:IPPLUS",
+        "RADIO:IPPLUS"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TXINHIBIT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TXINHIBIT",
+      "note": "TXINHIBIT enable",
+      "typed_access": "rw",
+      "apis": [
+        "operations.transmit_inhibited"
+      ],
+      "aliases": [
+        "RAD:TXINHIBIT",
+        "RADIO:TXINHIBIT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:PREAMP",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:PREAMP",
+      "note": "Preamplifier",
+      "typed_access": "rw",
+      "apis": [
+        "radio.preamp"
+      ],
+      "aliases": [
+        "RAD:PREAMP",
+        "RADIO:PREAMP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:AGC",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:AGC",
+      "note": "AGC speed",
+      "typed_access": "rw",
+      "apis": [
+        "radio.agc"
+      ],
+      "aliases": [
+        "RAD:AGC",
+        "RADIO:AGC"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:BKIN",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:BKIN",
+      "note": "CW break-in",
+      "typed_access": "rw",
+      "apis": [
+        "operations.break_in"
+      ],
+      "aliases": [
+        "RAD:BKIN",
+        "RADIO:BKIN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:FILTER:SHAPE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:FILTER:SHAPE",
+      "note": "DSP filter shape",
+      "typed_access": "rw",
+      "apis": [
+        "radio.filter_shape"
+      ],
+      "aliases": [
+        "RAD:FILTER:SHAPE",
+        "RADIO:FILTER:SHAPE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:NOTCH:WIDTH",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:NOTCH:WIDTH",
+      "note": "Notch width",
+      "typed_access": "rw",
+      "apis": [
+        "radio.notch_width"
+      ],
+      "aliases": [
+        "RAD:NOTCH:WIDTH",
+        "RADIO:NOTCH:WIDTH"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TXBANDWIDTH",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TXBANDWIDTH",
+      "note": "SSB TX bandwidth",
+      "typed_access": "rw",
+      "apis": [
+        "radio.tx_bandwidth"
+      ],
+      "aliases": [
+        "RAD:TXBANDWIDTH",
+        "RADIO:TXBANDWIDTH"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:ATT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:ATT",
+      "note": "Attenuator code",
+      "typed_access": "rw",
+      "apis": [
+        "radio.attenuator_db"
+      ],
+      "aliases": [
+        "RAD:ATT",
+        "RADIO:ATT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:STEP",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:STEP",
+      "note": "Tuning step code",
+      "typed_access": "rw",
+      "apis": [
+        "radio.tuning_step_code"
+      ],
+      "aliases": [
+        "RAD:STEP",
+        "RADIO:STEP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SPLIT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SPLIT",
+      "note": "Split enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.split_enabled"
+      ],
+      "aliases": [
+        "RAD:SPLIT",
+        "RADIO:SPLIT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:RIT:FREQ",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:RIT:FREQ",
+      "note": "RIT offset (Hz)",
+      "typed_access": "rw",
+      "apis": [
+        "radio.rit_offset_hz"
+      ],
+      "aliases": [
+        "RAD:RIT:FREQ",
+        "RAD:RIT:FREQUENCY",
+        "RADIO:RIT:FREQ",
+        "RADIO:RIT:FREQUENCY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:RIT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:RIT",
+      "note": "RIT enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.rit_enabled"
+      ],
+      "aliases": [
+        "RAD:RIT",
+        "RADIO:RIT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:XIT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:XIT",
+      "note": "Delta TX enable",
+      "typed_access": "rw",
+      "apis": [
+        "radio.xit_enabled"
+      ],
+      "aliases": [
+        "RAD:XIT",
+        "RADIO:XIT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TXFREQ",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:RAD:TXFREQ",
+      "note": "Transmit frequency",
+      "typed_access": "r",
+      "apis": [
+        "radio.tx_frequency_hz"
+      ],
+      "aliases": [
+        "RAD:TXFREQ",
+        "RADIO:TXFREQ"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:XFC",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:XFC",
+      "note": "Transmit frequency check",
+      "typed_access": "rw",
+      "apis": [
+        "radio.frequency_check_enabled"
+      ],
+      "aliases": [
+        "RAD:XFC",
+        "RADIO:XFC"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:ANTOUTPUT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:ANTOUTPUT",
+      "note": "Antenna controller output",
+      "typed_access": "rw",
+      "apis": [
+        "operations.antenna_output_enabled"
+      ],
+      "aliases": [
+        "RAD:ANTOUTPUT",
+        "RADIO:ANTOUTPUT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TUNER",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TUNER",
+      "note": "Antenna tuner (TUNE transmits)",
+      "typed_access": "rw",
+      "apis": [
+        "operations.tuner"
+      ],
+      "aliases": [
+        "RAD:TUNER",
+        "RADIO:TUNER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:DATA",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:DATA",
+      "note": "DATA/filter bytes",
+      "typed_access": "rw",
+      "apis": [
+        "radio.data_filter"
+      ],
+      "aliases": [
+        "RAD:DATA",
+        "RADIO:DATA"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:IPPLUS:ALT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:IPPLUS:ALT",
+      "note": "IP+ alternate CI-V command",
+      "typed_access": "rw",
+      "apis": [
+        "radio.ip_plus_alternate_enabled"
+      ],
+      "aliases": [
+        "RAD:IPPLUS:ALT",
+        "RADIO:IPPLUS:ALT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:FILTER:WIDTH",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:FILTER:WIDTH",
+      "note": "Filter width index (mode dependent)",
+      "typed_access": "rw",
+      "apis": [
+        "radio.filter_width_code"
+      ],
+      "aliases": [
+        "RAD:FILTER:WIDTH",
+        "RADIO:FILTER:WIDTH"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:AGC:TIME",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:AGC:TIME",
+      "note": "AGC time index (mode dependent)",
+      "typed_access": "rw",
+      "apis": [
+        "radio.agc_time_code"
+      ],
+      "aliases": [
+        "RAD:AGC:TIME",
+        "RADIO:AGC:TIME"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VFO:SELECT",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:VFO:SELECT",
+      "note": "Select VFO A/B",
+      "typed_access": "w",
+      "apis": [
+        "vfos.select()"
+      ],
+      "aliases": [
+        "RAD:VFO:SELECT",
+        "RADIO:VFO:SELECT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VFO:ENABLE",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:VFO:ENABLE",
+      "note": "Enter VFO mode",
+      "typed_access": "w",
+      "apis": [
+        "vfos.enable()"
+      ],
+      "aliases": [
+        "RAD:VFO:ENABLE",
+        "RADIO:VFO:ENABLE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VFO:COPY",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:VFO:COPY",
+      "note": "Copy selected VFO to the other VFO",
+      "typed_access": "w",
+      "apis": [
+        "vfos.copy_selected_to_other()"
+      ],
+      "aliases": [
+        "RAD:VFO:COPY",
+        "RADIO:VFO:COPY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VFO:SWAP",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:VFO:SWAP",
+      "note": "Swap VFO contents",
+      "typed_access": "w",
+      "apis": [
+        "vfos.swap()"
+      ],
+      "aliases": [
+        "RAD:VFO:SWAP",
+        "RADIO:VFO:SWAP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VFO:FREQ",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:VFO:FREQ",
+      "note": "Selected/other VFO frequency (Hz)",
+      "typed_access": "rw",
+      "apis": [
+        "vfos[SELECTED/OTHER].frequency_hz"
+      ],
+      "aliases": [
+        "RAD:VFO:FREQ",
+        "RAD:VFO:FREQUENCY",
+        "RADIO:VFO:FREQ",
+        "RADIO:VFO:FREQUENCY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VFO:MODE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:VFO:MODE",
+      "note": "Selected/other VFO mode/DATA/filter bytes",
+      "typed_access": "rw",
+      "apis": [
+        "vfos[SELECTED/OTHER].mode"
+      ],
+      "aliases": [
+        "RAD:VFO:MODE",
+        "RADIO:VFO:MODE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TONE:FREQ",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TONE:FREQ",
+      "note": "Repeater tone frequency (Hz)",
+      "typed_access": "rw",
+      "apis": [
+        "radio.repeater_tone_hz"
+      ],
+      "aliases": [
+        "RAD:TONE:FREQ",
+        "RAD:TONE:FREQUENCY",
+        "RADIO:TONE:FREQ",
+        "RADIO:TONE:FREQUENCY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TSQL:FREQ",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TSQL:FREQ",
+      "note": "Tone squelch frequency (Hz)",
+      "typed_access": "rw",
+      "apis": [
+        "radio.tone_squelch_hz"
+      ],
+      "aliases": [
+        "RAD:TSQL:FREQ",
+        "RAD:TSQL:FREQUENCY",
+        "RADIO:TSQL:FREQ",
+        "RADIO:TSQL:FREQUENCY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:STOP",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:STOP",
+      "note": "Scan STOP",
+      "typed_access": "w",
+      "apis": [
+        "scan.stop()"
+      ],
+      "aliases": [
+        "RAD:SCAN:STOP",
+        "RADIO:SCAN:STOP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:PROGRAM",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:PROGRAM",
+      "note": "Scan PROGRAM",
+      "typed_access": "w",
+      "apis": [
+        "scan.start(PROGRAM)"
+      ],
+      "aliases": [
+        "RAD:SCAN:PROGRAM",
+        "RADIO:SCAN:PROGRAM"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:MEMORY",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:MEMORY",
+      "note": "Scan MEMORY",
+      "typed_access": "w",
+      "apis": [
+        "scan.start(MEMORY)"
+      ],
+      "aliases": [
+        "RAD:SCAN:MEMORY",
+        "RADIO:SCAN:MEMORY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:AUTO",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:AUTO",
+      "note": "Scan AUTO",
+      "typed_access": "w",
+      "apis": [
+        "scan.start(AUTO)"
+      ],
+      "aliases": [
+        "RAD:SCAN:AUTO",
+        "RADIO:SCAN:AUTO"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:DELTA",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:DELTA",
+      "note": "Scan DELTA",
+      "typed_access": "w",
+      "apis": [
+        "scan.start(DELTA)"
+      ],
+      "aliases": [
+        "RAD:SCAN:DELTA",
+        "RADIO:SCAN:DELTA"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:FINEPROGRAM",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:FINEPROGRAM",
+      "note": "Scan FINEPROGRAM",
+      "typed_access": "w",
+      "apis": [
+        "scan.start(FINEPROGRAM)"
+      ],
+      "aliases": [
+        "RAD:SCAN:FINEPROGRAM",
+        "RADIO:SCAN:FINEPROGRAM"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:FINEDELTA",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:FINEDELTA",
+      "note": "Scan FINEDELTA",
+      "typed_access": "w",
+      "apis": [
+        "scan.start(FINEDELTA)"
+      ],
+      "aliases": [
+        "RAD:SCAN:FINEDELTA",
+        "RADIO:SCAN:FINEDELTA"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SELECTMEM",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SELECTMEM",
+      "note": "Scan SELECTMEM",
+      "typed_access": "w",
+      "apis": [
+        "scan.start(SELECTMEM)"
+      ],
+      "aliases": [
+        "RAD:SCAN:SELECTMEM",
+        "RADIO:SCAN:SELECTMEM"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SPAN5K",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SPAN5K",
+      "note": "Scan SPAN5K",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_delta_span_hz()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SPAN5K",
+        "RADIO:SCAN:SPAN5K"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SPAN10K",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SPAN10K",
+      "note": "Scan SPAN10K",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_delta_span_hz()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SPAN10K",
+        "RADIO:SCAN:SPAN10K"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SPAN20K",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SPAN20K",
+      "note": "Scan SPAN20K",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_delta_span_hz()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SPAN20K",
+        "RADIO:SCAN:SPAN20K"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SPAN50K",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SPAN50K",
+      "note": "Scan SPAN50K",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_delta_span_hz()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SPAN50K",
+        "RADIO:SCAN:SPAN50K"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SPAN100K",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SPAN100K",
+      "note": "Scan SPAN100K",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_delta_span_hz()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SPAN100K",
+        "RADIO:SCAN:SPAN100K"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SPAN500K",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SPAN500K",
+      "note": "Scan SPAN500K",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_delta_span_hz()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SPAN500K",
+        "RADIO:SCAN:SPAN500K"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SPAN1M",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SPAN1M",
+      "note": "Scan SPAN1M",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_delta_span_hz()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SPAN1M",
+        "RADIO:SCAN:SPAN1M"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SELECTOFF",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SELECTOFF",
+      "note": "Scan SELECTOFF",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_select_enabled()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SELECTOFF",
+        "RADIO:SCAN:SELECTOFF"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SELECTON",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SELECTON",
+      "note": "Scan SELECTON",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_select_enabled()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SELECTON",
+        "RADIO:SCAN:SELECTON"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:RESUMEOFF",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:RESUMEOFF",
+      "note": "Scan RESUMEOFF",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_resume_enabled()"
+      ],
+      "aliases": [
+        "RAD:SCAN:RESUMEOFF",
+        "RADIO:SCAN:RESUMEOFF"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:RESUMEON",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:RESUMEON",
+      "note": "Scan RESUMEON",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_resume_enabled()"
+      ],
+      "aliases": [
+        "RAD:SCAN:RESUMEON",
+        "RADIO:SCAN:RESUMEON"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:SELECT",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:SELECT",
+      "note": "Assign memory select group",
+      "typed_access": "w",
+      "apis": [
+        "scan.assign_selected_memory_group()"
+      ],
+      "aliases": [
+        "RAD:SCAN:SELECT",
+        "RADIO:SCAN:SELECT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCAN:GROUP",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SCAN:GROUP",
+      "note": "Select memory scan group",
+      "typed_access": "w",
+      "apis": [
+        "scan.set_memory_group()"
+      ],
+      "aliases": [
+        "RAD:SCAN:GROUP",
+        "RADIO:SCAN:GROUP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MEM:SELECT",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:MEM:SELECT",
+      "note": "Select memory channel (100=P1,101=P2)",
+      "typed_access": "w",
+      "apis": [
+        "memories.select()"
+      ],
+      "aliases": [
+        "RAD:MEM:SELECT",
+        "RADIO:MEM:SELECT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MEM:ENABLE",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:MEM:ENABLE",
+      "note": "Enter memory mode",
+      "typed_access": "w",
+      "apis": [
+        "memories.enable()"
+      ],
+      "aliases": [
+        "RAD:MEM:ENABLE",
+        "RADIO:MEM:ENABLE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MEM:WRITE",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:MEM:WRITE",
+      "note": "Write selected memory",
+      "typed_access": "w",
+      "apis": [
+        "memories.store_current_in_selected()"
+      ],
+      "aliases": [
+        "RAD:MEM:WRITE",
+        "RADIO:MEM:WRITE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MEM:TOVFO",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:MEM:TOVFO",
+      "note": "Copy memory to VFO",
+      "typed_access": "w",
+      "apis": [
+        "memories.copy_selected_to_vfo()"
+      ],
+      "aliases": [
+        "RAD:MEM:TOVFO",
+        "RADIO:MEM:TOVFO"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MEM:CLEAR",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:MEM:CLEAR",
+      "note": "Clear selected memory",
+      "typed_access": "w",
+      "apis": [
+        "memories.clear_selected()"
+      ],
+      "aliases": [
+        "RAD:MEM:CLEAR",
+        "RADIO:MEM:CLEAR"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MEM:CONTENT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MEM:CONTENT",
+      "note": "Memory record hex (channel selector omitted from payload)",
+      "typed_access": "rw",
+      "apis": [
+        "memories[number].record / clear()"
+      ],
+      "aliases": [
+        "RAD:MEM:CONTENT",
+        "RADIO:MEM:CONTENT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:BAND:STACK",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:BAND:STACK",
+      "note": "Band stack record (band*100+slot selector)",
+      "typed_access": "rw",
+      "apis": [
+        "band_stacks[band, slot].settings",
+        "band_stacks.bands[band].slots[slot].settings (shorthand: band_stacks[band].slots[slot])"
+      ],
+      "aliases": [
+        "RAD:BAND:STACK",
+        "RADIO:BAND:STACK"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:KEYER:TEXT",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:KEYER:TEXT",
+      "note": "Keyer memory text",
+      "typed_access": "rw",
+      "apis": [
+        "keyers[number].text"
+      ],
+      "aliases": [
+        "RAD:KEYER:TEXT",
+        "RADIO:KEYER:TEXT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:CW:SEND",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:CW:SEND",
+      "note": "Send CW text (up to 30 characters)",
+      "typed_access": "w",
+      "apis": [
+        "operations.send_cw()"
+      ],
+      "aliases": [
+        "RAD:CW:SEND",
+        "RADIO:CW:SEND"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:CW:STOP",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:CW:STOP",
+      "note": "Stop CI-V CW output",
+      "typed_access": "w",
+      "apis": [
+        "operations.stop_cw()"
+      ],
+      "aliases": [
+        "RAD:CW:STOP",
+        "RADIO:CW:STOP"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:VOICE",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:VOICE",
+      "note": "Play voice memory; STOP or 1-8",
+      "typed_access": "w",
+      "apis": [
+        "operations.play_voice() / stop_voice()"
+      ],
+      "aliases": [
+        "RAD:VOICE",
+        "RADIO:VOICE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SPEECH",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:SPEECH",
+      "note": "Announce S/frequency/mode",
+      "typed_access": "w",
+      "apis": [
+        "operations.speak()"
+      ],
+      "aliases": [
+        "RAD:SPEECH",
+        "RADIO:SPEECH"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:POWER:OFF",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:POWER:OFF",
+      "note": "Power off radio",
+      "typed_access": "w",
+      "apis": [
+        "operations.power_off()"
+      ],
+      "aliases": [
+        "RAD:POWER:OFF",
+        "RADIO:POWER:OFF"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:POWER:ON",
+      "source": "extended",
+      "gateway_access": "w",
+      "handler": "catalog:RAD:POWER:ON",
+      "note": "Power on radio (wake preamble)",
+      "typed_access": "w",
+      "apis": [
+        "operations.power_on()"
+      ],
+      "aliases": [
+        "RAD:POWER:ON",
+        "RADIO:POWER:ON"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:BAND:EDGES",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:RAD:BAND:EDGES",
+      "note": "Read default band edges (validated BCD pair)",
+      "typed_access": "r",
+      "apis": [
+        "bands.default_edges"
+      ],
+      "aliases": [
+        "RAD:BAND:EDGES",
+        "RADIO:BAND:EDGES"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TXBAND:COUNT",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:RAD:TXBAND:COUNT",
+      "note": "Number of factory transmit bands",
+      "typed_access": "r",
+      "apis": [
+        "bands.factory_count"
+      ],
+      "aliases": [
+        "RAD:TXBAND:COUNT",
+        "RADIO:TXBAND:COUNT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TXBAND:READ",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:RAD:TXBAND:READ",
+      "note": "Read transmit band edge",
+      "typed_access": "r",
+      "apis": [
+        "bands.read_factory()"
+      ],
+      "aliases": [
+        "RAD:TXBAND:READ",
+        "RADIO:TXBAND:READ"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TXBAND:USERCOUNT",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:RAD:TXBAND:USERCOUNT",
+      "note": "Number of user transmit bands",
+      "typed_access": "r",
+      "apis": [
+        "bands.user_count"
+      ],
+      "aliases": [
+        "RAD:TXBAND:USERCOUNT",
+        "RADIO:TXBAND:USERCOUNT"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:TXBAND:USER",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:TXBAND:USER",
+      "note": "User transmit band edge (FF on read means unprogrammed)",
+      "typed_access": "rw",
+      "apis": [
+        "bands.read_user() / write_user() / write_and_read_user()"
+      ],
+      "aliases": [
+        "RAD:TXBAND:USER",
+        "RADIO:TXBAND:USER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:ENABLE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:ENABLE",
+      "note": "Scope ENABLE",
+      "typed_access": "rw",
+      "apis": [
+        "scope.enabled"
+      ],
+      "aliases": [
+        "RAD:SCOPE:ENABLE",
+        "RADIO:SCOPE:ENABLE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:STREAM",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:STREAM",
+      "note": "Scope STREAM",
+      "typed_access": "rw",
+      "apis": [
+        "scope.streaming_enabled"
+      ],
+      "aliases": [
+        "RAD:SCOPE:STREAM",
+        "RADIO:SCOPE:STREAM"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:DISPLAY",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:DISPLAY",
+      "note": "Scope DISPLAY",
+      "typed_access": "rw",
+      "apis": [
+        "scope.display_code"
+      ],
+      "aliases": [
+        "RAD:SCOPE:DISPLAY",
+        "RADIO:SCOPE:DISPLAY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:DUAL",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:DUAL",
+      "note": "Scope DUAL",
+      "typed_access": "rw",
+      "apis": [
+        "scope.dual_scope_code"
+      ],
+      "aliases": [
+        "RAD:SCOPE:DUAL",
+        "RADIO:SCOPE:DUAL"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:MODE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:MODE",
+      "note": "Scope MODE",
+      "typed_access": "rw",
+      "apis": [
+        "scope.mode_code"
+      ],
+      "aliases": [
+        "RAD:SCOPE:MODE",
+        "RADIO:SCOPE:MODE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:SPAN",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:SPAN",
+      "note": "Scope SPAN",
+      "typed_access": "rw",
+      "apis": [
+        "scope.span_hz"
+      ],
+      "aliases": [
+        "RAD:SCOPE:SPAN",
+        "RADIO:SCOPE:SPAN"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:EDGE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:EDGE",
+      "note": "Scope EDGE",
+      "typed_access": "rw",
+      "apis": [
+        "scope.edge_number"
+      ],
+      "aliases": [
+        "RAD:SCOPE:EDGE",
+        "RADIO:SCOPE:EDGE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:HOLD",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:HOLD",
+      "note": "Scope HOLD",
+      "typed_access": "rw",
+      "apis": [
+        "scope.hold_enabled"
+      ],
+      "aliases": [
+        "RAD:SCOPE:HOLD",
+        "RADIO:SCOPE:HOLD"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:REFERENCE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:REFERENCE",
+      "note": "Scope REFERENCE",
+      "typed_access": "rw",
+      "apis": [
+        "scope.reference_db"
+      ],
+      "aliases": [
+        "RAD:SCOPE:REFERENCE",
+        "RADIO:SCOPE:REFERENCE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:SPEED",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:SPEED",
+      "note": "Scope SPEED",
+      "typed_access": "rw",
+      "apis": [
+        "scope.speed_code"
+      ],
+      "aliases": [
+        "RAD:SCOPE:SPEED",
+        "RADIO:SCOPE:SPEED"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:TXDISPLAY",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:TXDISPLAY",
+      "note": "Scope TXDISPLAY",
+      "typed_access": "rw",
+      "apis": [
+        "scope.tx_display_enabled"
+      ],
+      "aliases": [
+        "RAD:SCOPE:TXDISPLAY",
+        "RADIO:SCOPE:TXDISPLAY"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:CENTER",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:CENTER",
+      "note": "Scope CENTER",
+      "typed_access": "rw",
+      "apis": [
+        "scope.center_mode_code"
+      ],
+      "aliases": [
+        "RAD:SCOPE:CENTER",
+        "RADIO:SCOPE:CENTER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:VBW",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:VBW",
+      "note": "Scope VBW",
+      "typed_access": "rw",
+      "apis": [
+        "scope.vbw_enabled"
+      ],
+      "aliases": [
+        "RAD:SCOPE:VBW",
+        "RADIO:SCOPE:VBW"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:MARKER",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:MARKER",
+      "note": "Scope MARKER",
+      "typed_access": "rw",
+      "apis": [
+        "scope.marker_enabled"
+      ],
+      "aliases": [
+        "RAD:SCOPE:MARKER",
+        "RADIO:SCOPE:MARKER"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:SCOPE:FIXEDGE",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:SCOPE:FIXEDGE",
+      "note": "Scope FIX edge (band*100+edge selector)",
+      "typed_access": "rw",
+      "apis": [
+        "scope.read_fixed_edges()",
+        "scope.write_fixed_edges()"
+      ],
+      "aliases": [
+        "RAD:SCOPE:FIXEDGE",
+        "RADIO:SCOPE:FIXEDGE"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0001",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0001",
+      "note": "SSB RX HPF/LPF [0001]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[1].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0001",
+        "RADIO:MENU:0001"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0002",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0002",
+      "note": "SSB RX bass [0002]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[2].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0002",
+        "RADIO:MENU:0002"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0003",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0003",
+      "note": "SSB RX treble [0003]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[3].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0003",
+        "RADIO:MENU:0003"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0004",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0004",
+      "note": "AM RX HPF/LPF [0004]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[4].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0004",
+        "RADIO:MENU:0004"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0005",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0005",
+      "note": "AM RX bass [0005]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[5].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0005",
+        "RADIO:MENU:0005"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0006",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0006",
+      "note": "AM RX treble [0006]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[6].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0006",
+        "RADIO:MENU:0006"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0007",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0007",
+      "note": "FM RX HPF/LPF [0007]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[7].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0007",
+        "RADIO:MENU:0007"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0008",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0008",
+      "note": "FM RX bass [0008]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[8].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0008",
+        "RADIO:MENU:0008"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0009",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0009",
+      "note": "FM RX treble [0009]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[9].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0009",
+        "RADIO:MENU:0009"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0010",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0010",
+      "note": "CW RX HPF/LPF [0010]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[10].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0010",
+        "RADIO:MENU:0010"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0011",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0011",
+      "note": "RTTY RX HPF/LPF [0011]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[11].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0011",
+        "RADIO:MENU:0011"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0012",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0012",
+      "note": "Transmit audio EQ/bandwidth [0012]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[12].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0012",
+        "RADIO:MENU:0012"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0013",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0013",
+      "note": "Transmit audio EQ/bandwidth [0013]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[13].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0013",
+        "RADIO:MENU:0013"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0014",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0014",
+      "note": "Transmit audio EQ/bandwidth [0014]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[14].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0014",
+        "RADIO:MENU:0014"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0015",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0015",
+      "note": "Transmit audio EQ/bandwidth [0015]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[15].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0015",
+        "RADIO:MENU:0015"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0016",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0016",
+      "note": "Transmit audio EQ/bandwidth [0016]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[16].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0016",
+        "RADIO:MENU:0016"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0017",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0017",
+      "note": "Transmit audio EQ/bandwidth [0017]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[17].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0017",
+        "RADIO:MENU:0017"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0018",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0018",
+      "note": "Transmit audio EQ/bandwidth [0018]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[18].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0018",
+        "RADIO:MENU:0018"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0019",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0019",
+      "note": "Transmit audio EQ/bandwidth [0019]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[19].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0019",
+        "RADIO:MENU:0019"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0020",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0020",
+      "note": "Transmit audio EQ/bandwidth [0020]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[20].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0020",
+        "RADIO:MENU:0020"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0021",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0021",
+      "note": "Beep [0021]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[21].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0021",
+        "RADIO:MENU:0021"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0022",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0022",
+      "note": "Beep [0022]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[22].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0022",
+        "RADIO:MENU:0022"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0023",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0023",
+      "note": "Beep [0023]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[23].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0023",
+        "RADIO:MENU:0023"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0024",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0024",
+      "note": "Band edge beep/limit [0024]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[24].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0024",
+        "RADIO:MENU:0024"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0025",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0025",
+      "note": "RF/SQL control [0025]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[25].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0025",
+        "RADIO:MENU:0025"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0026",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0026",
+      "note": "Transmit delay [0026]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[26].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0026",
+        "RADIO:MENU:0026"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0027",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0027",
+      "note": "Transmit delay [0027]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[27].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0027",
+        "RADIO:MENU:0027"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0029",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0029",
+      "note": "CI-V TX timeout [0029]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[29].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0029",
+        "RADIO:MENU:0029"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0030",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0030",
+      "note": "Split/tuner setup [0030]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[30].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0030",
+        "RADIO:MENU:0030"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0031",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0031",
+      "note": "HF repeater split offset [0031]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[31].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0031",
+        "RADIO:MENU:0031"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0032",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0032",
+      "note": "50 MHz repeater split offset [0032]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[32].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0032",
+        "RADIO:MENU:0032"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0033",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0033",
+      "note": "Split/tuner setup [0033]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[33].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0033",
+        "RADIO:MENU:0033"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0034",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0034",
+      "note": "Split/tuner setup [0034]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[34].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0034",
+        "RADIO:MENU:0034"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0035",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0035",
+      "note": "Split/tuner setup [0035]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[35].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0035",
+        "RADIO:MENU:0035"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0036",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0036",
+      "note": "RTTY signal [0036]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[36].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0036",
+        "RADIO:MENU:0036"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0037",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0037",
+      "note": "RTTY signal [0037]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[37].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0037",
+        "RADIO:MENU:0037"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0038",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0038",
+      "note": "RTTY signal [0038]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[38].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0038",
+        "RADIO:MENU:0038"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0039",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0039",
+      "note": "Speech/lock setup [0039]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[39].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0039",
+        "RADIO:MENU:0039"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0040",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0040",
+      "note": "Speech/lock setup [0040]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[40].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0040",
+        "RADIO:MENU:0040"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0041",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0041",
+      "note": "Speech/lock setup [0041]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[41].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0041",
+        "RADIO:MENU:0041"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0042",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0042",
+      "note": "Speech/lock setup [0042]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[42].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0042",
+        "RADIO:MENU:0042"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0043",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0043",
+      "note": "Speech/lock setup [0043]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[43].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0043",
+        "RADIO:MENU:0043"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0044",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0044",
+      "note": "Speech/lock setup [0044]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[44].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0044",
+        "RADIO:MENU:0044"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0045",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0045",
+      "note": "Speech/lock setup [0045]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[45].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0045",
+        "RADIO:MENU:0045"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0046",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0046",
+      "note": "Memo/dial/key behavior [0046]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[46].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0046",
+        "RADIO:MENU:0046"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0047",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0047",
+      "note": "Memo/dial/key behavior [0047]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[47].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0047",
+        "RADIO:MENU:0047"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0048",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0048",
+      "note": "Memo/dial/key behavior [0048]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[48].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0048",
+        "RADIO:MENU:0048"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0049",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0049",
+      "note": "Memo/dial/key behavior [0049]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[49].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0049",
+        "RADIO:MENU:0049"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0050",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0050",
+      "note": "Notch/CW behavior [0050]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[50].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0050",
+        "RADIO:MENU:0050"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0051",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0051",
+      "note": "Notch/CW behavior [0051]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[51].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0051",
+        "RADIO:MENU:0051"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0052",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0052",
+      "note": "Notch/CW behavior [0052]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[52].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0052",
+        "RADIO:MENU:0052"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0053",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0053",
+      "note": "Notch/CW behavior [0053]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[53].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0053",
+        "RADIO:MENU:0053"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0054",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0054",
+      "note": "Screenshot/keyboard [0054]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[54].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0054",
+        "RADIO:MENU:0054"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0055",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0055",
+      "note": "Screenshot/keyboard [0055]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[55].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0055",
+        "RADIO:MENU:0055"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0056",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0056",
+      "note": "Screenshot/keyboard [0056]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[56].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0056",
+        "RADIO:MENU:0056"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0057",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0057",
+      "note": "Reference calibration [0057]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[57].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0057",
+        "RADIO:MENU:0057"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0058",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0058",
+      "note": "Reference frequency adjustment [0058]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[58].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0058",
+        "RADIO:MENU:0058"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0059",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0059",
+      "note": "ACC/USB audio routing/levels [0059]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[59].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0059",
+        "RADIO:MENU:0059"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0060",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0060",
+      "note": "ACC/USB audio routing/levels [0060]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[60].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0060",
+        "RADIO:MENU:0060"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0061",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0061",
+      "note": "ACC/USB audio routing/levels [0061]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[61].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0061",
+        "RADIO:MENU:0061"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0062",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0062",
+      "note": "ACC/USB audio routing/levels [0062]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[62].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0062",
+        "RADIO:MENU:0062"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0063",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0063",
+      "note": "ACC/USB audio routing/levels [0063]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[63].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0063",
+        "RADIO:MENU:0063"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0064",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0064",
+      "note": "ACC/USB audio routing/levels [0064]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[64].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0064",
+        "RADIO:MENU:0064"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0065",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0065",
+      "note": "ACC/USB audio routing/levels [0065]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[65].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0065",
+        "RADIO:MENU:0065"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0066",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0066",
+      "note": "Modulation source [0066]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[66].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0066",
+        "RADIO:MENU:0066"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0067",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0067",
+      "note": "Modulation source [0067]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[67].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0067",
+        "RADIO:MENU:0067"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0068",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0068",
+      "note": "External memory keypad [0068]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[68].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0068",
+        "RADIO:MENU:0068"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0069",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0069",
+      "note": "External memory keypad [0069]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[69].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0069",
+        "RADIO:MENU:0069"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0070",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0070",
+      "note": "External memory keypad [0070]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[70].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0070",
+        "RADIO:MENU:0070"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0071",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0071",
+      "note": "CI-V transceive [0071]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[71].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0071",
+        "RADIO:MENU:0071"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0072",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0072",
+      "note": "USB-to-REMOTE transceive address [0072]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[72].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0072",
+        "RADIO:MENU:0072"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0073",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0073",
+      "note": "Antenna CI-V output [0073]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[73].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0073",
+        "RADIO:MENU:0073"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0074",
+      "source": "extended",
+      "gateway_access": "r",
+      "handler": "catalog:RAD:MENU:0074",
+      "note": "CI-V USB port mode (read only) [0074]",
+      "typed_access": "r",
+      "apis": [
+        "menus[74].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0074",
+        "RADIO:MENU:0074"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0075",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0075",
+      "note": "USB CI-V echo [0075]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[75].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0075",
+        "RADIO:MENU:0075"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0076",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0076",
+      "note": "USB serial function [0076]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[76].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0076",
+        "RADIO:MENU:0076"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0077",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0077",
+      "note": "RTTY serial baud code [0077]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[77].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0077",
+        "RADIO:MENU:0077"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0078",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0078",
+      "note": "USB SEND pin [0078]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[78].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0078",
+        "RADIO:MENU:0078"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0079",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0079",
+      "note": "USB CW keying pin [0079]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[79].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0079",
+        "RADIO:MENU:0079"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0080",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0080",
+      "note": "USB FSK pin [0080]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[80].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0080",
+        "RADIO:MENU:0080"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0081",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0081",
+      "note": "Display/UI [0081]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[81].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0081",
+        "RADIO:MENU:0081"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0082",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0082",
+      "note": "Display/UI [0082]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[82].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0082",
+        "RADIO:MENU:0082"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0083",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0083",
+      "note": "Display/UI [0083]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[83].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0083",
+        "RADIO:MENU:0083"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0084",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0084",
+      "note": "Display/UI [0084]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[84].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0084",
+        "RADIO:MENU:0084"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0085",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0085",
+      "note": "Display/UI [0085]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[85].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0085",
+        "RADIO:MENU:0085"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0086",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0086",
+      "note": "Display/UI [0086]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[86].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0086",
+        "RADIO:MENU:0086"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0087",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0087",
+      "note": "Display/UI [0087]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[87].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0087",
+        "RADIO:MENU:0087"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0088",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0088",
+      "note": "Display/UI [0088]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[88].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0088",
+        "RADIO:MENU:0088"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0089",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0089",
+      "note": "Display/UI [0089]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[89].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0089",
+        "RADIO:MENU:0089"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0090",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0090",
+      "note": "Display/UI [0090]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[90].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0090",
+        "RADIO:MENU:0090"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0091",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0091",
+      "note": "Opening screen text [0091]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[91].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0091",
+        "RADIO:MENU:0091"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0092",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0092",
+      "note": "Display/UI [0092]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[92].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0092",
+        "RADIO:MENU:0092"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0093",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0093",
+      "note": "Display/UI [0093]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[93].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0093",
+        "RADIO:MENU:0093"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0094",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0094",
+      "note": "Date [0094]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[94].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0094",
+        "RADIO:MENU:0094"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0095",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0095",
+      "note": "Time [0095]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[95].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0095",
+        "RADIO:MENU:0095"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0096",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0096",
+      "note": "UTC offset [0096]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[96].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0096",
+        "RADIO:MENU:0096"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0097",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0097",
+      "note": "Scope display [0097]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[97].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0097",
+        "RADIO:MENU:0097"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0098",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0098",
+      "note": "Scope display [0098]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[98].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0098",
+        "RADIO:MENU:0098"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0099",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0099",
+      "note": "Scope display [0099]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[99].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0099",
+        "RADIO:MENU:0099"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0100",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0100",
+      "note": "Scope display [0100]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[100].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0100",
+        "RADIO:MENU:0100"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0101",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0101",
+      "note": "Scope display [0101]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[101].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0101",
+        "RADIO:MENU:0101"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0102",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0102",
+      "note": "Scope display [0102]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[102].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0102",
+        "RADIO:MENU:0102"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0103",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0103",
+      "note": "Scope display [0103]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[103].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0103",
+        "RADIO:MENU:0103"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0104",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0104",
+      "note": "Scope display [0104]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[104].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0104",
+        "RADIO:MENU:0104"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0105",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0105",
+      "note": "Scope display [0105]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[105].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0105",
+        "RADIO:MENU:0105"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0106",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0106",
+      "note": "Scope display [0106]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[106].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0106",
+        "RADIO:MENU:0106"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0107",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0107",
+      "note": "Scope display [0107]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[107].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0107",
+        "RADIO:MENU:0107"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0108",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0108",
+      "note": "Scope display [0108]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[108].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0108",
+        "RADIO:MENU:0108"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0109",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0109",
+      "note": "Scope display [0109]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[109].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0109",
+        "RADIO:MENU:0109"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0110",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0110",
+      "note": "Scope display [0110]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[110].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0110",
+        "RADIO:MENU:0110"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0111",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0111",
+      "note": "Scope display [0111]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[111].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0111",
+        "RADIO:MENU:0111"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0112",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0112",
+      "note": "Scope band 1 edge 1 (0.03-1.6 MHz) [0112]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[112].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0112",
+        "RADIO:MENU:0112"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0113",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0113",
+      "note": "Scope band 1 edge 2 (0.03-1.6 MHz) [0113]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[113].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0113",
+        "RADIO:MENU:0113"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0114",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0114",
+      "note": "Scope band 1 edge 3 (0.03-1.6 MHz) [0114]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[114].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0114",
+        "RADIO:MENU:0114"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0115",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0115",
+      "note": "Scope band 2 edge 1 (1.6-2 MHz) [0115]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[115].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0115",
+        "RADIO:MENU:0115"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0116",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0116",
+      "note": "Scope band 2 edge 2 (1.6-2 MHz) [0116]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[116].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0116",
+        "RADIO:MENU:0116"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0117",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0117",
+      "note": "Scope band 2 edge 3 (1.6-2 MHz) [0117]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[117].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0117",
+        "RADIO:MENU:0117"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0118",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0118",
+      "note": "Scope band 3 edge 1 (2-6 MHz) [0118]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[118].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0118",
+        "RADIO:MENU:0118"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0119",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0119",
+      "note": "Scope band 3 edge 2 (2-6 MHz) [0119]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[119].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0119",
+        "RADIO:MENU:0119"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0120",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0120",
+      "note": "Scope band 3 edge 3 (2-6 MHz) [0120]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[120].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0120",
+        "RADIO:MENU:0120"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0121",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0121",
+      "note": "Scope band 4 edge 1 (6-8 MHz) [0121]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[121].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0121",
+        "RADIO:MENU:0121"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0122",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0122",
+      "note": "Scope band 4 edge 2 (6-8 MHz) [0122]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[122].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0122",
+        "RADIO:MENU:0122"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0123",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0123",
+      "note": "Scope band 4 edge 3 (6-8 MHz) [0123]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[123].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0123",
+        "RADIO:MENU:0123"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0124",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0124",
+      "note": "Scope band 5 edge 1 (8-11 MHz) [0124]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[124].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0124",
+        "RADIO:MENU:0124"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0125",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0125",
+      "note": "Scope band 5 edge 2 (8-11 MHz) [0125]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[125].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0125",
+        "RADIO:MENU:0125"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0126",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0126",
+      "note": "Scope band 5 edge 3 (8-11 MHz) [0126]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[126].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0126",
+        "RADIO:MENU:0126"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0127",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0127",
+      "note": "Scope band 6 edge 1 (11-15 MHz) [0127]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[127].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0127",
+        "RADIO:MENU:0127"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0128",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0128",
+      "note": "Scope band 6 edge 2 (11-15 MHz) [0128]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[128].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0128",
+        "RADIO:MENU:0128"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0129",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0129",
+      "note": "Scope band 6 edge 3 (11-15 MHz) [0129]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[129].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0129",
+        "RADIO:MENU:0129"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0130",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0130",
+      "note": "Scope band 7 edge 1 (15-20 MHz) [0130]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[130].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0130",
+        "RADIO:MENU:0130"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0131",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0131",
+      "note": "Scope band 7 edge 2 (15-20 MHz) [0131]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[131].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0131",
+        "RADIO:MENU:0131"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0132",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0132",
+      "note": "Scope band 7 edge 3 (15-20 MHz) [0132]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[132].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0132",
+        "RADIO:MENU:0132"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0133",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0133",
+      "note": "Scope band 8 edge 1 (20-22 MHz) [0133]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[133].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0133",
+        "RADIO:MENU:0133"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0134",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0134",
+      "note": "Scope band 8 edge 2 (20-22 MHz) [0134]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[134].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0134",
+        "RADIO:MENU:0134"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0135",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0135",
+      "note": "Scope band 8 edge 3 (20-22 MHz) [0135]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[135].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0135",
+        "RADIO:MENU:0135"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0136",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0136",
+      "note": "Scope band 9 edge 1 (22-26 MHz) [0136]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[136].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0136",
+        "RADIO:MENU:0136"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0137",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0137",
+      "note": "Scope band 9 edge 2 (22-26 MHz) [0137]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[137].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0137",
+        "RADIO:MENU:0137"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0138",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0138",
+      "note": "Scope band 9 edge 3 (22-26 MHz) [0138]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[138].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0138",
+        "RADIO:MENU:0138"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0139",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0139",
+      "note": "Scope band 10 edge 1 (26-30 MHz) [0139]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[139].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0139",
+        "RADIO:MENU:0139"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0140",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0140",
+      "note": "Scope band 10 edge 2 (26-30 MHz) [0140]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[140].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0140",
+        "RADIO:MENU:0140"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0141",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0141",
+      "note": "Scope band 10 edge 3 (26-30 MHz) [0141]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[141].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0141",
+        "RADIO:MENU:0141"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0142",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0142",
+      "note": "Scope band 11 edge 1 (30-45 MHz) [0142]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[142].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0142",
+        "RADIO:MENU:0142"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0143",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0143",
+      "note": "Scope band 11 edge 2 (30-45 MHz) [0143]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[143].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0143",
+        "RADIO:MENU:0143"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0144",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0144",
+      "note": "Scope band 11 edge 3 (30-45 MHz) [0144]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[144].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0144",
+        "RADIO:MENU:0144"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0145",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0145",
+      "note": "Scope band 12 edge 1 (45-60 MHz) [0145]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[145].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0145",
+        "RADIO:MENU:0145"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0146",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0146",
+      "note": "Scope band 12 edge 2 (45-60 MHz) [0146]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[146].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0146",
+        "RADIO:MENU:0146"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0147",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0147",
+      "note": "Scope band 12 edge 3 (45-60 MHz) [0147]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[147].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0147",
+        "RADIO:MENU:0147"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0148",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0148",
+      "note": "Scope band 13 edge 1 (60-74.8 MHz) [0148]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[148].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0148",
+        "RADIO:MENU:0148"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0149",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0149",
+      "note": "Scope band 13 edge 2 (60-74.8 MHz) [0149]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[149].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0149",
+        "RADIO:MENU:0149"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0150",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0150",
+      "note": "Scope band 13 edge 3 (60-74.8 MHz) [0150]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[150].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0150",
+        "RADIO:MENU:0150"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0151",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0151",
+      "note": "Audio scope display [0151]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[151].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0151",
+        "RADIO:MENU:0151"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0152",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0152",
+      "note": "Audio scope display [0152]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[152].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0152",
+        "RADIO:MENU:0152"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0153",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0153",
+      "note": "Audio scope display [0153]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[153].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0153",
+        "RADIO:MENU:0153"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0154",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0154",
+      "note": "Audio scope display [0154]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[154].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0154",
+        "RADIO:MENU:0154"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0155",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0155",
+      "note": "CW contest counter [0155]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[155].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0155",
+        "RADIO:MENU:0155"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0156",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0156",
+      "note": "Counter trigger memory [0156]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[156].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0156",
+        "RADIO:MENU:0156"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0157",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0157",
+      "note": "Contest counter [0157]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[157].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0157",
+        "RADIO:MENU:0157"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0158",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0158",
+      "note": "CW sidetone/keyer [0158]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[158].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0158",
+        "RADIO:MENU:0158"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0159",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0159",
+      "note": "CW sidetone/keyer [0159]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[159].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0159",
+        "RADIO:MENU:0159"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0160",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0160",
+      "note": "Keyer repeat seconds [0160]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[160].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0160",
+        "RADIO:MENU:0160"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0161",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0161",
+      "note": "Keyer dot/dash weight [0161]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[161].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0161",
+        "RADIO:MENU:0161"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0162",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0162",
+      "note": "CW sidetone/keyer [0162]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[162].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0162",
+        "RADIO:MENU:0162"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0163",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0163",
+      "note": "CW sidetone/keyer [0163]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[163].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0163",
+        "RADIO:MENU:0163"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0164",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0164",
+      "note": "CW sidetone/keyer [0164]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[164].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0164",
+        "RADIO:MENU:0164"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0165",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0165",
+      "note": "CW sidetone/keyer [0165]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[165].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0165",
+        "RADIO:MENU:0165"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0166",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0166",
+      "note": "RTTY decoder/log [0166]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[166].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0166",
+        "RADIO:MENU:0166"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0167",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0167",
+      "note": "RTTY decoder/log [0167]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[167].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0167",
+        "RADIO:MENU:0167"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0168",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0168",
+      "note": "RTTY decoder/log [0168]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[168].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0168",
+        "RADIO:MENU:0168"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0169",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0169",
+      "note": "RTTY decoder/log [0169]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[169].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0169",
+        "RADIO:MENU:0169"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0170",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0170",
+      "note": "RTTY decoder/log [0170]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[170].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0170",
+        "RADIO:MENU:0170"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0171",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0171",
+      "note": "RTTY decoder/log [0171]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[171].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0171",
+        "RADIO:MENU:0171"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0172",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0172",
+      "note": "RTTY decoder/log [0172]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[172].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0172",
+        "RADIO:MENU:0172"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0173",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0173",
+      "note": "RTTY decoder/log [0173]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[173].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0173",
+        "RADIO:MENU:0173"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0174",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0174",
+      "note": "RTTY decoder/log [0174]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[174].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0174",
+        "RADIO:MENU:0174"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0175",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0175",
+      "note": "RTTY decoder/log [0175]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[175].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0175",
+        "RADIO:MENU:0175"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0176",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0176",
+      "note": "RTTY decoder/log [0176]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[176].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0176",
+        "RADIO:MENU:0176"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0177",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0177",
+      "note": "RTTY decoder/log [0177]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[177].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0177",
+        "RADIO:MENU:0177"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0178",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0178",
+      "note": "Scan behavior [0178]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[178].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0178",
+        "RADIO:MENU:0178"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0179",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0179",
+      "note": "Scan behavior [0179]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[179].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0179",
+        "RADIO:MENU:0179"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0180",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0180",
+      "note": "Voice memory playback [0180]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[180].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0180",
+        "RADIO:MENU:0180"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0181",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0181",
+      "note": "Voice repeat seconds [0181]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[181].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0181",
+        "RADIO:MENU:0181"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0182",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0182",
+      "note": "QSO recording [0182]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[182].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0182",
+        "RADIO:MENU:0182"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0183",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0183",
+      "note": "QSO recording [0183]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[183].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0183",
+        "RADIO:MENU:0183"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0184",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0184",
+      "note": "QSO recording [0184]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[184].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0184",
+        "RADIO:MENU:0184"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0185",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0185",
+      "note": "QSO recording [0185]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[185].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0185",
+        "RADIO:MENU:0185"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0186",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0186",
+      "note": "QSO recording [0186]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[186].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0186",
+        "RADIO:MENU:0186"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0187",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0187",
+      "note": "QSO recording [0187]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[187].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0187",
+        "RADIO:MENU:0187"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0188",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0188",
+      "note": "QSO recording [0188]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[188].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0188",
+        "RADIO:MENU:0188"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0189",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0189",
+      "note": "Noise blanker shape [0189]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[189].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0189",
+        "RADIO:MENU:0189"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0190",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0190",
+      "note": "Noise blanker shape [0190]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[190].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0190",
+        "RADIO:MENU:0190"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0191",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0191",
+      "note": "VOX timing [0191]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[191].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0191",
+        "RADIO:MENU:0191"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0192",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0192",
+      "note": "VOX timing [0192]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[192].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0192",
+        "RADIO:MENU:0192"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0193",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0193",
+      "note": "Medium-wave attenuator [0193]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[193].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0193",
+        "RADIO:MENU:0193"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0194",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0194",
+      "note": "Keyboard layout [0194]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[194].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0194",
+        "RADIO:MENU:0194"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0195",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0195",
+      "note": "Voice TX level [0195]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[195].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0195",
+        "RADIO:MENU:0195"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0196",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0196",
+      "note": "SSB DATA transmit bandwidth [0196]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[196].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0196",
+        "RADIO:MENU:0196"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0197",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0197",
+      "note": "USB input inhibit [0197]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[197].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0197",
+        "RADIO:MENU:0197"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0198",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0198",
+      "note": "Front/microphone key assignment [0198]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[198].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0198",
+        "RADIO:MENU:0198"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0199",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0199",
+      "note": "Front/microphone key assignment [0199]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[199].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0199",
+        "RADIO:MENU:0199"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0200",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0200",
+      "note": "Front/microphone key assignment [0200]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[200].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0200",
+        "RADIO:MENU:0200"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0201",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0201",
+      "note": "Front/microphone key assignment [0201]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[201].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0201",
+        "RADIO:MENU:0201"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0202",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0202",
+      "note": "Front/microphone key assignment [0202]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[202].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0202",
+        "RADIO:MENU:0202"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0203",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0203",
+      "note": "Front/microphone key assignment [0203]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[203].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0203",
+        "RADIO:MENU:0203"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0204",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0204",
+      "note": "Scope band 1 edge 4 (0.03-1.6 MHz) [0204]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[204].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0204",
+        "RADIO:MENU:0204"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0205",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0205",
+      "note": "Scope band 2 edge 4 (1.6-2 MHz) [0205]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[205].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0205",
+        "RADIO:MENU:0205"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0206",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0206",
+      "note": "Scope band 3 edge 4 (2-6 MHz) [0206]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[206].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0206",
+        "RADIO:MENU:0206"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0207",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0207",
+      "note": "Scope band 4 edge 4 (6-8 MHz) [0207]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[207].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0207",
+        "RADIO:MENU:0207"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0208",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0208",
+      "note": "Scope band 5 edge 4 (8-11 MHz) [0208]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[208].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0208",
+        "RADIO:MENU:0208"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0209",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0209",
+      "note": "Scope band 6 edge 4 (11-15 MHz) [0209]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[209].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0209",
+        "RADIO:MENU:0209"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0210",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0210",
+      "note": "Scope band 7 edge 4 (15-20 MHz) [0210]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[210].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0210",
+        "RADIO:MENU:0210"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0211",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0211",
+      "note": "Scope band 8 edge 4 (20-22 MHz) [0211]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[211].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0211",
+        "RADIO:MENU:0211"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0212",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0212",
+      "note": "Scope band 9 edge 4 (22-26 MHz) [0212]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[212].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0212",
+        "RADIO:MENU:0212"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0213",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0213",
+      "note": "Scope band 10 edge 4 (26-30 MHz) [0213]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[213].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0213",
+        "RADIO:MENU:0213"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0214",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0214",
+      "note": "Scope band 11 edge 4 (30-45 MHz) [0214]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[214].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0214",
+        "RADIO:MENU:0214"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0215",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0215",
+      "note": "Scope band 12 edge 4 (45-60 MHz) [0215]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[215].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0215",
+        "RADIO:MENU:0215"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0216",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0216",
+      "note": "Scope band 13 edge 4 (60-74.8 MHz) [0216]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[216].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0216",
+        "RADIO:MENU:0216"
+      ],
+      "status": "mapped"
+    },
+    {
+      "header": "RAD:MENU:0217",
+      "source": "extended",
+      "gateway_access": "rw",
+      "handler": "catalog:RAD:MENU:0217",
+      "note": "PTT terminal function [0217]",
+      "typed_access": "rw",
+      "apis": [
+        "menus[217].value"
+      ],
+      "aliases": [
+        "RAD:MENU:0217",
+        "RADIO:MENU:0217"
+      ],
+      "status": "mapped"
+    }
+  ],
+  "exclusions": [
+    {
+      "probe": "*RST",
+      "reason": "Gateway has no *RST; reset() uses documented RAD:RESET, not an Icom Partial/All Reset"
+    },
+    {
+      "probe": "*OPC",
+      "reason": "Non-query common command is not provided; use *OPC? / wait_for_complete()"
+    },
+    {
+      "probe": "*IDN",
+      "reason": "Identification is query-only"
+    },
+    {
+      "probe": "*CLS?",
+      "reason": "Clear is action-only"
+    },
+    {
+      "probe": "*STB?",
+      "reason": "No status-byte/SRQ subsystem in this gateway"
+    },
+    {
+      "probe": "*ESR?",
+      "reason": "No event-status-register subsystem in this gateway"
+    },
+    {
+      "probe": "*ESE?",
+      "reason": "No event-status-enable register in this gateway"
+    },
+    {
+      "probe": "*SRE?",
+      "reason": "No service-request-enable register in this gateway"
+    },
+    {
+      "probe": "*TST?",
+      "reason": "No gateway self-test command; health/connection state is not fabricated as self-test"
+    },
+    {
+      "probe": "*WAI",
+      "reason": "No standalone wait action; use *OPC?"
+    }
+  ]
+}

@@ -1,1 +1,4 @@
 *.sh text eol=lf
+# Preserve the official vendor schema byte-for-byte, including its whitespace.
+civi/schemas/InstrumentIdentification-2.0.xsd -text -whitespace
+civi/schemas/LXIProblemDetails-1.0.xsd -text -whitespace

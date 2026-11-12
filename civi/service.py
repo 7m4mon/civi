@@ -18,6 +18,7 @@ class ControlService:
         self.errors = {}
         self.logs = deque(maxlen=200)
         self.cache = {"frequency": None, "mode": None, "smeter": None, "ptt": None}
+        self.unavailable_values = set()
         self.owner = None
         self.tx_started = 0
         self.tasks = []
@@ -88,12 +89,21 @@ class ControlService:
             if self.backend.state != previous_state:
                 logging.getLogger('civi.radio').warning('Radio connection %s -> %s: %s', previous_state, self.backend.state, e.message)
             self.cache = dict.fromkeys(self.cache)
+            self.unavailable_values.clear()
             self.clear_identity()
             self.backend.scope.latest = None
             raise
         if self.backend.state != previous_state:
             logging.getLogger('civi.radio').info('Radio connection %s -> %s: CI-V response validated (%s)', previous_state, self.backend.state, op)
         key = op.rsplit("_", 1)[0]
+        if op in ('frequency_get', 'mode_get'):
+            if result is None:
+                keys = ('frequency', 'mode') if key == 'frequency' else ('mode',)
+                for missing in keys:
+                    self.cache[missing] = None
+                    self.unavailable_values.add(missing)
+            else:
+                self.unavailable_values.discard(key)
         if key in self.cache: self.cache[key] = result if op.endswith("get") else value
         return result
 
@@ -167,6 +177,8 @@ class ControlService:
 
     async def _command(self, client, key, query, arg):
         errors = self.errors[client]
+        if key == 'receive_reset':
+            return await self._receive_reset(client)
         if key.startswith('catalog:'): return await self._catalog(client,key[8:],query,arg)
         if key == 'scope_wave':
             wave = self.backend.scope.snapshot()
@@ -184,6 +196,8 @@ class ControlService:
         if key not in self.backend.profile["features"]: raise CiviError(-241, "Unsupported feature")
         if query:
             value = await self.radio(key + "_get")
+            if value is None:
+                raise CiviError(-230, f'No operating {key} (CI-V FF; empty memory)')
             return ("ON" if value else "OFF") if key == "ptt" else str(value)
         if key == "frequency":
             value = scpi.frequency(arg)
@@ -203,6 +217,49 @@ class ControlService:
                 return None
         await self.radio(key + "_set", value)
         if key == "ptt" and not value: self.owner = None
+
+    async def _receive_reset(self, client):
+        """One queue operation; stop on any failed ACK/readback. No auto recovery."""
+        from .reset import STOP_COMMANDS, BASELINE_COMMANDS, VERIFY_COMMANDS, FREQUENCY_HZ, MODE
+        if self.backend.profile['model'] != 'IC-7300':
+            raise CiviError(-241, 'Receive reset requires the IC-7300 profile')
+        await self.identify()
+        if self.identified_model != 'IC-7300':
+            raise CiviError(-241, 'Receive reset requires a verified IC-7300 identity')
+
+        async def command(header, arg, query=False):
+            spec = CATALOG[header]
+            prefix, data = spec.prepare(query, arg)
+            return await asyncio.to_thread(self.backend.execute_command, spec, query, prefix, data)
+
+        try:
+            await self.radio('ptt_set', False)
+            self.log(client, 'Receive reset started; PTT OFF acknowledged')
+            for header, arg in STOP_COMMANDS:
+                action = {'RAD:CW:STOP': 'cw', 'RAD:VOICE': 'voice'}.get(header)
+                if action and action not in self.tx_actions:
+                    continue  # IC-7300 can NAK an idle CW stop; only stop owned output.
+                await command(header, arg)
+            if await self.radio('ptt_get'):
+                raise CiviError(-200, 'Receive reset failed: radio remains in transmit')
+            self.owner = None
+            self.tx_actions.clear()
+            for header, arg in BASELINE_COMMANDS:
+                await command(header, arg)
+            for header, arg, expected in VERIFY_COMMANDS:
+                if await command(header, arg, True) != expected:
+                    raise CiviError(-200, 'Receive reset readback mismatch: ' + header)
+            # Legacy displayed state also has to agree, rather than only VFO storage.
+            if await self.radio('frequency_get') != FREQUENCY_HZ or await self.radio('mode_get') != MODE:
+                raise CiviError(-200, 'Receive reset display readback mismatch')
+            if await self.radio('ptt_get'):
+                raise CiviError(-200, 'Receive reset failed: radio entered transmit')
+            self.log(client, f'Receive reset verified: captured Partial Reset profile, VFO A, {FREQUENCY_HZ} Hz, {MODE}, PTT OFF')
+        except CiviError:
+            self.cache = dict.fromkeys(self.cache)
+            if self.backend.state != 'connected':
+                self.clear_identity()
+            raise
 
     async def _line(self, client, line):
         replies, parent = [], ""
@@ -307,7 +364,8 @@ class ControlService:
                 "radio_firmware_source": "manual" if self.config.get("radio_firmware") else "unknown",
                 "scope": self.backend.scope.snapshot(), "permissions":self.config.get('permissions',{}).copy(),
                 "scope_invalid_packets":self.backend.scope.invalid_packets,
-                "connection": self.backend.state, "values": self.cache.copy(), "tx_enabled": self.config["transmit"]["enabled"],
+                "connection": self.backend.state, "values": self.cache.copy(),
+                "unavailable_values": sorted(self.unavailable_values), "tx_enabled": self.config["transmit"]["enabled"],
                 "tx_owner": self.owner, "smeter": self.backend.profile["smeter"], "modes": list(self.backend.profile["modes"]),
                 "serial_settings": self.config["serial"].copy(), "logs": list(self.logs), "lxi_certified": False}
 

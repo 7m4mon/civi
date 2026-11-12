@@ -2,11 +2,19 @@
 __pycache__/
 .pytest_cache/
 *.egg-info/
+build/
 config.toml
 certs/
 *.log
 tmp/
 .env
 .env.*
+.civi-password.xml
+.civi-network.json
+.civi-network.tmp
 # Vendor reference manual: keep locally; link to the official download in README.
 docs/IC-7300_JPN_Supp_8.pdf
+.civi-lci*.json
+.civi-web-auth.json
+.civi-panel.sock
+.civi-discovery.json

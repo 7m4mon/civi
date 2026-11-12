@@ -11,13 +11,17 @@ requires-python = ">=3.11"
 dependencies = ["aiohttp>=3.10,<4", "pyserial>=3.5,<4", "zeroconf>=0.140,<1", "psutil>=6,<8", "cryptography>=43"]
 
 [project.optional-dependencies]
-test = ["pytest>=8", "pytest-asyncio>=0.24"]
+pi = ["dbus-next>=0.2.3,<1; sys_platform == 'linux'"]
+test = ["pytest>=8", "pytest-asyncio>=0.24", "lxml>=5,<7"]
 
 [project.scripts]
 civi = "civi.__main__:main"
 
 [tool.setuptools.package-data]
-civi = ["profiles/*.json", "static/*"]
+civi = ["profiles/*.json", "static/*", "schemas/*.xsd"]
+
+[tool.setuptools.packages.find]
+include = ["civi", "civi.*"]
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"

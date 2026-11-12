@@ -1,11 +1,27 @@
 import tomllib
+import json
 from pathlib import Path
+from .network import normalize_settings
+from .defaults import default_description
 
 
 def load(path):
     path = Path(path).resolve()
     with path.open("rb") as f:
         c = tomllib.load(f)
+    c.setdefault('description', default_description(c))
+    c.setdefault('discovery', True)
+    c['network_settings_file'] = str(path.parent / '.civi-network.json')
+    if Path(c['network_settings_file']).exists():
+        settings = json.loads(Path(c['network_settings_file']).read_text(encoding='utf-8'))
+        settings = normalize_settings(settings)
+        c.update(settings)
+    c.update(normalize_settings({key:c[key] for key in ('description','discovery')}))
+    extra = c.setdefault('web_extra_ports', [])
+    if not isinstance(extra, list) or any(type(p) is not int or not 1 <= p <= 65535 for p in extra):
+        raise ValueError('Invalid web_extra_ports')
+    if len(set([c['web_port'], *extra])) != 1 + len(extra) or c['scpi_port'] in [c['web_port'], *extra]:
+        raise ValueError('Ports must be distinct')
     if c.get("backend") not in ("mock", "civ"):
         raise ValueError("backend must be mock or civ")
     firmware = c.get("radio_firmware", "")
@@ -35,4 +51,12 @@ def load(path):
         raise ValueError("Invalid transmit configuration")
     for key in ("tls_cert", "tls_key"):
         c[key] = str((path.parent / c[key]).resolve())
+    pi = c.setdefault('pi_network', {})
+    pi.setdefault('enabled', False)
+    pi.setdefault('socket', '/run/civi-lan/control.sock')
+    pi.setdefault('interface', 'eth0')
+    from .pi.network import interface_name
+    interface_name(pi['interface'])
+    if type(pi['enabled']) is not bool or not isinstance(pi['socket'],str) or not pi['socket'].startswith('/'):
+        raise ValueError('Invalid Pi LAN helper configuration')
     return c

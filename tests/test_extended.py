@@ -64,6 +64,7 @@ def test_independent_wire_vectors(config,header,arg,wire):
     ('RAD:MENU:0096',None,'1a050096093001','-09:30'),
     ('RAD:DATA',None,'1a060001','0001'),
     ('RAD:BAND:EDGES',None,'0200001007002d0000200700','00001007002D0000200700'),
+    ('RAD:TXBAND:USER','17','1e0317ff','FF'),
     ('RAD:SCOPE:ENABLE','0','271001','ON'),
     ('RAD:SCOPE:STREAM','0','271101','ON'),
     ('RAD:SCOPE:CENTER','0','271c02','2'),
@@ -77,6 +78,24 @@ def test_query_vectors(config,header,args,payload,result):
     spec=CATALOG[header]
     prefix,data=spec.prepare(True,args)
     assert b.execute_command(spec,True,prefix,data)==result
+
+
+@pytest.mark.parametrize('payload', ['ff00', '00', 'ffff'])
+def test_user_band_malformed_response_still_quarantines(config, payload):
+    b, _ = fake_backend(config, [[frame(bytes.fromhex('1e0317'+payload))]])
+    spec = CATALOG['RAD:TXBAND:USER']
+    prefix, data = spec.prepare(True, '17')
+    with pytest.raises(CiviError, match='Malformed extended'):
+        b.execute_command(spec, True, prefix, data)
+    assert b.state == 'quarantined'
+
+
+def test_empty_band_sentinel_is_user_read_only():
+    with pytest.raises(CiviError):
+        CATALOG['RAD:TXBAND:USER'].prepare(False, '17,FF')
+    for header in ['RAD:BAND:EDGES', 'RAD:TXBAND:READ']:
+        with pytest.raises(CiviError):
+            CATALOG[header].codec.decode(b'\xff')
 
 
 @pytest.mark.parametrize('command',[
@@ -272,6 +291,8 @@ async def test_mock_memory_and_vfo_state_is_preserved(service):
     await service.execute('test','SENS:FREQ 7200000;:RAD:VFO:COPY;:RAD:VFO:SELECT B')
     assert await service.execute('test','SENS:FREQ?')=='7200000'
     await service.execute('test','RAD:MEM:SELECT 1')
+    assert await service.execute('test','SENS:FREQ?')=='7200000'
+    await service.execute('test','RAD:MEM:ENABLE')
     assert await service.execute('test','SENS:FREQ?')=='7100100'
     await service.execute('test','RAD:MEM:CLEAR')
     assert await service.execute('test','RAD:MEM:CONTENT? 1')=='FF'

@@ -1,10 +1,48 @@
 # CIVI
 
-[English](README.md) | **日本語**
+[English](README.md) | **日本語** · 作者: **7M4MON**
 
-Author: 7M4MON
+**Icom IC-7300をLAN経由で操作する計測器ゲートウェイ**です。無線機をWindowsまたはRaspberry Pi 4へUSB接続し、SCPI/VISA、英語Web画面、型付きPythonドライバー、LabVIEWから操作できます。TCPとHTTPSは単一のCI-V制御キューを共有します。
 
-Python製のSCPI → Icom CI-Vネットワークゲートウェイ。初期対象はIC-7300、開発環境はWindows、運用先はRaspberry Pi OS 64bitを想定しています。Raspberry Pi 4でのLAN経由の基本動作も確認済みです。WebとSCPIは1つの制御サービスを共有します。現在の版は0.1.0、LXI未認証です。
+## 実装した機能
+
+| 分野 | 実装内容 |
+|---|---|
+| SCPI / VISA | TCP 5025、LF終端、短縮形、単位、連続命令、エラーキュー、完了確認、受信プロファイルreset |
+| 無線機制御 | VFO・周波数・モード、ゲイン、フィルター、メーター、メモリー、バンドスタック、キーヤー保存、スキャン、スコープ、メニュー、権限付き操作 |
+| Pythonドライバー | **CIVIの拡張339コマンド定義すべてに専用の型付きAPIを実装**。基本命令も対応。公開・返却43型、コンストラクター等352項目を索引化 |
+| Web | HTTPS、操作・設定認証、コマンドexplorer、475点スコープ、接続復旧、パスワード保存・変更 |
+| Piネットワーク | DHCP/AutoIP/固定IPv4、ホスト名・DNS、保存・確定・ロールバック、重複IP保護、mDNS/DNS-SD、Ping制御 |
+| 本体操作 | POWER ON、LAN NORMAL/FAULT、Identify点滅、LAN RESET、パスワード復旧、手動デスクトップ起動 |
+| LabVIEW | VISAセッションAPI、読取・周波数/モード設定・CSV保存付き周波数スイープの使用例 |
+
+**登録審査に向け、実装と実施済み試験の根拠を整理しました。** IVI登録済み・LXI/IVI正式適合の表示は行っていません。機能数はCIVIが文書化したコマンド定義の対応数です。
+
+## 実施済み試験と結果
+
+| 試験 | 結果 |
+|---|---|
+| 公開前の自動検証 | **619件成功・Linux専用1件スキップ**。ドライバー型検査・文書整合性6チェックも成功 |
+| MAIN 1.41 Core・受信 | Core/受信40、受信設定65チェック、全216メニュー読取に成功 |
+| MAIN 1.42 VFO API | 両VFO、周波数上下限、8モード、DATA・フィルター、交換・復元の57チェック成功 |
+| メモリー書込・読戻し・消去 | 空99番を使用した24チェック成功、試験後は空へ復元 |
+| 選択メモリー操作・VFOコピー | それぞれ29・23チェック成功、元の状態へ復元 |
+| バンドスタック・キーヤー | 全33スロット・8テキストの書込・読戻し・復元、89チェック成功 |
+| スコープ | 72チェック成功、475点波形、固定エッジ52件読取、14設定を復元 |
+| スキャン | 全7開始種別を8回の実走行で確認、ΔF全7幅とALL/★1/★2/★3を確認 |
+| MAIN 1.42 TX Inhibit | ON/OFF読戻し・不正型拒否を確認し元へ復元 |
+| Pi有線LAN | DHCP取得・更新・失効・再取得、固定IP保存・再起動、AutoIP通信、LAN RESET・ケーブル復帰を確認 |
+| 発見・本体表示 | 実名衝突、再起動時の名前保持、再接続時のプローブ・広告、LAN Fault・Identifyを確認 |
+| Web・識別API | XML/スキーマ、認証、切断後の古い値消去、確定期限切れを確認。Windows・スマホChromeで表示確認 |
+
+[**要求事項・実装・試験方法・結果の対応表（英語）**](docs/IMPLEMENTATION_AND_TEST_RESULTS.md)に日付付き記録をまとめています。各件数は個別試験の値であり、重複のない総件数としては合算しません。実機の設定変更試験は可能な箇所で読取・変更・読戻し・復元を行っています。
+
+- [Pythonドライバー導入・使用例](drivers/civi-ic7300/README.md) · [公開API一覧](drivers/civi-ic7300/src/civi_ic7300/REFERENCE.md)
+- [拡張339コマンドのAPI対応表](docs/PYTHON_DRIVER_COVERAGE.md) · [基本命令を含む統合一覧](docs/PYTHON_SCPI_AUDIT.md)
+- [LabVIEWプロジェクトと使用例](labview/CIVI/README.md)
+- [LXI全条項照合表](docs/LXI_REQUIREMENTS_2026-11-10.md)
+
+![Pi本体画面のIdentifyとIC-7300](civi-identify.jpg)
 
 ## Windowsで起動
 
@@ -14,14 +52,15 @@ Python 3.11以上を用意し、PowerShellでこのフォルダーから実行�
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -e '.[test]'
 Copy-Item config.example.toml config.toml
-$env:CIVI_PASSWORD = 'replace-with-your-own-long-password'
 .\.venv\Scripts\python.exe -m civi --make-cert certs --host 192.168.1.20
-.\.venv\Scripts\python.exe -m civi --config config.toml
+.\start.cmd
 ```
 
 `--host`には実際のLAN IPやDNS名を指定できます。localhostは自動で含まれます。自己署名証明書を生成します。利用する端末で証明書を確認して信頼するか、信頼されたCAの証明書と鍵をconfig.tomlに指定してください。秘密鍵は共有しないでください。既存証明書は上書きしません。
 
-Webは `https://localhost:8443`、SCPIは `localhost:5025`。初期設定は模擬無線機なので実機がなくても操作できます。Webログインユーザーは `admin`、パスワードは環境変数。12文字以上が必要です。パスワードをソースや設定ファイルには保存しません。
+Webは `https://localhost:8443`、SCPIは `localhost:5025`。初期設定は模擬無線機なので実機がなくても操作できます。Webログインユーザーは `admin`、初回のパスワードは環境変数から指定し、Webで保存した認証設定がある場合はそちらを優先します。12文字以上が必要です。パスワードをソースやconfig.tomlには保存しません。
+
+次回からはPowerShellで `.\start.cmd`、コマンドプロンプトで `start.cmd` を実行します。初回だけWebパスワードを非表示で入力し、WindowsのDPAPIで暗号化した資格情報を `.civi-password.xml` に保存します（Git対象外）。同じPCの同じWindowsアカウントでのみ復号でき、次回から保存値を設定済みのパスワード環境変数へ渡して起動します。`-ResetPassword`はこのDPAPI保存値を変更するランチャーのオプションです。後からWebで保存したパスワードがある場合は、その保存値が環境変数より優先します。Ctrl+Cで終了でき、自動起動は設定しません。`python -m civi`で直接起動する場合も、Webの保存値がなければ環境変数の設定が必要です。
 
 `*IDN?`は`CIVI Project,CIVI/IC-7300,CIVI-0001,0.1.0`のようにCIVIと識別済みの接続機種を返します。未接続・未知の機種IDでは機種部分が`Unknown`になります。末尾はCIVIのソフトウェア版です。無線機のファームウェア版はWebの`Radio firmware`と`RAD:FIRM?`に分けて表示します。自動取得は行わず、未設定では`Unknown`、config.tomlトップレベルの`radio_firmware`に手動登録できます。
 
@@ -30,6 +69,57 @@ Web画面は英語です。無線機が未接続でもCIVIのWebサーバーを�
 `ERR_CONNECTION_REFUSED`はWebサーバーに接続できていない状態です。CIVI自体が終了していると待機画面も配信できません。起動したPowerShellを開いたままにし、`Web is ready`の表示と起動エラーの有無を確認してください。更新したコードの反映にはCIVIの再起動とブラウザの再読み込みが必要です。
 
 `bind = "0.0.0.0"`でlocalhostとLANから利用可能です。Windowsファイアウォールで必要な端末からのTCP 5025/8443と、発見に必要なUDP 5353を許可してください。localhost限定の場合は`127.0.0.1`に変更します。SCPIは仕様どおり平文・認証なしのTCPです。Webの認証はSCPIポートを保護しないため、SCPIはアクセスを制限したLANで使用します。
+
+## Raspberry PiのWebパスワードと復旧
+
+以下はこのブランチを`~/civi-rpi-lxi`へ置いた場合の例です。導入先に合わせてパスを変更してください。
+
+### 初回起動と通常の変更
+
+```bash
+cd ~/civi-rpi-lxi
+bash start.sh
+```
+
+保存済み認証設定もパスワード環境変数もない初回は、Webパスワードを非表示で入力します。ユーザー名は**admin**です。環境変数だけを使用する段階では、起動元のシェルに値を保持していなければ次回起動時にも入力します。
+
+保存するには、Webの**LAN information / discovery settings → Change Web password**（`/network#web-password`）を開き、現在のパスワードと新しいパスワードを2回入力します。新しい値は12–256文字です。即時反映し、`.civi-web-auth.json`へソルト付きハッシュで保存します。以後Piの起動時には再入力せず保存値を使います。ほかのWeb画面にも新しいパスワードを入力してください。詳細は[Webパスワード管理](docs/WEB_PASSWORD.md)を参照してください。
+
+### 忘れた場合：LAN設定を維持して再設定
+
+**Pi本体のキーボード・画面のターミナル**から、通常のCIVIユーザーで実行します。
+
+```bash
+cd ~/civi-rpi-lxi
+bash password-reset.sh
+```
+
+**PASSWORD RESET**と入力し、新しいパスワードを2回入力します。入力は非表示で、以前のパスワードは不要です。sudoやLANヘルパーも不要です。Web認証だけを変更し、IP・ホスト名・発見設定・機器の復旧用既定値は維持します。
+
+更新済みCIVIが動作中なら約5秒で読み込み直します。停止中なら`bash start.sh`で起動すると保存値が使われ、パスワードをもう一度聞かれることはありません。この機能を追加したコードへ更新するときだけ、CIVIを一度再起動して自動読込を有効にしてください。パスワード専用再設定ではヘルパーやPiの再起動は不要です。
+
+### LAN RESET：ネットワークも復旧する場合
+
+ネットワークも復旧する場合は、[LANヘルパー](docs/RPI_LAN_SETTINGS.md)を起動し、本体ターミナルで`bash lan-reset.sh`を実行して**LAN RESET**と入力します。有線IPv4をDHCP＋AutoIPへ変更し、Ping・発見を有効にして、Webパスワードをその場で表示する機器の復旧用既定値へ戻します。**それまでの固定IPは使えなくなり、成功した本体初期化は90秒では元に戻りません。** WLANプロファイルとユーザー設定済みのホスト名・サービス名は維持します。
+
+LAN RESET後は表示された復旧用パスワードで認証し、**Change Web password**で好きな値へ変更・保存できます。[LAN RESETの範囲と制限](docs/RPI_LAN_RESET.md)も参照してください。
+
+## Pi本体のLAN状態表示とIdentify
+
+Pi版の機器発見はAvahiへ集約し、ホスト名・サービス名の競合を処理して取得した名前を保存します。Pi用依存は`.venv/bin/python -m pip install -e '.[pi]'`で導入し、Avahiを動かした状態で更新済みヘルパーとCIVIを再起動してください。開発用PiにはPython依存を導入済みです。[競合処理と残る制限](docs/DISCOVERY_NAMES.md)を参照してください。
+
+<img src="civi-identify.jpg" alt="IC-7300の上に置いたRaspberry Pi付属画面でCIVIのIdentifyを表示" width="560">
+
+2026-11-07に、本体画面とIdentifyの動作をユーザーが確認しました。写真にはホスト名`civi2`、有線IPv4`192.168.73.2`、接続中のIC-7300が表示されています。[確認記録](docs/RPI_PANEL_2026-11-07.md)を参照してください。
+
+更新したCIVIを起動後、Piデスクトップの別ターミナルで実行します。
+
+```bash
+cd ~/civi-rpi-lxi
+bash panel.sh
+```
+
+付属モニターでこのウィンドウを表示したまま使います。有線LAN状態・IPなどを表示し、LAN端子のLEDは従来のハードウェア表示のままです。`/lxi`または`/network`の**LAN status / Identify**で現在のWebパスワードを入力し、**Start Identify**／**Stop Identify**を操作します。停止操作まで点滅を継続します。本体表示が見えていない場合、点滅開始は成功扱いにしません。CIVIも表示プログラムも手動起動で、サービスやGPIOの設定は追加しません。[表示の詳細と検証上の制限](docs/RPI_PANEL.md)を参照してください。
 
 ## IC-7300接続
 
@@ -63,29 +153,18 @@ WebのSメーターは`≈ S7 (raw 96)`のように推定S値とraw値を併記�
 
 ## 検証と文書
 
+[実装・試験結果表](docs/IMPLEMENTATION_AND_TEST_RESULTS.md)から、要求事項ごとの実装と日付付き試験記録を参照できます。実機・模擬環境、ファームウェア、試験条件は各記録に記載しています。
+
 ```powershell
 .\.venv\Scripts\python.exe -m pytest -q
 ```
 
-テストは模擬無線機・偽シリアルのみを使用し、実機へ送信しません。
+自動試験は模擬無線機と偽シリアルを使用します。実機受入試験ツールは別途用意しています。
 
-- [SCPI仕様とVISA例](docs/SCPI.md)
-- [全コマンド対応表・引数例](docs/COMMANDS.md)
+- [SCPI仕様とVISA例](docs/SCPI.md) · [全コマンド一覧](docs/COMMANDS.md)
 - [構成・通信障害・送信制御](docs/ARCHITECTURE.md)
-- [LXI対応表](docs/LXI.md)
-- [検証結果・実機確認手順](docs/VALIDATION.md)
-- [IC-7300実機確認範囲と未確認操作](docs/HARDWARE_2026-10-17.md)
-- [TCP・PyVISA SOCKET・HTTPSの実機通し試験](docs/TCP_VALIDATION_2026-10-18.md)
-- [Raspberry Pi 4のLAN・PyVISA実機確認](docs/RPI_LAN_2026-10-19.md)
-- [Raspberry Pi移植計画](docs/PORTING.md)
-
-2026-10-17のIC-7300実機確認では、基本5件＋拡張303件の取得中307件が成功し、`RAD:TXINHIBIT?`の1件はNAKでした。通常メニュー189項目を含む追加233種類の設定対象で変更・読み戻し・復元を確認し、実スコープ475点の受信とVFOコピー・交換も確認しました。全値・全モード・全チャンネルを検証したものではありません。詳細は実機確認記録を参照してください。
-
-2026-10-18には、localhostのTCP 5025・PyVISA `@py` RAW SOCKET・認証付きHTTPS APIと実機の通し操作、同時操作、TCP経由のスコープ波形を確認しました。[TCP/VISA/HTTPS通し試験記録](docs/TCP_VALIDATION_2026-10-18.md)を参照してください。
-
-**2026-10-19には、IC-7300をUSB接続したRaspberry Pi 4を、別のWindows端末からLAN経由で確認しました。** TCPとPyVISA RAW SOCKETでの取得、周波数の変更・読み戻し・復元、2接続で計20組の同時取得とエラー確認、475点のスコープ取得が成功しました。拡張303項目は301成功、`TXINHIBIT?`とAM時の`FILTER:SHAPE?`はWindowsと同じNAKでした。Webスコープ表示はユーザーが確認しています。[ラズパイLAN実機記録](docs/RPI_LAN_2026-10-19.md)を参照してください。
-
-実送信、校正値の変更、NI-VISA、LinuxでのUSB障害復旧、長時間運用、LXI認証は未確認です。今回の試験ではPi側のOS版・アーキテクチャ・Python版は未採取です。
+- [Pi HTTPS 443設定](docs/RPI_HTTPS.md) · [デスクトップ起動](docs/RPI_DESKTOP.md)
+- [LANヘルパー](docs/RPI_LAN_SETTINGS.md) · [検証履歴](docs/VALIDATION.md)
 
 ### Raspberry Piで実験時に手動起動
 
@@ -95,7 +174,7 @@ WebのSメーターは`≈ S7 (raw 96)`のように推定S値とraw値を併記�
 bash ~/civi/start.sh
 ```
 
-既存設定で起動し、パスワード環境変数が空ならWeb用パスワードを非表示で入力します。ターミナルを開いたまま使用し、Ctrl+Cで終了します。サービス登録・自動起動は設定しません。導入・障害復旧の残作業は[移植計画](docs/PORTING.md)を参照してください。
+既存設定と、保存済みWeb認証設定があればその値を使用します。保存値もパスワード環境変数もない場合だけ、Web用パスワードを非表示で入力します。ターミナルを開いたまま使用し、Ctrl+Cで終了します。サービス登録・自動起動は設定しません。パスワードの操作は上記「Raspberry PiのWebパスワードと復旧」、導入・障害復旧の残作業は[移植計画](docs/PORTING.md)を参照してください。
 
 ### CI-V通信ログ
 

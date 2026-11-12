@@ -1,0 +1,2931 @@
+{
+  "client_version": "0.13.1",
+  "scope": "driver-defined public members and selected collection/context protocols; standard-library inherited APIs excluded",
+  "classes": [
+    {
+      "class": "CiviIc7300",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "__enter__",
+          "access": "method",
+          "signatures": [
+            "__enter__(self) -> Self"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__exit__",
+          "access": "method",
+          "signatures": [
+            "__exit__(self, *exc: object) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "band_stacks",
+          "access": "read-only",
+          "signatures": [
+            "band_stacks getter(self) -> BandStackCollection"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "bands",
+          "access": "read-only",
+          "signatures": [
+            "bands getter(self) -> Bands"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "checked",
+          "access": "method",
+          "signatures": [
+            "checked(self) -> ContextManager[CiviIc7300]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Temporarily enable typed status checks; serialize the entire\nblock."
+        },
+        {
+          "name": "close",
+          "access": "method",
+          "signatures": [
+            "close(self) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Close this session. A failed I/O session must be reopened\nexplicitly."
+        },
+        {
+          "name": "gains",
+          "access": "read-only",
+          "signatures": [
+            "gains getter(self) -> Gains"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "ivi_direct_io",
+          "access": "read-only",
+          "signatures": [
+            "ivi_direct_io getter(self) -> DirectIo"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "ivi_utility",
+          "access": "read-only",
+          "signatures": [
+            "ivi_utility getter(self) -> Utility"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "keyers",
+          "access": "read-only",
+          "signatures": [
+            "keyers getter(self) -> KeyerCollection"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "memories",
+          "access": "read-only",
+          "signatures": [
+            "memories getter(self) -> MemoryCollection"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "menus",
+          "access": "read-only",
+          "signatures": [
+            "menus getter(self) -> MenuCollection"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "meters",
+          "access": "read-only",
+          "signatures": [
+            "meters getter(self) -> Meters"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "operations",
+          "access": "read-only",
+          "signatures": [
+            "operations getter(self) -> RadioOperations"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "query",
+          "access": "method",
+          "signatures": [
+            "query(self, command: str) -> str"
+          ],
+          "scpi": "caller-supplied ASCII program",
+          "usage": "Atomically send one program and read one response; raw status remains explicit."
+        },
+        {
+          "name": "radio",
+          "access": "read-only",
+          "signatures": [
+            "radio getter(self) -> Radio"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "scan",
+          "access": "read-only",
+          "signatures": [
+            "scan getter(self) -> ScanControl"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "scope",
+          "access": "read-only",
+          "signatures": [
+            "scope getter(self) -> Scope"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "vfos",
+          "access": "read-only",
+          "signatures": [
+            "vfos getter(self) -> VfoCollection"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "(resource_name: str, id_query: bool = True, reset: bool = False, options: DriverOptions | dict[str, bool] | str | None = None, *, timeout_ms: int = 5000) -> None"
+    },
+    {
+      "class": "Radio",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "agc",
+          "access": "read/write",
+          "signatures": [
+            "agc: str"
+          ],
+          "scpi": "RAD:AGC",
+          "usage": "RAD:AGC[?], choices: FAST, MID, SLOW"
+        },
+        {
+          "name": "agc_time_code",
+          "access": "read/write",
+          "signatures": [
+            "agc_time_code: int"
+          ],
+          "scpi": "RAD:AGC:TIME",
+          "usage": "RAD:AGC:TIME[?], integer 0..13."
+        },
+        {
+          "name": "attenuator_db",
+          "access": "read/write",
+          "signatures": [
+            "attenuator_db getter(self) -> int",
+            "attenuator_db setter(self, value: int) -> None"
+          ],
+          "scpi": "RAD:ATT",
+          "usage": "Read/write 0 or 20 dB attenuator setting, not a meter."
+        },
+        {
+          "name": "automatic_notch_enabled",
+          "access": "read/write",
+          "signatures": [
+            "automatic_notch_enabled: bool"
+          ],
+          "scpi": "RAD:ANOTCH",
+          "usage": "RAD:ANOTCH[?], boolean."
+        },
+        {
+          "name": "compressor_enabled",
+          "access": "read/write",
+          "signatures": [
+            "compressor_enabled: bool"
+          ],
+          "scpi": "RAD:COMP",
+          "usage": "RAD:COMP[?], boolean."
+        },
+        {
+          "name": "data_filter",
+          "access": "read/write",
+          "signatures": [
+            "data_filter getter(self) -> DataFilter",
+            "data_filter setter(self, value: DataFilter) -> None"
+          ],
+          "scpi": "RAD:DATA",
+          "usage": "Read/write DataFilter; DATA OFF reads and writes have different filter constraints (BANDS.md)."
+        },
+        {
+          "name": "filter_shape",
+          "access": "read/write",
+          "signatures": [
+            "filter_shape: str"
+          ],
+          "scpi": "RAD:FILTER:SHAPE",
+          "usage": "RAD:FILTER:SHAPE[?], choices: SHARP, SOFT"
+        },
+        {
+          "name": "filter_width_code",
+          "access": "read/write",
+          "signatures": [
+            "filter_width_code: int"
+          ],
+          "scpi": "RAD:FILTER:WIDTH",
+          "usage": "RAD:FILTER:WIDTH[?], integer 0..49."
+        },
+        {
+          "name": "firmware_revision",
+          "access": "read-only",
+          "signatures": [
+            "firmware_revision getter(self) -> str"
+          ],
+          "scpi": "RAD:FIRM?",
+          "usage": "Read manual radio firmware metadata or Unknown; not CI-V auto-read."
+        },
+        {
+          "name": "frequency_check_enabled",
+          "access": "read/write",
+          "signatures": [
+            "frequency_check_enabled: bool"
+          ],
+          "scpi": "RAD:XFC",
+          "usage": "RAD:XFC[?], boolean."
+        },
+        {
+          "name": "frequency_hz",
+          "access": "read/write",
+          "signatures": [
+            "frequency_hz getter(self) -> int",
+            "frequency_hz setter(self, value: float) -> None"
+          ],
+          "scpi": "SENS:FREQ",
+          "usage": "Read/write selected operating frequency, whole Hz, 30000..60000000."
+        },
+        {
+          "name": "ip_plus_alternate_enabled",
+          "access": "read/write",
+          "signatures": [
+            "ip_plus_alternate_enabled: bool"
+          ],
+          "scpi": "RAD:IPPLUS:ALT",
+          "usage": "RAD:IPPLUS:ALT[?], boolean."
+        },
+        {
+          "name": "ip_plus_enabled",
+          "access": "read/write",
+          "signatures": [
+            "ip_plus_enabled: bool"
+          ],
+          "scpi": "RAD:IPPLUS",
+          "usage": "RAD:IPPLUS[?], boolean."
+        },
+        {
+          "name": "lock_enabled",
+          "access": "read/write",
+          "signatures": [
+            "lock_enabled: bool"
+          ],
+          "scpi": "RAD:LOCK",
+          "usage": "RAD:LOCK[?], boolean."
+        },
+        {
+          "name": "manual_notch_enabled",
+          "access": "read/write",
+          "signatures": [
+            "manual_notch_enabled: bool"
+          ],
+          "scpi": "RAD:NOTCH",
+          "usage": "RAD:NOTCH[?], boolean."
+        },
+        {
+          "name": "mode",
+          "access": "read/write",
+          "signatures": [
+            "mode getter(self) -> str",
+            "mode setter(self, value: str) -> None"
+          ],
+          "scpi": "RAD:MODE",
+          "usage": "Read/write canonical mode; use VfoMode for DATA and filter together."
+        },
+        {
+          "name": "monitor_enabled",
+          "access": "read/write",
+          "signatures": [
+            "monitor_enabled: bool"
+          ],
+          "scpi": "RAD:MONITOR",
+          "usage": "RAD:MONITOR[?], boolean."
+        },
+        {
+          "name": "noise_blanker_enabled",
+          "access": "read/write",
+          "signatures": [
+            "noise_blanker_enabled: bool"
+          ],
+          "scpi": "RAD:NB",
+          "usage": "RAD:NB[?], boolean."
+        },
+        {
+          "name": "noise_reduction_enabled",
+          "access": "read/write",
+          "signatures": [
+            "noise_reduction_enabled: bool"
+          ],
+          "scpi": "RAD:NR",
+          "usage": "RAD:NR[?], boolean."
+        },
+        {
+          "name": "notch_width",
+          "access": "read/write",
+          "signatures": [
+            "notch_width: str"
+          ],
+          "scpi": "RAD:NOTCH:WIDTH",
+          "usage": "RAD:NOTCH:WIDTH[?], choices: WIDE, MID, NARROW"
+        },
+        {
+          "name": "preamp",
+          "access": "read/write",
+          "signatures": [
+            "preamp: str"
+          ],
+          "scpi": "RAD:PREAMP",
+          "usage": "RAD:PREAMP[?], choices: OFF, PRE1, PRE2"
+        },
+        {
+          "name": "repeater_tone_hz",
+          "access": "read/write",
+          "signatures": [
+            "repeater_tone_hz: float"
+          ],
+          "scpi": "RAD:TONE:FREQ",
+          "usage": "Tone frequency, 67.0..254.1 Hz in 0.1 Hz increments."
+        },
+        {
+          "name": "rit_enabled",
+          "access": "read/write",
+          "signatures": [
+            "rit_enabled: bool"
+          ],
+          "scpi": "RAD:RIT",
+          "usage": "RAD:RIT[?], boolean."
+        },
+        {
+          "name": "rit_offset_hz",
+          "access": "read/write",
+          "signatures": [
+            "rit_offset_hz: int"
+          ],
+          "scpi": "RAD:RIT:FREQ",
+          "usage": "RAD:RIT:FREQ[?], integer -9999..9999."
+        },
+        {
+          "name": "smeter_raw",
+          "access": "read-only",
+          "signatures": [
+            "smeter_raw getter(self) -> int"
+          ],
+          "scpi": "READ:SMET?",
+          "usage": "Read uncalibrated raw integer 0..255, not dBm."
+        },
+        {
+          "name": "split_enabled",
+          "access": "read/write",
+          "signatures": [
+            "split_enabled: bool"
+          ],
+          "scpi": "RAD:SPLIT",
+          "usage": "RAD:SPLIT[?], boolean."
+        },
+        {
+          "name": "tone_enabled",
+          "access": "read/write",
+          "signatures": [
+            "tone_enabled: bool"
+          ],
+          "scpi": "RAD:TONE",
+          "usage": "RAD:TONE[?], boolean."
+        },
+        {
+          "name": "tone_squelch_enabled",
+          "access": "read/write",
+          "signatures": [
+            "tone_squelch_enabled: bool"
+          ],
+          "scpi": "RAD:TSQL",
+          "usage": "RAD:TSQL[?], boolean."
+        },
+        {
+          "name": "tone_squelch_hz",
+          "access": "read/write",
+          "signatures": [
+            "tone_squelch_hz: float"
+          ],
+          "scpi": "RAD:TSQL:FREQ",
+          "usage": "Tone squelch frequency, 67.0..254.1 Hz in 0.1 Hz increments."
+        },
+        {
+          "name": "transmitting",
+          "access": "read-only",
+          "signatures": [
+            "transmitting: bool"
+          ],
+          "scpi": "RAD:PTT",
+          "usage": "RAD:PTT[?], boolean."
+        },
+        {
+          "name": "tuning_step_code",
+          "access": "read/write",
+          "signatures": [
+            "tuning_step_code: int"
+          ],
+          "scpi": "RAD:STEP",
+          "usage": "RAD:STEP[?], integer 0..8."
+        },
+        {
+          "name": "twin_peak_filter_enabled",
+          "access": "read/write",
+          "signatures": [
+            "twin_peak_filter_enabled: bool"
+          ],
+          "scpi": "RAD:TPF",
+          "usage": "RAD:TPF[?], boolean."
+        },
+        {
+          "name": "tx_bandwidth",
+          "access": "read/write",
+          "signatures": [
+            "tx_bandwidth: str"
+          ],
+          "scpi": "RAD:TXBANDWIDTH",
+          "usage": "RAD:TXBANDWIDTH[?], choices: WIDE, MID, NARROW"
+        },
+        {
+          "name": "tx_frequency_hz",
+          "access": "read-only",
+          "signatures": [
+            "tx_frequency_hz: int"
+          ],
+          "scpi": "RAD:TXFREQ",
+          "usage": "RAD:TXFREQ[?], integer 30000..60000000."
+        },
+        {
+          "name": "xit_enabled",
+          "access": "read/write",
+          "signatures": [
+            "xit_enabled: bool"
+          ],
+          "scpi": "RAD:XIT",
+          "usage": "RAD:XIT[?], boolean."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "Utility",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "clear_status",
+          "access": "method",
+          "signatures": [
+            "clear_status(self) -> None"
+          ],
+          "scpi": "*CLS",
+          "usage": "Explicitly clear this client error queue; no serial quarantine recovery."
+        },
+        {
+          "name": "driver_vendor",
+          "access": "read-only",
+          "signatures": [
+            "driver_vendor getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "driver_version",
+          "access": "read-only",
+          "signatures": [
+            "driver_version getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "error_query",
+          "access": "method",
+          "signatures": [
+            "error_query(self) -> ErrorQueryResult | None"
+          ],
+          "scpi": "SYST:ERR?",
+          "usage": "Read/consume this client error queue explicitly, independently of the status option."
+        },
+        {
+          "name": "error_query_all",
+          "access": "method",
+          "signatures": [
+            "error_query_all(self) -> tuple[ErrorQueryResult, ...]"
+          ],
+          "scpi": "SYST:ERR?",
+          "usage": "Read/consume this client error queue explicitly, independently of the status option."
+        },
+        {
+          "name": "identification",
+          "access": "read-only",
+          "signatures": [
+            "identification getter(self) -> GatewayIdentification"
+          ],
+          "scpi": "*IDN?",
+          "usage": "Read gateway identity; the full record is distinct from radio firmware."
+        },
+        {
+          "name": "instrument_manufacturer",
+          "access": "read-only",
+          "signatures": [
+            "instrument_manufacturer getter(self) -> str"
+          ],
+          "scpi": "*IDN?",
+          "usage": "Read gateway identity; the full record is distinct from radio firmware."
+        },
+        {
+          "name": "instrument_model",
+          "access": "read-only",
+          "signatures": [
+            "instrument_model getter(self) -> str"
+          ],
+          "scpi": "*IDN?",
+          "usage": "Read gateway identity; the full record is distinct from radio firmware."
+        },
+        {
+          "name": "query_instrument_status",
+          "access": "read/write",
+          "signatures": [
+            "query_instrument_status getter(self) -> bool",
+            "query_instrument_status setter(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "query_instrument_status_enabled",
+          "access": "read/write",
+          "signatures": [
+            "query_instrument_status_enabled getter(self) -> bool",
+            "query_instrument_status_enabled setter(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "raise_on_device_error",
+          "access": "method",
+          "signatures": [
+            "raise_on_device_error(self) -> None"
+          ],
+          "scpi": "SYST:ERR?",
+          "usage": "Read/consume this client error queue explicitly, independently of the status option."
+        },
+        {
+          "name": "reset",
+          "access": "method",
+          "signatures": [
+            "reset(self, *, timeout_ms: int = 30000) -> None"
+          ],
+          "scpi": "RAD:RESET",
+          "usage": "Select the documented receive baseline with a reset-specific timeout; no automatic rollback."
+        },
+        {
+          "name": "simulate",
+          "access": "read-only",
+          "signatures": [
+            "simulate getter(self) -> bool"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "simulation_enabled",
+          "access": "read-only",
+          "signatures": [
+            "simulation_enabled getter(self) -> bool"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "supported_instrument_models",
+          "access": "read-only",
+          "signatures": [
+            "supported_instrument_models getter(self) -> tuple[str, ...]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "wait_for_complete",
+          "access": "method",
+          "signatures": [
+            "wait_for_complete(self) -> None"
+          ],
+          "scpi": "*OPC?",
+          "usage": "Require completion reply 1; completion alone does not prove prior success."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "DirectIo",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "io_timeout_ms",
+          "access": "read/write",
+          "signatures": [
+            "io_timeout_ms getter(self) -> int",
+            "io_timeout_ms setter(self, timeout_ms: int) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "read_bytes",
+          "access": "method",
+          "signatures": [
+            "read_bytes(self) -> bytes"
+          ],
+          "scpi": "receive pending response; no command sent",
+          "usage": "Read one LF-framed response; synchronize separate raw write/read pairs externally."
+        },
+        {
+          "name": "read_string",
+          "access": "method",
+          "signatures": [
+            "read_string(self) -> str"
+          ],
+          "scpi": "receive pending response; no command sent",
+          "usage": "Read one LF-framed response; synchronize separate raw write/read pairs externally."
+        },
+        {
+          "name": "write_bytes",
+          "access": "method",
+          "signatures": [
+            "write_bytes(self, data: bytes) -> None"
+          ],
+          "scpi": "caller-supplied ASCII program",
+          "usage": "Write one LF-framed program; raw I/O never adds status queries."
+        },
+        {
+          "name": "write_string",
+          "access": "method",
+          "signatures": [
+            "write_string(self, data: str) -> None"
+          ],
+          "scpi": "caller-supplied ASCII program",
+          "usage": "Write one LF-framed program; raw I/O never adds status queries."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "DriverOptions",
+      "guide": "API.md",
+      "members": [],
+      "fields": [
+        {
+          "name": "simulate",
+          "type": "bool",
+          "access": "optional dictionary key"
+        },
+        {
+          "name": "query_instrument_status",
+          "type": "bool",
+          "access": "optional dictionary key"
+        }
+      ]
+    },
+    {
+      "class": "GatewayIdentification",
+      "guide": "BASIC.md",
+      "members": [],
+      "constructor": "(manufacturer: str, model: str, serial_number: str, software_revision: str) -> None",
+      "fields": [
+        {
+          "name": "manufacturer",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "model",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "serial_number",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "software_revision",
+          "type": "str",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "Gains",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "af_raw",
+          "access": "read/write",
+          "signatures": [
+            "af_raw: int"
+          ],
+          "scpi": "RAD:AFGAIN",
+          "usage": "RAD:AFGAIN[?], integer 0..255."
+        },
+        {
+          "name": "anti_vox_raw",
+          "access": "read/write",
+          "signatures": [
+            "anti_vox_raw: int"
+          ],
+          "scpi": "RAD:VOX:ANTIGAIN",
+          "usage": "RAD:VOX:ANTIGAIN[?], integer 0..255."
+        },
+        {
+          "name": "backlight_raw",
+          "access": "read/write",
+          "signatures": [
+            "backlight_raw: int"
+          ],
+          "scpi": "RAD:BACKLIGHT",
+          "usage": "RAD:BACKLIGHT[?], integer 0..255."
+        },
+        {
+          "name": "compression_raw",
+          "access": "read/write",
+          "signatures": [
+            "compression_raw: int"
+          ],
+          "scpi": "RAD:COMP:LEVEL",
+          "usage": "RAD:COMP:LEVEL[?], integer 0..255."
+        },
+        {
+          "name": "cw_delay_raw",
+          "access": "read/write",
+          "signatures": [
+            "cw_delay_raw: int"
+          ],
+          "scpi": "RAD:CW:DELAY",
+          "usage": "RAD:CW:DELAY[?], integer 0..255."
+        },
+        {
+          "name": "cw_pitch_raw",
+          "access": "read/write",
+          "signatures": [
+            "cw_pitch_raw: int"
+          ],
+          "scpi": "RAD:CW:PITCH",
+          "usage": "RAD:CW:PITCH[?], integer 0..255."
+        },
+        {
+          "name": "cw_speed_raw",
+          "access": "read/write",
+          "signatures": [
+            "cw_speed_raw: int"
+          ],
+          "scpi": "RAD:CW:SPEED",
+          "usage": "RAD:CW:SPEED[?], integer 0..255."
+        },
+        {
+          "name": "microphone_raw",
+          "access": "read/write",
+          "signatures": [
+            "microphone_raw: int"
+          ],
+          "scpi": "RAD:MICGAIN",
+          "usage": "RAD:MICGAIN[?], integer 0..255."
+        },
+        {
+          "name": "monitor_raw",
+          "access": "read/write",
+          "signatures": [
+            "monitor_raw: int"
+          ],
+          "scpi": "RAD:MONITOR:LEVEL",
+          "usage": "RAD:MONITOR:LEVEL[?], integer 0..255."
+        },
+        {
+          "name": "noise_blanker_raw",
+          "access": "read/write",
+          "signatures": [
+            "noise_blanker_raw: int"
+          ],
+          "scpi": "RAD:NB:LEVEL",
+          "usage": "RAD:NB:LEVEL[?], integer 0..255."
+        },
+        {
+          "name": "noise_reduction_raw",
+          "access": "read/write",
+          "signatures": [
+            "noise_reduction_raw: int"
+          ],
+          "scpi": "RAD:NR:LEVEL",
+          "usage": "RAD:NR:LEVEL[?], integer 0..255."
+        },
+        {
+          "name": "notch_raw",
+          "access": "read/write",
+          "signatures": [
+            "notch_raw: int"
+          ],
+          "scpi": "RAD:NOTCH:LEVEL",
+          "usage": "RAD:NOTCH:LEVEL[?], integer 0..255."
+        },
+        {
+          "name": "pbt_inner_raw",
+          "access": "read/write",
+          "signatures": [
+            "pbt_inner_raw: int"
+          ],
+          "scpi": "RAD:PBT:INNER",
+          "usage": "RAD:PBT:INNER[?], integer 0..255."
+        },
+        {
+          "name": "pbt_outer_raw",
+          "access": "read/write",
+          "signatures": [
+            "pbt_outer_raw: int"
+          ],
+          "scpi": "RAD:PBT:OUTER",
+          "usage": "RAD:PBT:OUTER[?], integer 0..255."
+        },
+        {
+          "name": "rf_power_raw",
+          "access": "read/write",
+          "signatures": [
+            "rf_power_raw: int"
+          ],
+          "scpi": "RAD:POWER",
+          "usage": "RAD:POWER[?], integer 0..255."
+        },
+        {
+          "name": "rf_raw",
+          "access": "read/write",
+          "signatures": [
+            "rf_raw: int"
+          ],
+          "scpi": "RAD:RFGAIN",
+          "usage": "RAD:RFGAIN[?], integer 0..255."
+        },
+        {
+          "name": "squelch_raw",
+          "access": "read/write",
+          "signatures": [
+            "squelch_raw: int"
+          ],
+          "scpi": "RAD:SQL",
+          "usage": "RAD:SQL[?], integer 0..255."
+        },
+        {
+          "name": "vox_raw",
+          "access": "read/write",
+          "signatures": [
+            "vox_raw: int"
+          ],
+          "scpi": "RAD:VOX:GAIN",
+          "usage": "RAD:VOX:GAIN[?], integer 0..255."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, selector: str = '') -> None"
+    },
+    {
+      "class": "Meters",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "alc_raw",
+          "access": "read-only",
+          "signatures": [
+            "alc_raw: int"
+          ],
+          "scpi": "READ:ALC",
+          "usage": "READ:ALC[?], integer 0..255."
+        },
+        {
+          "name": "all_squelches_open",
+          "access": "read-only",
+          "signatures": [
+            "all_squelches_open: bool"
+          ],
+          "scpi": "READ:SQL:ALL",
+          "usage": "READ:SQL:ALL[?], boolean."
+        },
+        {
+          "name": "compression_raw",
+          "access": "read-only",
+          "signatures": [
+            "compression_raw: int"
+          ],
+          "scpi": "READ:COMP",
+          "usage": "READ:COMP[?], integer 0..255."
+        },
+        {
+          "name": "current_raw",
+          "access": "read-only",
+          "signatures": [
+            "current_raw: int"
+          ],
+          "scpi": "READ:CURRENT",
+          "usage": "READ:CURRENT[?], integer 0..255."
+        },
+        {
+          "name": "overflow",
+          "access": "read-only",
+          "signatures": [
+            "overflow: bool"
+          ],
+          "scpi": "READ:OVF",
+          "usage": "READ:OVF[?], boolean."
+        },
+        {
+          "name": "power_raw",
+          "access": "read-only",
+          "signatures": [
+            "power_raw: int"
+          ],
+          "scpi": "READ:POWER",
+          "usage": "READ:POWER[?], integer 0..255."
+        },
+        {
+          "name": "smeter_raw",
+          "access": "read-only",
+          "signatures": [
+            "smeter_raw: int"
+          ],
+          "scpi": "READ:SMET",
+          "usage": "READ:SMET[?], integer 0..255."
+        },
+        {
+          "name": "squelch_open",
+          "access": "read-only",
+          "signatures": [
+            "squelch_open: bool"
+          ],
+          "scpi": "READ:SQL",
+          "usage": "READ:SQL[?], boolean."
+        },
+        {
+          "name": "swr_raw",
+          "access": "read-only",
+          "signatures": [
+            "swr_raw: int"
+          ],
+          "scpi": "READ:SWR",
+          "usage": "READ:SWR[?], integer 0..255."
+        },
+        {
+          "name": "voltage_raw",
+          "access": "read-only",
+          "signatures": [
+            "voltage_raw: int"
+          ],
+          "scpi": "READ:VOLTAGE",
+          "usage": "READ:VOLTAGE[?], integer 0..255."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, selector: str = '') -> None"
+    },
+    {
+      "class": "Scope",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "center_mode_code",
+          "access": "read/write",
+          "signatures": [
+            "center_mode_code: int"
+          ],
+          "scpi": "RAD:SCOPE:CENTER",
+          "usage": "RAD:SCOPE:CENTER[?], integer 0..2."
+        },
+        {
+          "name": "display_code",
+          "access": "read/write",
+          "signatures": [
+            "display_code: int"
+          ],
+          "scpi": "RAD:SCOPE:DISPLAY",
+          "usage": "RAD:SCOPE:DISPLAY[?], integer 0..0."
+        },
+        {
+          "name": "dual_scope_code",
+          "access": "read/write",
+          "signatures": [
+            "dual_scope_code: int"
+          ],
+          "scpi": "RAD:SCOPE:DUAL",
+          "usage": "RAD:SCOPE:DUAL[?], integer 0..0."
+        },
+        {
+          "name": "edge_number",
+          "access": "read/write",
+          "signatures": [
+            "edge_number: int"
+          ],
+          "scpi": "RAD:SCOPE:EDGE",
+          "usage": "RAD:SCOPE:EDGE[?], integer 1..4."
+        },
+        {
+          "name": "enabled",
+          "access": "read/write",
+          "signatures": [
+            "enabled: bool"
+          ],
+          "scpi": "RAD:SCOPE:ENABLE",
+          "usage": "RAD:SCOPE:ENABLE[?], boolean."
+        },
+        {
+          "name": "hold_enabled",
+          "access": "read/write",
+          "signatures": [
+            "hold_enabled: bool"
+          ],
+          "scpi": "RAD:SCOPE:HOLD",
+          "usage": "RAD:SCOPE:HOLD[?], boolean."
+        },
+        {
+          "name": "marker_enabled",
+          "access": "read/write",
+          "signatures": [
+            "marker_enabled: bool"
+          ],
+          "scpi": "RAD:SCOPE:MARKER",
+          "usage": "RAD:SCOPE:MARKER[?], boolean."
+        },
+        {
+          "name": "mode_code",
+          "access": "read/write",
+          "signatures": [
+            "mode_code: int"
+          ],
+          "scpi": "RAD:SCOPE:MODE",
+          "usage": "RAD:SCOPE:MODE[?], integer 0..3."
+        },
+        {
+          "name": "read_fixed_edges",
+          "access": "method",
+          "signatures": [
+            "read_fixed_edges(self, band: int, edge: int) -> ScopeEdges"
+          ],
+          "scpi": "RAD:SCOPE:FIXEDGE",
+          "usage": "Read/write stored edges using band 1..13, edge 1..4 and whole-kHz boundaries in Hz."
+        },
+        {
+          "name": "read_sweep",
+          "access": "method",
+          "signatures": [
+            "read_sweep(self) -> ScopeSweep"
+          ],
+          "scpi": "RAD:SCOPE:WAVE?",
+          "usage": "Read a complete sweep; does not enable streaming."
+        },
+        {
+          "name": "reference_db",
+          "access": "read/write",
+          "signatures": [
+            "reference_db: float"
+          ],
+          "scpi": "RAD:SCOPE:REFERENCE",
+          "usage": "Relative scope display reference -20..20 dB, step 0.5; not dBm."
+        },
+        {
+          "name": "span_hz",
+          "access": "read/write",
+          "signatures": [
+            "span_hz: int"
+          ],
+          "scpi": "RAD:SCOPE:SPAN",
+          "usage": "Scope span in Hz; 2500/5000/10000/25000/50000/100000/250000/500000."
+        },
+        {
+          "name": "speed_code",
+          "access": "read/write",
+          "signatures": [
+            "speed_code: int"
+          ],
+          "scpi": "RAD:SCOPE:SPEED",
+          "usage": "RAD:SCOPE:SPEED[?], integer 0..2."
+        },
+        {
+          "name": "start_stream",
+          "access": "method",
+          "signatures": [
+            "start_stream(self) -> None"
+          ],
+          "scpi": "RAD:SCOPE:STREAM; RAD:SCOPE:ENABLE",
+          "usage": "Enable transfer then operation; checked mode attempts transfer restoration on second-stage failure."
+        },
+        {
+          "name": "stop_stream",
+          "access": "method",
+          "signatures": [
+            "stop_stream(self) -> None"
+          ],
+          "scpi": "RAD:SCOPE:STREAM",
+          "usage": "Disable transfer while preserving scope operation; checks follow STATUS.md."
+        },
+        {
+          "name": "streaming_enabled",
+          "access": "read/write",
+          "signatures": [
+            "streaming_enabled: bool"
+          ],
+          "scpi": "RAD:SCOPE:STREAM",
+          "usage": "RAD:SCOPE:STREAM[?], boolean."
+        },
+        {
+          "name": "tx_display_enabled",
+          "access": "read/write",
+          "signatures": [
+            "tx_display_enabled: bool"
+          ],
+          "scpi": "RAD:SCOPE:TXDISPLAY",
+          "usage": "RAD:SCOPE:TXDISPLAY[?], boolean."
+        },
+        {
+          "name": "vbw_enabled",
+          "access": "read/write",
+          "signatures": [
+            "vbw_enabled: bool"
+          ],
+          "scpi": "RAD:SCOPE:VBW",
+          "usage": "RAD:SCOPE:VBW[?], boolean."
+        },
+        {
+          "name": "write_fixed_edges",
+          "access": "method",
+          "signatures": [
+            "write_fixed_edges(self, band: int, edge: int, edges: ScopeEdges) -> None"
+          ],
+          "scpi": "RAD:SCOPE:FIXEDGE",
+          "usage": "Read/write stored edges using band 1..13, edge 1..4 and whole-kHz boundaries in Hz."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "Vfo",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "frequency_hz",
+          "access": "read/write",
+          "signatures": [
+            "frequency_hz getter(self) -> int",
+            "frequency_hz setter(self, value: float) -> None"
+          ],
+          "scpi": "RAD:VFO:FREQ",
+          "usage": "Read/write relative SELECTED/OTHER VFO frequency in whole Hz, 30000..60000000."
+        },
+        {
+          "name": "mode",
+          "access": "read/write",
+          "signatures": [
+            "mode getter(self) -> VfoMode",
+            "mode setter(self, value: VfoMode) -> None"
+          ],
+          "scpi": "RAD:VFO:MODE",
+          "usage": "Read/write one complete mode/DATA/filter record."
+        },
+        {
+          "name": "name",
+          "access": "read-only",
+          "signatures": [
+            "name getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Relative SELECTED/OTHER selector, not a cached absolute VFO\nidentity."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, selector: str = '') -> None"
+    },
+    {
+      "class": "VfoCollection",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "__getitem__",
+          "access": "method",
+          "signatures": [
+            "__getitem__(self, name: str) -> Vfo"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "copy_selected_to_other",
+          "access": "method",
+          "signatures": [
+            "copy_selected_to_other(self) -> None"
+          ],
+          "scpi": "RAD:VFO:COPY",
+          "usage": "Operate on VFO context; selection is shared with other clients. See API.md for values."
+        },
+        {
+          "name": "enable",
+          "access": "method",
+          "signatures": [
+            "enable(self) -> None"
+          ],
+          "scpi": "RAD:VFO:ENABLE",
+          "usage": "Operate on VFO context; selection is shared with other clients. See API.md for values."
+        },
+        {
+          "name": "select",
+          "access": "method",
+          "signatures": [
+            "select(self, name: str) -> None"
+          ],
+          "scpi": "RAD:VFO:SELECT",
+          "usage": "Operate on VFO context; selection is shared with other clients. See API.md for values."
+        },
+        {
+          "name": "swap",
+          "access": "method",
+          "signatures": [
+            "swap(self) -> None"
+          ],
+          "scpi": "RAD:VFO:SWAP",
+          "usage": "Operate on VFO context; selection is shared with other clients. See API.md for values."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "VfoMode",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(mode: str, data: bool = False, filter_number: int = 2) -> None",
+      "fields": [
+        {
+          "name": "mode",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "data",
+          "type": "bool",
+          "access": "read-only"
+        },
+        {
+          "name": "filter_number",
+          "type": "int",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "ScopeEdges",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(lower_hz: int, upper_hz: int) -> None",
+      "fields": [
+        {
+          "name": "lower_hz",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "upper_hz",
+          "type": "int",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "ScopeSweep",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(mode: int, frequency_1_hz: int, frequency_2_hz: int, points: tuple[int, ...], out_of_range: bool, timestamp: float) -> None",
+      "fields": [
+        {
+          "name": "mode",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "frequency_1_hz",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "frequency_2_hz",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "points",
+          "type": "tuple[int, ...]",
+          "access": "read-only"
+        },
+        {
+          "name": "out_of_range",
+          "type": "bool",
+          "access": "read-only"
+        },
+        {
+          "name": "timestamp",
+          "type": "float",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "DataFilter",
+      "guide": "BANDS.md",
+      "members": [
+        {
+          "name": "from_hex",
+          "access": "method",
+          "signatures": [
+            "from_hex(text: str) -> DataFilter"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "to_write_hex",
+          "access": "method",
+          "signatures": [
+            "to_write_hex(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "(enabled: bool, filter_number: int) -> None",
+      "fields": [
+        {
+          "name": "enabled",
+          "type": "bool",
+          "access": "read-only"
+        },
+        {
+          "name": "filter_number",
+          "type": "int",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "MenuItem",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "definition",
+          "access": "read-only",
+          "signatures": [
+            "definition getter(self) -> MenuDefinition"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "name",
+          "access": "read-only",
+          "signatures": [
+            "name getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "value",
+          "access": "read/write",
+          "signatures": [
+            "value getter(self) -> T",
+            "value setter(self, value: T) -> None"
+          ],
+          "scpi": "RAD:MENU:nnnn",
+          "usage": "Read/write item-specific typed value; definition/MENUS.md supplies range, step, unit and write gate."
+        },
+        {
+          "name": "write_and_read",
+          "access": "method",
+          "signatures": [
+            "write_and_read(self, value: T) -> T"
+          ],
+          "scpi": "RAD:MENU:nnnn",
+          "usage": "Read/write item-specific typed value; definition/MENUS.md supplies range, step, unit and write gate."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, definition: MenuDefinition) -> None"
+    },
+    {
+      "class": "MenuCollection",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "__getitem__",
+          "access": "method",
+          "signatures": [
+            "__getitem__(self, key: MenuKey) -> MenuItem[MenuValue]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__iter__",
+          "access": "method",
+          "signatures": [
+            "__iter__(self) -> Iterator[int]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__len__",
+          "access": "method",
+          "signatures": [
+            "__len__(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "audio_filter_item",
+          "access": "method",
+          "signatures": [
+            "audio_filter_item(self, key: MenuKey) -> MenuItem[AudioFilter]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "bandwidth_item",
+          "access": "method",
+          "signatures": [
+            "bandwidth_item(self, key: MenuKey) -> MenuItem[Bandwidth]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "boolean_item",
+          "access": "method",
+          "signatures": [
+            "boolean_item(self, key: MenuKey) -> MenuItem[bool]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "date_item",
+          "access": "method",
+          "signatures": [
+            "date_item(self, key: MenuKey) -> MenuItem[dt.date]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "integer_item",
+          "access": "method",
+          "signatures": [
+            "integer_item(self, key: MenuKey) -> MenuItem[int]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "rgb_item",
+          "access": "method",
+          "signatures": [
+            "rgb_item(self, key: MenuKey) -> MenuItem[RgbColor]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "scope_edges_item",
+          "access": "method",
+          "signatures": [
+            "scope_edges_item(self, key: MenuKey) -> MenuItem[ScopeEdges]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "set_simulated_write_permissions",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permissions(self, *, menu: bool = False, link: bool = False, calibration: bool = False) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "text_item",
+          "access": "method",
+          "signatures": [
+            "text_item(self, key: MenuKey) -> MenuItem[str]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "time_item",
+          "access": "method",
+          "signatures": [
+            "time_item(self, key: MenuKey) -> MenuItem[dt.time]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "utc_offset_item",
+          "access": "method",
+          "signatures": [
+            "utc_offset_item(self, key: MenuKey) -> MenuItem[dt.timedelta]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "MenuDefinition",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(number: int, header: str, description: str, kind: MenuKind, permission: str, writable: bool, minimum: int | None, maximum: int | None, step: int | None, unit: str, choices: tuple[int | str, ...], sample_response: str) -> None",
+      "fields": [
+        {
+          "name": "number",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "header",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "description",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "kind",
+          "type": "MenuKind",
+          "access": "read-only"
+        },
+        {
+          "name": "permission",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "writable",
+          "type": "bool",
+          "access": "read-only"
+        },
+        {
+          "name": "minimum",
+          "type": "int | None",
+          "access": "read-only"
+        },
+        {
+          "name": "maximum",
+          "type": "int | None",
+          "access": "read-only"
+        },
+        {
+          "name": "step",
+          "type": "int | None",
+          "access": "read-only"
+        },
+        {
+          "name": "unit",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "choices",
+          "type": "tuple[int | str, ...]",
+          "access": "read-only"
+        },
+        {
+          "name": "sample_response",
+          "type": "str",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "MenuKind",
+      "guide": "API.md",
+      "members": [],
+      "enum_values": {
+        "BOOLEAN": "boolean",
+        "INTEGER": "integer",
+        "AUDIO_FILTER": "audio_filter",
+        "BANDWIDTH": "bandwidth",
+        "RGB": "rgb",
+        "SCOPE_EDGES": "scope_edges",
+        "TEXT": "text",
+        "DATE": "date",
+        "TIME": "time",
+        "UTC_OFFSET": "utc_offset"
+      }
+    },
+    {
+      "class": "AudioFilter",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(high_pass_code: int, low_pass_code: int) -> None",
+      "fields": [
+        {
+          "name": "high_pass_code",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "low_pass_code",
+          "type": "int",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "Bandwidth",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(high_pass_code: int, low_pass_code: int) -> None",
+      "fields": [
+        {
+          "name": "high_pass_code",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "low_pass_code",
+          "type": "int",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "RgbColor",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(red: int, green: int, blue: int) -> None",
+      "fields": [
+        {
+          "name": "red",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "green",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "blue",
+          "type": "int",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "MemorySettings",
+      "guide": "STORAGE.md",
+      "members": [
+        {
+          "name": "from_bytes",
+          "access": "method",
+          "signatures": [
+            "from_bytes(data: bytes) -> MemorySettings"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "from_hex",
+          "access": "method",
+          "signatures": [
+            "from_hex(text: str) -> MemorySettings"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "to_bytes",
+          "access": "method",
+          "signatures": [
+            "to_bytes(self) -> bytes"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "to_hex",
+          "access": "method",
+          "signatures": [
+            "to_hex(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "(frequency_hz: int, mode: str, filter_number: int = 1, data: bool = False, tone_mode: str = 'OFF', repeater_tone_hz: float = 88.5, tone_squelch_hz: float = 88.5) -> None",
+      "fields": [
+        {
+          "name": "frequency_hz",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "mode",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "filter_number",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "data",
+          "type": "bool",
+          "access": "read-only"
+        },
+        {
+          "name": "tone_mode",
+          "type": "str",
+          "access": "read-only"
+        },
+        {
+          "name": "repeater_tone_hz",
+          "type": "float",
+          "access": "read-only"
+        },
+        {
+          "name": "tone_squelch_hz",
+          "type": "float",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "MemoryRecord",
+      "guide": "STORAGE.md",
+      "members": [
+        {
+          "name": "display_name",
+          "access": "read-only",
+          "signatures": [
+            "display_name getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "from_bytes",
+          "access": "method",
+          "signatures": [
+            "from_bytes(data: bytes) -> MemoryRecord"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "from_hex",
+          "access": "method",
+          "signatures": [
+            "from_hex(text: str) -> MemoryRecord"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "simple",
+          "access": "method",
+          "signatures": [
+            "simple(settings: MemorySettings, name: str = '') -> MemoryRecord"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "to_bytes",
+          "access": "method",
+          "signatures": [
+            "to_bytes(self) -> bytes"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "to_hex",
+          "access": "method",
+          "signatures": [
+            "to_hex(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "(receive: MemorySettings, transmit: MemorySettings, split_enabled: bool = False, select_group: int = 0, name: str = '') -> None",
+      "fields": [
+        {
+          "name": "receive",
+          "type": "MemorySettings",
+          "access": "read-only"
+        },
+        {
+          "name": "transmit",
+          "type": "MemorySettings",
+          "access": "read-only"
+        },
+        {
+          "name": "split_enabled",
+          "type": "bool",
+          "access": "read-only"
+        },
+        {
+          "name": "select_group",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "name",
+          "type": "str",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "MemoryItem",
+      "guide": "STORAGE.md",
+      "members": [
+        {
+          "name": "clear",
+          "access": "method",
+          "signatures": [
+            "clear(self) -> None"
+          ],
+          "scpi": "RAD:MEM:CONTENT",
+          "usage": "Read/write complete memory record; None means empty. Addressed clear supports 1..99, not P1/P2."
+        },
+        {
+          "name": "name",
+          "access": "read-only",
+          "signatures": [
+            "name getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "number",
+          "access": "read-only",
+          "signatures": [
+            "number getter(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "record",
+          "access": "read/write",
+          "signatures": [
+            "record getter(self) -> MemoryRecord | None",
+            "record setter(self, record: MemoryRecord) -> None"
+          ],
+          "scpi": "RAD:MEM:CONTENT",
+          "usage": "Read/write complete memory record; None means empty. Addressed clear supports 1..99, not P1/P2."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        },
+        {
+          "name": "write_and_read",
+          "access": "method",
+          "signatures": [
+            "write_and_read(self, record: MemoryRecord) -> MemoryRecord | None"
+          ],
+          "scpi": "RAD:MEM:CONTENT",
+          "usage": "Read/write complete memory record; None means empty. Addressed clear supports 1..99, not P1/P2."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, number: int) -> None"
+    },
+    {
+      "class": "MemoryCollection",
+      "guide": "STORAGE.md",
+      "members": [
+        {
+          "name": "__getitem__",
+          "access": "method",
+          "signatures": [
+            "__getitem__(self, key: int | str) -> MemoryItem"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__iter__",
+          "access": "method",
+          "signatures": [
+            "__iter__(self) -> Iterator[int]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__len__",
+          "access": "method",
+          "signatures": [
+            "__len__(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "clear_selected",
+          "access": "method",
+          "signatures": [
+            "clear_selected(self) -> None"
+          ],
+          "scpi": "RAD:MEM:CLEAR",
+          "usage": "Selection-relative memory operation; use addressed records for exact backup/editing. See STORAGE.md."
+        },
+        {
+          "name": "copy_selected_to_vfo",
+          "access": "method",
+          "signatures": [
+            "copy_selected_to_vfo(self) -> None"
+          ],
+          "scpi": "RAD:MEM:TOVFO",
+          "usage": "Selection-relative memory operation; use addressed records for exact backup/editing. See STORAGE.md."
+        },
+        {
+          "name": "enable",
+          "access": "method",
+          "signatures": [
+            "enable(self) -> None"
+          ],
+          "scpi": "RAD:MEM:ENABLE",
+          "usage": "Selection-relative memory operation; use addressed records for exact backup/editing. See STORAGE.md."
+        },
+        {
+          "name": "select",
+          "access": "method",
+          "signatures": [
+            "select(self, key: int | str) -> None"
+          ],
+          "scpi": "RAD:MEM:SELECT",
+          "usage": "Selection-relative memory operation; use addressed records for exact backup/editing. See STORAGE.md."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        },
+        {
+          "name": "store_current_in_selected",
+          "access": "method",
+          "signatures": [
+            "store_current_in_selected(self) -> None"
+          ],
+          "scpi": "RAD:MEM:WRITE",
+          "usage": "Selection-relative memory operation; use addressed records for exact backup/editing. See STORAGE.md."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "KeyerItem",
+      "guide": "STORAGE.md",
+      "members": [
+        {
+          "name": "name",
+          "access": "read-only",
+          "signatures": [
+            "name getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Physical keyer identifier M1..M8; no instrument I/O."
+        },
+        {
+          "name": "number",
+          "access": "read-only",
+          "signatures": [
+            "number getter(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        },
+        {
+          "name": "text",
+          "access": "read/write",
+          "signatures": [
+            "text getter(self) -> str",
+            "text setter(self, value: str) -> None"
+          ],
+          "scpi": "RAD:KEYER:TEXT",
+          "usage": "Read/write up to 70 supported ASCII characters in M1..M8; storage only, no CW output."
+        },
+        {
+          "name": "write_and_read",
+          "access": "method",
+          "signatures": [
+            "write_and_read(self, value: str) -> str"
+          ],
+          "scpi": "RAD:KEYER:TEXT",
+          "usage": "Read/write up to 70 supported ASCII characters in M1..M8; storage only, no CW output."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, number: int) -> None"
+    },
+    {
+      "class": "KeyerCollection",
+      "guide": "STORAGE.md",
+      "members": [
+        {
+          "name": "__getitem__",
+          "access": "method",
+          "signatures": [
+            "__getitem__(self, number: int) -> KeyerItem"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__iter__",
+          "access": "method",
+          "signatures": [
+            "__iter__(self) -> Iterator[int]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__len__",
+          "access": "method",
+          "signatures": [
+            "__len__(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "BandStackItem",
+      "guide": "HIERARCHY.md",
+      "members": [
+        {
+          "name": "band",
+          "access": "read-only",
+          "signatures": [
+            "band getter(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "name",
+          "access": "read-only",
+          "signatures": [
+            "name getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Physical slot identifier within its band, as decimal text."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        },
+        {
+          "name": "settings",
+          "access": "read/write",
+          "signatures": [
+            "settings getter(self) -> MemorySettings",
+            "settings setter(self, value: MemorySettings) -> None"
+          ],
+          "scpi": "RAD:BAND:STACK",
+          "usage": "Read/write full settings at band 1..11, slot 1..3; flat/nested views share state."
+        },
+        {
+          "name": "slot",
+          "access": "read-only",
+          "signatures": [
+            "slot getter(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "write_and_read",
+          "access": "method",
+          "signatures": [
+            "write_and_read(self, value: MemorySettings) -> MemorySettings"
+          ],
+          "scpi": "RAD:BAND:STACK",
+          "usage": "Read/write full settings at band 1..11, slot 1..3; flat/nested views share state."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, band: int, slot: int) -> None"
+    },
+    {
+      "class": "BandStackSlotCollection",
+      "guide": "HIERARCHY.md",
+      "members": [
+        {
+          "name": "__getitem__",
+          "access": "method",
+          "signatures": [
+            "__getitem__(self, slot: int) -> BandStackItem"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__iter__",
+          "access": "method",
+          "signatures": [
+            "__iter__(self) -> Iterator[int]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__len__",
+          "access": "method",
+          "signatures": [
+            "__len__(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "band",
+          "access": "read-only",
+          "signatures": [
+            "band getter(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, band: int) -> None"
+    },
+    {
+      "class": "BandStackBand",
+      "guide": "HIERARCHY.md",
+      "members": [
+        {
+          "name": "name",
+          "access": "read-only",
+          "signatures": [
+            "name getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "number",
+          "access": "read-only",
+          "signatures": [
+            "number getter(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        },
+        {
+          "name": "slots",
+          "access": "read-only",
+          "signatures": [
+            "slots getter(self) -> BandStackSlotCollection"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, number: int) -> None"
+    },
+    {
+      "class": "BandStackBandCollection",
+      "guide": "HIERARCHY.md",
+      "members": [
+        {
+          "name": "__getitem__",
+          "access": "method",
+          "signatures": [
+            "__getitem__(self, band: int) -> BandStackBand"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__iter__",
+          "access": "method",
+          "signatures": [
+            "__iter__(self) -> Iterator[int]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__len__",
+          "access": "method",
+          "signatures": [
+            "__len__(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "BandStackCollection",
+      "guide": "HIERARCHY.md",
+      "members": [
+        {
+          "name": "__getitem__",
+          "access": "method",
+          "signatures": [
+            "__getitem__(self, key: int) -> BandStackBand",
+            "__getitem__(self, key: tuple[int, int]) -> BandStackItem"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__iter__",
+          "access": "method",
+          "signatures": [
+            "__iter__(self) -> Iterator[tuple[int, int]]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "__len__",
+          "access": "method",
+          "signatures": [
+            "__len__(self) -> int"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "bands",
+          "access": "read-only",
+          "signatures": [
+            "bands getter(self) -> BandStackBandCollection"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "set_simulated_write_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_write_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Set the shared offline memory-write gate; never alters a real\ngateway."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300) -> None"
+    },
+    {
+      "class": "BandEdges",
+      "guide": "BANDS.md",
+      "members": [
+        {
+          "name": "from_hex",
+          "access": "method",
+          "signatures": [
+            "from_hex(text: str) -> BandEdges"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "to_hex",
+          "access": "method",
+          "signatures": [
+            "to_hex(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "(lower_hz: int, upper_hz: int) -> None",
+      "fields": [
+        {
+          "name": "lower_hz",
+          "type": "int",
+          "access": "read-only"
+        },
+        {
+          "name": "upper_hz",
+          "type": "int",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "Bands",
+      "guide": "BANDS.md",
+      "members": [
+        {
+          "name": "default_edges",
+          "access": "read-only",
+          "signatures": [
+            "default_edges getter(self) -> BandEdges"
+          ],
+          "scpi": "RAD:BAND:EDGES?",
+          "usage": "Read band metadata/counts or indexed record; indices 1..30, count 0..30. User writes require calibration permission; see BANDS.md."
+        },
+        {
+          "name": "factory_count",
+          "access": "read-only",
+          "signatures": [
+            "factory_count getter(self) -> int"
+          ],
+          "scpi": "RAD:TXBAND:COUNT?",
+          "usage": "Read band metadata/counts or indexed record; indices 1..30, count 0..30. User writes require calibration permission; see BANDS.md."
+        },
+        {
+          "name": "read_factory",
+          "access": "method",
+          "signatures": [
+            "read_factory(self, index: int) -> BandEdges"
+          ],
+          "scpi": "RAD:TXBAND:READ?",
+          "usage": "Read band metadata/counts or indexed record; indices 1..30, count 0..30. User writes require calibration permission; see BANDS.md."
+        },
+        {
+          "name": "read_user",
+          "access": "method",
+          "signatures": [
+            "read_user(self, index: int) -> BandEdges | None"
+          ],
+          "scpi": "RAD:TXBAND:USER?",
+          "usage": "Read band metadata/counts or indexed record; indices 1..30, count 0..30. User writes require calibration permission; see BANDS.md."
+        },
+        {
+          "name": "set_simulated_calibration_permission",
+          "access": "method",
+          "signatures": [
+            "set_simulated_calibration_permission(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Shared with menu calibration writes. Never changes a real\ngateway."
+        },
+        {
+          "name": "user_count",
+          "access": "read-only",
+          "signatures": [
+            "user_count getter(self) -> int"
+          ],
+          "scpi": "RAD:TXBAND:USERCOUNT?",
+          "usage": "Read band metadata/counts or indexed record; indices 1..30, count 0..30. User writes require calibration permission; see BANDS.md."
+        },
+        {
+          "name": "write_and_read_user",
+          "access": "method",
+          "signatures": [
+            "write_and_read_user(self, index: int, edges: BandEdges) -> BandEdges | None"
+          ],
+          "scpi": "RAD:TXBAND:USER",
+          "usage": "Read band metadata/counts or indexed record; indices 1..30, count 0..30. User writes require calibration permission; see BANDS.md."
+        },
+        {
+          "name": "write_user",
+          "access": "method",
+          "signatures": [
+            "write_user(self, index: int, edges: BandEdges) -> None"
+          ],
+          "scpi": "RAD:TXBAND:USER",
+          "usage": "Read band metadata/counts or indexed record; indices 1..30, count 0..30. User writes require calibration permission; see BANDS.md."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, selector: str = '') -> None"
+    },
+    {
+      "class": "ScanControl",
+      "guide": "SCAN.md",
+      "members": [
+        {
+          "name": "assign_selected_memory_group",
+          "access": "method",
+          "signatures": [
+            "assign_selected_memory_group(self, group: int) -> None"
+          ],
+          "scpi": "RAD:SCAN:SELECT",
+          "usage": "Write-only scan control; arguments/choices in SCAN.md. Acceptance is not scan completion."
+        },
+        {
+          "name": "set_delta_span_hz",
+          "access": "method",
+          "signatures": [
+            "set_delta_span_hz(self, span_hz: int) -> None"
+          ],
+          "scpi": "RAD:SCAN:SPAN*",
+          "usage": "Write-only scan control; arguments/choices in SCAN.md. Acceptance is not scan completion."
+        },
+        {
+          "name": "set_memory_group",
+          "access": "method",
+          "signatures": [
+            "set_memory_group(self, group: int) -> None"
+          ],
+          "scpi": "RAD:SCAN:GROUP",
+          "usage": "Write-only scan control; arguments/choices in SCAN.md. Acceptance is not scan completion."
+        },
+        {
+          "name": "set_resume_enabled",
+          "access": "method",
+          "signatures": [
+            "set_resume_enabled(self, enabled: bool) -> None"
+          ],
+          "scpi": "RAD:SCAN:RESUMEOFF/RESUMEON",
+          "usage": "Write-only scan control; arguments/choices in SCAN.md. Acceptance is not scan completion."
+        },
+        {
+          "name": "set_select_enabled",
+          "access": "method",
+          "signatures": [
+            "set_select_enabled(self, enabled: bool) -> None"
+          ],
+          "scpi": "RAD:SCAN:SELECTOFF/SELECTON",
+          "usage": "Write-only scan control; arguments/choices in SCAN.md. Acceptance is not scan completion."
+        },
+        {
+          "name": "start",
+          "access": "method",
+          "signatures": [
+            "start(self, mode: str) -> None"
+          ],
+          "scpi": "RAD:SCAN:mode action",
+          "usage": "Write-only scan control; arguments/choices in SCAN.md. Acceptance is not scan completion."
+        },
+        {
+          "name": "stop",
+          "access": "method",
+          "signatures": [
+            "stop(self) -> None"
+          ],
+          "scpi": "RAD:SCAN:STOP",
+          "usage": "Write-only scan control; arguments/choices in SCAN.md. Acceptance is not scan completion."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, selector: str = '') -> None"
+    },
+    {
+      "class": "RadioOperations",
+      "guide": "OPERATIONS.md",
+      "members": [
+        {
+          "name": "antenna_output_enabled",
+          "access": "read/write",
+          "signatures": [
+            "antenna_output_enabled: bool"
+          ],
+          "scpi": "RAD:ANTOUTPUT",
+          "usage": "RAD:ANTOUTPUT[?], boolean."
+        },
+        {
+          "name": "break_in",
+          "access": "read/write",
+          "signatures": [
+            "break_in: str"
+          ],
+          "scpi": "RAD:BKIN",
+          "usage": "RAD:BKIN[?], choices: OFF, SEMI, FULL"
+        },
+        {
+          "name": "play_voice",
+          "access": "method",
+          "signatures": [
+            "play_voice(self, slot: int) -> None"
+          ],
+          "scpi": "RAD:VOICE",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "power_off",
+          "access": "method",
+          "signatures": [
+            "power_off(self) -> None"
+          ],
+          "scpi": "RAD:POWER:OFF",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "power_on",
+          "access": "method",
+          "signatures": [
+            "power_on(self) -> None"
+          ],
+          "scpi": "RAD:POWER:ON",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "send_cw",
+          "access": "method",
+          "signatures": [
+            "send_cw(self, text: str) -> None"
+          ],
+          "scpi": "RAD:CW:SEND",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "set_simulated_permissions",
+          "access": "method",
+          "signatures": [
+            "set_simulated_permissions(self, *, transmit: bool = False, power: bool = False, link: bool = False, max_transmit_seconds: float = 10.0) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "speak",
+          "access": "method",
+          "signatures": [
+            "speak(self, code: int) -> None"
+          ],
+          "scpi": "RAD:SPEECH",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "start_transmit",
+          "access": "method",
+          "signatures": [
+            "start_transmit(self) -> None"
+          ],
+          "scpi": "RAD:PTT ON",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "stop_cw",
+          "access": "method",
+          "signatures": [
+            "stop_cw(self) -> None"
+          ],
+          "scpi": "RAD:CW:STOP",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "stop_transmit",
+          "access": "method",
+          "signatures": [
+            "stop_transmit(self) -> None"
+          ],
+          "scpi": "RAD:PTT OFF",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "stop_voice",
+          "access": "method",
+          "signatures": [
+            "stop_voice(self) -> None"
+          ],
+          "scpi": "RAD:VOICE",
+          "usage": "Explicit guarded radio action. Valid values and stop/permission semantics are in OPERATIONS.md and BASIC.md; no hardware verification is implied."
+        },
+        {
+          "name": "transmit_inhibited",
+          "access": "read/write",
+          "signatures": [
+            "transmit_inhibited: bool"
+          ],
+          "scpi": "RAD:TXINHIBIT",
+          "usage": "RAD:TXINHIBIT[?], boolean."
+        },
+        {
+          "name": "tuner",
+          "access": "read/write",
+          "signatures": [
+            "tuner: str"
+          ],
+          "scpi": "RAD:TUNER",
+          "usage": "RAD:TUNER[?], choices: OFF, ON, TUNE"
+        },
+        {
+          "name": "vox_enabled",
+          "access": "read/write",
+          "signatures": [
+            "vox_enabled: bool"
+          ],
+          "scpi": "RAD:VOX",
+          "usage": "RAD:VOX[?], boolean."
+        }
+      ],
+      "constructor": "(driver: CiviIc7300, selector: str = '') -> None"
+    },
+    {
+      "class": "IviUtility",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "driver_vendor",
+          "access": "read-only",
+          "signatures": [
+            "driver_vendor getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "driver_version",
+          "access": "read-only",
+          "signatures": [
+            "driver_version getter(self) -> str"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "error_query",
+          "access": "method",
+          "signatures": [
+            "error_query(self) -> civi_ic7300.errors.ErrorQueryResult | None"
+          ],
+          "scpi": "SYST:ERR?",
+          "usage": "Read/consume this client error queue explicitly, independently of the status option."
+        },
+        {
+          "name": "error_query_all",
+          "access": "method",
+          "signatures": [
+            "error_query_all(self) -> tuple[civi_ic7300.errors.ErrorQueryResult, ...]"
+          ],
+          "scpi": "SYST:ERR?",
+          "usage": "Read/consume this client error queue explicitly, independently of the status option."
+        },
+        {
+          "name": "instrument_manufacturer",
+          "access": "read-only",
+          "signatures": [
+            "instrument_manufacturer getter(self) -> str"
+          ],
+          "scpi": "*IDN?",
+          "usage": "Read gateway identity; the full record is distinct from radio firmware."
+        },
+        {
+          "name": "instrument_model",
+          "access": "read-only",
+          "signatures": [
+            "instrument_model getter(self) -> str"
+          ],
+          "scpi": "*IDN?",
+          "usage": "Read gateway identity; the full record is distinct from radio firmware."
+        },
+        {
+          "name": "query_instrument_status_enabled",
+          "access": "read/write",
+          "signatures": [
+            "query_instrument_status_enabled getter(self) -> bool",
+            "query_instrument_status_enabled setter(self, enabled: bool) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "raise_on_device_error",
+          "access": "method",
+          "signatures": [
+            "raise_on_device_error(self) -> None"
+          ],
+          "scpi": "SYST:ERR?",
+          "usage": "Read/consume this client error queue explicitly, independently of the status option."
+        },
+        {
+          "name": "reset",
+          "access": "method",
+          "signatures": [
+            "reset(self) -> None"
+          ],
+          "scpi": "RAD:RESET",
+          "usage": "Select the documented receive baseline with a reset-specific timeout; no automatic rollback."
+        },
+        {
+          "name": "simulation_enabled",
+          "access": "read-only",
+          "signatures": [
+            "simulation_enabled getter(self) -> bool"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "supported_instrument_models",
+          "access": "read-only",
+          "signatures": [
+            "supported_instrument_models getter(self) -> tuple[str, ...]"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        }
+      ],
+      "constructor": "()"
+    },
+    {
+      "class": "IviDirectIo",
+      "guide": "API.md",
+      "members": [
+        {
+          "name": "io_timeout_ms",
+          "access": "read/write",
+          "signatures": [
+            "io_timeout_ms getter(self) -> int",
+            "io_timeout_ms setter(self, timeout_ms: int) -> None"
+          ],
+          "scpi": "None (local metadata/view/configuration or record conversion)",
+          "usage": "Local operation; argument bounds and returned-view/value semantics are specified in the linked guide."
+        },
+        {
+          "name": "read_bytes",
+          "access": "method",
+          "signatures": [
+            "read_bytes(self) -> bytes"
+          ],
+          "scpi": "receive pending response; no command sent",
+          "usage": "Read one LF-framed response; synchronize separate raw write/read pairs externally."
+        },
+        {
+          "name": "read_string",
+          "access": "method",
+          "signatures": [
+            "read_string(self) -> str"
+          ],
+          "scpi": "receive pending response; no command sent",
+          "usage": "Read one LF-framed response; synchronize separate raw write/read pairs externally."
+        },
+        {
+          "name": "write_bytes",
+          "access": "method",
+          "signatures": [
+            "write_bytes(self, data: bytes) -> None"
+          ],
+          "scpi": "caller-supplied ASCII program",
+          "usage": "Write one LF-framed program; raw I/O never adds status queries."
+        },
+        {
+          "name": "write_string",
+          "access": "method",
+          "signatures": [
+            "write_string(self, data: str) -> None"
+          ],
+          "scpi": "caller-supplied ASCII program",
+          "usage": "Write one LF-framed program; raw I/O never adds status queries."
+        }
+      ],
+      "constructor": "()"
+    },
+    {
+      "class": "ErrorQueryResult",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(code: int, message: str) -> None",
+      "fields": [
+        {
+          "name": "code",
+          "type": "<class 'int'>",
+          "access": "read-only"
+        },
+        {
+          "name": "message",
+          "type": "<class 'str'>",
+          "access": "read-only"
+        }
+      ]
+    },
+    {
+      "class": "DeviceError",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(errors: tuple[civi_ic7300.errors.ErrorQueryResult, ...]) -> None",
+      "fields": [
+        {
+          "name": "errors",
+          "type": "tuple[ErrorQueryResult, ...]",
+          "access": "Python attribute containing extracted device errors"
+        }
+      ]
+    },
+    {
+      "class": "ProtocolError",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(*args) \u2014 standard Python exception constructor"
+    },
+    {
+      "class": "QueryError",
+      "guide": "API.md",
+      "members": [],
+      "constructor": "(*args) \u2014 standard Python exception constructor"
+    }
+  ],
+  "type_aliases": {
+    "MenuValue": "bool | int | civi_ic7300.menus.AudioFilter | civi_ic7300.menus.Bandwidth | civi_ic7300.menus.RgbColor | civi_ic7300.controls.ScopeEdges | str | datetime.date | datetime.time | datetime.timedelta"
+  }
+}

@@ -4,6 +4,8 @@ serial_number = "CIVI-0001"
 bind = "0.0.0.0"
 scpi_port = 5025
 web_port = 8443
+web_extra_ports = [] # For LXI port preparation: web_port = 443, web_extra_ports = [8443]
+description = "CIVI CIVI-0001" # Discovery service name, maximum 63 UTF-8 bytes
 password_env = "CIVI_PASSWORD"
 tls_cert = "certs/cert.pem"
 tls_key = "certs/key.pem"
@@ -31,3 +33,8 @@ memory = false # Allow memory/keyer/band-stack writes and erasure
 power = false # Allow physical radio power commands
 link = false # Allow changes that may break the CI-V/USB connection
 calibration = false # Reference-frequency / transmit-band changes
+
+[pi_network]
+enabled = false # Pi branch only: manually start the LAN helper before enabling
+socket = "/run/civi-lan/control.sock"
+interface = "eth0" # Wired interface monitored by the local LAN/Identify display

@@ -33,6 +33,27 @@ def backend(config, replies):
     return CivBackend(load_profile(), config["serial"], lambda: port), port
 
 
+@pytest.mark.parametrize('op,command,valid,expected', [
+    ('frequency_get', b'\x03', bcd_encode(927000, 5), 927000),
+    ('mode_get', b'\x04', b'\x02\x02', 'AM'),
+])
+def test_empty_memory_has_no_value_and_next_query_recovers(config, op, command, valid, expected):
+    b, _ = backend(config, [[frame(command+b'\xff')], [frame(command+valid)]])
+    assert b.call(op) is None
+    assert b.state == 'connected'
+    assert b.call(op) == expected
+
+
+@pytest.mark.parametrize('op,command', [('frequency_get', b'\x03'), ('mode_get', b'\x04')])
+@pytest.mark.parametrize('payload', [b'\xff\xff', b'\x00', b'\xff'*5])
+def test_only_single_ff_is_empty_memory(config, op, command, payload):
+    b, _ = backend(config, [[frame(command+payload)]])
+    with pytest.raises(CiviError) as exc:
+        b.call(op)
+    assert exc.value.code == -310
+    assert b.state == 'quarantined'
+
+
 def test_parser_split_concatenated_noise_and_preamble():
     p = FrameParser()
     a = frame(b"\x03" + bcd_encode(7100000,5))

@@ -44,6 +44,7 @@ class Codec:
     choices: tuple = ()
     names: tuple = ()
     example: str | None = None
+    empty_read: bool = False
 
     def encode(self, text):
         text = str(text) if self.kind in ('text','opening','keyer') else str(text).strip()
@@ -166,6 +167,10 @@ class Codec:
             if any(b < 32 or b > 126 and not 0xa1 <= b <= 0xdf for b in data[29:]): raise invalid("Invalid memory name characters")
 
     def decode(self, data):
+        # Observed on MAIN 1.42: an unprogrammed 1E 03 slot returns FF.
+        # This is read-only; encode/validate_bytes still reject FF writes.
+        if self.empty_read and data == b'\xff':
+            return 'FF'
         if self.kind == 'data':
             # The manual's OFF/00 restriction is a write requirement. A read
             # can still report the selected FIL1-FIL3 while DATA is OFF.
@@ -348,7 +353,7 @@ def build_catalog():
     add('RAD:TXBAND:COUNT','1e00','Number of factory transmit bands',Codec(maximum=30),'r')
     add('RAD:TXBAND:READ','1e01','Read transmit band edge',Codec('bandedge',minimum=11,maximum=11),'r',selector=Codec(minimum=1,maximum=30))
     add('RAD:TXBAND:USERCOUNT','1e02','Number of user transmit bands',Codec(maximum=30),'r')
-    add('RAD:TXBAND:USER','1e03','User transmit band edge',Codec('bandedge',minimum=11,maximum=11),selector=Codec(minimum=1,maximum=30),guard='calibration')
+    add('RAD:TXBAND:USER','1e03','User transmit band edge (FF on read means unprogrammed)',Codec('bandedge',minimum=11,maximum=11,empty_read=True),selector=Codec(minimum=1,maximum=30),guard='calibration')
     for name,sub,codec in [('ENABLE','10',BOOL),('STREAM','11',BOOL),('DISPLAY','12',Codec(maximum=0)),('DUAL','13',Codec(maximum=0)),
         ('MODE','14',Codec(maximum=3)),('SPAN','15',Codec('scope_span',minimum=5,maximum=5)),('EDGE','16',Codec(minimum=1,maximum=4)),
         ('HOLD','17',BOOL),('REFERENCE','19',Codec('scope_ref',minimum=3,maximum=3)),('SPEED','1a',Codec(maximum=2)),
