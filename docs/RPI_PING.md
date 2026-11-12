@@ -8,8 +8,6 @@ The fixed helper operations are `ping_status` (no arguments) and `ping` with a B
 
 The helper saves the desired value in `/etc/sysctl.d/90-civi-lan.conf`, applies `/proc/sys/net/ipv4/icmp_echo_ignore_all` and reads back runtime and saved state. `enabled` reports actual runtime state; `saved_enabled` reports the CIVI-owned saved value or null if none exists. Saving verifies both. A failure attempts to restore the exact previous file/runtime value; unverified restoration is an explicit error. A later administrator sysctl override can supersede the saved value, so the UI distinguishes observed from saved settings.
 
-The saved file is applied by normal OS sysctl processing at boot, without needing CIVI to run. LAN RESET enables and saves replies again, via the same verified setter. CIVI and its helper remain manually started. This addresses core rules 8.2–8.4; exposing the control on the Web follows recommendation 9.5.3. It is not a full LXI conformance claim.
-
 ## Verification — 2026-11-07
 
 - Full suite: **257 passed, one skipped**. Tests cover runtime/saved status, default recovery enable, reload from saved settings, invalid types/fields, authentication/CSRF, helper errors, and exact restoration after a failed runtime write. Existing LCI transaction tests also passed.

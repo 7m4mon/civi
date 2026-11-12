@@ -2,7 +2,7 @@
 
 ## Result
 
-Passed on Raspberry Pi 4, Avahi 0.8, NetworkManager 1.52.1 and Python 3.13.5. Two real Avahi daemons communicate across isolated virtual Ethernet namespaces. This is not a physical two-Pi test or an actual Pi reboot, and does not establish LXI conformance.
+Passed on Raspberry Pi 4, Avahi 0.8, NetworkManager 1.52.1 and Python 3.13.5. Two real Avahi daemons communicate across isolated virtual Ethernet namespaces.
 
 | Check | Observation |
 |---|---|

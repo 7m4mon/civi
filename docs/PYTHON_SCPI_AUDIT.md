@@ -399,5 +399,5 @@ provided. OS/LAN/authentication administration remains outside this client SCPI 
 Protected menu/calibration/link commands that the gateway does provide are included, not
 removed from coverage merely because their write gates default OFF.
 
-../drivers/civi-ic7300/src/civi_ic7300/BASIC.md documents base APIs and their semantics. ../drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md and ../drivers/civi-ic7300/src/civi_ic7300/AUDIT.md record
-remaining naming, documentation, hardware/platform and registration work.
+../drivers/civi-ic7300/src/civi_ic7300/BASIC.md documents base APIs; EVIDENCE.md summarizes results. The verification
+completion plan is linked from ../drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md.

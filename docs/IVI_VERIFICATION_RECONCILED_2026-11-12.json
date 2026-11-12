@@ -139,7 +139,7 @@
   },
   "private_artifacts_are_not_embedded": true,
   "input_sha256_normalized_utf8_lf": {
-    "docs/HARDWARE_2026-10-17.md": "0bd1cd6066be9c3c2a55ff0e83e681dc8593922a5f9d576dde89b5cd098b3705",
+    "docs/HARDWARE_2026-10-17.md": "2fe69177b61adfa8ddd2d78d59dcb6dc08e7bd8784db04d800d08f78a3add06f",
     "drivers/civi-ic7300/src/civi_ic7300/public-api.json": "63e43cb42feb12797d4a69b2f8fa7584683d7ff3fa7bc4c21098a83b926cbf73"
   }
 }

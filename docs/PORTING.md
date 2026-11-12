@@ -1,27 +1,16 @@
-# Raspberry Pi移植段階
+# Raspberry Piへの導入
 
-## 実験時の手動起動
+Raspberry Pi OS 64bit、Pi4、有線LAN、IC-7300のUSB接続を使用します。
 
-Raspberry Pi 4で実機接続とWebスコープ表示が動作したとのユーザー報告があります。2026-10-19には別端末からのTCP/PyVISA実機試験も成功しました（[記録](RPI_LAN_2026-10-19.md)）。Linuxでの障害復旧や全機能の検証は未実施です。当面は実験時の手動起動とし、自動起動は設定しません。
+1. ソースをPiへ配置し、Python3.11以上で仮想環境を作成する。
+2. `python -m pip install -e '.[pi]'`で導入する。
+3. `config.pi.example.toml`を`config.toml`へコピーし、`/dev/serial/by-id/`の安定したパスを指定する。利用者は`dialout`グループに所属させる。
+4. [HTTPS設定](RPI_HTTPS.md)で証明書と443番への権限を準備する。
+5. [デスクトップ起動](RPI_DESKTOP.md)に従い、`bash desktop.sh --install`でアイコンを配置する。
 
-導入・`config.toml`・証明書の準備後、任意のディレクトリーから実行できます。
+起動は手動です。CIVIアイコンからgateway/helper/panelを開き、必要なsudoパスワードはhelperの端末へ入力します。パネルは本体画面に表示したまま使います。
 
-```bash
-bash ~/civi/start.sh
-```
-
-スクリプトはプロジェクトへ移動して既存の`.venv`と`config.toml`で起動します。設定されたパスワード環境変数（既定`CIVI_PASSWORD`）が空なら非表示で入力を求めます。パスワードをファイルへ保存しません。ターミナルを開いたまま使用し、Ctrl+Cで終了してください。サービス登録やバックグラウンド起動は行いません。
-
-## 移植で残る項目
-
-初期版はWindowsで検証します。共通PythonコードはPython 3.11以上を対象にし、COM依存の処理はpyserial設定に閉じ込めています。Linuxでは`/dev/serial/by-id/...`を設定できます。NIC情報はpsutil、機器発見はzeroconfで取得します。
-
-移植段階で以下を実装・納品します。現時点ではPiで導入・自動起動できることを完了条件にしていません。
-
-- Raspberry Pi OS 64bitのPython環境、権限（dialout）、安定したデバイスパス、証明書配備とファイアウォールを含む導入手順。
-- systemdサービス、専用ユーザー、パスワード環境ファイル、終了時の停止処理、再起動ポリシー、ログ運用。
-- NetworkManager等を分離したLAN設定バックエンド。DHCP/AutoIP/固定IP、保存、妥当性確認、設定復旧。
-- GPIOのLAN状態表示・機器識別・LAN設定初期化ボタン。
-- LinuxのUSB切断・再接続・権限エラー、マルチNIC、LANケーブル差し替え検証。
-
-systemdユニットやOSネットワークを変更する未検証スクリプトは初期版へ含めません。USB通信後の隔離を、OSの自動再起動で不用意に解除する問題も移植時に扱います。
+- [設定例](../config.pi.example.toml)
+- [LAN設定](RPI_LAN_SETTINGS.md)
+- [Webパスワード](WEB_PASSWORD.md)
+- [実装・試験結果](IMPLEMENTATION_AND_TEST_RESULTS.md)

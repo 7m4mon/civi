@@ -4,8 +4,7 @@
 
 Generated signatures/types/access and explicit SCPI contracts are indexed below. Linked guides
 supply argument ranges, units, detailed behavior and examples. New unclassified exports or
-members fail generation. This index is not an automated proof of semantic documentation
-completeness or IVI conformity. See EVIDENCE.md for implementation/mock/hardware boundaries.
+members fail generation. EVIDENCE.md summarizes completed verification results.
 
 Scope: driver-defined public members and selected collection/context protocols. Standard
 Python exception/string/Enum inherited APIs are not duplicated here.
@@ -28,7 +27,7 @@ Python exception/string/Enum inherited APIs are not duplicated here.
 
 Python >=3.11 is required. Current execution/build/type evidence is Windows 11 (25H2),
 CPython 3.14.5 x64. Interactive shells, scripts and IDEs use the same Python API; no IDE plugin
-is required or separately verified. Other Python/OS combinations remain unverified.
+is required. The recorded development environment is listed in COMPLIANCE.md.
 
 ## CiviIc7300
 

@@ -1,0 +1,2875 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-12",
+  "scope": "対象はLXI Device Specification 1.6.2の6.1が要求するGeneration2026適合driver（Core1.0＋Python1.0）。本表は現在のCIVI/IC-7300 driver全公開機能を保持する場合の、検証・レビュー・正式適合の完了条件を固定する。LXI全体認証や無限の信頼性試験は対象に含めない。",
+  "completion": [
+    "下の全確認ID、API全方向、menu全番号、各値域/instance展開を最終artifactの一setupで完了し、条件付き契約も含め未判定0件にする。合格には実際の結果と根拠が必要。",
+    "過去の成功記録はケース設計と根拠に再利用する。ただし同一setupで全unit testを最低一回実行する要求は、異なる版/FWの寄せ集めで代用しない。既存手順を最終版で一括再実行する。",
+    "失敗した場合は実装/契約/文書を修正して影響する試験を再実行。単なる未実行をN/Aにしない。抽象契約とlocal-only・read-only・simulation専用の正当な適用差は明記する。",
+    "R-04と全検証/文書義務が閉じれば「Core/Pythonに対する必要な検証を完了」と記録できる。REG-01と名称要件まで閉じて初めてdriver適合の全要求を閉じる。試験だけでIVI登録完了にはならない。",
+    "本リストは固定規格・固定公開範囲に対する開発者の完了判定基準。Foundationの認定や例外承認を先取りしない。規格改訂/公開API/対応範囲変更は基準改訂として明示する。"
+  ],
+  "target": [
+    "gateway CIVI 0.1.0、driver0.13.1を出発点とする。最終release版/hashをS-01で確定。機器はCIVI/IC-7300＋IC-7300 MAIN1.42、Pi eth0経由TCP SOCKET。",
+    "driver実行はWindows11 x64 / CPython3.14.5を既存基準とする。gatewayがPiで動くことと、Python clientのLinux正式対応を分離。正式対応OS/bitnessを確定し、R-01の条件を適用する。",
+    "VISAを必要としないstdlib TCP clientであるためVISA vendor/version、IVI Shared Componentsは非使用として記録。別実装を採用した場合は再評価。",
+    "最終完全setupにはOS名/版/build、Python/bitness、gateway/driver/profile版、FW、bus、permissions、テスト日時、全入力と結果、復元結果を保存。"
+  ],
+  "api_rules": [
+    "API.csvの全行についてsimulationと実接続を別々に記録。property GET/SETを別件、constructor/methodとfieldも漏らさない。",
+    "各設定parameterは最低一合法値、range両端と内部、上下の非合法値、離散値の全候補と最低一不正値、量子化の隣接値間入力を確認。無限/連続rangeは総当たりしない。",
+    "複合recordは各fieldを独立に変え、他fieldを合法値固定。mode/FW依存条件は適用contextを固定し、公開範囲全体を覆う。",
+    "書込は退避→変更→実読戻し/外部観測→元へ復元→復元読戻し。書込専用は実動作とowner baselineで確認。ACKだけで実動作合格にしない。",
+    "不正型/不正値の送出前拒否は、実機へ違法値を送ることを要求しない。transport破損や通信不能はmockで注入し、実接続正常経路とは別に記録。",
+    "local-onlyのfield/metadata/codecは、実session由来のobjectまたは実sessionと組み合わせたlocal評価で閉じる。抽象APIは対応具象APIの証拠へ委譲し、理由を明記。",
+    "実機が未対応のenum/valueは成功にせず、文書化したsupported context/拒否の契約へ反映するか実装修正。単に拒否した正の公開機能は未達。",
+    "最終runの機械可読結果は生成台帳とは別ファイルへ記録し、case ID、実入力、期待/実結果、setup ID、artifact hash、時刻、ログ、復元を含める。生成を再実行して結果を消さない。"
+  ],
+  "obligations": [
+    {
+      "id": "S-01",
+      "procedure": "最終版のdriver/gateway/profile・対応機種/FW・クライアントOS/Python/bitness・TCP経路・許可設定を固定。wheel/sdist/sourceと依存版のhashを保存。",
+      "acceptance": "MAIN1.42、最終artifact hash、setup IDが全試験記録から一意に追跡できる。変更があれば影響範囲を再判定。",
+      "environment": "文書・配布物"
+    },
+    {
+      "id": "S-02",
+      "procedure": "本計画の全規格段落、全API、全コマンド、全menu、全instanceを一行ずつ適用判定。対象はGeneration2026 Core1.0/Python1.0。",
+      "acceptance": "必須要求が未分類0件。非採用条件・推奨事項と必須を区別。公開APIを残すものは検証対象に残す。",
+      "environment": "静的レビュー"
+    },
+    {
+      "id": "B-01",
+      "procedure": "constructorのid_query/reset/simulate/status-check各boolの全組合せ。options=None/dict/TypedDict/string、大小文字・空白・重複・未知key・不正型。resource/timeout正負、ID不一致・接続失敗は模擬応答で確認。",
+      "acceptance": "simulate既定False、checks既定False、id_query/resetの交通が指定通り。失敗時socket解放。実機は正常ID・reset両値の接続を記録。",
+      "environment": "模擬＋実接続、resetは退避後"
+    },
+    {
+      "id": "B-02",
+      "procedure": "driver_version/vendor/manufacturer/model/supported_models/identification/simulation状態とaliasを全て取得。",
+      "acceptance": "ASCII version形式、gateway実IDとの一致、package metadata・help・complianceとの一致。無線機とgatewayの識別を混同しない。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "B-03",
+      "procedure": "状態照会OFF/ONとchecked()を全typed I/O familyへ適用。正常・device-error・Python例外、nested block、別threadで確認。",
+      "acceptance": "OFFで余分なqueue queryなし、ONでI/O終了後に照会・例外化、scope終了で元状態復帰。raw I/Oの文書化されたqueue保持も一致。",
+      "environment": "実接続＋交通観測mock"
+    },
+    {
+      "id": "B-04",
+      "procedure": "error_query/error_query_all/raise_on_device_error/clear_status/wait_for_completeを空queue・複数error・正常操作・拒否操作で実行。",
+      "acceptance": "一回一件、FIFO、checksに左右されない明示取得、正しい例外/完了。壊れたcode/CSV/count/ERROR応答はmockでProtocolError等。",
+      "environment": "実接続＋mock異常返信"
+    },
+    {
+      "id": "B-05",
+      "procedure": "reset()とconstructor reset=Trueを退避後実行。基準両VFOと57設定、driver依存設定、完了待ち・timeout復帰を確認。",
+      "acceptance": "定義済みknown state、214非clock保護menuが不変。依存設定がreset範囲外なら実装/文書を修正して再試験。元状態を復元。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "B-06",
+      "procedure": "DirectIo read_bytes/read_string/write_bytes/write_string/queryとtimeout GET/SET。LF、複数応答、長い応答、ASCII/bytes、待ち時間、close後を確認。",
+      "acceptance": "応答一件を完全取得、余剰は次へ保持、書込み内容一致。不正値・異常応答・遅延返信をmockで確認。",
+      "environment": "模擬＋実接続、障害注入はmock"
+    },
+    {
+      "id": "B-07",
+      "procedure": "withのenter/exit、明示close・二重close、例外exit、失敗後の再利用/再生成と全childのclose後I/Oを確認。",
+      "acceptance": "資源解放と一貫した例外。終了sessionからのI/Oなし、local metadataは文書通り。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "G-01",
+      "procedure": "全API台帳の模擬側を実行。socket/serial作成を禁止して全機能・出力・permission ON/OFFを確認。",
+      "acceptance": "各concrete entry pointを正常呼出し。hardware専用では明示した拒否契約、模擬専用では正常動作。実機I/O0件。",
+      "environment": "独立simulation＋mock TCP"
+    },
+    {
+      "id": "G-02",
+      "procedure": "同一sessionを複数threadからtyped GET/SET、error照会、checked、write_and_read、closeの競合で使用。",
+      "acceptance": "応答混線・deadlock・途中入替なし。raw write/read一組は文書化したcaller同期で実行。共通lockの全経路を静的点検。",
+      "environment": "mockで決定的競合＋実接続の非破壊競合"
+    },
+    {
+      "id": "G-03",
+      "procedure": "全APIの不正引数と全応答decoderを、短い/長い/不正BCD・JSON・型・EOF・timeout・NAK・ERRORで確認。",
+      "acceptance": "標準Python例外で報告、return値へerrorを混在させない。error_queryだけはqueue情報の返却。失敗を成功にせず遅延応答を次操作へ誤対応しない。",
+      "environment": "既存fixture再実行＋decoder単体"
+    },
+    {
+      "id": "G-04",
+      "procedure": "350 canonical headerの全方向とaliasをtyped API、SCPI parser、helpで突合。全339extendedを維持。未実装command/除外の記述も照合。",
+      "acceptance": "Direct I/Oに逃がしたmapped判定なし。公開方向の漏れなし。機器範囲はCIVI/IC-7300で、OS管理操作の除外を説明。",
+      "environment": "静的＋parser/mock"
+    },
+    {
+      "id": "G-05",
+      "procedure": "全設定引数/propertyにG-APIの正常値・range端/中間/直外・全enum/bool・離散間/不正値を適用。値域はAPI.csvのsource_contractとD-*で固定。",
+      "acceptance": "各parameterの展開値と実値を保存。未展開のvalue domainが0件。合法値NAKはmode/FW条件の確定または修正後再試験。",
+      "environment": "模擬＋実接続。無効入力は送出前拒否も合格"
+    },
+    {
+      "id": "F-01",
+      "procedure": "RadioとVfo両経路のfrequency/mode/DATA/FIL、RIT/XIT/split、COPY両方向・swap・selectionを実行。",
+      "acceptance": "D-VFO/RC-01の全条件、値・選択・副作用・元状態を確認。A/Bはowner確認済みbaselineを使用。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "F-02",
+      "procedure": "Radio全read/write設定とGains全18設定をtyped経路で変更・読戻し・復元。source_contractの全choices/rangeを展開。",
+      "acceptance": "旧SCPI結果だけで代用せず、各setter/GETの現行artifactと条件を記録。モード依存は正しいmodeへ切替・復元。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "F-03",
+      "procedure": "全10meter、radio S-meter/PTT/TX frequency/FWを取得。bool/raw/範囲、変化時の妥当性を確認。",
+      "acceptance": "返却型・単位・未校正表示が一致。全meterを上限まで振らせる要求にはしない。必要なTX状態読取はX-02と共用。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "F-04",
+      "procedure": "Scope全property GET/SET、start/stop stream、read_sweep、fixed edgesのGET/SETをD-SCOPE/RC-06で実行。",
+      "acceptance": "475点または明示out-of-range、全setting domain、52edge組、通信エラー・部分開始失敗時の復元を確認。",
+      "environment": "実接続＋mock失敗注入"
+    },
+    {
+      "id": "F-05",
+      "procedure": "MemoryItem record setter/write_and_read/clear、selected-memory store/display/copy/clear、空recordの03FF/04FFとVFO復帰。",
+      "acceptance": "D-MEM/RC-02の全条件、39byte完全一致、空はNone/文書化error、接続維持、全backupと一致する復元。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "F-06",
+      "procedure": "BandStackItem settings setter/write_and_read、階層/legacy facadeをD-MEM/RC-04で確認。",
+      "acceptance": "全33組のmethod/property、lossless往復、別slotへの誤書込なし、全件復元一致。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "F-07",
+      "procedure": "KeyerItem text setter/write_and_read、全M1..M8とD-KEYの文字境界を確認。",
+      "acceptance": "全8枠一致、空/上限/不正入力、contest記号処理が契約一致。文字保存だけではCW送信合格にしない。",
+      "environment": "模擬＋実接続、CW再生はX-03"
+    },
+    {
+      "id": "F-08",
+      "procedure": "ScanControl全7start enum（AUTOはVFO/MEM）、STOP、7ΔF幅、resume/select bool・番号1..3・filter0..3を確認。",
+      "acceptance": "周波数移動とSTOP後安定、ΔF範囲内・選択groupへの一致。書込専用値はbaselineを目視保存し復元。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "F-09",
+      "procedure": "Bands default/factory_count/user_count/read_factory/read_user/write_user/write_and_read_userをD-BAND/RC-07で確認。",
+      "acceptance": "全返却範囲と空FF、保存済みuser recordの変更・読戻し・復元。工場表は書き換えない。",
+      "environment": "実接続、protected書込は別許可"
+    },
+    {
+      "id": "F-10",
+      "procedure": "MenuItem全216のGET、全215 writableのvalue setter/write_and_read。MENU.csvの合法/不正値と各権限を展開。",
+      "acceptance": "全番号の方法/property、codec・mode・副作用・復元一致。0074はGETとSET拒否を確認。17通常副作用・10link・2calibrationも個別記録。",
+      "environment": "通常/副作用/link/calibを分けた実接続"
+    },
+    {
+      "id": "F-11",
+      "procedure": "全constructor、value record/enum/exception/metadata、十種類menu helperを台帳順に実行。",
+      "acceptance": "D-LOCAL/D-VALUESの正負vector、typed view/codec一致、read-only参照不変、I/Oなしguard。抽象型は具象実装へ委譲。",
+      "environment": "simulation＋実接続sessionに結び付けたlocal操作"
+    },
+    {
+      "id": "RC-01",
+      "procedure": "VFO SELECTED/OTHERの各propertyと少なくとも一methodを各instanceに実行。A/B選択・alias、誤名拒否。",
+      "acceptance": "両instanceのGET/SET、select/COPY/swapで実作用を確認。aliasは同じ実体/宛先。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "RC-02",
+      "procedure": "memory1..99,P1,P2の全101でrecord GET/SETとwrite_and_read。通常1..99はclearも実行。int/string/P1/P2 alias・不正指定を確認。",
+      "acceptance": "各instanceでpropertyとmethodの両方を確認。P1/P2 clearは仕様通り拒否。空/非空の元状態を完全復元。",
+      "environment": "模擬＋実接続。95残枠だけでなく最終一式は全101を記録"
+    },
+    {
+      "id": "RC-03",
+      "procedure": "全M1..M8でtext propertyとwrite_and_readを実行。number/name/iterator、誤指定も確認。",
+      "acceptance": "8instanceで正常往復・復元、0/9/未知名を拒否。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "RC-04",
+      "procedure": "11band×3slot全33組でsettings propertyとwrite_and_read。band/slot/name・階層、tuple alias、iteratorを確認。",
+      "acceptance": "nested selector混同なし。band0/12,slot0/4、誤tuple/typeを拒否。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "RC-05",
+      "procedure": "全216menu番号でvalue propertyと、writableではwrite_and_read。read-onlyはview/helper取得method＋GET、SET拒否理由を記録。",
+      "acceptance": "各instanceのmethod/property対応。int/四桁文字列/名前の許可aliasと未定義番号を確認。typed helperは合うkind/違うkindを全種類確認。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "RC-06",
+      "procedure": "fixed-edge band1..13×edge1..4全52組をread/write/restore。scope selectorは0のみを確認。",
+      "acceptance": "各組の宛先と値を一致。不正band0/14,edge0/5、selector1をgatewayで拒否。profile/contextが許さない値は明示拒否契約とする。",
+      "environment": "模擬＋実接続"
+    },
+    {
+      "id": "RC-07",
+      "procedure": "factory1..実count、user1..実countを全件読取。user全有効indexで保存済みrecordを使うwrite/read/restore。",
+      "acceptance": "未設定user枠の正の書込が消去不能なら実行せず、当該APIの全instance検証を閉じる設計/復元手段を先に確定。未解決のままPASS不可。",
+      "environment": "protected実接続。対象範囲・復元手段の確定が先行"
+    },
+    {
+      "id": "Q-01",
+      "procedure": "全setterでrequestと実readbackの差を分類。NR/PBT/COMPを含む全離散化parameterの合法出力列を公式表/実測で確定。",
+      "acceptance": "各隣接離散値間に最低一値、範囲両端と不正値を確認。丸め規則・許容差を文書化し境界ごとの実値を保存。全raw値総当たりとは別。",
+      "environment": "実接続＋独立encode/decode vectors"
+    },
+    {
+      "id": "X-01",
+      "procedure": "transmit/memory/keyer/bandstack/menu/link/calibration/powerの全既定拒否、明示許可、型拒否、simulation専用permission APIの実session拒否。",
+      "acceptance": "拒否で操作未実行・適切なerror。許可だけでは操作成功扱いにせず、各正のケースへ対応。終了時全permissionを元へ復元。",
+      "environment": "mock＋実接続、正の危険操作は該当Xケース"
+    },
+    {
+      "id": "X-02",
+      "procedure": "PTT ON→RF/状態確認→OFF。TX Inhibit False/Trueで開始許可/抑止を実確認し、元へ戻す。",
+      "acceptance": "typed start/stop・状態・外部RF観測が一致。禁止状態ではRFなし。OFFだけの試験で代用しない。",
+      "environment": "ダミーロード/適切なRF観測、明示許可後"
+    },
+    {
+      "id": "X-03",
+      "procedure": "send_cw長さ境界/全許可文字群とescaping、開始中stop_cw。",
+      "acceptance": "送出符号/終了/停止を観測し入力と一致。空/31文字/禁止文字は拒否。",
+      "environment": "負荷・CW観測・明示許可後"
+    },
+    {
+      "id": "X-04",
+      "procedure": "T1..T8へ識別可能な音声を準備しplay_voice各slotと再生中stop_voice。",
+      "acceptance": "指定slotの送出/停止を観測、0/9拒否。SD/音声が未準備なら合格にせずfixture準備。",
+      "environment": "SD/音声素材・負荷・明示許可後"
+    },
+    {
+      "id": "X-05",
+      "procedure": "VOX False/Trueを適切な音声入力で、BK-IN OFF/SEMI/FULLをキー入力で確認し各停止。",
+      "acceptance": "指定動作と実送信・復帰が一致、driverが所有する開始経路の停止を確認。",
+      "environment": "外部audio/key fixture・負荷・明示許可後"
+    },
+    {
+      "id": "X-06",
+      "procedure": "tuner OFF/ON/TUNEを適切な整合負荷で実行し、実チューン中の停止を確認。",
+      "acceptance": "設定/実チューン/停止が一致。機種/負荷条件付き動作を明記しNAKを無条件PASSにしない。",
+      "environment": "適切な負荷・明示許可後"
+    },
+    {
+      "id": "X-07",
+      "procedure": "CIVIが開始したPTT/CW/voice/VOX/BK-IN/tuner各経路でdeadline・所有client切断・別client停止を確認。",
+      "acceptance": "実停止と所有権拒否が契約一致。USB断で停止を保証できない制約は明記し、停止保証を捏造しない。USB障害注入は外部停止手段付き別手順。",
+      "environment": "gateway動作契約の検証、制御されたRF環境"
+    },
+    {
+      "id": "X-08",
+      "procedure": "antenna_output_enabled両値とlink menu10件を、通信復旧/外部端子条件を準備して変更・読戻し・復元。",
+      "acceptance": "各API・列挙値が意図した端子/通信動作を示し、切断時も復旧してbackupと一致。",
+      "environment": "ローカル復旧経路・端子fixture・明示許可後"
+    },
+    {
+      "id": "X-09",
+      "procedure": "speak0/1/2の実音声、power_off→power_onの一往復とUSB wakeを確認。",
+      "acceptance": "可聴出力と実電源状態、再接続後のidentity/正常読取が一致。",
+      "environment": "owner立会い・音声/電源観測"
+    },
+    {
+      "id": "X-10",
+      "procedure": "校正menu0057/0058とuser-band書込を、許可・完全backup・復元確認手段を確定してから試験。",
+      "acceptance": "保持する公開APIを試験しないまま適合完了にしない。省略する場合はCoreの範囲例外に基づく正式scope/実装/API/help変更と再監査が必要。",
+      "environment": "現方針では変更未許可。計画作成は実行許可ではない"
+    },
+    {
+      "id": "D-01",
+      "procedure": "登録vendor略号・manufacturer/model/vendor token、DriverIdentifier/root/import/distribution/Introduction名を全箇所で照合。",
+      "acceptance": "VPP-9に基づく有効略号とPython文法、大小文字・separatorの一貫性。NLは承認済みとして扱わない。",
+      "environment": "規格/名称レビュー、必要な外部手続き"
+    },
+    {
+      "id": "D-02",
+      "procedure": "全module/公開class/member/parameterのPEP8命名・layoutをlintと目視で確認。hierarchyとread-only child参照を検査。",
+      "acceptance": "必須規則の差異を解消。推奨class名/複数形等の例外は必須違反にしない。",
+      "environment": "静的レビュー"
+    },
+    {
+      "id": "D-03",
+      "procedure": "全公開signature/return/field/overload/genericの型、py.typed、installed consumerをstrict type checkerで確認。",
+      "acceptance": "全公開型を提供し、実値/型注釈一致、依存漏れなし。PSFサポート中のPythonを少なくとも一版確認。",
+      "environment": "source＋clean installed package"
+    },
+    {
+      "id": "D-04",
+      "procedure": "指定名Introductionの全必須section、source/build/examples/connect/ADE/driver setting/DirectIO/coverage/known issues/supportと、存在する商標欄を目視確認。",
+      "acceptance": "所定section名・ファイル名・リンク先が正しく、最終名・最終API・実際の導入方法と一致。",
+      "environment": "文書の内容レビュー"
+    },
+    {
+      "id": "D-05",
+      "procedure": "全352APIのhelpを本文まで読む。各parameterの用途/合法値、返却/例外、property型/access、GET/SETのSCPI、ADE制限、copyright noticeを照合。",
+      "acceptance": "索引があるだけで合格にしない。各項目の意味・数値・mode/FW条件・例外が実装と実試験に一致。",
+      "environment": "全件文書レビュー"
+    },
+    {
+      "id": "D-06",
+      "procedure": "ComplianceのCategory/Identification/Hardware/Software prerequisites/Unit test setup/Installation/Buildability/Failures/Additional情報を最終結果へ更新。README内包と同期。",
+      "acceptance": "version/vendor/bitness/source条件/model/bus/OS版/依存/失敗が全て実記録と一致。複数setupの未試験直積を暗示しない。",
+      "environment": "文書＋結果照合"
+    },
+    {
+      "id": "D-07",
+      "procedure": "sdist/wheelを展開しdriver一個、__init__.py、README、help、compliance、Introduction、空py.typed、source/build説明と必要JSONを点検。",
+      "acceptance": "source/installed data一致、importパス名正当、keywordsのmanufacturer/modelと実API一致、license/公開条件が明示。",
+      "environment": "artifact静的＋新規導入"
+    },
+    {
+      "id": "D-08",
+      "procedure": "runtime/package/source metadata版とファイル版規則、該当時の32/64版の版/文書同一性を照合。",
+      "acceptance": "numeric versionとASCII suffixが規則通り。DLLなし・64bit限定などの適用外は理由を記録。",
+      "environment": "静的レビュー"
+    },
+    {
+      "id": "R-01",
+      "procedure": "確定した対応OS/bitnessの各導入環境でclean install→instantiate/run。一OS限定でなければ最低二OS、32bit非対応を宣言しなければ32/64bitを含める。",
+      "acceptance": "OSは規定の更新条件を満たす。対応範囲と実施環境が一致し、repoのsys.pathで依存欠落を隠さない。",
+      "environment": "新規仮想環境、最終wheel"
+    },
+    {
+      "id": "R-02",
+      "procedure": "配布物/README/help/Introduction中の実行可能な全exampleを一覧化し、同梱した全件をclean installから実行。",
+      "acceptance": "例ごとの入力/出力/期待値を保存。危険操作例は適切なfixture/許可で実行。単一simulation例のみで全例合格にしない。",
+      "environment": "R-01の全導入環境"
+    },
+    {
+      "id": "R-03",
+      "procedure": "配布・導入したsourceから記載手順でsdist→wheelを再buildし、別clean環境にinstall/run。",
+      "acceptance": "最低一OS/bitnessで再buildしたdriverが動作。元repo未導入でもsource/help/dataを入手可能。",
+      "environment": "installed source、公開build環境"
+    },
+    {
+      "id": "R-04",
+      "procedure": "固定した一setupでAPI全件のsimulation/実接続、menu/instance/value展開と全global義務を一式実行し、結果を集計。",
+      "acceptance": "全適用行PASS、残SKIP/未実行/未解決FAIL/仮の適用外0件。過去1.41と1.42の寄せ集めを一回の完全setupと呼ばない。",
+      "environment": "最終artifact＋MAIN1.42の一setup"
+    },
+    {
+      "id": "REG-01",
+      "procedure": "IVI Python Driver Conformanceが要求するWeb登録を行い、最終driver/連絡先/complianceとの対応と掲載を確認。",
+      "acceptance": "登録DB掲載が確認できる。試験完了とは別の手続きだが、LXI6.1のdriver適合・LXI11.2を最終的に閉じる条件。",
+      "environment": "外部手続き、試験ケースとは別"
+    }
+  ],
+  "order": [
+    "S-01",
+    "S-02",
+    "B-01",
+    "B-02",
+    "B-03",
+    "B-04",
+    "B-05",
+    "B-06",
+    "B-07",
+    "G-01",
+    "G-02",
+    "G-03",
+    "G-04",
+    "G-05",
+    "F-01",
+    "F-02",
+    "F-03",
+    "F-04",
+    "F-05",
+    "F-06",
+    "F-07",
+    "F-08",
+    "F-09",
+    "F-10",
+    "F-11",
+    "RC-01",
+    "RC-02",
+    "RC-03",
+    "RC-04",
+    "RC-05",
+    "RC-06",
+    "RC-07",
+    "Q-01",
+    "X-01",
+    "X-02",
+    "X-03",
+    "X-04",
+    "X-05",
+    "X-06",
+    "X-07",
+    "X-08",
+    "X-09",
+    "X-10",
+    "D-01",
+    "D-02",
+    "D-03",
+    "D-04",
+    "D-05",
+    "D-06",
+    "D-07",
+    "D-08",
+    "R-01",
+    "R-02",
+    "R-03",
+    "R-04",
+    "REG-01"
+  ],
+  "domains": [
+    {
+      "id": "D-VFO",
+      "title": "VFO・receiver・gains",
+      "cases": [
+        "周波数はprofile 30000/中間7100000/60000000、直外29999/60000001、非有限・不正型。whole-Hz変換は文書通り。両relative viewとRadio facadeで実行。",
+        "modeはLSB/USB/AM/CW/RTTY/FM/CW-R/RTTY-R。DATA bool、filter1/2/3、DataFilter専用1A06経路を独立確認。modeに依存する合法条件を記録し、非対応組合せの拒否も確認。",
+        "全descriptorのbool False/True、choice_setting全候補、int_settingのmin/max/中間/直外。API台帳のsource_contractを正とし、型と表現可能範囲と実機で合法な範囲を区別。",
+        "toneは67.0/内部88.5/254.1 Hz、0.1Hz刻み、下上直外・非刻みを確認。実機が更に離散化するならQ-01の全離散間の確認へ展開。",
+        "rawは0/128/255,-1/256。NR/PBT/COMP以外も差が出たsetterをQ-01へ追加し、その未解決差があれば合格しない。"
+      ]
+    },
+    {
+      "id": "D-SCOPE",
+      "title": "スコープ全値域",
+      "cases": [
+        "enabled/stream/hold/TX display/VBW/markerはFalse/True、mode0..3、edge1..4、speed0..2、center0..2、display/dualは0のみ。各コード候補と最低一不正値を確認。",
+        "spanは2500/5000/10000/25000/50000/100000/250000/500000Hz全件。referenceは-20..20dBの全0.5刻み、隣接刻み間一値と直外。不正型/NaN/inf。",
+        "ScopeEdgesの表現は0..74800000Hz・whole kHz・lower<=upper。各辺の端/内部/順序逆/非kHzを確認。実機書込はband別の合法範囲を優先し、全13×4の組を保存・変更・読戻し・復元。",
+        "sweep mode0..3、frequencyの符号付き範囲、475点0..160、out-of-range時0点、finite timestampを独立vectorで確認。不正長/型/点範囲/JSONの拒否。実機ではcomplete sweepを取得してmetadataを照合。"
+      ]
+    },
+    {
+      "id": "D-MEM",
+      "title": "メモリー・バンドスタックの全record条件",
+      "cases": [
+        "memory1..99,P1=100,P2=101。各instanceでrecord propertyとwrite_and_readの正例、通常99枠でclear。selected操作は選択とMEM modeを明示し、元のselectionと両VFOを復元。",
+        "MemorySettings表現30000..74800000Hzとgateway profile30000..60000000Hzを別検査。全8mode、FIL1/2/3、DATA bool、TONE OFF/TONE/TSQL、tone67.0..254.1刻み0.1を一因子ずつ変える。",
+        "39byte recordはreceive/transmit両blockを別値にし、split False/True、select_group0/1/2/3、nameをcp932で0/1/5/10byte（ASCII/半角kana）、11byte/全角/禁止byte/不正型。paddingとdisplay_name、予約flag/BCDを確認。",
+        "14byte settings/39byte record、28/78桁hex、正しいlittle-endian/BCDと独立既知vector、各長さ直外、無効mode/FIL/DATA/tone flags、None/不正型。simpleとfrom/to bytes/hexを全件呼ぶ。",
+        "bandstack全11×3をproperty/methodで確認。P1/P2のclearは拒否が正。空slotのNoneと03FF/04FF、通常VFO復帰を最終setupでも確認。"
+      ]
+    },
+    {
+      "id": "D-KEY",
+      "title": "キーヤーと文字データ",
+      "cases": [
+        "全M1..M8のtext property/write_and_read、name/number/iterator。text空/1/中間/70/71文字、許可文字群全体と禁止文字/不正型/escapingを確認。",
+        "contest記号*は記録だけと再生時の番号進行を区別し、counterを退避して専用ケースへ。実送信を伴う再生はX-03。原文8件は私有backupへ保存し公開ログへ転載しない。"
+      ]
+    },
+    {
+      "id": "D-BAND",
+      "title": "送信バンド境界",
+      "cases": [
+        "factoryは実count（記録値10）、userは実count（30）を取得し有効全件とcount外/0/31/不正型を確認。コードのindex1..30とfactoryの実有効数を区別。",
+        "BandEdgesの各端0..74800000、lower<=upper、0/内部/上限/直外/逆順、11byteの2D separatorとBCD、不正長/hex/型をlocalで確認。実機に違法band設定を押し付けない。",
+        "全有効user instanceでpositive write/read/restoreを実施するのが本計画の保守的判定。空slotを元へ消せない場合は、復元可能な仕様/実装を先に整えるか、正当な公開scopeを再確定する。空の上書き放置や拒否だけを成功扱いにしない。"
+      ]
+    },
+    {
+      "id": "D-MENU",
+      "title": "メニュー全216項目",
+      "cases": [
+        "同名MENU.csvが番号/権限/型/合法/不正vectorの全一覧。整数はmin/max/中間/直外、choicesまたは列挙nameがあれば全候補。repeater offsetは1000Hz刻み。",
+        "AudioFilter、Bandwidth、RgbColor、ScopeEdges、opening text、date/time/timezoneは各csvの成分別vectorを使用。複合値は一成分ずつ変え、全parameter直積の総当たりはしない。",
+        "215 writableでvalue setterとwrite_and_readを実行。0074はread-onlyのGET/書込拒否。十typed helperは正しいkindと異なるkind、各alias、未知番号/誤名/誤型を確認。",
+        "通常203件のうち副作用17件=0025,0046,0068,0069,0070,0094,0095,0163,0164,0165,0182,0183,0184,0185,0186,0187,0217を分離。clock/録音/外部キー/PTT端子状態を準備・復元。link10件、calibration0057/0058もcsvで全番号を固定。",
+        "既定permission拒否と明示許可の正例を区別。日付/時計は経過時間を考慮した復元を記録。通信/校正を黙って変更しない。"
+      ]
+    },
+    {
+      "id": "D-VALUES",
+      "title": "値オブジェクトと型",
+      "cases": [
+        "AudioFilter: HPF0/内部10/20、LPF5/内部15/25、bypass0/25、HPF>=LPF非bypass拒否、直外。Bandwidth各0/1/2/3と-1/4。RGB各0/128/255と-1/256。",
+        "DataFilterはboolとFIL1/2/3、0/4/誤型、encode/decode vector。VfoMode・各record・例外型は全fieldの型、構築、返却とserializationをAPI台帳で確認。",
+        "dateは2000/2099境界・閏日・不正年/日付、timeは00:00/内部/23:59と秒/μ秒/timezone/fold拒否、UTC offsetは±14h/0/±1minと直外/秒端数。"
+      ]
+    },
+    {
+      "id": "D-LOCAL",
+      "title": "local-onlyと抽象契約の閉じ方",
+      "cases": [
+        "DriverOptions各keyと未知key/重複、metadata/enumの全member、ErrorQueryResult/DeviceError/ProtocolError/QueryErrorの構築・field・表示・標準例外継承を確認。",
+        "IviUtility/IviDirectIoはabstractの直接構築拒否とUtility/DirectIoによる全具象method/propertyの実行を紐付ける。同じ物理操作を抽象宣言の分だけ重複しない。",
+        "read-only field/referenceは値と型・変更拒否・sessionとの結び付き、local変換は独立vector/不正入力を確認。local-onlyのためにRFやmeter全scaleを作らない。",
+        "simulation専用permission APIはsimでFalse/Trueと各不正型、実sessionでI/O0の拒否を確認。実機に適用されない正常系を架空の成功にせず、その条件付き契約を記録。"
+      ]
+    }
+  ],
+  "followup_cases": {
+    "L-FACTORIES": [
+      "F-11",
+      "RC-05"
+    ],
+    "R-CORE": [
+      "B-01",
+      "B-03",
+      "B-05",
+      "X-01"
+    ],
+    "R-RECEIVE": [
+      "F-02",
+      "G-05"
+    ],
+    "R-COERCION": [
+      "Q-01"
+    ],
+    "R-SCOPE": [
+      "F-04",
+      "RC-06"
+    ],
+    "R-STORAGE": [
+      "F-05",
+      "F-06",
+      "F-07",
+      "RC-02",
+      "RC-03",
+      "RC-04"
+    ],
+    "R-MENUS": [
+      "F-10",
+      "RC-05"
+    ],
+    "C-MENU": [
+      "F-10",
+      "RC-05"
+    ],
+    "C-LINK": [
+      "X-08",
+      "F-10"
+    ],
+    "C-CALIB": [
+      "X-10",
+      "F-09",
+      "RC-07"
+    ],
+    "C-POWER-AUDIO": [
+      "X-09"
+    ],
+    "C-RF": [
+      "X-02",
+      "X-03",
+      "X-04",
+      "X-05",
+      "X-06",
+      "X-07"
+    ]
+  },
+  "judgement": [
+    "これ以上の通常組合せ試験を後から無制限に必須へ追加しない。追加が必要なのは、固定規格の取り落とし判明・試験での不具合・実装/公開契約/対象環境変更の場合。その理由と影響IDを記録する。",
+    "現在の全機能を維持する計画なので、校正・link・RF・電源も対象。これまで未許可の操作を本計画で勝手に許可しない。危険操作は準備と個別許可後に別途実行する。",
+    "全memory/user-band/fixed-edgeでmethod/propertyを実行する扱いはCore repeated-capability要求の保守的適用。特にuser空slotの復元手段は実行前の必須設計条件。解釈緩和や例外が正式に確認できれば、根拠付きで基準改訂できるが、今は免除しない。",
+    "校正等を除外する方針へ変更するなら、Coreのfunctionality例外、公開API/command coverage/help/compliance/試験台帳を一貫させて再判定。未試験APIを公開対応のままPASSにしない。",
+    "LXI11.1の文書整合と11.2の登録は関連する。LXIのLAN/Web等の再試験・最終機能宣言・商標/認証はこの6.1計画の全件PASSだけで完了したことにしない。"
+  ],
+  "spec_sources": {
+    "repository_commit": "0d6db45c99f89ebeec06bae2d24f70c65f491ea7",
+    "sources": [
+      {
+        "name": "core",
+        "url": "https://raw.githubusercontent.com/IviFoundation/IviDrivers/0d6db45c99f89ebeec06bae2d24f70c65f491ea7/IviDriverCore/1.0/Spec/IviDriverCore.md",
+        "sha256": "cab7e93878277213fd543af4b2dcf0daa3d670b81be0d7012acec8e876ecfa67"
+      },
+      {
+        "name": "python",
+        "url": "https://raw.githubusercontent.com/IviFoundation/IviDrivers/0d6db45c99f89ebeec06bae2d24f70c65f491ea7/IviDriverPython/1.0/Spec/IviDriverPython.md",
+        "sha256": "3e2aaa8e472a71a17332af185ea8503ae4c1f2d913d565262c8603321ea558fe"
+      }
+    ]
+  },
+  "spec_requirements": [
+    {
+      "id": "CORE-001",
+      "spec": "core",
+      "section": "Availability and Installation",
+      "source_lines": "137-137",
+      "sha256": "4808fdd5f390ac266bd7887843ecc1634975a6bedd9473a84200fb57fa1dad4b",
+      "case_ids": [
+        "D-07",
+        "R-01",
+        "R-03"
+      ]
+    },
+    {
+      "id": "CORE-002",
+      "spec": "core",
+      "section": "Availability and Installation",
+      "source_lines": "141-141",
+      "sha256": "2fef59e644415cd171337c85bc88e2c3c759c085babe0d434eac1b76b3eb67fd",
+      "case_ids": [
+        "D-07",
+        "R-01",
+        "R-03"
+      ]
+    },
+    {
+      "id": "CORE-003",
+      "spec": "core",
+      "section": "Availability and Installation",
+      "source_lines": "145-145",
+      "sha256": "747fe9f28bc3118e6c689f66ef2eea3c08c6c57a14df0ecfb17d9bd871736e09",
+      "case_ids": [
+        "D-07",
+        "R-01",
+        "R-03"
+      ]
+    },
+    {
+      "id": "CORE-004",
+      "spec": "core",
+      "section": "Availability and Installation",
+      "source_lines": "149-149",
+      "sha256": "a602246c7d343750828e8b6e1f1693611a8c5410e91feede98a0646b269d0334",
+      "case_ids": [
+        "D-07",
+        "R-01",
+        "R-03"
+      ]
+    },
+    {
+      "id": "CORE-005",
+      "spec": "core",
+      "section": "Operating Systems and Bitness",
+      "source_lines": "153-153",
+      "sha256": "f4387b4e700a93fe35271bb8595441514ec3c9ddf6fe8734589fc816accf2eec",
+      "case_ids": [
+        "D-06",
+        "R-01"
+      ]
+    },
+    {
+      "id": "CORE-006",
+      "spec": "core",
+      "section": "Operating Systems and Bitness",
+      "source_lines": "155-155",
+      "sha256": "49ec5da86073c7667d5a02c93c26e1282eafee4a87be91d796e07a9350da615d",
+      "case_ids": [
+        "D-06",
+        "R-01"
+      ]
+    },
+    {
+      "id": "CORE-007",
+      "spec": "core",
+      "section": "Source Code Availability",
+      "source_lines": "159-159",
+      "sha256": "c9a2dc12803cbd8f4ced82b87eacf3d7fdb26562169200a0b9b46195ffe6d463",
+      "case_ids": [
+        "D-07",
+        "R-01",
+        "R-03"
+      ]
+    },
+    {
+      "id": "CORE-008",
+      "spec": "core",
+      "section": "Source Code Availability",
+      "source_lines": "161-161",
+      "sha256": "bd9b6493e2603bbcd4b5811b884bb5a8745aada4b0782888f808632cb1fae817",
+      "case_ids": [
+        "D-07",
+        "R-01",
+        "R-03"
+      ]
+    },
+    {
+      "id": "CORE-009",
+      "spec": "core",
+      "section": "Simulation",
+      "source_lines": "191-191",
+      "sha256": "d91c50c1011620d022d2ba0acde7a4e9f4cf153ad10ae17c4ef41da872335bd2",
+      "case_ids": [
+        "G-01",
+        "B-01",
+        "B-02"
+      ]
+    },
+    {
+      "id": "CORE-010",
+      "spec": "core",
+      "section": "Multithread Safety",
+      "source_lines": "200-200",
+      "sha256": "d0cce39221f2e5a38fe6ac8373ab8eaebd0d90e7f054bba56b012e79bf63bb80",
+      "case_ids": [
+        "G-02"
+      ]
+    },
+    {
+      "id": "CORE-011",
+      "spec": "core",
+      "section": "Extent of Instrument Functionality Covered by IVI Drivers",
+      "source_lines": "207-207",
+      "sha256": "e67fb3187c2d2c13f23e393b0ac8485992f7897074497f28e93696b8d47f6b83",
+      "case_ids": [
+        "G-04",
+        "S-02"
+      ]
+    },
+    {
+      "id": "CORE-012",
+      "spec": "core",
+      "section": "Direct I/O Requirement",
+      "source_lines": "234-234",
+      "sha256": "9ada41b9022ff384fd4eae77bfc6857616a0d3bfa823a764cf7ab1c8af9135ad",
+      "case_ids": [
+        "B-06"
+      ]
+    },
+    {
+      "id": "CORE-013",
+      "spec": "core",
+      "section": "Query Instrument Status on API Call",
+      "source_lines": "238-238",
+      "sha256": "31fced3ceec39dff257f4f93879462c860ddde86de89ba6979726820ce377cde",
+      "case_ids": [
+        "B-03"
+      ]
+    },
+    {
+      "id": "CORE-014",
+      "spec": "core",
+      "section": "Required Driver APIs",
+      "source_lines": "242-242",
+      "sha256": "dcb515d28d3e86b75d4b0c4f9fd90e9ac85073706329dd07cc0511ca3fefb3b9",
+      "case_ids": [
+        "B-01",
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "B-06"
+      ]
+    },
+    {
+      "id": "CORE-015",
+      "spec": "core",
+      "section": "Initialization (Construction)",
+      "source_lines": "269-270",
+      "sha256": "21d120542e0fea018dfb51bd23557b592220fa27024a0122ae4edaa981c06d74",
+      "case_ids": [
+        "B-01"
+      ]
+    },
+    {
+      "id": "CORE-016",
+      "spec": "core",
+      "section": "Driver Version",
+      "source_lines": "282-282",
+      "sha256": "8fb5576a3bb2fb6544b3fccec18b83ea77f904979225c979d815cefff070fbb5",
+      "case_ids": [
+        "B-02",
+        "D-08"
+      ]
+    },
+    {
+      "id": "CORE-017",
+      "spec": "core",
+      "section": "Query Instrument Status Enabled",
+      "source_lines": "314-314",
+      "sha256": "7b489260e876b38ce0ffa840248a057ecd6210429196de1b90820edd5b17fe5a",
+      "case_ids": [
+        "B-03"
+      ]
+    },
+    {
+      "id": "CORE-018",
+      "spec": "core",
+      "section": "Simulate Enabled",
+      "source_lines": "335-335",
+      "sha256": "ae44cc1a5fae5a2c29ebdff43dd3dec2bda26d7b8c887326a308f87a3ba09b03",
+      "case_ids": [
+        "G-01",
+        "B-01",
+        "B-02"
+      ]
+    },
+    {
+      "id": "CORE-019",
+      "spec": "core",
+      "section": "Direct I/O",
+      "source_lines": "352-352",
+      "sha256": "ed253a262f97ae30959eafd19cca7d5081596c95e946657d3a8a6fdc1c7e6d35",
+      "case_ids": [
+        "B-06"
+      ]
+    },
+    {
+      "id": "CORE-020",
+      "spec": "core",
+      "section": "Direct I/O",
+      "source_lines": "354-354",
+      "sha256": "be0440b24d267a48a9cab024e69dbee38746f6169e708dd91b96cc8ad0d77b5f",
+      "case_ids": [
+        "B-06"
+      ]
+    },
+    {
+      "id": "CORE-021",
+      "spec": "core",
+      "section": "Documentation Requirements",
+      "source_lines": "378-378",
+      "sha256": "d538d7cb6c55d6566db0e6c0db1f4d1efc4558aed8168d34823dbbb49cb2f514",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-022",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "390-390",
+      "sha256": "d36a20cc25a75f2c721002a34516613f2107d0befd74e76bbfbc712f2895ac77",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-023",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "394-394",
+      "sha256": "721d5b8d4e2d786e32e80b6d50c850444c01d5ef01fe81f57c87565ab7761c5a",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-024",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "396-397",
+      "sha256": "bc6d55ec15856ce210083950d125ff9e2fb5ba1eaf187d24b7caa076fc398357",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-025",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "399-400",
+      "sha256": "aee782266cd1c283975d229b4e054fea3f1771ca72e1f598a8206ebad5d36999",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-026",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "402-402",
+      "sha256": "a5f544979b3fe3405a4fb99d83283474a08303dfdf7187b1d7a0a7ddb092b150",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-027",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "404-405",
+      "sha256": "adba75bdd27172f57c26e28f968d44d302cced1e39a005bed5e20c8152fa5d41",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-028",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "407-408",
+      "sha256": "1e0a6eb473066b08ad893a5d4d75558a24ff5762b4d4859a3102b6d147ff79af",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-029",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "410-411",
+      "sha256": "cffc5c79cda59acb405c865276abe6b009a3c615e3bc89421f9763452ecbc840",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-030",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "413-414",
+      "sha256": "0008244d7ac8ba37c0e8001918ecd5836d1d4d76a18ef230af8d1fe7074838d7",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-031",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "416-417",
+      "sha256": "570b23668791f93e9e4e3aa789fc344c02e729d5a1867bf8fc8ca1bade4145db",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-032",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "419-420",
+      "sha256": "7f85d27ccd066a1570554747e590cf9be6d6ad286bdd50bef4d98e5c07b9e9c1",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-033",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "422-423",
+      "sha256": "1d6ceb361f092b52efea94f10ec0a9d5b4c114f2c38c1a7de60c952c5aac54db",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-034",
+      "spec": "core",
+      "section": "Driver Introduction Documentation",
+      "source_lines": "425-426",
+      "sha256": "d18d4ed3912fdd1fbd6d3dbee93008f575ec65da8517e4e13124a5f00e9122ad",
+      "case_ids": [
+        "D-04"
+      ]
+    },
+    {
+      "id": "CORE-035",
+      "spec": "core",
+      "section": "Help Documentation",
+      "source_lines": "434-434",
+      "sha256": "b20fa1e0c5383bd8670b8e85d74ea504bf8a37b8a256e89ea8e629533bec2ae3",
+      "case_ids": [
+        "D-05",
+        "G-04"
+      ]
+    },
+    {
+      "id": "CORE-036",
+      "spec": "core",
+      "section": "Help Documentation",
+      "source_lines": "436-436",
+      "sha256": "ae04cc05aba73d51683c3a18ad3d28bb43e71a4140354d282f3da05c0580213b",
+      "case_ids": [
+        "D-05",
+        "G-04"
+      ]
+    },
+    {
+      "id": "CORE-037",
+      "spec": "core",
+      "section": "Help Documentation",
+      "source_lines": "448-448",
+      "sha256": "ad9fd43ecbdf1d2e4805a6e80c6ecd48d36963b58bd1d60364bea6236d20db76",
+      "case_ids": [
+        "D-05",
+        "G-04"
+      ]
+    },
+    {
+      "id": "CORE-038",
+      "spec": "core",
+      "section": "Help Documentation",
+      "source_lines": "458-458",
+      "sha256": "e47b6205a010a07ad7444d1ba01fbc402ca0783933188339f1550a916b7f3b69",
+      "case_ids": [
+        "D-05",
+        "G-04"
+      ]
+    },
+    {
+      "id": "CORE-039",
+      "spec": "core",
+      "section": "Help Documentation",
+      "source_lines": "464-464",
+      "sha256": "d5eb06614a01aee51c3de335780bbde5bef5d9f2783d94e1d41433c193f41959",
+      "case_ids": [
+        "D-05",
+        "G-04"
+      ]
+    },
+    {
+      "id": "CORE-040",
+      "spec": "core",
+      "section": "Documentation of Implemented SCPI Commands",
+      "source_lines": "471-471",
+      "sha256": "c275ab5987603b4ea8042ca02c4667a549c8e7b2b07feaa46a9cd044dfb58933",
+      "case_ids": [
+        "D-05",
+        "G-04"
+      ]
+    },
+    {
+      "id": "CORE-041",
+      "spec": "core",
+      "section": "Copyright Notice",
+      "source_lines": "477-477",
+      "sha256": "31d4952b2807a4dc0297974386c727ed107da3d355efe69ac5f170c9e6744087",
+      "case_ids": [
+        "D-05",
+        "G-04"
+      ]
+    },
+    {
+      "id": "CORE-042",
+      "spec": "core",
+      "section": "Compliance Documentation",
+      "source_lines": "485-485",
+      "sha256": "a3166025e5386cd04e6d28b63ebdb9c2ab1965d10104fad6e4c5adaec348964b",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-043",
+      "spec": "core",
+      "section": "Compliance Documentation",
+      "source_lines": "487-487",
+      "sha256": "e1d1adf44565617432c3b22d49a9212c3816e43af681507c9a767eaff42b3e0a",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-044",
+      "spec": "core",
+      "section": "Compliance Documentation",
+      "source_lines": "492-492",
+      "sha256": "d81acc3663488a06e9fe8e6fc641ba700fb883bcb1b6000d0e404a349123e30f",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-045",
+      "spec": "core",
+      "section": "Compliance Category Section",
+      "source_lines": "498-498",
+      "sha256": "0514183ba07333b4b25a5f3571f3d83298993f0b1075a6eaf2fdeb5dc8ff5b66",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-046",
+      "spec": "core",
+      "section": "Compliance Category Section",
+      "source_lines": "500-500",
+      "sha256": "9759be618604f90ae276f2f36ad3cac739667ee22502ab35303239bb2e632063",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-047",
+      "spec": "core",
+      "section": "Driver Identification Section",
+      "source_lines": "504-504",
+      "sha256": "f43c425d60b850c764f30990778ec7b97162c76b9b11cee0fd52b25b4e80b88c",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-048",
+      "spec": "core",
+      "section": "Driver Identification Section",
+      "source_lines": "506-507",
+      "sha256": "05afeb331cfe6723c90cd300b147683c111c13a5a26846695f67c463e795258d",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-049",
+      "spec": "core",
+      "section": "Driver Identification Section",
+      "source_lines": "509-510",
+      "sha256": "6818460695654e60ddb275caa9879d0dfeb2c098cb0915ca955510161296be5b",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-050",
+      "spec": "core",
+      "section": "Driver Identification Section",
+      "source_lines": "512-513",
+      "sha256": "8742d7baa002e0fa91c1d4adf00515eb2792b29b2c1ee62d83ab1f364d23e0b0",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-051",
+      "spec": "core",
+      "section": "Driver Identification Section",
+      "source_lines": "515-516",
+      "sha256": "ec5571f1766eced4b72dac6edcb8bb1c51044eec017c0e3ca4fe6f9db443da13",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-052",
+      "spec": "core",
+      "section": "Hardware Information Section",
+      "source_lines": "522-522",
+      "sha256": "8cd300beb77e43eb332952efa6b323a261c4b05708d21e2de09cea5ff1b1d6db",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-053",
+      "spec": "core",
+      "section": "Hardware Information Section",
+      "source_lines": "524-525",
+      "sha256": "71241b3ed29ab332a12f8a237e4c8c9e7d6776e2554dcacbc36ec0092de39085",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-054",
+      "spec": "core",
+      "section": "Hardware Information Section",
+      "source_lines": "527-528",
+      "sha256": "f8b8f6fe4d91b219b5ea80262a3f6b815337b94821524a22cc8370baed1a5562",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-055",
+      "spec": "core",
+      "section": "Hardware Information Section",
+      "source_lines": "530-531",
+      "sha256": "51c8609dfc8864bd928de77ae621ff413f56a66388316ea4ad5ca9d1e265471a",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-056",
+      "spec": "core",
+      "section": "Software Prerequisites Section",
+      "source_lines": "535-535",
+      "sha256": "8a91d569cd533b79f888ef9b880b34958030c23e82a064f2d6ec478d99cf0552",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-057",
+      "spec": "core",
+      "section": "Software Prerequisites Section",
+      "source_lines": "539-539",
+      "sha256": "f3864909467d0126885476e7607249af234b5ae922a0b37217d2a0564bb5a540",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-058",
+      "spec": "core",
+      "section": "Software Prerequisites Section",
+      "source_lines": "541-542",
+      "sha256": "07b705969d3d6a83275acbb27124fc29b92c5dbfcfafa380c18a6e40110b8db8",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-059",
+      "spec": "core",
+      "section": "Software Prerequisites Section",
+      "source_lines": "544-545",
+      "sha256": "c4b9d290c30b011429c9ee38c7199b03cd7e80bf5de42ea599ce6defce873178",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-060",
+      "spec": "core",
+      "section": "Unit Testing Section",
+      "source_lines": "549-549",
+      "sha256": "f51d5588e4a72f31cf8ed485c97f59434e04fb8ad95cbb8675e39f65355d8f93",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-061",
+      "spec": "core",
+      "section": "Test Setup",
+      "source_lines": "553-553",
+      "sha256": "92f9090ce639fd154447f4230768b592000d7141071e4c0c49134f9d190d88c8",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-062",
+      "spec": "core",
+      "section": "Test Setup",
+      "source_lines": "557-558",
+      "sha256": "abc370bb07b8a9c4b6e17b3d8bffc5bc560692f347ba28f0ea1f2e4f8896d96d",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-063",
+      "spec": "core",
+      "section": "Test Setup",
+      "source_lines": "560-561",
+      "sha256": "5384fa2150fdfbb4f656f10e09ead0d61696dd3d59389c009798bc8db295feae",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-064",
+      "spec": "core",
+      "section": "Test Setup",
+      "source_lines": "563-564",
+      "sha256": "c4fd90149660c7161f06d7ebd86d589e412c61f9dd9a791f3e02ff3b30712545",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-065",
+      "spec": "core",
+      "section": "Test Setup",
+      "source_lines": "566-567",
+      "sha256": "523e0c8b18c7215474099107620b0dd3731bf7a2c707a03a9614315f492f25b1",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-066",
+      "spec": "core",
+      "section": "Test Setup",
+      "source_lines": "569-570",
+      "sha256": "9e7d2d39d540d36e1660943ad05ede28cdf4be11c80fdc7597db2c70569783c1",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-067",
+      "spec": "core",
+      "section": "Test Setup",
+      "source_lines": "572-573",
+      "sha256": "b7eefe4e73b57d8c3d193d84c7cc0fde147f7766444718fba2eb115750800b68",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-068",
+      "spec": "core",
+      "section": "Driver Installation Testing Section",
+      "source_lines": "594-594",
+      "sha256": "27ae767d930f6659d0e9a965058760289ceca44b6aed634e795977e76a5eda80",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-069",
+      "spec": "core",
+      "section": "Driver Installation Testing Section",
+      "source_lines": "596-597",
+      "sha256": "891dc5e29039aca4fdd78bfa59e92e471a7c1e0051d75513b36a933598c43567",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-070",
+      "spec": "core",
+      "section": "Driver Buildability Section",
+      "source_lines": "601-601",
+      "sha256": "c03ca7be3d0683bcd852526c807d817bd99d86a1ebbc6430a8ffbfa46a6cdda8",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-071",
+      "spec": "core",
+      "section": "Driver Buildability Section",
+      "source_lines": "603-604",
+      "sha256": "821a33bd1adf48727da8ebea2935a225eb3d305ee48c102cd92d40c5888fbbf0",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-072",
+      "spec": "core",
+      "section": "Driver Test Failures Section",
+      "source_lines": "608-608",
+      "sha256": "ea261ca545f00967a4863b5d4d879c933ee228d8eaf9642107a26a0b00d4992e",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-073",
+      "spec": "core",
+      "section": "Driver Test Failures Section",
+      "source_lines": "610-611",
+      "sha256": "3ebee2be77b94671eeb84fe7f6c6fd460836e44ce45a4ac4d1268a9bfd2e468c",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-074",
+      "spec": "core",
+      "section": "Alternate Compliance Documentation Formats",
+      "source_lines": "619-619",
+      "sha256": "821fe3592b691e11e80f72c445f2e51116716d1a343ed57670e62d7bfb7f88e1",
+      "case_ids": [
+        "D-06",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-075",
+      "spec": "core",
+      "section": "README.md Documentation",
+      "source_lines": "623-623",
+      "sha256": "79b3c823444942c104b050e15cb04ab38f0a1f016274ee3363947ede31b6ba60",
+      "case_ids": [
+        "D-04",
+        "D-06",
+        "D-07"
+      ]
+    },
+    {
+      "id": "CORE-076",
+      "spec": "core",
+      "section": "File Versioning",
+      "source_lines": "633-633",
+      "sha256": "72d707bfae7842856dbd862737028e6f20c38cb98b7f764f132bda34ae04cb26",
+      "case_ids": [
+        "D-08"
+      ]
+    },
+    {
+      "id": "CORE-077",
+      "spec": "core",
+      "section": "File Versioning",
+      "source_lines": "643-643",
+      "sha256": "89bc8a8338f3bd2559d4f1adc14ea76d77127f2950b537e8fafd8901f9ffe7c1",
+      "case_ids": [
+        "D-08"
+      ]
+    },
+    {
+      "id": "CORE-078",
+      "spec": "core",
+      "section": "File Versioning",
+      "source_lines": "645-645",
+      "sha256": "34fdb9ab65896d77959618f731c9eabd8db83aa056fbb635e4d512b2e2a2ea01",
+      "case_ids": [
+        "D-08"
+      ]
+    },
+    {
+      "id": "CORE-079",
+      "spec": "core",
+      "section": "File Versioning",
+      "source_lines": "651-651",
+      "sha256": "cf6d0be7efd8fcc800b04429fca09338387f1fd713cf0532b95c922f7981a19a",
+      "case_ids": [
+        "D-08"
+      ]
+    },
+    {
+      "id": "CORE-080",
+      "spec": "core",
+      "section": "File Versioning",
+      "source_lines": "657-657",
+      "sha256": "aa962771bbd7e767d38897668744ca7a032facf0607cc39e8e9e71b907809665",
+      "case_ids": [
+        "D-08"
+      ]
+    },
+    {
+      "id": "CORE-081",
+      "spec": "core",
+      "section": "Driver Conformance",
+      "source_lines": "696-696",
+      "sha256": "837af125004237519d4d2601ff1bdea2ed5299dcc5352374453b257283265937",
+      "case_ids": [
+        "S-02",
+        "R-04",
+        "D-06"
+      ]
+    },
+    {
+      "id": "CORE-082",
+      "spec": "core",
+      "section": "Driver Conformance",
+      "source_lines": "698-698",
+      "sha256": "5b2517f11327cd9529c3bb35090b16f0fa9f05fd323a240a8ca83c611ba1b8a4",
+      "case_ids": [
+        "S-02",
+        "R-04",
+        "D-06"
+      ]
+    },
+    {
+      "id": "CORE-083",
+      "spec": "core",
+      "section": "Driver Conformance",
+      "source_lines": "700-700",
+      "sha256": "9a61d1eacfaa89b632aee6d5c8e4732b8c7c88bcef52f28307ec3329942c94c7",
+      "case_ids": [
+        "S-02",
+        "R-04",
+        "D-06"
+      ]
+    },
+    {
+      "id": "CORE-084",
+      "spec": "core",
+      "section": "Driver Verification",
+      "source_lines": "711-711",
+      "sha256": "b4c0ace25848de320d2a7837a7207d9666a823aca08e5d1102a33ad39c1d48ec",
+      "case_ids": [
+        "S-02",
+        "R-04",
+        "D-06"
+      ]
+    },
+    {
+      "id": "CORE-085",
+      "spec": "core",
+      "section": "Driver Verification",
+      "source_lines": "713-713",
+      "sha256": "da651ce03f89699fbac12ce842b6f1d6bff46e083324e539a22b702b4f4943d0",
+      "case_ids": [
+        "S-02",
+        "R-04",
+        "D-06"
+      ]
+    },
+    {
+      "id": "CORE-086",
+      "spec": "core",
+      "section": "Driver Verification",
+      "source_lines": "715-715",
+      "sha256": "3ab7eb5f8f37af5789243ee59e858082e7a18dfe033541a43407b4ae0f487685",
+      "case_ids": [
+        "S-02",
+        "R-04",
+        "D-06"
+      ]
+    },
+    {
+      "id": "CORE-087",
+      "spec": "core",
+      "section": "Unit Test Procedure",
+      "source_lines": "719-719",
+      "sha256": "46281be55a97c48e8bad56b9a31b8e78a7c9411c8a1f24f709fa8ccbdc11b8fa",
+      "case_ids": [
+        "G-01",
+        "G-05",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "Q-01",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-088",
+      "spec": "core",
+      "section": "Unit Test Procedure",
+      "source_lines": "729-729",
+      "sha256": "16481185d039026ba8eb1a48478353d5f093189ba4b1f38d23c148ac6a53da1f",
+      "case_ids": [
+        "G-01",
+        "G-05",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "Q-01",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-089",
+      "spec": "core",
+      "section": "Unit Test Procedure",
+      "source_lines": "731-731",
+      "sha256": "a6a688e1d3e194595896b41a5ba0fd31a57777b124dd29943a29b53bd087a784",
+      "case_ids": [
+        "G-01",
+        "G-05",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "Q-01",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-090",
+      "spec": "core",
+      "section": "Unit Test Procedure",
+      "source_lines": "737-737",
+      "sha256": "1d5067bbc02c64651d5322b14413e81d760b24b8b430fe940783c8bf00f3fdb9",
+      "case_ids": [
+        "G-01",
+        "G-05",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "Q-01",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-091",
+      "spec": "core",
+      "section": "Unit Test Procedure",
+      "source_lines": "739-739",
+      "sha256": "a43e40ac39b46746a612663a13b065f07e3f1126224b32d21a2f63aa1e3f3a75",
+      "case_ids": [
+        "G-01",
+        "G-05",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "Q-01",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-092",
+      "spec": "core",
+      "section": "Unit Test Procedure",
+      "source_lines": "761-761",
+      "sha256": "9dae79ecb0ce11531949e0f15426912f9662e0bb2df48e3421d11b140e8a4629",
+      "case_ids": [
+        "G-01",
+        "G-05",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "Q-01",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-093",
+      "spec": "core",
+      "section": "Unit Test Procedure",
+      "source_lines": "763-763",
+      "sha256": "ad3293af828b1c19f4139f0574d81f25a5a6d74d2fb42138bd374cc9e2bb1cc5",
+      "case_ids": [
+        "G-01",
+        "G-05",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05",
+        "RC-06",
+        "RC-07",
+        "Q-01",
+        "R-04"
+      ]
+    },
+    {
+      "id": "CORE-094",
+      "spec": "core",
+      "section": "Driver Installation Testing",
+      "source_lines": "767-767",
+      "sha256": "ae1fbe6bf4e86186452252ce9d34103a0a7b993302592983716bbc301a974459",
+      "case_ids": [
+        "R-01",
+        "R-02"
+      ]
+    },
+    {
+      "id": "CORE-095",
+      "spec": "core",
+      "section": "Driver Installation Testing",
+      "source_lines": "775-775",
+      "sha256": "cc532d6c5d8050bbae5598f481fd23be7863adfb9b003347d738de665cb0db6d",
+      "case_ids": [
+        "R-01",
+        "R-02"
+      ]
+    },
+    {
+      "id": "CORE-096",
+      "spec": "core",
+      "section": "Driver Buildability Testing",
+      "source_lines": "779-779",
+      "sha256": "cb63bb8c459c8decd70afb7caaa20918bb68ab15df2959f6642658cad887a603",
+      "case_ids": [
+        "R-03"
+      ]
+    },
+    {
+      "id": "PYTHON-001",
+      "spec": "python",
+      "section": "Overview of the IVI-Python Driver Language Specification",
+      "source_lines": "66-66",
+      "sha256": "6a4c37396b334802b05d857d9e0904626ec2a9027109aed05abfd153a7cea86c",
+      "case_ids": [
+        "S-02"
+      ]
+    },
+    {
+      "id": "PYTHON-002",
+      "spec": "python",
+      "section": "Overview of the IVI-Python Driver Language Specification",
+      "source_lines": "68-68",
+      "sha256": "487dfd6e99c151146d5d17b8ea44df35dc56e9a8b0876d637ecf3e8fe9bd76e6",
+      "case_ids": [
+        "S-02"
+      ]
+    },
+    {
+      "id": "PYTHON-003",
+      "spec": "python",
+      "section": "Driver Identifier and Driver Class Name",
+      "source_lines": "80-80",
+      "sha256": "25f53f00e7b3a633a385765e4f27ccc98bc9f7e5cddf69d8031ac43ecfa55927",
+      "case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "id": "PYTHON-004",
+      "spec": "python",
+      "section": "Driver Identifier and Driver Class Name",
+      "source_lines": "82-82",
+      "sha256": "df092aa71c275ba7ae98558a8030104e7c1fc31b76fc282c07d5e5b4f811dd09",
+      "case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "id": "PYTHON-005",
+      "spec": "python",
+      "section": "Driver Identifier and Driver Class Name",
+      "source_lines": "84-84",
+      "sha256": "15f2ca87722aea27bba9a9d0aed0c6e5b8af07acdf5cebc4760a1145745a4004",
+      "case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "id": "PYTHON-006",
+      "spec": "python",
+      "section": "Driver Identifier and Driver Class Name",
+      "source_lines": "86-86",
+      "sha256": "655a67a6cdf97452f1b56537288728d72864c03280b9ecca5f0e2deb6956ab4a",
+      "case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "id": "PYTHON-007",
+      "spec": "python",
+      "section": "Driver Identifier and Driver Class Name",
+      "source_lines": "88-88",
+      "sha256": "b079b820c35362ce055a7093e8634673fb40439a1115b7e63276b79f9a8bc7e2",
+      "case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "id": "PYTHON-008",
+      "spec": "python",
+      "section": "Style Guide",
+      "source_lines": "172-172",
+      "sha256": "29179b6de2525656479f4293d70fc2b380913e76176b318103c109942f547761",
+      "case_ids": [
+        "D-02"
+      ]
+    },
+    {
+      "id": "PYTHON-009",
+      "spec": "python",
+      "section": "Bitness",
+      "source_lines": "176-176",
+      "sha256": "0afd2a9f44ca3c5fa20734d99075ab56ac16c6d631c1548650e639105736baec",
+      "case_ids": [
+        "S-01",
+        "D-06",
+        "R-01"
+      ]
+    },
+    {
+      "id": "PYTHON-010",
+      "spec": "python",
+      "section": "Target Python Versions",
+      "source_lines": "180-180",
+      "sha256": "c41ec29c8645da66d69c66556b104eea776b3ed05adbde2ca1c5ff3bf94c83b3",
+      "case_ids": [
+        "D-03",
+        "R-01"
+      ]
+    },
+    {
+      "id": "PYTHON-011",
+      "spec": "python",
+      "section": "IVI-Python Naming",
+      "source_lines": "184-184",
+      "sha256": "f544b3184395c797ef077d9e868f4603d2f71c8a035838a761a870a0c4e95a66",
+      "case_ids": [
+        "D-02"
+      ]
+    },
+    {
+      "id": "PYTHON-012",
+      "spec": "python",
+      "section": "IVI-Python Packages",
+      "source_lines": "188-188",
+      "sha256": "93c411f5e8895213001ea89a56301207a1e511832ac31559bf21c864813b4821",
+      "case_ids": [
+        "D-07",
+        "R-01"
+      ]
+    },
+    {
+      "id": "PYTHON-013",
+      "spec": "python",
+      "section": "IVI-Python Distribution Package Naming",
+      "source_lines": "196-196",
+      "sha256": "1326a8c44c0824d10746b43cc82a995980a14e97e179800803ea74abf65d7084",
+      "case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "id": "PYTHON-014",
+      "spec": "python",
+      "section": "IVI-Python Distribution Package Naming",
+      "source_lines": "207-207",
+      "sha256": "5ce329c5007c110ab8f835d34872e3cad3b9e9f3f028c201de93a9700379b597",
+      "case_ids": [
+        "D-01"
+      ]
+    },
+    {
+      "id": "PYTHON-015",
+      "spec": "python",
+      "section": "IVI-Python Package Type-Hinting",
+      "source_lines": "213-213",
+      "sha256": "ad0e62c66d15ff5090c00e47dcc4046f8964fa2d3124c95569cab57ffa58c9d3",
+      "case_ids": [
+        "D-03"
+      ]
+    },
+    {
+      "id": "PYTHON-016",
+      "spec": "python",
+      "section": "IVI-Python Driver Classes",
+      "source_lines": "217-217",
+      "sha256": "f41a4da79e02932927390f823f9b368b9fff291c9a0ac16428849c46a3b1149a",
+      "case_ids": [
+        "D-02",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05"
+      ]
+    },
+    {
+      "id": "PYTHON-017",
+      "spec": "python",
+      "section": "IVI-Python Hierarchy",
+      "source_lines": "233-233",
+      "sha256": "147bd3f62884801421eb2a5c477abc4cef491c31b0ac20122410dc5304a27f18",
+      "case_ids": [
+        "D-02",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05"
+      ]
+    },
+    {
+      "id": "PYTHON-018",
+      "spec": "python",
+      "section": "IVI-Python Hierarchy",
+      "source_lines": "235-235",
+      "sha256": "25d2fcea70eb2d939672fffaf567c4a5cd2da15b8ff44d295000ae4c1b3b45be",
+      "case_ids": [
+        "D-02",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05"
+      ]
+    },
+    {
+      "id": "PYTHON-019",
+      "spec": "python",
+      "section": "IVI-Python Hierarchy",
+      "source_lines": "237-237",
+      "sha256": "0b31935382c72b437edcd2a9edda54eb09a9884312335ae8fac56e32501a174e",
+      "case_ids": [
+        "D-02",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05"
+      ]
+    },
+    {
+      "id": "PYTHON-020",
+      "spec": "python",
+      "section": "IVI-Python Hierarchy",
+      "source_lines": "239-239",
+      "sha256": "3aee0557aaf99d8eac0002c9791ef81ede9fb639a602c0e45082cb874da87240",
+      "case_ids": [
+        "D-02",
+        "RC-01",
+        "RC-02",
+        "RC-03",
+        "RC-04",
+        "RC-05"
+      ]
+    },
+    {
+      "id": "PYTHON-021",
+      "spec": "python",
+      "section": "Repeated Capability Reference Property Naming",
+      "source_lines": "311-311",
+      "sha256": "f7c0ff566ca0a1306e2e3b3f3be6546d7ba847a2e176161522cf460e0592d187",
+      "case_ids": [
+        "D-02"
+      ]
+    },
+    {
+      "id": "PYTHON-022",
+      "spec": "python",
+      "section": "IVI-Python Error Handling",
+      "source_lines": "359-359",
+      "sha256": "0e9e473335ccfffdbd3d8dc2ad43c4044c127b45f66d5a14e260dac3f39c90e9",
+      "case_ids": [
+        "G-03",
+        "B-04"
+      ]
+    },
+    {
+      "id": "PYTHON-023",
+      "spec": "python",
+      "section": "Documentation and Source Code",
+      "source_lines": "368-368",
+      "sha256": "2005ce7caa1700f289ebb96ef232f6d5a6e773c2cdad7e9fde1fc43fdaa612e5",
+      "case_ids": [
+        "D-04",
+        "D-05",
+        "D-06",
+        "D-07"
+      ]
+    },
+    {
+      "id": "PYTHON-024",
+      "spec": "python",
+      "section": "Base IVI-Python API",
+      "source_lines": "372-372",
+      "sha256": "d13a74866fbf398f3684b7457999690a156553e03a91bca80a6706c818abcfe3",
+      "case_ids": [
+        "B-01",
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "B-06"
+      ]
+    },
+    {
+      "id": "PYTHON-025",
+      "spec": "python",
+      "section": "Required Driver API Mapping Table",
+      "source_lines": "376-387",
+      "sha256": "a410f378b77536bb50120374777f8f0fb53d091da5f55a21499a288262a8792e",
+      "case_ids": [
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "D-05"
+      ]
+    },
+    {
+      "id": "PYTHON-026",
+      "spec": "python",
+      "section": "Additional Driver API",
+      "source_lines": "391-391",
+      "sha256": "4d7b545774e7894d8cde6e1fc7455b3724e77a1fb170c426263850621b00109f",
+      "case_ids": [
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "D-05"
+      ]
+    },
+    {
+      "id": "PYTHON-027",
+      "spec": "python",
+      "section": "Constructor",
+      "source_lines": "400-400",
+      "sha256": "eb401aaf968d8f689771f0cf97376f9740e46c5b230084c1c931339401af3f23",
+      "case_ids": [
+        "B-01"
+      ]
+    },
+    {
+      "id": "PYTHON-028",
+      "spec": "python",
+      "section": "Constructor",
+      "source_lines": "404-404",
+      "sha256": "5d24fa484f253f44e1208599047932997c2434aa66cc115a39c7503fa2edcfc8",
+      "case_ids": [
+        "B-01"
+      ]
+    },
+    {
+      "id": "PYTHON-029",
+      "spec": "python",
+      "section": "Constructor",
+      "source_lines": "417-417",
+      "sha256": "b7286dfa659378fb5524d1f742f758a7423ffbae19fa2951aaeaef1e412cb7d5",
+      "case_ids": [
+        "B-01"
+      ]
+    },
+    {
+      "id": "PYTHON-030",
+      "spec": "python",
+      "section": "IVI-Python Utility Interface",
+      "source_lines": "458-458",
+      "sha256": "eee50cc0ccc170f05ef12311197bb07718d353c9511f70c5c7c9bdcaa0c23c84",
+      "case_ids": [
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "D-05"
+      ]
+    },
+    {
+      "id": "PYTHON-031",
+      "spec": "python",
+      "section": "IVI-Python Utility Interface",
+      "source_lines": "460-460",
+      "sha256": "bc17a8e976d4a37aaf3a7d0026804246a6c9be996ad67a0bea99a52c30bb6d0d",
+      "case_ids": [
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "D-05"
+      ]
+    },
+    {
+      "id": "PYTHON-032",
+      "spec": "python",
+      "section": "IVI-Python Utility Interface",
+      "source_lines": "544-544",
+      "sha256": "6a453d90f9a96451dc3d0ba53028bebe1d80ca10492a091f29a9b5ea58d4e4a6",
+      "case_ids": [
+        "B-02",
+        "B-03",
+        "B-04",
+        "B-05",
+        "D-05"
+      ]
+    },
+    {
+      "id": "PYTHON-033",
+      "spec": "python",
+      "section": "Direct IO Properties and Methods",
+      "source_lines": "548-548",
+      "sha256": "e429388c3483d5e7090a2b7ad2951e63409d77c20774a1adb34fa9003ad2ff76",
+      "case_ids": [
+        "B-06",
+        "D-05"
+      ]
+    },
+    {
+      "id": "PYTHON-034",
+      "spec": "python",
+      "section": "Package Metadata",
+      "source_lines": "600-600",
+      "sha256": "4dffeed4bdd1cbb4af1b44b267b50a851324aad1d0f97755da85336d7fbfc4d4",
+      "case_ids": [
+        "D-07",
+        "R-01"
+      ]
+    },
+    {
+      "id": "PYTHON-035",
+      "spec": "python",
+      "section": "Package Contents",
+      "source_lines": "627-627",
+      "sha256": "f941cd1b75431d570201b5b80b7122877894b2e1dd5f406858ff983272e87b3f",
+      "case_ids": [
+        "D-07",
+        "R-01"
+      ]
+    },
+    {
+      "id": "PYTHON-036",
+      "spec": "python",
+      "section": "Package Contents",
+      "source_lines": "629-634",
+      "sha256": "5bf4045b815684d844546efb4918db6af4be2c4bc9947b1ca3baee96b0c1a6e7",
+      "case_ids": [
+        "D-07",
+        "R-01"
+      ]
+    },
+    {
+      "id": "PYTHON-037",
+      "spec": "python",
+      "section": "IVI-Python Driver Conformance",
+      "source_lines": "638-638",
+      "sha256": "b2d5d2e11fb08ae5bef67bf4c4b760fa845a580128abfddfad4c45a6f5c1efca",
+      "case_ids": [
+        "S-02",
+        "D-06",
+        "REG-01"
+      ]
+    },
+    {
+      "id": "PYTHON-038",
+      "spec": "python",
+      "section": "Driver Registration",
+      "source_lines": "646-646",
+      "sha256": "1656c1975f3e28f1c3fdbb483af8947096859306a8192a5c9e1c63a33041a614",
+      "case_ids": [
+        "S-02",
+        "D-06",
+        "REG-01"
+      ]
+    }
+  ],
+  "input_fingerprints": {
+    "civi/__init__.py": "507376ce2b00145278eb880184f11eebf1872938208f251b3fca03a9b980ef47",
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/backend.py": "8ce5436af88bfa0228f814ddfe059f3c38e6a657b0aa175e8de66faf8e9cef29",
+    "civi/command_docs.py": "a4ec9f8f29a96ba3387a05e74932497fd0ecd31d41a64881e268eaf8b851f928",
+    "civi/commands.py": "7ce2af81ebc85097a61f72fd5d29b5652518ce591085f9f482ccf659894efe7c",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "e72295220b326b76a6a7974b284c27a308fab5c1387b465294f36278d3196eb6",
+    "civi/errors.py": "4498be8b7fac840ef4d10a6f33f21fd451bc4c31dac02ed5e76787927cdedd13",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "c3124ac9e5a8b617f622f3896ccf950d9566a0b459c1ce27a91f4eadd7bf9885",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/menus.py": "b89e2836f62aa69f99011e4ac676f11b3bcdde978ae4c359f96455245ce0ec0e",
+    "civi/network.py": "8a77b847bb76c884a733cce4b49613c968324b5260027bbc9d0c5e61a3e39236",
+    "civi/pi/__init__.py": "81adac5d6b8e32e1b7ddf2dfda7ca3bdcb5ef9f9a0ca9b28d830e80778400d88",
+    "civi/pi/__main__.py": "638d22070807a3283bbe0c39e2664ed215d07edf1b808aa3a95a45cfefba9c24",
+    "civi/pi/broker.py": "6c1103bafb17ee33d9a684bf84fa7034687f1d9c549a9ed1d16ddfcee203c93e",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/desktop.py": "3cb48a24281f3b4a3eee34c503838c07bb5493ce3eeb4e29a3c770d52aa57051",
+    "civi/pi/discovery.py": "4418d660b0a15ffd02fe51facbefe71fe4abb727f7730e262dd7cbdef9ba2aa4",
+    "civi/pi/lci.py": "2c46db88ac68af2d05755dde2dd425231af9fa589d1ce98eebf014d7c333f4ec",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/mdns.py": "6ef525a466651282443b4174186db3e2b1c6326725570597c2442f2b20b296f7",
+    "civi/pi/network.py": "6476ff1ed11feff1c994562f2c8edf5a51de2e954a62aa936094be9bbbd8797e",
+    "civi/pi/panel.py": "2a700baf7654f0b408f677d2607e8c0008b6939e9a6a92bfba23adc3551d807e",
+    "civi/pi/password.py": "131b7ff8e6b20070e2cab052f225c5f651c01a9f9b4611fbcd019ac8e81a8869",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/target.py": "a7e3853d43adcbad9e2bef8905d3b3686c7cb25a74eb31a4b41d9c0951470000",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/profiles/ic7300-reset.json": "b2d0cfb48860aa39a9021565d5ecec3e67d18a379f7e7db7436e2f71e2f87f02",
+    "civi/profiles/ic7300.json": "f76be427bf79d297405240c48953f6c11a7c609fe8dca0297a66e6f81c408135",
+    "civi/reset.py": "d443f21e484a4b4be5b2438ada9aca57e784726ba8e71a80d81eb5ff3a71d76e",
+    "civi/scope.py": "f7fe3a437175723b766b4490624b9822c512e43f56866aa0f2617bfde0041436",
+    "civi/scpi.py": "dd6e467d6a372394b6ca1c42b1ad32e9252790e45cd30c4342ad612c85c94299",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/service.py": "d717dad1f59684cb2164292018023102e4cb61200a03f9728b4a4abd9484cf5d",
+    "civi/tls.py": "7c9619b828fdae083bb47eb2b7317a2da2c70c80f2177df0ccc86dc6fe0c2833",
+    "docs/IVI_MENU_VERIFICATION_2026-11-12.csv": "76a2dc86e329a84d5263dfc457c71cfd8d6759b51ff78eeac6f18627739e6573",
+    "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv": "d1a12b3c1d85434a9e122ac732b935e05f1b51f95b706dc0c90bc249c0962d51",
+    "drivers/civi-ic7300/pyproject.toml": "59b0ac0e2d4330833e57ec1979927f1c45e9f83b43b7e9489402103013755e9f",
+    "drivers/civi-ic7300/README.md": "930f84bee5680e49d3f84b21f8e4755dfa217edb91d65a3fec201e32364c37de",
+    "drivers/civi-ic7300/src/civi_ic7300/___Introduction to CiviIc7300___.md": "86e729c20b25265c906ea316cd1432472c8092286b3c8401c623d7ae501dde98",
+    "drivers/civi-ic7300/src/civi_ic7300/__init__.py": "fe2442e245d161156d3ecff41878a1ff80182318f041596edb6bb83c24f94aec",
+    "drivers/civi-ic7300/src/civi_ic7300/API.md": "0b1f8f0c50f3dd619c642840d1af50b1b366363f7cb2195eefba70b1abe92fef",
+    "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md": "70e1e670f313684a9d1de33c34ac8c3b503fea5866c8127ffa9b0ce30d0f2a57",
+    "drivers/civi-ic7300/src/civi_ic7300/BANDS.md": "2a9763c785fc6cef6a2be9341ecc8d8e584a5124aa50eec2a4e3acacba89d266",
+    "drivers/civi-ic7300/src/civi_ic7300/bands.py": "6c775b973bb7f87ef18e3887dbb81d282759daf5236366812599137bf6b8402a",
+    "drivers/civi-ic7300/src/civi_ic7300/BASIC.md": "2897a7a4812a1b40b8c0ffe8e53a9644e43a48ca991ca3363863ddbc5418c3c1",
+    "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md": "8a50dbbb9db93446b294d4e86f21a7f27b8f79f25b7f32428b60233e03fe4d97",
+    "drivers/civi-ic7300/src/civi_ic7300/CONTROLS.md": "191406edcbcc3e0c12043ec2a7c4a883e88df9268f3127b1e60f1b1f73c583a9",
+    "drivers/civi-ic7300/src/civi_ic7300/controls.py": "9159b40b9fd2cc9dc67637c6c0ebee826dd11620caf8edd6e6362bef88d778d8",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "drivers/civi-ic7300/src/civi_ic7300/errors.py": "04fdef7819d9a1486c8c07f3b9194f1d9f286d1dbcf3900e71ff92e780db37a3",
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "ccf855ea89cbec3d4f04ec1c9ef54e5ef2ec14aa1322b5c7b064ebff253e70a7",
+    "drivers/civi-ic7300/src/civi_ic7300/HIERARCHY.md": "953ea6ab5d77ed14b15adf03c418a61949dec755d867a56969756f081179e474",
+    "drivers/civi-ic7300/src/civi_ic7300/interfaces.py": "e635531b966e1b1930462a02b04b432505a2e05bfc65840a2cff3b74862aed24",
+    "drivers/civi-ic7300/src/civi_ic7300/Introduction.md": "86e729c20b25265c906ea316cd1432472c8092286b3c8401c623d7ae501dde98",
+    "drivers/civi-ic7300/src/civi_ic7300/IVI_NOTICE.md": "69a4c59dd3332f021c93d7221ff95ea42d980f8b20eab1b9e46fb9629d43d10b",
+    "drivers/civi-ic7300/src/civi_ic7300/menu-catalog.json": "046377c5bfea5683317d2220ebb34ecbcf7ccf8518b9129234432e7583089a8b",
+    "drivers/civi-ic7300/src/civi_ic7300/MENUS.md": "307b367a9e600fda6d37281c2ab0ca0908962cfca5dba32673a7b818a74a366b",
+    "drivers/civi-ic7300/src/civi_ic7300/menus.py": "fbe71be494cf5c042f548fd3bd8eabdae77d79319874d070a9e56ca680028ad1",
+    "drivers/civi-ic7300/src/civi_ic7300/NAMING.md": "cb35009c45a3e264589125ad7a211485cf904c2a6cf6742dd0594d231d63170f",
+    "drivers/civi-ic7300/src/civi_ic7300/notice-source.json": "86ce5e09abec2c5e8636ba584a18ae4d07b0a7e7c8bef80cb6b1b41da861fdda",
+    "drivers/civi-ic7300/src/civi_ic7300/OPERATIONS.md": "2334d27e676dad28b0d47876131847232cb15c00f47f2591335f407965d4af53",
+    "drivers/civi-ic7300/src/civi_ic7300/operations.py": "069d5f0a325483897df7d6e71966e7a691fe510a004a9a2c7190544c3ef060c4",
+    "drivers/civi-ic7300/src/civi_ic7300/public-api.json": "63e43cb42feb12797d4a69b2f8fa7584683d7ff3fa7bc4c21098a83b926cbf73",
+    "drivers/civi-ic7300/src/civi_ic7300/README.md": "f68630901c58b7259b00e374279aca178201eafdb016f286fb82e0927256d1b4",
+    "drivers/civi-ic7300/src/civi_ic7300/REFERENCE.md": "1e3719efecbacecd306697b0a6b8af080f9a0ddce848ab0b0814e8234103a490",
+    "drivers/civi-ic7300/src/civi_ic7300/reset-profile.json": "b2d0cfb48860aa39a9021565d5ecec3e67d18a379f7e7db7436e2f71e2f87f02",
+    "drivers/civi-ic7300/src/civi_ic7300/Reset.md": "4fd320ef24d942f1252981e89e5c71a8223333d1881b481ac0aafb349422de16",
+    "drivers/civi-ic7300/src/civi_ic7300/SCAN.md": "c96b55760c4dd2b668861e29cafd2b1bd58b259ecd56d7060bab90f3e68e5f81",
+    "drivers/civi-ic7300/src/civi_ic7300/scan.py": "73335e03f3a6735a2da139d85a208b0b4140cc80ec9d2e8a3f2df7d5dc3a76a6",
+    "drivers/civi-ic7300/src/civi_ic7300/scpi-coverage.json": "a221376805f3f761499cbf52d9fd22baade012e7f4a066c5b71cbbe471b80715",
+    "drivers/civi-ic7300/src/civi_ic7300/SCPI_COVERAGE.md": "91efa9c1b6740bfc681b9511ba8c4b84e8468c30e869a24024dbf87754971446",
+    "drivers/civi-ic7300/src/civi_ic7300/simulation.py": "fa5bce93790be6af632879e6a7d850fd52bd1334c2e41b6c6299a7c5a311c024",
+    "drivers/civi-ic7300/src/civi_ic7300/STATUS.md": "f98ea891c8e4bd68c51733a3c2401b59db009eeaa1f9ed4fec6d7b6c81e54e74",
+    "drivers/civi-ic7300/src/civi_ic7300/STORAGE.md": "d716e7a78f90c4a66cb9d8ee844be7326a7feaad71ac116394501dbb2b8022c4",
+    "drivers/civi-ic7300/src/civi_ic7300/storage.py": "713666c3ae33dbcbc9e51906577f58dcbb798f4e3179d7a1be165dfa411a45fd",
+    "drivers/civi-ic7300/src/civi_ic7300/storage_simulation.py": "8c87be233e231b6955d2c49e205508d17d8357bc28b1267042010353a9ce9840",
+    "drivers/civi-ic7300/src/civi_ic7300/STYLE.md": "645133250b2bd33e77932596279b3e725ce47f9c9d5c73c06c417fc009aa6bbd"
+  },
+  "lxi_followup_rows": [
+    {
+      "source": "Device",
+      "clause": "1.4.1",
+      "state": "追加検証",
+      "finding": "本表でDevice/API/補足解釈を版固定。認証時の適用版・RFC/IVI参照版の確定が残る。",
+      "gaps": [
+        "G12"
+      ],
+      "evidence": [
+        "docs/LXI.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.4.2",
+      "state": "未達",
+      "finding": "全行の証拠を整理したが総合適合は未達。未採用拡張をコア必須に追加しない。",
+      "gaps": [
+        "G12"
+      ],
+      "evidence": [
+        "docs/LXI.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.4.2.1",
+      "state": "未達",
+      "finding": "Deviceの残件とIVI従属要件の最終確認が残る。",
+      "gaps": [
+        "G10",
+        "G12"
+      ],
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.5",
+      "state": "手続待ち",
+      "finding": "未適合表示を維持。完了後に資料上の機能宣言を整える。",
+      "gaps": [
+        "G11"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "docs/LXI.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.6",
+      "state": "手続待ち",
+      "finding": "WebにLXI版を宣言していない。完成前に数値を入れない。",
+      "gaps": [
+        "G11"
+      ],
+      "evidence": [
+        "civi/identification.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.7",
+      "state": "手続待ち",
+      "finding": "用語/商標表示を最終公開時に点検。ロゴは未使用。",
+      "gaps": [
+        "G11"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "docs/LXI.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.9.1",
+      "state": "追加検証",
+      "finding": "Pi 4のEthernet/RJ45で通信済み。採用ハードの仕様・電気条件を製品構成へ固定。",
+      "gaps": [
+        "G09"
+      ],
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.6.1.1",
+      "state": "手続待ち",
+      "finding": "本体ロゴなし。使用許諾/認証経路確定後に電子表示等を整える。",
+      "gaps": [
+        "G11"
+      ],
+      "evidence": [
+        "civi/pi/panel.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "6.1",
+      "state": "未達",
+      "finding": "Python 0.13.1で実機Core/受信40チェック、受信設定16項目65チェック、216メニュー含む290成功読取を追加。MAIN1.41未対応の16 66とAM依存、NR/PBT丸めを区別。全API規定検証・正式名/登録は未完了。 MAIN1.42への更新後、16 66のON/OFF読戻し・不正型・復元の5項目を追加確認。他APIの1.41証拠とは区別。 2026-11-12: 352行を全件照合し、根拠未対応204行を分類した。旧SCPI189メニュー書込みと現行typed経路、getter/setter、ローカル処理を区別。未分類0は全試験完了ではなく、追加試験IDを確定した。",
+      "gaps": [
+        "G01",
+        "G10"
+      ],
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md",
+        "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
+        "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv",
+        "docs/IVI_TX_INHIBIT_2026-11-11.md",
+        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
+        "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "7.3",
+      "state": "追加検証",
+      "finding": "リンク切断/復帰と固定IP復帰を実機確認。再接続時の重複チェックは経路別に追試。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/indicator.py",
+        "docs/RPI_UNPLUGGED_BOOT_2026-11-08.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6",
+      "state": "追加検証",
+      "finding": "DHCP確定保存後の実Pi再起動・新起動ID/ACK/アドレス取得を追加確認。固定IPからのLCIでも新規取得。リンク再接続/物理重複/特殊オプション等は継続。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.10",
+      "state": "追加検証",
+      "finding": "AutoIPと固定アドレスPC間の実TCP往復を確認。RFC3927 2.6.2の送信元/ARP/転送全条件は未完。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/pi/linklocal.py",
+        "docs/RPI_AUTOIP_TCP_2026-11-08.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.13",
+      "state": "追加検証",
+      "finding": "固定IP→ローカルLCIでDHCP新規取得、復旧世代更新、稼働中の認証/発見設定反映を確認。既にDHCPのLCIでは有効リースを継続。DDNS採用範囲等は継続。",
+      "gaps": [
+        "G05",
+        "G07"
+      ],
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.1",
+      "state": "追加検証",
+      "finding": "HTTP1.1/TLS1.2/1.3を実機確認。HTML5構文確認済み。WindowsとスマホChromeの表示はユーザー確認済み。各ブラウザーの設定操作/異常状態確認は残る。 未接続/隔離/状態取得失敗/復帰、LAN試行期限切れとhelper停止時を実JS・模擬HTTPで追加確認。実ブラウザーの異常状態表示と完成構成での判定は残る。 更新後の切断時受信値消去とLAN確定の期限切れ/状態取得失敗時の無効化はユーザー実機確認済み。",
+      "gaps": [
+        "G08"
+      ],
+      "evidence": [
+        "civi/server.py",
+        "docs/RPI_HTTPS_2026-11-07.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py",
+        "docs/WEB_STATES_2026-11-10.md",
+        "tests/test_web_state_transitions.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2",
+      "state": "未達",
+      "finding": "NIC宣言のコード差異は修正。識別/版/アドレスは表示するがLXI版はNot claimedで、正式宣言が残る。",
+      "gaps": [
+        "G04"
+      ],
+      "evidence": [
+        "civi/identification.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5",
+      "state": "追加検証",
+      "finding": "hostname/description/mode/IP/prefix/gateway/DNSの入力あり。prefixがsubnet maskに対応する説明と全保存条件を確認。",
+      "gaps": [
+        "G05",
+        "G08"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.9",
+      "state": "手続待ち",
+      "finding": "必須Webのロゴなし。未認証のため意図的に掲載しない。",
+      "gaps": [
+        "G11"
+      ],
+      "evidence": [
+        "civi/identification.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.2",
+      "state": "未達",
+      "finding": "識別GETとXSD/エラーあり。参照APIの版宣言不足・共通動作を下表へ分解。",
+      "gaps": [
+        "G04",
+        "G08"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/lxi_api.py",
+        "docs/LXI_DEFAULTS_API.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.3",
+      "state": "追加検証",
+      "finding": "PiではAvahiを使用し実広告/応答を確認。RFC6762/6763全条件の証拠ではない。",
+      "gaps": [
+        "G06"
+      ],
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4",
+      "state": "追加検証",
+      "finding": "Avahiで発見とSRV接続先を実試験。相互接続/パケットの全条件は未確認。",
+      "gaps": [
+        "G06"
+      ],
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3",
+      "state": "追加検証",
+      "finding": "HTTP/LXIの必須サービスとTXTを実装。NIC対象と全TXT境界を確認する。",
+      "gaps": [
+        "G08"
+      ],
+      "evidence": [
+        "civi/pi/discovery.py",
+        "tests/test_lxi.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "11.1",
+      "state": "追加検証",
+      "finding": "実機条件・操作別の証拠を追加し110行へ対応付け。MAIN1.41の制約と丸め、復元結果、wheel導入確認を文書化。全APIの規定検証と最終適合文書は未完了。 2026-11-12: 352行を全件照合し、根拠未対応204行を分類した。旧SCPI189メニュー書込みと現行typed経路、getter/setter、ローカル処理を区別。未分類0は全試験完了ではなく、追加試験IDを確定した。",
+      "gaps": [
+        "G10"
+      ],
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md",
+        "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
+        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
+        "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "11.2",
+      "state": "手続待ち",
+      "finding": "IVIドライバーDB未登録。NLの略号照会/登録だけでは本要件を満たさない。",
+      "gaps": [
+        "G10"
+      ],
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/NAMING.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.5",
+      "state": "追加検証",
+      "finding": "GET識別とエラーの意味的要件を本表へ取り込み。全Security/API実装を要求する解釈にはしない。",
+      "gaps": [
+        "G08"
+      ],
+      "evidence": [
+        "docs/LXI_DEFAULTS_API.md"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.5.1",
+      "state": "追加検証",
+      "finding": "識別XSDは現行公式と一致。ProblemDetailsも編集日を現行へ同期。版/配布出典の確認と記録を継続。",
+      "gaps": [
+        "G08"
+      ],
+      "evidence": [
+        "civi/schemas/InstrumentIdentification-2.0.xsd",
+        "civi/schemas/LXIProblemDetails-1.0.xsd"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.1",
+      "state": "追加検証",
+      "finding": "既存XSD適合試験あり。XSD通過と必須意味要件は別で、LXIVersionが未達。",
+      "gaps": [
+        "G04",
+        "G08"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_defaults.py"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.3",
+      "state": "追加検証",
+      "finding": "Gateway識別はradio各状態でも完全な読取を200で返し、shutdownは503。未識別child404、既知だが切断child503。同期GETは202を返さない。完成装置のnormal operation境界の最終判定は継続。 未接続/隔離/状態取得失敗/復帰、LAN試行期限切れとhelper停止時を実JS・模擬HTTPで追加確認。実ブラウザーの異常状態表示と完成構成での判定は残る。",
+      "gaps": [
+        "G08"
+      ],
+      "evidence": [
+        "civi/server.py",
+        "docs/LXI_DEFAULTS_API.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py",
+        "docs/WEB_STATES_2026-11-10.md",
+        "tests/test_web_state_transitions.py"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1-3",
+      "state": "未達",
+      "finding": "LXIVersionは意図的に省略。接続無線機には不要でも親ゲートウェイには必要。適合前には宣言しない。",
+      "gaps": [
+        "G04"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/activation",
+      "state": "追加検証",
+      "finding": "実行中CIVIでローカルLCIの新世代反映とDHCP取得/Normalを確認。全初期化経路の残条件はG05で継続。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/pi/lci.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.10/expired-autoip",
+      "state": "追加検証",
+      "finding": "実eth0の期限切れ→AutoIP/Fault保持→新リース/Normalを確認。固定IPロールバックでもNormalに復帰。起動/LCI等の解除経路と本体目視の残条件は継続。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/lxi-version",
+      "state": "未達",
+      "finding": "未適合表示を維持し、最終適合判定後に正しい版を宣言。",
+      "gaps": [
+        "G04"
+      ],
+      "evidence": [
+        "civi/identification.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/hostname",
+      "state": "追加検証",
+      "finding": "mDNS FQDN/IP代替とOS情報の表示上の役割を最終確認。",
+      "gaps": [
+        "G08"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/hostname",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/description",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/address",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/gateway",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/dns",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/subnet",
+      "state": "追加検証",
+      "finding": "prefix変更/読取時に対応subnet maskを表示。/1,/16,/24,/31,/32と不正入力を実JSで確認。物理NICの保存/再起動保持はG05に継続。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3/required",
+      "state": "追加検証",
+      "finding": "HTTP/LXI TXT識別4項目と*IDN?の対応あり。未接続/接続後の更新も含め最終ワイヤ確認。",
+      "gaps": [
+        "G08"
+      ],
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py",
+        "tests/test_lxi.py"
+      ]
+    }
+  ],
+  "lxi_groups": [
+    {
+      "id": "G01",
+      "summary": "VISA位置指定の修正結果は実装表へ統合。driver適合の最終判定は本表B/R/D/REGで行う。"
+    },
+    {
+      "id": "G02",
+      "summary": "UTF-8名の切り詰め・保存は実装と試験結果へ統合。"
+    },
+    {
+      "id": "G03",
+      "summary": "LXI対象NICはeth0に固定し、XMLと広告の実装結果へ統合。"
+    },
+    {
+      "id": "G04",
+      "summary": "全適用要求を閉じた後、Web・XML・文書のLXI版/機能宣言を一致させる。"
+    },
+    {
+      "id": "G05",
+      "summary": "DHCP/AutoIP/固定IP・重複検出・LCIの既存記録を条項ごとに最終照合。別組合せの全再試験を自動的に追加しない。"
+    },
+    {
+      "id": "G06",
+      "summary": "発見・名前解決・再接続・リンク条件の既存記録を照合。RFC境界条件は明確な差異があれば対象を特定して補う。"
+    },
+    {
+      "id": "G07",
+      "summary": "DDNS制御は非採用として装置構成へ統合。"
+    },
+    {
+      "id": "G08",
+      "summary": "Web/識別APIは既存記録と最終版の意味・条件付き項目を照合。ProblemDetailsの配布出典・版も確認する。"
+    },
+    {
+      "id": "G09",
+      "summary": "Pi4、eth0、付属画面/入力、手動3プロセスの装置構成を最終成果物へ一致させる。Auto-MDIXの条件付きラベル判定は構成文書に固定。"
+    },
+    {
+      "id": "G10",
+      "summary": "IVIの検証・名称・配布物・登録は本表56項目と各台帳で管理。"
+    },
+    {
+      "id": "G11",
+      "summary": "機能宣言・商標・ロゴ・最終公開表示は登録/許諾/認証の実際の状況に合わせる。"
+    },
+    {
+      "id": "G12",
+      "summary": "固定した装置版でLXI全適用条項の証拠を最終照合し、宣言の可否を判定する。"
+    }
+  ],
+  "documentation_revision": {
+    "purpose": "Consolidated current documentation; API universe and required verification retained",
+    "changed_inputs": {
+      "drivers/civi-ic7300/README.md": {
+        "before": "9a79d948e3e8d7e7f8150d3f1ae66866fe5fe277b6d3786fbdfcfc5f3041f692",
+        "after": "930f84bee5680e49d3f84b21f8e4755dfa217edb91d65a3fec201e32364c37de"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/___Introduction to CiviIc7300___.md": {
+        "before": "cc13b476796fc165cf6b4f4a7a35480ae51bd697c325ed13aa369a68470ef57d",
+        "after": "86e729c20b25265c906ea316cd1432472c8092286b3c8401c623d7ae501dde98"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md": {
+        "before": "609b5359637d032d7181b553e0b982c881cfb87f67d7768f07550be69854306c",
+        "after": "70e1e670f313684a9d1de33c34ac8c3b503fea5866c8127ffa9b0ce30d0f2a57"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md": {
+        "before": "b9fbf6088a924d4e7f22e48860acd6be8f590cb02e1c65d0517ad63ed07db387",
+        "after": "8a50dbbb9db93446b294d4e86f21a7f27b8f79f25b7f32428b60233e03fe4d97"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": {
+        "before": "7cbdf44c37d2de94fbe2c31368abf4a01eaa3487fd568e4549d730e47d3b42dd",
+        "after": "ccf855ea89cbec3d4f04ec1c9ef54e5ef2ec14aa1322b5c7b064ebff253e70a7"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/Introduction.md": {
+        "before": "cc13b476796fc165cf6b4f4a7a35480ae51bd697c325ed13aa369a68470ef57d",
+        "after": "86e729c20b25265c906ea316cd1432472c8092286b3c8401c623d7ae501dde98"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/NAMING.md": {
+        "before": "3772d8c2e25dcfbfef92031edeff7bd7eea69452230592a3a162d94b75a9ccf7",
+        "after": "cb35009c45a3e264589125ad7a211485cf904c2a6cf6742dd0594d231d63170f"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/OPERATIONS.md": {
+        "before": "9baa5d03b5544aa799035a7c4c26ac8c9e00bc349bc33b7da04e4225f589e678",
+        "after": "2334d27e676dad28b0d47876131847232cb15c00f47f2591335f407965d4af53"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/README.md": {
+        "before": "fd20fccf4c366357972598e5dc9d75814e7461137f75733107908f8fc8cd5e3c",
+        "after": "f68630901c58b7259b00e374279aca178201eafdb016f286fb82e0927256d1b4"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/REFERENCE.md": {
+        "before": "c00a6245ff9ffe0d9212ad7395b22786bd6e71712e4008569041dafe6d61b9aa",
+        "after": "1e3719efecbacecd306697b0a6b8af080f9a0ddce848ab0b0814e8234103a490"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/SCPI_COVERAGE.md": {
+        "before": "5552a82cc21a030376f8c739dc82a1e31a5d4b14172b613249e5b310ff8ca4fe",
+        "after": "91efa9c1b6740bfc681b9511ba8c4b84e8468c30e869a24024dbf87754971446"
+      },
+      "drivers/civi-ic7300/src/civi_ic7300/STYLE.md": {
+        "before": "51c7a727055128d842beb86f51f9b776b60ff93c9f468d897d2aaec666cd5141",
+        "after": "645133250b2bd33e77932596279b3e725ce47f9c9d5c73c06c417fc009aa6bbd"
+      }
+    }
+  }
+}
