@@ -14,12 +14,25 @@ if [[ ! -f config.toml ]]; then
     exit 1
 fi
 
+launcher=("$python")
+needs_authbind=$("$python" -c 'from pathlib import Path; from civi.config import load; c=load("config.toml"); p=Path("/proc/sys/net/ipv4/ip_unprivileged_port_start"); threshold=int(p.read_text()) if p.exists() else 0; print(int(any(port < threshold for port in [c["scpi_port"], c["web_port"], *c["web_extra_ports"]])))')
+if [[ "$needs_authbind" == 1 ]]; then
+    if ! command -v authbind >/dev/null 2>&1; then
+        echo "Privileged port configured. Install/configure authbind; see docs/RPI_HTTPS.md. Run CIVI as your normal user." >&2
+        exit 1
+    fi
+    launcher=(authbind --deep "$python")
+    echo "Using authbind for configured privileged ports (CIVI stays under your user)."
+fi
+
 password_env=$("$python" -c 'import tomllib; print(tomllib.load(open("config.toml", "rb"))["password_env"])')
 if [[ ! "$password_env" =~ ^[a-zA-Z_][a-zA-Z0-9_]*$ ]]; then
     echo "Invalid password_env in config.toml." >&2
     exit 1
 fi
-if [[ -z "${!password_env:-}" ]]; then
+if "$python" -c 'from civi.config import load; from civi.auth import has_saved_password; import sys; sys.exit(0 if has_saved_password(load("config.toml")) else 1)'; then
+    echo "Using saved Web credentials. The environment password is overridden."
+elif [[ -z "${!password_env:-}" ]]; then
     read -r -s -p "CIVI Web password (not Linux/sudo; at least 12 characters): " password
     printf '\n'
     if [[ ${#password} -lt 12 ]]; then
@@ -34,4 +47,4 @@ fi
 
 echo "Web login username: admin"
 echo "Starting CIVI. Press Ctrl+C to stop."
-exec "$python" -m civi --config config.toml
+exec "${launcher[@]}" -m civi --config config.toml

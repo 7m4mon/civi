@@ -124,12 +124,14 @@ class MockBackend:
             self._sync_display()
         elif header == 'RAD:MEM:SELECT':
             self.memory_channel = bcd_decode(data,little=False)
-            self.memory_mode = True; self._sync_display()
+            self._sync_display()
         elif header == 'RAD:MEM:ENABLE':
             self.memory_mode = True; self._sync_display()
         elif header == 'RAD:MEM:WRITE':
             self.memory_records[self.memory_channel] = self._memory_record()
         elif header == 'RAD:MEM:CLEAR':
+            if not self.memory_mode:
+                raise CiviError(-200, 'Memory clear requires memory mode')
             self.memory_records[self.memory_channel] = b'\xff'
         elif header == 'RAD:MEM:TOVFO':
             rec = self.memory_records.get(self.memory_channel)
@@ -355,6 +357,10 @@ class CivBackend:
         data = self._exchange(cmd, ack=op.endswith("set"), emergency=op == "ptt_set" and value is False)
         if uncertain_stop:
             raise CiviError(-365, "PTT OFF attempted; quarantined ACK cannot confirm stop")
+        # Empty displayed memory returns a complete, addressed 03 FF/04 FF
+        # frame. It has no value, but does not lose request/reply alignment.
+        if op in ('frequency_get', 'mode_get') and data == b'\xff':
+            return None
         try:
             if op == "model_id_get":
                 if len(data) != 1: raise ValueError()

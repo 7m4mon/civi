@@ -1,0 +1,217 @@
+number,header,permission,access,current_typed_read,historical_scpi_write,current_typed_write,followup_ids
+1,RAD:MENU:0001,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+2,RAD:MENU:0002,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+3,RAD:MENU:0003,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+4,RAD:MENU:0004,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+5,RAD:MENU:0005,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+6,RAD:MENU:0006,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+7,RAD:MENU:0007,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+8,RAD:MENU:0008,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+9,RAD:MENU:0009,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+10,RAD:MENU:0010,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+11,RAD:MENU:0011,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+12,RAD:MENU:0012,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+13,RAD:MENU:0013,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+14,RAD:MENU:0014,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+15,RAD:MENU:0015,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+16,RAD:MENU:0016,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+17,RAD:MENU:0017,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+18,RAD:MENU:0018,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+19,RAD:MENU:0019,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+20,RAD:MENU:0020,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+21,RAD:MENU:0021,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+22,RAD:MENU:0022,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+23,RAD:MENU:0023,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+24,RAD:MENU:0024,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+25,RAD:MENU:0025,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+26,RAD:MENU:0026,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+27,RAD:MENU:0027,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+29,RAD:MENU:0029,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+30,RAD:MENU:0030,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+31,RAD:MENU:0031,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+32,RAD:MENU:0032,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+33,RAD:MENU:0033,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+34,RAD:MENU:0034,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+35,RAD:MENU:0035,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+36,RAD:MENU:0036,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+37,RAD:MENU:0037,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+38,RAD:MENU:0038,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+39,RAD:MENU:0039,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+40,RAD:MENU:0040,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+41,RAD:MENU:0041,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+42,RAD:MENU:0042,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+43,RAD:MENU:0043,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+44,RAD:MENU:0044,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+45,RAD:MENU:0045,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+46,RAD:MENU:0046,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+47,RAD:MENU:0047,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+48,RAD:MENU:0048,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+49,RAD:MENU:0049,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+50,RAD:MENU:0050,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+51,RAD:MENU:0051,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+52,RAD:MENU:0052,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+53,RAD:MENU:0053,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+54,RAD:MENU:0054,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+55,RAD:MENU:0055,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+56,RAD:MENU:0056,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+57,RAD:MENU:0057,calibration,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-CALIB
+58,RAD:MENU:0058,calibration,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-CALIB
+59,RAD:MENU:0059,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+60,RAD:MENU:0060,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+61,RAD:MENU:0061,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+62,RAD:MENU:0062,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+63,RAD:MENU:0063,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+64,RAD:MENU:0064,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+65,RAD:MENU:0065,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+66,RAD:MENU:0066,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+67,RAD:MENU:0067,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+68,RAD:MENU:0068,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+69,RAD:MENU:0069,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+70,RAD:MENU:0070,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+71,RAD:MENU:0071,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+72,RAD:MENU:0072,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+73,RAD:MENU:0073,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+74,RAD:MENU:0074,link,r,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Not applicable: read-only,
+75,RAD:MENU:0075,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+76,RAD:MENU:0076,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+77,RAD:MENU:0077,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+78,RAD:MENU:0078,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+79,RAD:MENU:0079,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+80,RAD:MENU:0080,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+81,RAD:MENU:0081,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+82,RAD:MENU:0082,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+83,RAD:MENU:0083,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+84,RAD:MENU:0084,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+85,RAD:MENU:0085,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+86,RAD:MENU:0086,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+87,RAD:MENU:0087,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+88,RAD:MENU:0088,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+89,RAD:MENU:0089,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+90,RAD:MENU:0090,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+91,RAD:MENU:0091,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+92,RAD:MENU:0092,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+93,RAD:MENU:0093,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+94,RAD:MENU:0094,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+95,RAD:MENU:0095,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+96,RAD:MENU:0096,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+97,RAD:MENU:0097,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+98,RAD:MENU:0098,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+99,RAD:MENU:0099,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+100,RAD:MENU:0100,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+101,RAD:MENU:0101,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+102,RAD:MENU:0102,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+103,RAD:MENU:0103,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+104,RAD:MENU:0104,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+105,RAD:MENU:0105,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+106,RAD:MENU:0106,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+107,RAD:MENU:0107,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+108,RAD:MENU:0108,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+109,RAD:MENU:0109,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+110,RAD:MENU:0110,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+111,RAD:MENU:0111,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+112,RAD:MENU:0112,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+113,RAD:MENU:0113,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+114,RAD:MENU:0114,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+115,RAD:MENU:0115,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+116,RAD:MENU:0116,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+117,RAD:MENU:0117,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+118,RAD:MENU:0118,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+119,RAD:MENU:0119,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+120,RAD:MENU:0120,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+121,RAD:MENU:0121,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+122,RAD:MENU:0122,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+123,RAD:MENU:0123,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+124,RAD:MENU:0124,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+125,RAD:MENU:0125,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+126,RAD:MENU:0126,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+127,RAD:MENU:0127,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+128,RAD:MENU:0128,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+129,RAD:MENU:0129,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+130,RAD:MENU:0130,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+131,RAD:MENU:0131,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+132,RAD:MENU:0132,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+133,RAD:MENU:0133,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+134,RAD:MENU:0134,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+135,RAD:MENU:0135,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+136,RAD:MENU:0136,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+137,RAD:MENU:0137,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+138,RAD:MENU:0138,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+139,RAD:MENU:0139,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+140,RAD:MENU:0140,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+141,RAD:MENU:0141,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+142,RAD:MENU:0142,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+143,RAD:MENU:0143,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+144,RAD:MENU:0144,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+145,RAD:MENU:0145,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+146,RAD:MENU:0146,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+147,RAD:MENU:0147,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+148,RAD:MENU:0148,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+149,RAD:MENU:0149,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+150,RAD:MENU:0150,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+151,RAD:MENU:0151,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+152,RAD:MENU:0152,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+153,RAD:MENU:0153,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+154,RAD:MENU:0154,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+155,RAD:MENU:0155,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+156,RAD:MENU:0156,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+157,RAD:MENU:0157,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+158,RAD:MENU:0158,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+159,RAD:MENU:0159,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+160,RAD:MENU:0160,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+161,RAD:MENU:0161,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+162,RAD:MENU:0162,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+163,RAD:MENU:0163,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+164,RAD:MENU:0164,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+165,RAD:MENU:0165,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+166,RAD:MENU:0166,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+167,RAD:MENU:0167,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+168,RAD:MENU:0168,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+169,RAD:MENU:0169,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+170,RAD:MENU:0170,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+171,RAD:MENU:0171,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+172,RAD:MENU:0172,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+173,RAD:MENU:0173,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+174,RAD:MENU:0174,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+175,RAD:MENU:0175,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+176,RAD:MENU:0176,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+177,RAD:MENU:0177,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+178,RAD:MENU:0178,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+179,RAD:MENU:0179,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+180,RAD:MENU:0180,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+181,RAD:MENU:0181,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+182,RAD:MENU:0182,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+183,RAD:MENU:0183,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+184,RAD:MENU:0184,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+185,RAD:MENU:0185,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+186,RAD:MENU:0186,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+187,RAD:MENU:0187,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU
+188,RAD:MENU:0188,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+189,RAD:MENU:0189,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+190,RAD:MENU:0190,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+191,RAD:MENU:0191,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+192,RAD:MENU:0192,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+193,RAD:MENU:0193,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+194,RAD:MENU:0194,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+195,RAD:MENU:0195,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+196,RAD:MENU:0196,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+197,RAD:MENU:0197,link,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-LINK
+198,RAD:MENU:0198,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+199,RAD:MENU:0199,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+200,RAD:MENU:0200,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+201,RAD:MENU:0201,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+202,RAD:MENU:0202,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+203,RAD:MENU:0203,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+204,RAD:MENU:0204,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+205,RAD:MENU:0205,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+206,RAD:MENU:0206,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+207,RAD:MENU:0207,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+208,RAD:MENU:0208,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+209,RAD:MENU:0209,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+210,RAD:MENU:0210,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+211,RAD:MENU:0211,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+212,RAD:MENU:0212,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+213,RAD:MENU:0213,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+214,RAD:MENU:0214,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+215,RAD:MENU:0215,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+216,RAD:MENU:0216,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,2026-10-17 changed/read/restored; firmware unknown,Mock changed/read/restore only; not a physical IVI pass,R-MENUS
+217,RAD:MENU:0217,menu,rw,MAIN1.41;216/216; docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md,No positive write in historical record,Mock changed/read/restore only; not a physical IVI pass,C-MENU

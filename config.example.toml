@@ -37,3 +37,4 @@ calibration = false # Reference-frequency / transmit-band changes
 [pi_network]
 enabled = false # Pi branch only: manually start the LAN helper before enabling
 socket = "/run/civi-lan/control.sock"
+interface = "eth0" # Wired interface monitored by the local LAN/Identify display

@@ -33,6 +33,10 @@ def parse(part, parent=""):
         raise CiviError(-113, "Undefined header")
     # Independently accept each documented short or long mnemonic.
     normalized = header.replace("SYSTEM", "SYST").replace("ERROR", "ERR").replace("SENSE", "SENS").replace("FREQUENCY", "FREQ").replace("RADIO", "RAD").replace("SMETER", "SMET").replace("FIRMWARE", "FIRM")
+    if normalized == 'RAD:RESET':
+        if query or arg is not None:
+            raise CiviError(-113 if query else -108, 'RAD:RESET takes no parameters and has no query')
+        return 'receive_reset', False, None, next_parent
     key = HEADERS.get(normalized)
     if normalized == 'RAD:SCOPE:WAVE':
         if not query or arg is not None: raise CiviError(-113,'Scope waveform is query only')

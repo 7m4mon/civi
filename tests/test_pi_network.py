@@ -24,6 +24,9 @@ def test_static_and_automatic_plans_are_data_not_executed():
     assert automatic[automatic.index('ipv4.link-local')+1] == 'fallback'
     assert automatic[automatic.index('ipv4.addresses')+1] == ''
     assert automatic[automatic.index('ipv4.ignore-auto-dns')+1] == 'no'
+    assert automatic[automatic.index('ipv4.never-default')+1] == 'no' # accept DHCP gateway
+    assert automatic[automatic.index('ipv4.dhcp-timeout')+1] == '2147483647'
+    assert command[command.index('ipv4.dhcp-timeout')+1] == '0'
 
 
 def test_old_networkmanager_does_not_pretend_to_have_autoip():
@@ -58,7 +61,8 @@ def test_snapshot_reads_actual_fields_using_uuid_not_profile_name(monkeypatch):
     fields = {'connection.id':'Wired profile with spaces', 'connection.type':'802-3-ethernet',
               'ipv4.method':'auto', 'ipv4.addresses':'', 'ipv4.gateway':'', 'ipv4.dns':'',
               'IP4.ADDRESS':'192.0.2.10/24', 'IP4.GATEWAY':'192.0.2.1', 'IP4.DNS':'192.0.2.1', 'VERSION':'1.52.0',
-              'ipv4.ignore-auto-dns':'no','ipv4.never-default':'yes','ipv4.link-local':'0'}
+              'ipv4.ignore-auto-dns':'no','ipv4.never-default':'yes','ipv4.link-local':'0','ipv4.dhcp-timeout':'0',
+              'connection.autoconnect':'yes','WIRED-PROPERTIES.CARRIER':'on','GENERAL.AUTOCONNECT':'yes'}
     def runner(command, **kwargs):
         calls.append(command)
         assert kwargs['timeout'] == 10 and kwargs['env']['LC_ALL'] == 'C'
@@ -99,6 +103,19 @@ def test_disconnected_and_invalid_interface_rejected(monkeypatch):
     with pytest.raises(NetworkError, match='exactly one'):
         NetworkManager(runner).snapshot('eth0')
     with pytest.raises(ValueError): NetworkManager(runner).snapshot('eth0; reboot')
+
+
+def test_activating_device_uuid_used_when_active_list_is_temporarily_empty(monkeypatch):
+    manager=NetworkManager()
+    values={'VERSION':'1.52.1','GENERAL.CON-UUID':UUID,'connection.type':'802-3-ethernet',
+            'IP4.ADDRESS':'169.254.1.2/16','ipv4.method':'auto'}
+    def read(*args):
+        if args==('--version',): return '1.52.1'
+        if '-g' in args: return values.get(args[args.index('-g')+1],'')
+        return ''
+    monkeypatch.setattr(manager,'_read',read)
+    result=manager.snapshot('eth0')
+    assert result['uuid']==UUID and result['active_ipv4']=='169.254.1.2/16'
 
 
 @pytest.mark.parametrize('active,kind,message', [

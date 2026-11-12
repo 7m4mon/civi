@@ -1,0 +1,272 @@
+{
+  "schema_version": 1,
+  "model": "IC-7300",
+  "source": "User-performed Partial Reset, captured read-only on 2026-11-08",
+  "captured_at": "2026-11-08T11:27:58.345507+00:00",
+  "frequency_hz": 14100000,
+  "mode": "USB",
+  "vfos": [
+    {
+      "frequency_hz": 14100000,
+      "mode_data_filter": "010002"
+    },
+    {
+      "frequency_hz": 14100000,
+      "mode_data_filter": "010002"
+    }
+  ],
+  "settings": [
+    {
+      "header": "RAD:AFGAIN",
+      "value": "1"
+    },
+    {
+      "header": "RAD:RFGAIN",
+      "value": "255"
+    },
+    {
+      "header": "RAD:SQL",
+      "value": "65"
+    },
+    {
+      "header": "RAD:NR:LEVEL",
+      "value": "72"
+    },
+    {
+      "header": "RAD:PBT:INNER",
+      "value": "128"
+    },
+    {
+      "header": "RAD:PBT:OUTER",
+      "value": "128"
+    },
+    {
+      "header": "RAD:CW:PITCH",
+      "value": "128"
+    },
+    {
+      "header": "RAD:POWER",
+      "value": "255"
+    },
+    {
+      "header": "RAD:MICGAIN",
+      "value": "128"
+    },
+    {
+      "header": "RAD:CW:SPEED",
+      "value": "85"
+    },
+    {
+      "header": "RAD:NOTCH:LEVEL",
+      "value": "128"
+    },
+    {
+      "header": "RAD:COMP:LEVEL",
+      "value": "128"
+    },
+    {
+      "header": "RAD:CW:DELAY",
+      "value": "128"
+    },
+    {
+      "header": "RAD:NB:LEVEL",
+      "value": "128"
+    },
+    {
+      "header": "RAD:MONITOR:LEVEL",
+      "value": "128"
+    },
+    {
+      "header": "RAD:VOX:GAIN",
+      "value": "128"
+    },
+    {
+      "header": "RAD:VOX:ANTIGAIN",
+      "value": "128"
+    },
+    {
+      "header": "RAD:BACKLIGHT",
+      "value": "128"
+    },
+    {
+      "header": "RAD:NB",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:NR",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:ANOTCH",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:TONE",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:TSQL",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:COMP",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:MONITOR",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:NOTCH",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:TPF",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:LOCK",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:IPPLUS",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:PREAMP",
+      "value": "PRE1"
+    },
+    {
+      "header": "RAD:AGC",
+      "value": "MID"
+    },
+    {
+      "header": "RAD:FILTER:SHAPE",
+      "value": "SOFT"
+    },
+    {
+      "header": "RAD:NOTCH:WIDTH",
+      "value": "MID"
+    },
+    {
+      "header": "RAD:TXBANDWIDTH",
+      "value": "WIDE"
+    },
+    {
+      "header": "RAD:ATT",
+      "value": "0"
+    },
+    {
+      "header": "RAD:STEP",
+      "value": "0"
+    },
+    {
+      "header": "RAD:SPLIT",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:RIT:FREQ",
+      "value": "0"
+    },
+    {
+      "header": "RAD:RIT",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:XIT",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:XFC",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:FILTER:WIDTH",
+      "value": "28"
+    },
+    {
+      "header": "RAD:AGC:TIME",
+      "value": "8"
+    },
+    {
+      "header": "RAD:TONE:FREQ",
+      "value": "88.5"
+    },
+    {
+      "header": "RAD:TSQL:FREQ",
+      "value": "88.5"
+    },
+    {
+      "header": "RAD:SCOPE:ENABLE",
+      "selector": "0",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:SCOPE:STREAM",
+      "selector": "0",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:SCOPE:MODE",
+      "selector": "0",
+      "value": "0"
+    },
+    {
+      "header": "RAD:SCOPE:SPAN",
+      "selector": "0",
+      "value": "0050020000"
+    },
+    {
+      "header": "RAD:SCOPE:EDGE",
+      "selector": "0",
+      "value": "1"
+    },
+    {
+      "header": "RAD:SCOPE:HOLD",
+      "selector": "0",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:SCOPE:REFERENCE",
+      "selector": "0",
+      "value": "000000"
+    },
+    {
+      "header": "RAD:SCOPE:SPEED",
+      "selector": "0",
+      "value": "0"
+    },
+    {
+      "header": "RAD:SCOPE:TXDISPLAY",
+      "selector": "0",
+      "value": "ON"
+    },
+    {
+      "header": "RAD:SCOPE:CENTER",
+      "selector": "0",
+      "value": "0"
+    },
+    {
+      "header": "RAD:SCOPE:VBW",
+      "selector": "0",
+      "value": "OFF"
+    },
+    {
+      "header": "RAD:SCOPE:MARKER",
+      "selector": "0",
+      "value": "ON"
+    }
+  ],
+  "exclusions": [
+    "menus",
+    "memory contents",
+    "calibration",
+    "link settings",
+    "clock",
+    "stored scope edges",
+    "dynamic meters",
+    "unsupported TXINHIBIT",
+    "fixed DISPLAY/DUAL selector values"
+  ],
+  "source_sha256": "14b6a256d246ab5c23a5c21e0f41b19237c928d2b03d3cb8cd6b5119923ec1f9"
+}

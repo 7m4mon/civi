@@ -53,9 +53,11 @@ async def test_public_identification_welcome_and_authenticated_settings(service,
         text = await response.text()
         assert 'TCPIP::192.0.2.7::5025::SOCKET' in text
         assert 'Not LXI conformant or certified' in text
-        assert 'serial_settings' not in text and 'unvalidated-host' not in text
+        assert 'serial_settings' not in text
+        assert '<dt>System hostname</dt><dd>unvalidated-host</dd>' in text
+        assert '<dt>Hostname / IP fallback</dt><dd>192.0.2.7</dd>' in text
         response = await client.get('/lxi/identification')
-        assert response.status == 200 and response.content_type == 'application/xml'
+        assert response.status == 200 and response.content_type == 'text/xml'
         root = etree.fromstring(await response.read())
         location = root.attrib['{http://www.w3.org/2001/XMLSchema-instance}schemaLocation'].split()[1]
         assert location.startswith(str(client.make_url('/')))
@@ -127,6 +129,20 @@ async def test_discovery_txt_consistent_name_recovery_disable_and_bind(monkeypat
     monkeypatch.setattr('civi.network.network_info', lambda: changed_network)
     await discovery.refresh(config, fields)
     assert all(s.addresses == [socket.inet_aton('192.0.2.8')] for s in discovery.services)
+    config['pi_network']={'enabled':True}
+    from civi.pi.discovery import AvahiDiscovery
+    class FakeAvahi(AvahiDiscovery):
+        async def start(self, config, fields, desired):
+            self.hostname=desired+'.local.';self.name=config['description']
+        async def inspect(self): return True
+    monkeypatch.setattr('civi.pi.discovery.AvahiDiscovery',FakeAvahi)
+    monkeypatch.setattr('civi.pi.broker.BrokerClient.request',lambda self,op,**values:{'enabled':values['enabled']})
+    monkeypatch.setattr('civi.network.socket.gethostname',lambda:'civi-pi')
+    await discovery.refresh(config, fields)
+    assert all(s.server=='civi-pi.local.' for s in discovery.services)
+    monkeypatch.setattr('civi.network.socket.gethostname',lambda:'civi-renamed')
+    await discovery.refresh(config, fields)
+    assert all(s.server=='civi-renamed.local.' for s in discovery.services)
     config['discovery'] = False
     await discovery.refresh(config, fields)
     assert not discovery.services and discovery.zc is None
@@ -159,7 +175,7 @@ async def test_production_runner_additional_https_port(config, tmp_path, monkeyp
                     try:
                         async with client.get(f'https://127.0.0.1:{port}/lxi/identification', ssl=trust) as response:
                             assert response.status == 200
-                            assert response.content_type == 'application/xml'
+                            assert response.content_type == 'text/xml'
                             break
                     except OSError:
                         if attempt == 49: raise

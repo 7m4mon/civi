@@ -1,0 +1,4332 @@
+{
+  "schema_version": 1,
+  "model": "IC-7300",
+  "items": [
+    {
+      "number": 1,
+      "header": "RAD:MENU:0001",
+      "description": "SSB RX HPF/LPF [0001]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "hpf",
+        "size": 1,
+        "minimum": 2,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0005"
+    },
+    {
+      "number": 2,
+      "header": "RAD:MENU:0002",
+      "description": "SSB RX bass [0002]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 3,
+      "header": "RAD:MENU:0003",
+      "description": "SSB RX treble [0003]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 4,
+      "header": "RAD:MENU:0004",
+      "description": "AM RX HPF/LPF [0004]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "hpf",
+        "size": 1,
+        "minimum": 2,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0005"
+    },
+    {
+      "number": 5,
+      "header": "RAD:MENU:0005",
+      "description": "AM RX bass [0005]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 6,
+      "header": "RAD:MENU:0006",
+      "description": "AM RX treble [0006]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 7,
+      "header": "RAD:MENU:0007",
+      "description": "FM RX HPF/LPF [0007]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "hpf",
+        "size": 1,
+        "minimum": 2,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0005"
+    },
+    {
+      "number": 8,
+      "header": "RAD:MENU:0008",
+      "description": "FM RX bass [0008]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 9,
+      "header": "RAD:MENU:0009",
+      "description": "FM RX treble [0009]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 10,
+      "header": "RAD:MENU:0010",
+      "description": "CW RX HPF/LPF [0010]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "hpf",
+        "size": 1,
+        "minimum": 2,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0005"
+    },
+    {
+      "number": 11,
+      "header": "RAD:MENU:0011",
+      "description": "RTTY RX HPF/LPF [0011]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "hpf",
+        "size": 1,
+        "minimum": 2,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0005"
+    },
+    {
+      "number": 12,
+      "header": "RAD:MENU:0012",
+      "description": "Transmit audio EQ/bandwidth [0012]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 13,
+      "header": "RAD:MENU:0013",
+      "description": "Transmit audio EQ/bandwidth [0013]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 14,
+      "header": "RAD:MENU:0014",
+      "description": "Transmit audio EQ/bandwidth [0014]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "bandwidth",
+        "size": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "00"
+    },
+    {
+      "number": 15,
+      "header": "RAD:MENU:0015",
+      "description": "Transmit audio EQ/bandwidth [0015]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "bandwidth",
+        "size": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "00"
+    },
+    {
+      "number": 16,
+      "header": "RAD:MENU:0016",
+      "description": "Transmit audio EQ/bandwidth [0016]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "bandwidth",
+        "size": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "00"
+    },
+    {
+      "number": 17,
+      "header": "RAD:MENU:0017",
+      "description": "Transmit audio EQ/bandwidth [0017]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 18,
+      "header": "RAD:MENU:0018",
+      "description": "Transmit audio EQ/bandwidth [0018]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 19,
+      "header": "RAD:MENU:0019",
+      "description": "Transmit audio EQ/bandwidth [0019]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 20,
+      "header": "RAD:MENU:0020",
+      "description": "Transmit audio EQ/bandwidth [0020]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 10,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 21,
+      "header": "RAD:MENU:0021",
+      "description": "Beep [0021]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 22,
+      "header": "RAD:MENU:0022",
+      "description": "Beep [0022]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 23,
+      "header": "RAD:MENU:0023",
+      "description": "Beep [0023]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 24,
+      "header": "RAD:MENU:0024",
+      "description": "Band edge beep/limit [0024]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 25,
+      "header": "RAD:MENU:0025",
+      "description": "RF/SQL control [0025]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 26,
+      "header": "RAD:MENU:0026",
+      "description": "Transmit delay [0026]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 5,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 27,
+      "header": "RAD:MENU:0027",
+      "description": "Transmit delay [0027]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 5,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 29,
+      "header": "RAD:MENU:0029",
+      "description": "CI-V TX timeout [0029]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 5,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 30,
+      "header": "RAD:MENU:0030",
+      "description": "Split/tuner setup [0030]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 31,
+      "header": "RAD:MENU:0031",
+      "description": "HF repeater split offset [0031]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "repeater_offset",
+        "size": 3,
+        "minimum": -9999000,
+        "maximum": 9999000,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 32,
+      "header": "RAD:MENU:0032",
+      "description": "50 MHz repeater split offset [0032]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "repeater_offset",
+        "size": 3,
+        "minimum": -9999000,
+        "maximum": 9999000,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 33,
+      "header": "RAD:MENU:0033",
+      "description": "Split/tuner setup [0033]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 34,
+      "header": "RAD:MENU:0034",
+      "description": "Split/tuner setup [0034]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 35,
+      "header": "RAD:MENU:0035",
+      "description": "Split/tuner setup [0035]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 36,
+      "header": "RAD:MENU:0036",
+      "description": "RTTY signal [0036]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 37,
+      "header": "RAD:MENU:0037",
+      "description": "RTTY signal [0037]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 38,
+      "header": "RAD:MENU:0038",
+      "description": "RTTY signal [0038]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 39,
+      "header": "RAD:MENU:0039",
+      "description": "Speech/lock setup [0039]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 40,
+      "header": "RAD:MENU:0040",
+      "description": "Speech/lock setup [0040]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 41,
+      "header": "RAD:MENU:0041",
+      "description": "Speech/lock setup [0041]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 42,
+      "header": "RAD:MENU:0042",
+      "description": "Speech/lock setup [0042]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 43,
+      "header": "RAD:MENU:0043",
+      "description": "Speech/lock setup [0043]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 44,
+      "header": "RAD:MENU:0044",
+      "description": "Speech/lock setup [0044]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 45,
+      "header": "RAD:MENU:0045",
+      "description": "Speech/lock setup [0045]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 46,
+      "header": "RAD:MENU:0046",
+      "description": "Memo/dial/key behavior [0046]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 47,
+      "header": "RAD:MENU:0047",
+      "description": "Memo/dial/key behavior [0047]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 48,
+      "header": "RAD:MENU:0048",
+      "description": "Memo/dial/key behavior [0048]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 49,
+      "header": "RAD:MENU:0049",
+      "description": "Memo/dial/key behavior [0049]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 50,
+      "header": "RAD:MENU:0050",
+      "description": "Notch/CW behavior [0050]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 51,
+      "header": "RAD:MENU:0051",
+      "description": "Notch/CW behavior [0051]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 52,
+      "header": "RAD:MENU:0052",
+      "description": "Notch/CW behavior [0052]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 53,
+      "header": "RAD:MENU:0053",
+      "description": "Notch/CW behavior [0053]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 54,
+      "header": "RAD:MENU:0054",
+      "description": "Screenshot/keyboard [0054]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 55,
+      "header": "RAD:MENU:0055",
+      "description": "Screenshot/keyboard [0055]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 56,
+      "header": "RAD:MENU:0056",
+      "description": "Screenshot/keyboard [0056]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 57,
+      "header": "RAD:MENU:0057",
+      "description": "Reference calibration [0057]",
+      "access": "rw",
+      "permission": "calibration",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 58,
+      "header": "RAD:MENU:0058",
+      "description": "Reference frequency adjustment [0058]",
+      "access": "rw",
+      "permission": "calibration",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 59,
+      "header": "RAD:MENU:0059",
+      "description": "ACC/USB audio routing/levels [0059]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 60,
+      "header": "RAD:MENU:0060",
+      "description": "ACC/USB audio routing/levels [0060]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 61,
+      "header": "RAD:MENU:0061",
+      "description": "ACC/USB audio routing/levels [0061]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 62,
+      "header": "RAD:MENU:0062",
+      "description": "ACC/USB audio routing/levels [0062]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 63,
+      "header": "RAD:MENU:0063",
+      "description": "ACC/USB audio routing/levels [0063]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 64,
+      "header": "RAD:MENU:0064",
+      "description": "ACC/USB audio routing/levels [0064]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 65,
+      "header": "RAD:MENU:0065",
+      "description": "ACC/USB audio routing/levels [0065]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 66,
+      "header": "RAD:MENU:0066",
+      "description": "Modulation source [0066]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 4,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 67,
+      "header": "RAD:MENU:0067",
+      "description": "Modulation source [0067]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 4,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 68,
+      "header": "RAD:MENU:0068",
+      "description": "External memory keypad [0068]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 69,
+      "header": "RAD:MENU:0069",
+      "description": "External memory keypad [0069]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 70,
+      "header": "RAD:MENU:0070",
+      "description": "External memory keypad [0070]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 71,
+      "header": "RAD:MENU:0071",
+      "description": "CI-V transceive [0071]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 72,
+      "header": "RAD:MENU:0072",
+      "description": "USB-to-REMOTE transceive address [0072]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 223,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 73,
+      "header": "RAD:MENU:0073",
+      "description": "Antenna CI-V output [0073]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 74,
+      "header": "RAD:MENU:0074",
+      "description": "CI-V USB port mode (read only) [0074]",
+      "access": "r",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 75,
+      "header": "RAD:MENU:0075",
+      "description": "USB CI-V echo [0075]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 76,
+      "header": "RAD:MENU:0076",
+      "description": "USB serial function [0076]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 77,
+      "header": "RAD:MENU:0077",
+      "description": "RTTY serial baud code [0077]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 78,
+      "header": "RAD:MENU:0078",
+      "description": "USB SEND pin [0078]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 79,
+      "header": "RAD:MENU:0079",
+      "description": "USB CW keying pin [0079]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 80,
+      "header": "RAD:MENU:0080",
+      "description": "USB FSK pin [0080]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 81,
+      "header": "RAD:MENU:0081",
+      "description": "Display/UI [0081]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 82,
+      "header": "RAD:MENU:0082",
+      "description": "Display/UI [0082]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 83,
+      "header": "RAD:MENU:0083",
+      "description": "Display/UI [0083]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 84,
+      "header": "RAD:MENU:0084",
+      "description": "Display/UI [0084]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 85,
+      "header": "RAD:MENU:0085",
+      "description": "Display/UI [0085]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 86,
+      "header": "RAD:MENU:0086",
+      "description": "Display/UI [0086]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 87,
+      "header": "RAD:MENU:0087",
+      "description": "Display/UI [0087]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 88,
+      "header": "RAD:MENU:0088",
+      "description": "Display/UI [0088]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 89,
+      "header": "RAD:MENU:0089",
+      "description": "Display/UI [0089]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 90,
+      "header": "RAD:MENU:0090",
+      "description": "Display/UI [0090]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 91,
+      "header": "RAD:MENU:0091",
+      "description": "Opening screen text [0091]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "opening",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "\"CIVI\""
+    },
+    {
+      "number": 92,
+      "header": "RAD:MENU:0092",
+      "description": "Display/UI [0092]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 93,
+      "header": "RAD:MENU:0093",
+      "description": "Display/UI [0093]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 94,
+      "header": "RAD:MENU:0094",
+      "description": "Date [0094]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "date",
+        "size": 4,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "2026-01-01"
+    },
+    {
+      "number": 95,
+      "header": "RAD:MENU:0095",
+      "description": "Time [0095]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "time",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "00:00"
+    },
+    {
+      "number": 96,
+      "header": "RAD:MENU:0096",
+      "description": "UTC offset [0096]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "timezone",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "+00:00"
+    },
+    {
+      "number": 97,
+      "header": "RAD:MENU:0097",
+      "description": "Scope display [0097]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 98,
+      "header": "RAD:MENU:0098",
+      "description": "Scope display [0098]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 99,
+      "header": "RAD:MENU:0099",
+      "description": "Scope display [0099]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 100,
+      "header": "RAD:MENU:0100",
+      "description": "Scope display [0100]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 101,
+      "header": "RAD:MENU:0101",
+      "description": "Scope display [0101]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 102,
+      "header": "RAD:MENU:0102",
+      "description": "Scope display [0102]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 103,
+      "header": "RAD:MENU:0103",
+      "description": "Scope display [0103]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 104,
+      "header": "RAD:MENU:0104",
+      "description": "Scope display [0104]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 105,
+      "header": "RAD:MENU:0105",
+      "description": "Scope display [0105]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 106,
+      "header": "RAD:MENU:0106",
+      "description": "Scope display [0106]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 107,
+      "header": "RAD:MENU:0107",
+      "description": "Scope display [0107]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 108,
+      "header": "RAD:MENU:0108",
+      "description": "Scope display [0108]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 109,
+      "header": "RAD:MENU:0109",
+      "description": "Scope display [0109]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 110,
+      "header": "RAD:MENU:0110",
+      "description": "Scope display [0110]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 7,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 111,
+      "header": "RAD:MENU:0111",
+      "description": "Scope display [0111]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 112,
+      "header": "RAD:MENU:0112",
+      "description": "Scope band 1 edge 1 (0.03-1.6 MHz) [0112]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000300006001",
+        "empty_read": false
+      },
+      "sample": "000300006001"
+    },
+    {
+      "number": 113,
+      "header": "RAD:MENU:0113",
+      "description": "Scope band 1 edge 2 (0.03-1.6 MHz) [0113]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000300006001",
+        "empty_read": false
+      },
+      "sample": "000300006001"
+    },
+    {
+      "number": 114,
+      "header": "RAD:MENU:0114",
+      "description": "Scope band 1 edge 3 (0.03-1.6 MHz) [0114]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000300006001",
+        "empty_read": false
+      },
+      "sample": "000300006001"
+    },
+    {
+      "number": 115,
+      "header": "RAD:MENU:0115",
+      "description": "Scope band 2 edge 1 (1.6-2 MHz) [0115]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "006001000002",
+        "empty_read": false
+      },
+      "sample": "006001000002"
+    },
+    {
+      "number": 116,
+      "header": "RAD:MENU:0116",
+      "description": "Scope band 2 edge 2 (1.6-2 MHz) [0116]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "006001000002",
+        "empty_read": false
+      },
+      "sample": "006001000002"
+    },
+    {
+      "number": 117,
+      "header": "RAD:MENU:0117",
+      "description": "Scope band 2 edge 3 (1.6-2 MHz) [0117]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "006001000002",
+        "empty_read": false
+      },
+      "sample": "006001000002"
+    },
+    {
+      "number": 118,
+      "header": "RAD:MENU:0118",
+      "description": "Scope band 3 edge 1 (2-6 MHz) [0118]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000002000006",
+        "empty_read": false
+      },
+      "sample": "000002000006"
+    },
+    {
+      "number": 119,
+      "header": "RAD:MENU:0119",
+      "description": "Scope band 3 edge 2 (2-6 MHz) [0119]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000002000006",
+        "empty_read": false
+      },
+      "sample": "000002000006"
+    },
+    {
+      "number": 120,
+      "header": "RAD:MENU:0120",
+      "description": "Scope band 3 edge 3 (2-6 MHz) [0120]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000002000006",
+        "empty_read": false
+      },
+      "sample": "000002000006"
+    },
+    {
+      "number": 121,
+      "header": "RAD:MENU:0121",
+      "description": "Scope band 4 edge 1 (6-8 MHz) [0121]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000006000008",
+        "empty_read": false
+      },
+      "sample": "000006000008"
+    },
+    {
+      "number": 122,
+      "header": "RAD:MENU:0122",
+      "description": "Scope band 4 edge 2 (6-8 MHz) [0122]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000006000008",
+        "empty_read": false
+      },
+      "sample": "000006000008"
+    },
+    {
+      "number": 123,
+      "header": "RAD:MENU:0123",
+      "description": "Scope band 4 edge 3 (6-8 MHz) [0123]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000006000008",
+        "empty_read": false
+      },
+      "sample": "000006000008"
+    },
+    {
+      "number": 124,
+      "header": "RAD:MENU:0124",
+      "description": "Scope band 5 edge 1 (8-11 MHz) [0124]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000008000011",
+        "empty_read": false
+      },
+      "sample": "000008000011"
+    },
+    {
+      "number": 125,
+      "header": "RAD:MENU:0125",
+      "description": "Scope band 5 edge 2 (8-11 MHz) [0125]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000008000011",
+        "empty_read": false
+      },
+      "sample": "000008000011"
+    },
+    {
+      "number": 126,
+      "header": "RAD:MENU:0126",
+      "description": "Scope band 5 edge 3 (8-11 MHz) [0126]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000008000011",
+        "empty_read": false
+      },
+      "sample": "000008000011"
+    },
+    {
+      "number": 127,
+      "header": "RAD:MENU:0127",
+      "description": "Scope band 6 edge 1 (11-15 MHz) [0127]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000011000015",
+        "empty_read": false
+      },
+      "sample": "000011000015"
+    },
+    {
+      "number": 128,
+      "header": "RAD:MENU:0128",
+      "description": "Scope band 6 edge 2 (11-15 MHz) [0128]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000011000015",
+        "empty_read": false
+      },
+      "sample": "000011000015"
+    },
+    {
+      "number": 129,
+      "header": "RAD:MENU:0129",
+      "description": "Scope band 6 edge 3 (11-15 MHz) [0129]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000011000015",
+        "empty_read": false
+      },
+      "sample": "000011000015"
+    },
+    {
+      "number": 130,
+      "header": "RAD:MENU:0130",
+      "description": "Scope band 7 edge 1 (15-20 MHz) [0130]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000015000020",
+        "empty_read": false
+      },
+      "sample": "000015000020"
+    },
+    {
+      "number": 131,
+      "header": "RAD:MENU:0131",
+      "description": "Scope band 7 edge 2 (15-20 MHz) [0131]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000015000020",
+        "empty_read": false
+      },
+      "sample": "000015000020"
+    },
+    {
+      "number": 132,
+      "header": "RAD:MENU:0132",
+      "description": "Scope band 7 edge 3 (15-20 MHz) [0132]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000015000020",
+        "empty_read": false
+      },
+      "sample": "000015000020"
+    },
+    {
+      "number": 133,
+      "header": "RAD:MENU:0133",
+      "description": "Scope band 8 edge 1 (20-22 MHz) [0133]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000020000022",
+        "empty_read": false
+      },
+      "sample": "000020000022"
+    },
+    {
+      "number": 134,
+      "header": "RAD:MENU:0134",
+      "description": "Scope band 8 edge 2 (20-22 MHz) [0134]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000020000022",
+        "empty_read": false
+      },
+      "sample": "000020000022"
+    },
+    {
+      "number": 135,
+      "header": "RAD:MENU:0135",
+      "description": "Scope band 8 edge 3 (20-22 MHz) [0135]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000020000022",
+        "empty_read": false
+      },
+      "sample": "000020000022"
+    },
+    {
+      "number": 136,
+      "header": "RAD:MENU:0136",
+      "description": "Scope band 9 edge 1 (22-26 MHz) [0136]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000022000026",
+        "empty_read": false
+      },
+      "sample": "000022000026"
+    },
+    {
+      "number": 137,
+      "header": "RAD:MENU:0137",
+      "description": "Scope band 9 edge 2 (22-26 MHz) [0137]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000022000026",
+        "empty_read": false
+      },
+      "sample": "000022000026"
+    },
+    {
+      "number": 138,
+      "header": "RAD:MENU:0138",
+      "description": "Scope band 9 edge 3 (22-26 MHz) [0138]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000022000026",
+        "empty_read": false
+      },
+      "sample": "000022000026"
+    },
+    {
+      "number": 139,
+      "header": "RAD:MENU:0139",
+      "description": "Scope band 10 edge 1 (26-30 MHz) [0139]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000026000030",
+        "empty_read": false
+      },
+      "sample": "000026000030"
+    },
+    {
+      "number": 140,
+      "header": "RAD:MENU:0140",
+      "description": "Scope band 10 edge 2 (26-30 MHz) [0140]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000026000030",
+        "empty_read": false
+      },
+      "sample": "000026000030"
+    },
+    {
+      "number": 141,
+      "header": "RAD:MENU:0141",
+      "description": "Scope band 10 edge 3 (26-30 MHz) [0141]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000026000030",
+        "empty_read": false
+      },
+      "sample": "000026000030"
+    },
+    {
+      "number": 142,
+      "header": "RAD:MENU:0142",
+      "description": "Scope band 11 edge 1 (30-45 MHz) [0142]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000030000045",
+        "empty_read": false
+      },
+      "sample": "000030000045"
+    },
+    {
+      "number": 143,
+      "header": "RAD:MENU:0143",
+      "description": "Scope band 11 edge 2 (30-45 MHz) [0143]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000030000045",
+        "empty_read": false
+      },
+      "sample": "000030000045"
+    },
+    {
+      "number": 144,
+      "header": "RAD:MENU:0144",
+      "description": "Scope band 11 edge 3 (30-45 MHz) [0144]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000030000045",
+        "empty_read": false
+      },
+      "sample": "000030000045"
+    },
+    {
+      "number": 145,
+      "header": "RAD:MENU:0145",
+      "description": "Scope band 12 edge 1 (45-60 MHz) [0145]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000045000060",
+        "empty_read": false
+      },
+      "sample": "000045000060"
+    },
+    {
+      "number": 146,
+      "header": "RAD:MENU:0146",
+      "description": "Scope band 12 edge 2 (45-60 MHz) [0146]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000045000060",
+        "empty_read": false
+      },
+      "sample": "000045000060"
+    },
+    {
+      "number": 147,
+      "header": "RAD:MENU:0147",
+      "description": "Scope band 12 edge 3 (45-60 MHz) [0147]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000045000060",
+        "empty_read": false
+      },
+      "sample": "000045000060"
+    },
+    {
+      "number": 148,
+      "header": "RAD:MENU:0148",
+      "description": "Scope band 13 edge 1 (60-74.8 MHz) [0148]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000060008074",
+        "empty_read": false
+      },
+      "sample": "000060008074"
+    },
+    {
+      "number": 149,
+      "header": "RAD:MENU:0149",
+      "description": "Scope band 13 edge 2 (60-74.8 MHz) [0149]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000060008074",
+        "empty_read": false
+      },
+      "sample": "000060008074"
+    },
+    {
+      "number": 150,
+      "header": "RAD:MENU:0150",
+      "description": "Scope band 13 edge 3 (60-74.8 MHz) [0150]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000060008074",
+        "empty_read": false
+      },
+      "sample": "000060008074"
+    },
+    {
+      "number": 151,
+      "header": "RAD:MENU:0151",
+      "description": "Audio scope display [0151]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 152,
+      "header": "RAD:MENU:0152",
+      "description": "Audio scope display [0152]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 153,
+      "header": "RAD:MENU:0153",
+      "description": "Audio scope display [0153]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 154,
+      "header": "RAD:MENU:0154",
+      "description": "Audio scope display [0154]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 155,
+      "header": "RAD:MENU:0155",
+      "description": "CW contest counter [0155]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 4,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 156,
+      "header": "RAD:MENU:0156",
+      "description": "Counter trigger memory [0156]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 1,
+        "maximum": 8,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "1"
+    },
+    {
+      "number": 157,
+      "header": "RAD:MENU:0157",
+      "description": "Contest counter [0157]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 1,
+        "maximum": 9999,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "1"
+    },
+    {
+      "number": 158,
+      "header": "RAD:MENU:0158",
+      "description": "CW sidetone/keyer [0158]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 159,
+      "header": "RAD:MENU:0159",
+      "description": "CW sidetone/keyer [0159]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 160,
+      "header": "RAD:MENU:0160",
+      "description": "Keyer repeat seconds [0160]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 1,
+        "maximum": 60,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "1"
+    },
+    {
+      "number": 161,
+      "header": "RAD:MENU:0161",
+      "description": "Keyer dot/dash weight [0161]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 28,
+        "maximum": 45,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "28"
+    },
+    {
+      "number": 162,
+      "header": "RAD:MENU:0162",
+      "description": "CW sidetone/keyer [0162]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 163,
+      "header": "RAD:MENU:0163",
+      "description": "CW sidetone/keyer [0163]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 164,
+      "header": "RAD:MENU:0164",
+      "description": "CW sidetone/keyer [0164]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 165,
+      "header": "RAD:MENU:0165",
+      "description": "CW sidetone/keyer [0165]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 166,
+      "header": "RAD:MENU:0166",
+      "description": "RTTY decoder/log [0166]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 167,
+      "header": "RAD:MENU:0167",
+      "description": "RTTY decoder/log [0167]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 168,
+      "header": "RAD:MENU:0168",
+      "description": "RTTY decoder/log [0168]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 169,
+      "header": "RAD:MENU:0169",
+      "description": "RTTY decoder/log [0169]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 170,
+      "header": "RAD:MENU:0170",
+      "description": "RTTY decoder/log [0170]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 171,
+      "header": "RAD:MENU:0171",
+      "description": "RTTY decoder/log [0171]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 172,
+      "header": "RAD:MENU:0172",
+      "description": "RTTY decoder/log [0172]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "color",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "012801280128"
+    },
+    {
+      "number": 173,
+      "header": "RAD:MENU:0173",
+      "description": "RTTY decoder/log [0173]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 174,
+      "header": "RAD:MENU:0174",
+      "description": "RTTY decoder/log [0174]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 175,
+      "header": "RAD:MENU:0175",
+      "description": "RTTY decoder/log [0175]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 176,
+      "header": "RAD:MENU:0176",
+      "description": "RTTY decoder/log [0176]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 177,
+      "header": "RAD:MENU:0177",
+      "description": "RTTY decoder/log [0177]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 178,
+      "header": "RAD:MENU:0178",
+      "description": "Scan behavior [0178]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 179,
+      "header": "RAD:MENU:0179",
+      "description": "Scan behavior [0179]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 180,
+      "header": "RAD:MENU:0180",
+      "description": "Voice memory playback [0180]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 181,
+      "header": "RAD:MENU:0181",
+      "description": "Voice repeat seconds [0181]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 1,
+        "maximum": 15,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "1"
+    },
+    {
+      "number": 182,
+      "header": "RAD:MENU:0182",
+      "description": "QSO recording [0182]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 183,
+      "header": "RAD:MENU:0183",
+      "description": "QSO recording [0183]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 184,
+      "header": "RAD:MENU:0184",
+      "description": "QSO recording [0184]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 185,
+      "header": "RAD:MENU:0185",
+      "description": "QSO recording [0185]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 186,
+      "header": "RAD:MENU:0186",
+      "description": "QSO recording [0186]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 187,
+      "header": "RAD:MENU:0187",
+      "description": "QSO recording [0187]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 188,
+      "header": "RAD:MENU:0188",
+      "description": "QSO recording [0188]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 189,
+      "header": "RAD:MENU:0189",
+      "description": "Noise blanker shape [0189]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 9,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 190,
+      "header": "RAD:MENU:0190",
+      "description": "Noise blanker shape [0190]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 191,
+      "header": "RAD:MENU:0191",
+      "description": "VOX timing [0191]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 20,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 192,
+      "header": "RAD:MENU:0192",
+      "description": "VOX timing [0192]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 3,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 193,
+      "header": "RAD:MENU:0193",
+      "description": "Medium-wave attenuator [0193]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 194,
+      "header": "RAD:MENU:0194",
+      "description": "Keyboard layout [0194]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 2,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 195,
+      "header": "RAD:MENU:0195",
+      "description": "Voice TX level [0195]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 2,
+        "minimum": 0,
+        "maximum": 255,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 196,
+      "header": "RAD:MENU:0196",
+      "description": "SSB DATA transmit bandwidth [0196]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "bandwidth",
+        "size": 1,
+        "minimum": 1,
+        "maximum": 1,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "00"
+    },
+    {
+      "number": 197,
+      "header": "RAD:MENU:0197",
+      "description": "USB input inhibit [0197]",
+      "access": "rw",
+      "permission": "link",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    },
+    {
+      "number": 198,
+      "header": "RAD:MENU:0198",
+      "description": "Front/microphone key assignment [0198]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 5,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 199,
+      "header": "RAD:MENU:0199",
+      "description": "Front/microphone key assignment [0199]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 5,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 200,
+      "header": "RAD:MENU:0200",
+      "description": "Front/microphone key assignment [0200]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 5,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 201,
+      "header": "RAD:MENU:0201",
+      "description": "Front/microphone key assignment [0201]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 5,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 202,
+      "header": "RAD:MENU:0202",
+      "description": "Front/microphone key assignment [0202]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 19,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 203,
+      "header": "RAD:MENU:0203",
+      "description": "Front/microphone key assignment [0203]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 19,
+        "choices": [],
+        "names": [],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "0"
+    },
+    {
+      "number": 204,
+      "header": "RAD:MENU:0204",
+      "description": "Scope band 1 edge 4 (0.03-1.6 MHz) [0204]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000300006001",
+        "empty_read": false
+      },
+      "sample": "000300006001"
+    },
+    {
+      "number": 205,
+      "header": "RAD:MENU:0205",
+      "description": "Scope band 2 edge 4 (1.6-2 MHz) [0205]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "006001000002",
+        "empty_read": false
+      },
+      "sample": "006001000002"
+    },
+    {
+      "number": 206,
+      "header": "RAD:MENU:0206",
+      "description": "Scope band 3 edge 4 (2-6 MHz) [0206]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000002000006",
+        "empty_read": false
+      },
+      "sample": "000002000006"
+    },
+    {
+      "number": 207,
+      "header": "RAD:MENU:0207",
+      "description": "Scope band 4 edge 4 (6-8 MHz) [0207]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000006000008",
+        "empty_read": false
+      },
+      "sample": "000006000008"
+    },
+    {
+      "number": 208,
+      "header": "RAD:MENU:0208",
+      "description": "Scope band 5 edge 4 (8-11 MHz) [0208]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000008000011",
+        "empty_read": false
+      },
+      "sample": "000008000011"
+    },
+    {
+      "number": 209,
+      "header": "RAD:MENU:0209",
+      "description": "Scope band 6 edge 4 (11-15 MHz) [0209]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000011000015",
+        "empty_read": false
+      },
+      "sample": "000011000015"
+    },
+    {
+      "number": 210,
+      "header": "RAD:MENU:0210",
+      "description": "Scope band 7 edge 4 (15-20 MHz) [0210]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000015000020",
+        "empty_read": false
+      },
+      "sample": "000015000020"
+    },
+    {
+      "number": 211,
+      "header": "RAD:MENU:0211",
+      "description": "Scope band 8 edge 4 (20-22 MHz) [0211]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000020000022",
+        "empty_read": false
+      },
+      "sample": "000020000022"
+    },
+    {
+      "number": 212,
+      "header": "RAD:MENU:0212",
+      "description": "Scope band 9 edge 4 (22-26 MHz) [0212]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000022000026",
+        "empty_read": false
+      },
+      "sample": "000022000026"
+    },
+    {
+      "number": 213,
+      "header": "RAD:MENU:0213",
+      "description": "Scope band 10 edge 4 (26-30 MHz) [0213]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000026000030",
+        "empty_read": false
+      },
+      "sample": "000026000030"
+    },
+    {
+      "number": 214,
+      "header": "RAD:MENU:0214",
+      "description": "Scope band 11 edge 4 (30-45 MHz) [0214]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000030000045",
+        "empty_read": false
+      },
+      "sample": "000030000045"
+    },
+    {
+      "number": 215,
+      "header": "RAD:MENU:0215",
+      "description": "Scope band 12 edge 4 (45-60 MHz) [0215]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000045000060",
+        "empty_read": false
+      },
+      "sample": "000045000060"
+    },
+    {
+      "number": 216,
+      "header": "RAD:MENU:0216",
+      "description": "Scope band 13 edge 4 (60-74.8 MHz) [0216]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "menu_edge",
+        "size": 1,
+        "minimum": 6,
+        "maximum": 6,
+        "choices": [],
+        "names": [],
+        "example": "000060008074",
+        "empty_read": false
+      },
+      "sample": "000060008074"
+    },
+    {
+      "number": 217,
+      "header": "RAD:MENU:0217",
+      "description": "PTT terminal function [0217]",
+      "access": "rw",
+      "permission": "menu",
+      "codec": {
+        "kind": "number",
+        "size": 1,
+        "minimum": 0,
+        "maximum": 1,
+        "choices": [
+          0,
+          1
+        ],
+        "names": [
+          "OFF",
+          "ON"
+        ],
+        "example": null,
+        "empty_read": false
+      },
+      "sample": "OFF"
+    }
+  ]
+}

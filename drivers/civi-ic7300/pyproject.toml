@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "civi-ic7300"
+version = "0.13.1"
+description = "Experimental Python instrument driver for the CIVI/IC-7300 gateway"
+authors = [{name = "7M4MON"}]
+requires-python = ">=3.11"
+readme = "README.md"
+keywords = ["CIVI Project", "CIVI/IC-7300", "SCPI"]
+
+[project.urls]
+Repository = "https://github.com/7m4mon/civi"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+civi_ic7300 = ["py.typed", "*.md", "*.json"]
+
+[tool.ruff]
+line-length = 79
+target-version = "py311"
+include = ["*.py"]
+
+[tool.ruff.lint]
+select = ["E", "W", "N"]

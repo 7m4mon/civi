@@ -1,0 +1,5786 @@
+{
+  "date": "2026-11-10",
+  "target": "Pi 4 / eth0 / attached display and local keyboard; gateway 0.1.0, client 0.13.1",
+  "claim": "Not LXI conformant or certified",
+  "sources": [
+    {
+      "name": "Device",
+      "url": "https://public.lxistandard.org/specifications/LXI_1.6_Specifications/LXI_Device_Specification_1.6.2_2026-04-02.pdf",
+      "sha256": "97e65b8baf38a8aa9f57eec1c8cf7b0b35b74d33ee63dd046d01e1253775474b"
+    },
+    {
+      "name": "API",
+      "url": "https://public.lxistandard.org/specifications/LXI_1.6_Specifications/LXI_API_Extended_Function_1.1_2025-03-10.pdf",
+      "sha256": "7e9ca8fb33e9af13827ebe25986b79d1e1ea11185da2e4b4054e296c8cd2d8d0"
+    },
+    {
+      "name": "Interpretations",
+      "url": "https://public.lxistandard.org/specifications/LXI_1.6_Specifications/LXI_Interpretations_and_Clarifications_for_LXI_Standard_1.6.1_2025-02-16.pdf",
+      "sha256": "ee68abe3a10500e5ec576603459824259b7c76fa60278ee21d5f5b0c93f3ce19"
+    }
+  ],
+  "device_rule_inventory": {
+    "1.4.1": 10,
+    "1.4.4.2": 14,
+    "1.4.4.2.1": 14,
+    "1.4.5": 14,
+    "1.4.6": 14,
+    "1.4.7": 15,
+    "2.4.5.1": 16,
+    "2.4.5.2": 16,
+    "2.4.5.3": 17,
+    "2.4.9.1": 17,
+    "2.5.1.1": 19,
+    "2.5.2.1": 20,
+    "2.6.1.1": 22,
+    "3.5.1": 24,
+    "3.5.1.3": 25,
+    "3.5.2.1": 27,
+    "3.7": 27,
+    "6.1": 31,
+    "6.1.1": 31,
+    "6.2": 32,
+    "6.3": 34,
+    "6.4": 34,
+    "6.4.2": 34,
+    "6.4.3": 34,
+    "6.4.4": 35,
+    "6.4.4.1": 38,
+    "6.4.4.2": 38,
+    "6.4.5": 38,
+    "6.4.6": 38,
+    "6.5": 39,
+    "6.6": 39,
+    "7.1": 41,
+    "7.1.2": 41,
+    "7.2": 41,
+    "7.3": 42,
+    "7.5": 42,
+    "7.6": 43,
+    "7.7": 43,
+    "8.1": 45,
+    "8.2": 45,
+    "8.3": 45,
+    "8.4": 45,
+    "8.6": 46,
+    "8.6.1": 47,
+    "8.6.3": 47,
+    "8.6.5": 47,
+    "8.6.6": 48,
+    "8.6.7": 48,
+    "8.6.10": 49,
+    "8.7": 50,
+    "8.10": 51,
+    "8.11.1.1": 54,
+    "8.13": 55,
+    "9.1": 57,
+    "9.1.4": 57,
+    "9.1.7": 58,
+    "9.2": 58,
+    "9.2.1": 59,
+    "9.2.3": 59,
+    "9.2.3.2": 60,
+    "9.2.3.3": 61,
+    "9.2.3.5": 61,
+    "9.3": 61,
+    "9.4": 61,
+    "9.5": 62,
+    "9.5.6": 62,
+    "9.5.7": 63,
+    "9.5.8": 63,
+    "9.6": 64,
+    "9.8": 64,
+    "9.9": 64,
+    "9.14": 65,
+    "10.2": 66,
+    "10.2.5": 66,
+    "10.3": 66,
+    "10.3.1": 67,
+    "10.3.1.1": 67,
+    "10.3.3": 67,
+    "10.3.4": 67,
+    "10.4": 67,
+    "10.4.1": 68,
+    "10.4.2": 68,
+    "10.4.2.1": 68,
+    "10.4.2.3": 68,
+    "10.4.3": 68,
+    "10.4.3.1": 69,
+    "10.4.3.2": 69,
+    "10.4.3.3": 69,
+    "10.4.3.4": 70,
+    "10.4.3.6": 70,
+    "10.4.3.7": 70,
+    "10.4.3.8": 70,
+    "10.5": 72,
+    "10.5.1": 72,
+    "10.5.2": 72,
+    "10.6": 72,
+    "10.7": 72,
+    "10.7.1": 73,
+    "10.8": 73,
+    "11.1": 74,
+    "11.2": 74
+  },
+  "deprecated_device_rules": {
+    "6.5.1": 39,
+    "6.5.2": 39,
+    "9.1.1": 57,
+    "10.4.3.11": 71
+  },
+  "code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "e72295220b326b76a6a7974b284c27a308fab5c1387b465294f36278d3196eb6",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "c3124ac9e5a8b617f622f3896ccf950d9566a0b459c1ce27a91f4eadd7bf9885",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "8a77b847bb76c884a733cce4b49613c968324b5260027bbc9d0c5e61a3e39236",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4418d660b0a15ffd02fe51facbefe71fe4abb727f7730e262dd7cbdef9ba2aa4",
+    "civi/pi/lci.py": "2c46db88ac68af2d05755dde2dd425231af9fa589d1ce98eebf014d7c333f4ec",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "6476ff1ed11feff1c994562f2c8edf5a51de2e954a62aa936094be9bbbd8797e",
+    "civi/pi/panel.py": "2a700baf7654f0b408f677d2607e8c0008b6939e9a6a92bfba23adc3551d807e",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/static/indicator.js": "ba27a37b3d2b586a49fa09c1ed16d5aa73bb95bccdd6b48b8024c2109a61f254",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "fa109f49031150297f99548cb91ebd3cfac07142095eb7a36359e8feb057bfba",
+    "tests/test_indicator.py": "2271ec93b0139a9517970a6df6caec4ccecea5aaeef0f01e9805b1e95c341a0c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "6185ad820bc1b8d079d08fb165baf4f39875be87887f67054ca036140dde6079",
+    "tests/test_pi_mdns.py": "d375f33b80353bf04b1315b0652394769939e6c6b1dc48877bc382f594b0f964",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333",
+    "civi/static/network.js": "abbf0626a072fd46dda16b6dfd2ece17736db6f7218c94d645e03bb243879f07",
+    "tests/test_web_api_review.py": "7d0667bd375def52a4bd2862b647f978362878e82545fd4b9e093bf7708ecb50",
+    "civi/static/app.js": "3dcfb05db7f6a3f1361a1eea3a1ed2bd7745e368aaf2bcfc24ebd12bdd79a0f3",
+    "tests/test_web_state_transitions.py": "138feb8c0557beda0405b9736970f613cb7bc194b4170382cb6c0e8a4bcf7bc0",
+    "tests/test_applied_ipv4.py": "880ccd9429e81d2337395d628df671e1709d215c71c664de5a37946ed3d9fd0c",
+    "tools/windows_pktinfo.py": "aed9542236d6fd2e131dc4db73c4eec4d11a370c337f3b9e8e461cf0bdefb472",
+    "tools/windows_dhcp_lab.py": "f411f70120cc42fec5d7998d4e2408f956032819877a6bb4fcc622285274baf6",
+    "tests/test_windows_dhcp_lab.py": "7303d1cc8420105c905671ab3f2982e753becc8ee6a4af15d2e2151d678262b6",
+    "civi/pi/broker.py": "6c1103bafb17ee33d9a684bf84fa7034687f1d9c549a9ed1d16ddfcee203c93e",
+    "tools/mdns_collision_peer.py": "f1cbe59e1b1c07a6576f1bbaf7bd7a17599ba44fe93c76e202138bdd37df9018",
+    "tests/test_mdns_collision_peer.py": "35189f06a5950c2857e7f841553a64d115a0c828b312663121e495f0d54b3501",
+    "tools/pi_mdns_autoip_check.py": "b473faa7fbfa71279e30938285acf9ca99592faec17e8df75075e5cc595091a8",
+    "tools/ivi_receive_acceptance.py": "8611f3ee629a6f84602b2129d1c13823ee2bc123835da6d1969abcbbee5d5012",
+    "tools/ivi_readonly_acceptance.py": "d16306e9dc07107c99726d3f0af270dc84516d7c971545c762a5decd28f55804",
+    "tools/ivi_receiver_settings_acceptance.py": "3b0700a2da0c2a311aa65b1ccb59423c2634c375988f4173d4014c54d1385e50",
+    "drivers/civi-ic7300/src/civi_ic7300/API.md": "0b1f8f0c50f3dd619c642840d1af50b1b366363f7cb2195eefba70b1abe92fef",
+    "drivers/civi-ic7300/src/civi_ic7300/OPERATIONS.md": "9baa5d03b5544aa799035a7c4c26ac8c9e00bc349bc33b7da04e4225f589e678",
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "7cbdf44c37d2de94fbe2c31368abf4a01eaa3487fd568e4549d730e47d3b42dd",
+    "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md": "b9fbf6088a924d4e7f22e48860acd6be8f590cb02e1c65d0517ad63ed07db387",
+    "tools/ivi_tx_inhibit_acceptance.py": "592267e65f877d03132c1293286cc99d473503a40f8da4c87e8981caa3f98932",
+    "civi/backend.py": "8ce5436af88bfa0228f814ddfe059f3c38e6a657b0aa175e8de66faf8e9cef29",
+    "civi/service.py": "d717dad1f59684cb2164292018023102e4cb61200a03f9728b4a4abd9484cf5d",
+    "tests/test_civ.py": "d17d2b939258b14f236676d99074bbad4edfdf38a0722842bb46c2f2a60d0fe0",
+    "tests/test_empty_memory.py": "25b043fb99f0a53d2f839746f76f752a9413f51c214c95c0e02caf81051258bd",
+    "drivers/civi-ic7300/src/civi_ic7300/storage_simulation.py": "8c87be233e231b6955d2c49e205508d17d8357bc28b1267042010353a9ce9840",
+    "tools/ivi_selected_memory_acceptance.py": "714bec4d72a56b8532d65f5594083234a16edf336b4d3cbb147974cd7c79c14c",
+    "tests/test_python_storage.py": "c350d464cbbc4fe397c9fb269939df503f2cb467b2a1f2d5f23a637bdd70559a",
+    "tools/ivi_vfo_copy_acceptance.py": "aed664bfb68377f76378ce813a07d931847e29a6455927e8f96fc0f68ebc2fb0",
+    "tools/ivi_vfo_scan_acceptance.py": "0ec3fe138ff04570a8d9bf8c44b75d164f77ea7f28b07cbb30a820cf350613bf",
+    "tools/ivi_memory_scan_acceptance.py": "2acdfb56214fea43bd5e6e7a5d4fbcf4d9eafb01392933ba8410aa4f7b544630",
+    "tools/ivi_stack_keyer_write_acceptance.py": "e8704c179098639f44067d64f4b549db1de595f4b3a9b99d30ce5df2f47eca20",
+    "tools/ivi_scan_span_acceptance.py": "7ae8dc220b2481d1e55103ec3f2553fbce54908097f815473e9e3a297d6272fc",
+    "tools/ivi_scan_select_acceptance.py": "47f4eb21d755ee73fed67eca3b5c91a85ea049aed94a1d75a7445101350c28d0",
+    "tools/ivi_verification_reconcile.py": "22e5068867f8f89be1abbf36b1b43bb0f6e4942eedba4438f100557468307ec5",
+    "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv": "d1a12b3c1d85434a9e122ac732b935e05f1b51f95b706dc0c90bc249c0962d51",
+    "docs/IVI_MENU_VERIFICATION_2026-11-12.csv": "76a2dc86e329a84d5263dfc457c71cfd8d6759b51ff78eeac6f18627739e6573",
+    "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json": "5e22928331794356503a6d8cd6643c0f73e78415fb62995d2da9581a49b2ca76",
+    "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md": "a69c254de666c0b0eb00d4b2f2936f823edb2563287dc89c028729180dab994e"
+  },
+  "rows": [
+    {
+      "source": "Device",
+      "clause": "1.4.1",
+      "page": 10,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "本表でDevice/API/補足解釈を版固定。認証時の適用版・RFC/IVI参照版の確定が残る。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G12"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.4.2",
+      "page": 14,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "全行の証拠を整理したが総合適合は未達。未採用拡張をコア必須に追加しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G12"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.4.2.1",
+      "page": 14,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "Deviceの残件とIVI従属要件の最終確認が残る。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md"
+      ],
+      "gaps": [
+        "G10",
+        "G12"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.5",
+      "page": 14,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "未適合表示を維持。完了後に資料上の機能宣言を整える。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.6",
+      "page": 14,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "WebにLXI版を宣言していない。完成前に数値を入れない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.7",
+      "page": 15,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "用語/商標表示を最終公開時に点検。ロゴは未使用。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.5.1",
+      "page": 16,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "ローカルLAN RESETの機構と初期化・実機復旧を確認。条項が規定する機構は実装済み。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.5.2",
+      "page": 16,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "付属画面とローカル入力を恒久的な装置構成に固定。LAN非依存のLCI実機証拠あり。この構成以外へ適合判断を広げない。",
+      "evidence": [
+        "docs/RPI_LAN_RESET.md",
+        "docs/RPI_DESKTOP.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.5.3",
+      "page": 17,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "LAN RESET文字列による本体確認を要求する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "docs/RPI_LAN_RESET.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.9.1",
+      "page": 17,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "Pi 4のEthernet/RJ45で通信済み。採用ハードの仕様・電気条件を製品構成へ固定。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ],
+      "gaps": [
+        "G09"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.5.1.1",
+      "page": 19,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "付属本体画面を装置前面表示として固定し、POWER ONを追加。2026-11-11にユーザーが緑色POWER ONとLAN状態の表示を目視受入。",
+      "evidence": [
+        "civi/pi/panel.py",
+        "docs/RPI_PANEL.md",
+        "docs/LXI_DEVICE_CONFIGURATION.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "2.5.2.1",
+      "page": 20,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "本体パネルを必須構成に固定。Normal/Fault/Identifyを実機確認。RJ45のリンクLEDとは区別。",
+      "evidence": [
+        "civi/indicator.py",
+        "docs/RPI_PANEL_2026-11-07.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "2.6.1.1",
+      "page": 22,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "本体ロゴなし。使用許諾/認証経路確定後に電子表示等を整える。",
+      "evidence": [
+        "civi/pi/panel.py"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "3.5.1",
+      "page": 24,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントによる実行機構なし。通常のSCPI設定はLXI Eventではない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "3.5.1.3",
+      "page": 25,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントで起動する測定機能なし。イベント応答時間仕様は対象外。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "3.5.2.1",
+      "page": 27,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント送出/トリガー出力を実装しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "3.7",
+      "page": 27,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントの生成/処理なし。通常の通信ログとは区別。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.1.1",
+      "page": 31,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "IviLxiSyncを要する同期/イベント拡張なし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.3",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント/有線トリガー入力のSource APIなし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント用Arm/Trigger機構なし。無線機のスキャンとは区別。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.2",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント/有線トリガーへのルーティングなし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.3",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントパケットを送出しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.4",
+      "page": 35,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント信号名を実装しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.4.1",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "Arm/Trigger信号を公開しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.4.2",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "対応イベント信号なしと本表に明記。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.5",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXI予約イベント名をベンダー信号に使用しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.6",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント宛先パスを使用しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.5",
+      "page": 39,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "IEEE 1588時刻/タイムスタンプ/アラームをAPI公開しない。無線機の時計設定とは別。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.6",
+      "page": 39,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントのドメイン機能なし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.1",
+      "page": 31,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "Python 0.13.1で実機Core/受信40チェック、受信設定16項目65チェック、216メニュー含む290成功読取を追加。MAIN1.41未対応の16 66とAM依存、NR/PBT丸めを区別。全API規定検証・正式名/登録は未完了。 MAIN1.42への更新後、16 66のON/OFF読戻し・不正型・復元の5項目を追加確認。他APIの1.41証拠とは区別。 2026-11-12: 352行を全件照合し、根拠未対応204行を分類した。旧SCPI189メニュー書込みと現行typed経路、getter/setter、ローカル処理を区別。未分類0は全試験完了ではなく、追加試験IDを確定した。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md",
+        "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
+        "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv",
+        "docs/IVI_TX_INHIBIT_2026-11-11.md",
+        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
+        "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
+      ],
+      "gaps": [
+        "G01",
+        "G10"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "6.2",
+      "page": 32,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "0.13.1で位置指定を修正。導入済みWindowsドライバーからINSTR/省略形/HiSLIP位置指定で実Pi・IC-7300を読取。通信はraw TCP。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/driver.py",
+        "tests/test_python_driver.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.1",
+      "page": 41,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "実Piで100/1000 Mb/s通信を確認。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.1.2",
+      "page": 41,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "物理100Mbps Full/HalfでSCPI/証明書検証HTTPSを確認し、1000Mbps Full自動交渉へ復元。10Mbps全条件の実測は主張しない。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.2",
+      "page": 41,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "対象有線MACを本体/Webに表示。公開写真のマスクは実機表示と別。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/RPI_PANEL_2026-11-07.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.3",
+      "page": 42,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "リンク切断/復帰と固定IP復帰を実機確認。再接続時の重複チェックは経路別に追試。",
+      "evidence": [
+        "civi/indicator.py",
+        "docs/RPI_UNPLUGGED_BOOT_2026-11-08.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "7.5",
+      "page": 42,
+      "scope": "Auto-MDIX非対応の場合",
+      "state": "適用外",
+      "finding": "標準Pi 4/BCM54213PEの製品情報にあるMDIクロス配線の検出・補正をAuto-MDIX対応の根拠とする。非対応機向けの物理ラベルは当該構成では不要。新たなケーブル実測を主張せず、別NIC採用時は再評価。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md",
+        "docs/LXI_DEVICE_CONFIGURATION.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.6",
+      "page": 43,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "見出しRULEだが本文should。保存値と再起動後の自動交渉onを実機確認。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.7",
+      "page": 43,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Piへ反映。実識別XMLはeth0だけ。4サービスを有線で新規取得しWLANでは未取得、WLANのIP管理HTTPSは維持。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/network.py",
+        "config.pi.example.toml",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.1",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Linux TCP/UDP/IPv4を利用。実機HTTPS/SCPI/mDNS通信証拠あり。",
+      "evidence": [
+        "civi/__main__.py",
+        "docs/RPI_AUTOIP_TCP_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.2",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "有線/WLANのPing応答を確認。",
+      "evidence": [
+        "civi/pi/ping.py",
+        "docs/RPI_PING.md",
+        "tests/test_ping_control.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.3",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "既定有効とLCI再有効化を実装・確認。",
+      "evidence": [
+        "civi/pi/ping.py",
+        "docs/RPI_PING.md",
+        "tests/test_ping_control.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.4",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Web無効化/保存/再起動保持/復帰を実機確認。",
+      "evidence": [
+        "civi/pi/ping.py",
+        "docs/RPI_PING.md",
+        "tests/test_ping_control.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.6",
+      "page": 46,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "DHCP確定保存後の実Pi再起動・新起動ID/ACK/アドレス取得を追加確認。固定IPからのLCIでも新規取得。リンク再接続/物理重複/特殊オプション等は継続。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.1",
+      "page": 47,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Automatic(DHCP+AutoIP)とManualを提供。物理/隔離Piの取得・保存・再起動・LCI記録あり。全組合せを合格と主張しない。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.3",
+      "page": 47,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "使用するIP設定パラメーター1/3/6を実eth0の要求リストで確認。OSの全任意オプションの網羅試験を追加必須にはしない。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.5",
+      "page": 47,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "gateway/DNS省略の実ACKでも取得・Normal、異なるhostname optionでシステム名維持を確認。追加オプションに動作を依存させない。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.6",
+      "page": 48,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "実eth0でリース失効時のアドレス/gateway/DNS破棄、AutoIP移行とFault保持を確認。本体表示の共通ロジックは試験済み。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.7",
+      "page": 48,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "実eth0の自然更新ACKでgateway/DNS変更と実効OS設定への反映を確認。保存/再起動は別の既存記録で確認。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.10",
+      "page": 49,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "AutoIPと固定アドレスPC間の実TCP往復を確認。RFC3927 2.6.2の送信元/ARP/転送全条件は未完。",
+      "evidence": [
+        "civi/pi/linklocal.py",
+        "docs/RPI_AUTOIP_TCP_2026-11-08.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.7",
+      "page": 50,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "隔離Piの実NetworkManager/ARP/DHCPで開始前重複拒否、使用中切断とFaultを確認。物理NICの全経路組合せは追加信頼性試験として区別。",
+      "evidence": [
+        "civi/pi/conflict.py",
+        "docs/RPI_CONFLICT.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.10",
+      "page": 51,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "DHCP失効後のFault保持と新リースのNormal復帰を実eth0で確認。本体状態遷移とFault優先は共通ロジック・既存実機記録で確認。",
+      "evidence": [
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.11.1.1",
+      "page": 54,
+      "scope": "DDNS無効化を提供する場合",
+      "state": "適用外",
+      "finding": "RFC2136 DDNS UpdateとユーザーDDNS制御は採用しない。mDNS制御と区別。OSのDHCP hostname/server-side登録はCIVI DDNS機能とは宣言しない。採用時に再評価。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/LXI_DEVICE_CONFIGURATION.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13",
+      "page": 55,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "固定IP→ローカルLCIでDHCP新規取得、復旧世代更新、稼働中の認証/発見設定反映を確認。既にDHCPのLCIでは有効リースを継続。DDNS採用範囲等は継続。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05",
+        "G07"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.1",
+      "page": 57,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "HTTP1.1/TLS1.2/1.3を実機確認。HTML5構文確認済み。WindowsとスマホChromeの表示はユーザー確認済み。各ブラウザーの設定操作/異常状態確認は残る。 未接続/隔離/状態取得失敗/復帰、LAN試行期限切れとhelper停止時を実JS・模擬HTTPで追加確認。実ブラウザーの異常状態表示と完成構成での判定は残る。 更新後の切断時受信値消去とLAN確定の期限切れ/状態取得失敗時の無効化はユーザー実機確認済み。",
+      "evidence": [
+        "civi/server.py",
+        "docs/RPI_HTTPS_2026-11-07.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py",
+        "docs/WEB_STATES_2026-11-10.md",
+        "tests/test_web_state_transitions.py"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.1.4",
+      "page": 57,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Pi既定443。実Piで443/8443を確認。Windows8443構成は本表のLXI装置対象外。",
+      "evidence": [
+        "config.pi.example.toml",
+        "docs/RPI_HTTPS_2026-11-07.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.1.7",
+      "page": 58,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "/lxiと/lxi/を公開。",
+      "evidence": [
+        "tests/test_lxi.py",
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2",
+      "page": 58,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "NIC宣言のコード差異は修正。識別/版/アドレスは表示するがLXI版はNot claimedで、正式宣言が残る。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G04"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.1",
+      "page": 59,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "表示SOCKETアドレスにboard番号を付けない。",
+      "evidence": [
+        "tests/test_lxi.py",
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3",
+      "page": 59,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Hostname欄は有効・成功した広告済みmDNS名だけを表示。広告なし/無効/失敗時は対象NICのIPv4またはNot assigned。OS設定名を別欄とし、模擬Webで全条件を確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3.2",
+      "page": 60,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "mDNS停止/失敗/未登録時はHostname欄を対象NICのIP代替とし、未検証のOS名を実ホスト名として出さない。模擬応答確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3.3",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "取得mDNS名は.local.形式で表示し、実Avahi/Webで確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3.5",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Descriptionは取得済みサービス名を優先して表示。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.3",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "認証付きWeb Start/Stopと本体の継続Identifyを実機確認。",
+      "evidence": [
+        "tests/test_indicator.py",
+        "docs/RPI_PANEL_2026-11-07.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.4",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "WelcomeからLAN設定へのリンクあり。同期機能を採用しないのでSyncリンクは不要。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5",
+      "page": 62,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "hostname/description/mode/IP/prefix/gateway/DNSの入力あり。prefixがsubnet maskに対応する説明と全保存条件を確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05",
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5.6",
+      "page": 62,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "mDNSのWeb停止/復帰と保持を実Piで確認。",
+      "evidence": [
+        "docs/RPI_MDNS.md",
+        "tests/test_pi_mdns.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5.7",
+      "page": 63,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "空白hostnameの既定値復帰を本番Webでユーザー確認。",
+      "evidence": [
+        "docs/LXI_DEFAULTS_API.md",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5.8",
+      "page": 63,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "空白Descriptionの既定値復帰を本番Webでユーザー確認。",
+      "evidence": [
+        "docs/LXI_DEFAULTS_API.md",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.6",
+      "page": 64,
+      "scope": "同期/イベント拡張を採用した場合",
+      "state": "適用外",
+      "finding": "Clock/Event/Wired Triggerを実装しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.8",
+      "page": 64,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "全15 POST経路で未認証/不正認証/CSRFヘッダー欠落/異Origin/変更前パスワードを拒否する試験を追加。既存の受理/保存試験と併用。侵入試験や完全なセキュリティ評価ではない。",
+      "evidence": [
+        "civi/server.py",
+        "civi/auth.py",
+        "tests/test_password.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.9",
+      "page": 64,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "必須Webのロゴなし。未認証のため意図的に掲載しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.14",
+      "page": 65,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "独自JSONは/api/以下。/lxi以下の実ルートはWelcome/識別/規定XSDに限定。",
+      "evidence": [
+        "civi/server.py",
+        "civi/lxi_api.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.2",
+      "page": 66,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "識別GETとXSD/エラーあり。参照APIの版宣言不足・共通動作を下表へ分解。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/lxi_api.py",
+        "docs/LXI_DEFAULTS_API.md"
+      ],
+      "gaps": [
+        "G04",
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.2.5",
+      "page": 66,
+      "scope": "拡張機能を実装した場合",
+      "state": "適用外",
+      "finding": "採用拡張なし。未実装拡張のFunctionを宣言しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.3",
+      "page": 66,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "PiではAvahiを使用し実広告/応答を確認。RFC6762/6763全条件の証拠ではない。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.1",
+      "page": 67,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "物理eth0で名前衝突回避・Web/XML/広告整合、再接続での3回の再プローブを確認。Avahiへの委譲範囲を維持。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md",
+        "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.1.1",
+      "page": 67,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "物理名前衝突で番号付きホスト名を取得し、相手停止後のPi全体再起動でも保存名を再利用。",
+      "evidence": [
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.3",
+      "page": 67,
+      "scope": "DDNS Updateを提供する場合",
+      "state": "適用外",
+      "finding": "RFC2136 DDNS UpdateとユーザーDDNS制御は採用しない。mDNS制御と区別。OSのDHCP hostname/server-side登録はCIVI DDNS機能とは宣言しない。採用時に再評価。",
+      "evidence": [
+        "civi/pi/network.py",
+        "civi/pi/discovery.py",
+        "docs/LXI_DEVICE_CONFIGURATION.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.4",
+      "page": 67,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "実eth0 DHCPで別hostname optionを返してもシステム/ユーザー名を維持することを確認済み。初回表の未試験記述を訂正。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4",
+      "page": 67,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "Avahiで発見とSRV接続先を実試験。相互接続/パケットの全条件は未確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.1",
+      "page": 68,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "物理共通サービス名衝突と再接続プローブ/広告を確認。固定100候補制限を除去し、110連続衝突の模擬試験も成功。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/discovery_state.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md",
+        "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.2",
+      "page": 68,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "HTTP/LXI/raw/HTTPSを同一取得名で広告。物理衝突後とPi全体再起動後も4サービスのSRV/IP/ポートを確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.2.1",
+      "page": 68,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "本番Webで64byte ASCII→63byte保存と4サービス再広告を確認し復元。UTF-8境界はPi模擬試験で確認。",
+      "evidence": [
+        "civi/network.py",
+        "tests/test_lxi.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.2.3",
+      "page": 68,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "候補を逐次生成して衝突時に待機・継続。110衝突後(111)で4サービス登録と保存を確認。恒久衝突時の取消と資源解放も試験。",
+      "evidence": [
+        "civi/discovery_state.py",
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3",
+      "page": 68,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "HTTP/LXIの必須サービスとTXTを実装。NIC対象と全TXT境界を確認する。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "tests/test_lxi.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.1",
+      "page": 69,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "各サービスへTXTリストを渡す。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.2",
+      "page": 69,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "key=valueをUTF-8へ変換、255byte超過は広告前拒否。",
+      "evidence": [
+        "civi/pi/discovery.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.3",
+      "page": 69,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "送信キーは固定ASCII。受信キーを独自大小文字比較する機構なし。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.4",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "値をUTF-8 bytesへ変換。ASCII識別値も同じ経路。",
+      "evidence": [
+        "civi/pi/discovery.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.6",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "txtversを先頭に生成。",
+      "evidence": [
+        "tests/test_lxi.py",
+        "civi/pi/discovery.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.7",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "独自LXI接頭辞キーを出していない。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.8",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "必須/推奨サービスには標準キーだけを使用、独自キーなし。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.5",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "既定有効。無効保存値は利用者設定であり出荷既定とは分離。",
+      "evidence": [
+        "config.pi.example.toml",
+        "docs/RPI_MDNS.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.5.1",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "本体LCIで装置全体のAvahiを有効化。",
+      "evidence": [
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_MDNS.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.5.2",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "装置全体停止/ソケット起動抑止/再起動保持/復帰を実機確認。",
+      "evidence": [
+        "docs/RPI_MDNS.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.6",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Pi標準NSS/socketの.local正引きと169.254 PTR逆引きを有線で確認。実AutoIP割当相手でも隔離Piで正引き・逆引き・TCPを確認。物理AutoIP2台は追加試験。",
+      "evidence": [
+        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/RPI_MDNS_RESOLVER_2026-11-11.md",
+        "docs/RPI_MDNS_AUTOIP_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.7",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "希望名/取得名を保存。物理衝突後、相手を停止してPi全体再起動し取得名再利用を確認。元のキャッシュ・設定・認証・固定IPへ復元。",
+      "evidence": [
+        "civi/discovery_state.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.7.1",
+      "page": 73,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "LCI世代更新で取得名を破棄し最終利用者名/既定値に戻す。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "tests/test_pi_lci.py",
+        "tests/test_discovery_names.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.8",
+      "page": 73,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "同一固定IPの物理再接続でホスト名/4サービスを各3回再プローブ後に再広告。新規DNS-SD/HTTPS/SCPIも確認。",
+      "evidence": [
+        "civi/network.py",
+        "civi/pi/discovery.py",
+        "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "11.1",
+      "page": 74,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "実機条件・操作別の証拠を追加し110行へ対応付け。MAIN1.41の制約と丸め、復元結果、wheel導入確認を文書化。全APIの規定検証と最終適合文書は未完了。 2026-11-12: 352行を全件照合し、根拠未対応204行を分類した。旧SCPI189メニュー書込みと現行typed経路、getter/setter、ローカル処理を区別。未分類0は全試験完了ではなく、追加試験IDを確定した。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md",
+        "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
+        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
+        "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
+      ],
+      "gaps": [
+        "G10"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "11.2",
+      "page": 74,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "IVIドライバーDB未登録。NLの略号照会/登録だけでは本要件を満たさない。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/NAMING.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md"
+      ],
+      "gaps": [
+        "G10"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "6.5.1",
+      "page": 39,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.5.2",
+      "page": 39,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.1.1",
+      "page": 57,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.11",
+      "page": 71,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.8.1",
+      "page": 64,
+      "scope": "撤回済Permissionの禁止事項",
+      "state": "実装確認",
+      "finding": "空パスワードを許可しない。旧Permissionは撤回済み。",
+      "evidence": [
+        "civi/auth.py",
+        "tests/test_password.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.9/legal-name",
+      "page": 51,
+      "scope": "本文の必須文",
+      "state": "実装確認",
+      "finding": "推奨節内のshallも追跡。共通既定名はDNSラベルとして検証。",
+      "evidence": [
+        "civi/pi/network.py",
+        "civi/defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Interpretations",
+      "clause": "8.14",
+      "page": 6,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "公式補足解釈で追加。IPv4 SCPI SOCKETによる制御を提供。",
+      "evidence": [
+        "civi/server.py",
+        "docs/RPI_AUTOIP_TCP_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.5",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "GET識別とエラーの意味的要件を本表へ取り込み。全Security/API実装を要求する解釈にはしない。",
+      "evidence": [
+        "docs/LXI_DEFAULTS_API.md"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.5.1",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "識別XSDは現行公式と一致。ProblemDetailsも編集日を現行へ同期。版/配布出典の確認と記録を継続。",
+      "evidence": [
+        "civi/schemas/InstrumentIdentification-2.0.xsd",
+        "civi/schemas/LXIProblemDetails-1.0.xsd"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.6",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "WebでLXI APIを独立した拡張として列挙していない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.7",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "XMLでLXI API Functionを宣言しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1/public-get",
+      "page": 11,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "GET識別は認証不要。HTTP平文を別途提供する義務とはしない。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1.1",
+      "page": 11,
+      "scope": "保護されたLXI APIを提供した場合",
+      "state": "適用外",
+      "finding": "識別だけでAPI Key機構をコア必須とはしない。保護された/lxi/apiエンドポイントは未採用。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1.2",
+      "page": 11,
+      "scope": "保護されたLXI APIを提供した場合",
+      "state": "適用外",
+      "finding": "LXI-API realmは保護API採用時。独自/apiのCIVI realmを直ちに違反としない。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1.3",
+      "page": 12,
+      "scope": "LXI Security設定変更を提供した場合",
+      "state": "適用外",
+      "finding": "LXI Security設定変更APIなし。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.2",
+      "page": 12,
+      "scope": "追加LXI API認可を提供した場合",
+      "state": "適用外",
+      "finding": "独自のLXI API認可方式は追加しない。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.3",
+      "page": 12,
+      "scope": "証明書/CSR管理APIを提供した場合",
+      "state": "適用外",
+      "finding": "証明書/CSRをGUID管理するAPIなし。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.1",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "既存XSD適合試験あり。XSD通過と必須意味要件は別で、LXIVersionが未達。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": [
+        "G04",
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.2",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別text/xml、schema/ProblemDetails application/xml、405 Allow、GET/HEADの内容と長さ、no-storeを確認。認証/HTTP例外/ProblemDetailsにも共通保護ヘッダーを統一。",
+      "evidence": [
+        "civi/server.py",
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.3",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "Gateway識別はradio各状態でも完全な読取を200で返し、shutdownは503。未識別child404、既知だが切断child503。同期GETは202を返さない。完成装置のnormal operation境界の最終判定は継続。 未接続/隔離/状態取得失敗/復帰、LAN試行期限切れとhelper停止時を実JS・模擬HTTPで追加確認。実ブラウザーの異常状態表示と完成構成での判定は残る。",
+      "evidence": [
+        "civi/server.py",
+        "docs/LXI_DEFAULTS_API.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py",
+        "docs/WEB_STATES_2026-11-10.md",
+        "tests/test_web_state_transitions.py"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.4",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "規定資源のエラーをProblemDetails application/xmlにする。",
+      "evidence": [
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.5",
+      "page": 14,
+      "scope": "LXI APIで202/保留操作を返す場合",
+      "state": "適用外",
+      "finding": "識別GETは同期読み取りで202を返さずユーザー操作を要求しない。独自IPv4試行APIは別。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.5.1",
+      "page": 14,
+      "scope": "LXI APIで202/保留操作を返す場合",
+      "state": "適用外",
+      "finding": "識別GETは同期読み取りで202を返さずユーザー操作を要求しない。独自IPv4試行APIは別。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.5.2",
+      "page": 14,
+      "scope": "LXI APIで202/保留操作を返す場合",
+      "state": "適用外",
+      "finding": "識別GETは同期読み取りで202を返さずユーザー操作を要求しない。独自IPv4試行APIは別。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.6.1",
+      "page": 16,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別専用の互換XSD経路も保持。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.6.2",
+      "page": 16,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "提供schema名/版をURLへ含める。",
+      "evidence": [
+        "civi/server.py",
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.6.3",
+      "page": 16,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別とProblemDetailsの規定XSD経路を提供し取得試験あり。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.7",
+      "page": 17,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "認証不要GET、text/xml、旧XSD aliasを試験。全識別内容は別行。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1/identity",
+      "page": 23,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "Manufacturer/Model/SerialNumber/FirmwareRevisionを順序どおり出力しXSD試験。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1-1",
+      "page": 24,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "対象有線InterfaceだけをLXIとして出力。アドレス未取得でもInterfaceを保持。lo/WLANをLXI宣言しない。XSD試験済み。 本番PiのXMLでもeth0だけであることを確認済み。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1-2",
+      "page": 25,
+      "scope": "LXI Event Messagingを実装した場合",
+      "state": "適用外",
+      "finding": "LXI Event Messaging未採用、Domain不要。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1-3",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "未達",
+      "finding": "LXIVersionは意図的に省略。接続無線機には不要でも親ゲートウェイには必要。適合前には宣言しない。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": [
+        "G04"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.11.2-1",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別済み無線機のbaseURLをConnectedDevicesへ出力。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.2.1-1",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "baseURL/lxi/identificationを提供。未識別時404、識別後200を試験。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.2.1-2",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "子のschemaLocationに装置上の絶対XSD URLを含める。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.3.1-1",
+      "page": 27,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "InterfaceType=LXIを対象有線NICだけに限定し、複数NIC模擬入力で確認。 本番PiのXMLでもeth0だけであることを確認済み。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.3.2",
+      "page": 27,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "採用したIPv4項目の順序/表現をXSD試験。省略可能な項目を必須不足とはしない。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.5.1",
+      "page": 29,
+      "scope": "任意Extensionを採用した場合",
+      "state": "適用外",
+      "finding": "Extensionを出力しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.6.1",
+      "page": 29,
+      "scope": "任意拡張を採用した場合",
+      "state": "適用外",
+      "finding": "拡張を宣言しない。将来採用時は各拡張のFunction形式が必要。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.7",
+      "page": 29,
+      "scope": "Subinstrumentsを提供した場合",
+      "state": "適用外",
+      "finding": "サブ機器の別制御チャネルを宣言しない。無線機はConnectedDevicesとして扱う。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.18-1",
+      "page": 77,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "40x応答をProblemDetailsに変換、405/404をXSD検証。",
+      "evidence": [
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.18.1.1-1",
+      "page": 77,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "Titleを必ず出力する。",
+      "evidence": [
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.19-1",
+      "page": 77,
+      "scope": "保留応答を返す場合",
+      "state": "適用外",
+      "finding": "識別GETで202を返さないのでPending XML不要。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/dhcp",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "固定IP→ローカルLCIでsaved auto、手動IP除去、新規DHCP ACKと192.168.73.3取得を実機確認。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/autoip",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "AutoIPを有効化する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/ping",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Pingを再有効化する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/password",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "ローカル表示の復旧用パスワードへの切替とライブ反映世代を確認。Pi内だけで保護Web GET認証200を確認。パスワードは収集/出力しない。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/mdns",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "mDNS/DNS-SDを再有効化する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/ddns",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "適用外",
+      "finding": "RFC2136 DDNS UpdateとユーザーDDNS制御は採用しない。mDNS制御と区別。OSのDHCP hostname/server-side登録はCIVI DDNS機能とは宣言しない。採用時に再評価。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/LXI_DEVICE_CONFIGURATION.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/activation",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "実行中CIVIでローカルLCIの新世代反映とDHCP取得/Normalを確認。全初期化経路の残条件はG05で継続。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/documentation",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "LCIの変更項目と復旧認証をローカル文書に記載。",
+      "evidence": [
+        "docs/RPI_LAN_RESET.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.10/initial-autoip",
+      "page": 51,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "初回DHCP不在からAutoIP取得時はNormalを単体/実機で確認。",
+      "evidence": [
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.10/expired-autoip",
+      "page": 52,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "実eth0の期限切れ→AutoIP/Fault保持→新リース/Normalを確認。固定IPロールバックでもNormalに復帰。起動/LCI等の解除経路と本体目視の残条件は継続。",
+      "evidence": [
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/model",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/manufacturer",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/serial",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/description",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/software",
+      "page": 59,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/visa",
+      "page": 59,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/lxi-version",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "未達",
+      "finding": "未適合表示を維持し、最終適合判定後に正しい版を宣言。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G04"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/extensions",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "未採用拡張を宣言しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/hostname",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "mDNS FQDN/IP代替とOS情報の表示上の役割を最終確認。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/mac-ip",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Piの対象有線NICをLXI扱い、他NICは管理用として明記。IP未割当の対象NICもWebに表示。 本番PiのXMLでもeth0だけであることを確認済み。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/hostname",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/description",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/mode",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "実eth0でDHCPモードを確定保存し、Pi本体再起動後の保存auto・DHCP取得を確認。元の保存static設定にも一致するよう復元。初期起動時のstaticと合わせ保存モード保持を確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/address",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/gateway",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/dns",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/subnet",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "prefix変更/読取時に対応subnet maskを表示。/1,/16,/24,/31,/32と不正入力を実JSで確認。物理NICの保存/再起動保持はG05に継続。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.8/nonblank",
+      "page": 64,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "撤回された空パスワード許可を使用しない。",
+      "evidence": [
+        "civi/auth.py",
+        "tests/test_password.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3/required",
+      "page": 69,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "HTTP/LXI TXT識別4項目と*IDN?の対応あり。未接続/接続後の更新も含め最終ワイヤ確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3/recommended-raw",
+      "page": 70,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "採用したraw広告も同じ識別TXTを使用し、古いAddressキーを出力しない。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.10/identify-fault",
+      "page": 52,
+      "scope": "親条項の状態遷移図",
+      "state": "実装確認",
+      "finding": "実PiでIdentify中に有線を抜きFault優先・Identify解除・本体ACKを確認。再接続でNormal/Identify OFF、利用者の再開始/停止も確認。DHCP失効等は別行。",
+      "evidence": [
+        "civi/pi/panel.py",
+        "civi/indicator.py",
+        "civi/static/indicator.js",
+        "tests/test_indicator.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    }
+  ],
+  "local_probes": {
+    "resource_names": {
+      "TCPIP::192.0.2.1::5025::SOCKET": {
+        "parsed": [
+          "192.0.2.1",
+          5025
+        ]
+      },
+      "TCPIP1::192.0.2.1::5025::SOCKET": {
+        "error": "ValueError"
+      },
+      "TCPIP::192.0.2.1::INSTR": {
+        "error": "ValueError"
+      },
+      "TCPIP::192.0.2.1": {
+        "error": "ValueError"
+      },
+      "TCPIP::192.0.2.1::hislip0::INSTR": {
+        "error": "ValueError"
+      }
+    },
+    "description": {
+      "64": "ValueError",
+      "66": "ValueError"
+    },
+    "xml_interfaces": [
+      {
+        "InterfaceType": "LXI",
+        "InterfaceName": "lo",
+        "IPType": "IPv4"
+      },
+      {
+        "InterfaceType": "LXI",
+        "InterfaceName": "eth0",
+        "IPType": "IPv4"
+      },
+      {
+        "InterfaceType": "LXI",
+        "InterfaceName": "wlan0",
+        "IPType": "IPv4"
+      }
+    ],
+    "fault_while_identifying": {
+      "banner": {
+        "bg": "#216542",
+        "text": "IDENTIFY — THIS CIVI DEVICE"
+      },
+      "notice": {
+        "text": "LAN cable disconnected"
+      },
+      "showing_identify": true,
+      "internal_state": "fault"
+    }
+  },
+  "verification": {
+    "focused_pytest": "29 passed, 1 Linux-only skip in 1.60s",
+    "physical_operations": false,
+    "device_pdf_headings_checked": 101,
+    "deprecated_headings_checked": 4,
+    "schema_review": {
+      "InstrumentIdentification/2.0": "byte-identical to current official XSD",
+      "LXIProblemDetails/1.0": "editorialdate synchronized with official XSD; no type/element change"
+    },
+    "fix_tests": "522 passed, 1 Linux-only skip in 32.64s"
+  },
+  "initial_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "38aba7a6fd172f7d629823b99ab233b7c123a7d3e801f40eb5b837a23db401a5",
+    "civi/identification.py": "0ec1b59baed00e60063ab095859b159369f92a00f1246d8e7fc8226f0feab8b6",
+    "civi/indicator.py": "ae194466f2773a6fcdd964e8d31b8d47f2751450054513af9009b368a6b7d607",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "9cff946051ab8e2458728412fed5b9adc9bd1be64829662344661f5105beb75c",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "0088efa24f0d0d79af09743513e675c591549df42a96ba7f2d1321308ff9ad07",
+    "civi/pi/lci.py": "388d9bb3257618dc9dd115bff6eb7eba96a61822510b288aea29fd7c528d060d",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "cf6d7e155aee1193b6aca1234ac6427acf0d0e6a3c63d740d5b00a410a2695f1",
+    "civi/pi/panel.py": "b29a2a603fefd1e42e59d954570ea100d0813011eb634145159e2e223533de59",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "9319d0244aa771d0f3100022b870956eb8de518f20aecae6dee86ae262f2a266",
+    "civi/server.py": "faf7af8aebb8ba36e865ed3e1c8ac5ffb2950c11cde9c3c7bd3f99572e53a2d0",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "2b34ec4a4c035b4da9e78ac5997c2d4d624fa24412c2bdd6dac463a5c2333f69",
+    "tests/test_discovery_names.py": "4c6049d900046de6f542044b909dccfeee2e6c1b409c070cbdc6f1d9ccd11497",
+    "tests/test_indicator.py": "50e3977c959cac34a85b702efd459bc7b650886594ce9793538d741d2a39e9c3",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "c87d9eb21460921fe3ce7d77035d78a6edc7f4065a90081cb3c9caef2d01e1ed",
+    "tests/test_pi_mdns.py": "546621c10fb5c6e3eb055b35716d7d0c464d056b2f74716851295f59e9b9d4d4",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "3c27c106c1ef471f5c9f00bf4b5a0e266c91bf29bf17348884ee4f26f739348c",
+    "civi/static/indicator.js": "de3770155e47041c207d363461f8b644699500a5332d4cd26e14933a20662d32"
+  },
+  "fix_followup": {
+    "date": "2026-11-10",
+    "client_version": "0.13.1",
+    "report": "docs/LXI_FIXES_2026-11-10.md",
+    "physical_deployment": true,
+    "tests": "522 passed, 1 Linux-only skip in 32.64s",
+    "new_regressions": 37
+  },
+  "initial_findings": {
+    "Device:6.2": {
+      "state": "未達",
+      "finding": "SOCKETのTCPIP/TCPIP0のみ受付。board=1、INSTR、省略形、HiSLIP指定の位置情報を拒否する。プロトコル実装追加とは別問題。",
+      "gaps": [
+        "G01"
+      ],
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/driver.py",
+        "tests/test_python_driver.py"
+      ]
+    },
+    "Device:7.7": {
+      "state": "未達",
+      "finding": "設計はeth0対象だがXMLはlo/wlan0を含む全IPv4 NICをInterfaceType=LXIとする。広告/表示/設定の対象を統一する。",
+      "gaps": [
+        "G03"
+      ],
+      "evidence": [
+        "civi/identification.py",
+        "civi/network.py",
+        "config.pi.example.toml"
+      ]
+    },
+    "Device:10.4.2.1": {
+      "state": "未達",
+      "finding": "64byte ASCII/66byte UTF-8は切り詰めずValueError。Web/APIでUTF-8境界を守って先頭63byteを採用する処理が必要。",
+      "gaps": [
+        "G02"
+      ],
+      "evidence": [
+        "civi/network.py",
+        "tests/test_lxi.py"
+      ]
+    },
+    "API:23.11.1.1-1": {
+      "state": "未達",
+      "finding": "LXI Interface自体は出力するがlo/wlan0までLXI扱い。対象eth0に対する意味的正しさを修正する。",
+      "gaps": [
+        "G03"
+      ],
+      "evidence": [
+        "civi/identification.py"
+      ]
+    },
+    "API:23.11.3.1-1": {
+      "state": "未達",
+      "finding": "InterfaceType=LXI属性の対象が構成範囲と不一致。",
+      "gaps": [
+        "G03"
+      ],
+      "evidence": [
+        "civi/identification.py"
+      ]
+    },
+    "Device:9.2/mac-ip": {
+      "state": "未達",
+      "finding": "個々の値は表示されるがLXI対象NICの範囲を修正する。",
+      "gaps": [
+        "G03"
+      ],
+      "evidence": [
+        "civi/identification.py"
+      ]
+    },
+    "Device:8.10/identify-fault": {
+      "state": "未達",
+      "finding": "内部FaultでもIdentify中は主バナーを緑点滅に上書きする。障害時の表示/状態遷移の優先順位を修正・検証する。",
+      "gaps": [
+        "G05"
+      ],
+      "evidence": [
+        "civi/pi/panel.py",
+        "civi/indicator.py",
+        "civi/static/indicator.js",
+        "tests/test_indicator.py"
+      ]
+    }
+  },
+  "physical_followup": {
+    "report": "docs/RPI_LXI_FIXES_2026-11-10.md",
+    "date": "2026-11-10",
+    "pi_python": "3.13.5",
+    "pi_mock_tests": "72 passed, 1 Node-only skip in 2.65s",
+    "deployed": true,
+    "radio_mutations": false,
+    "restored": true
+  },
+  "pre_web_review_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "38aba7a6fd172f7d629823b99ab233b7c123a7d3e801f40eb5b837a23db401a5",
+    "civi/identification.py": "d092a0d7accacedc466bacdc0fecca2e3820d39c000169eef7477bd0c91787e2",
+    "civi/indicator.py": "bf9e2b54fd4483153231ebf1dd096e6f30795b6c2814f64258e21af01d5bea3f",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "d23df66d829b703ecc2ce6faf30b25cda8f01c0f318ca8834f831e3884c99128",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4d342da76610d68e2b9a4b7deb4ff18dd604cea5577a79f1c1ac761faef29c99",
+    "civi/pi/lci.py": "388d9bb3257618dc9dd115bff6eb7eba96a61822510b288aea29fd7c528d060d",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "cf6d7e155aee1193b6aca1234ac6427acf0d0e6a3c63d740d5b00a410a2695f1",
+    "civi/pi/panel.py": "6147b5f7d43aaa4efa409c9222f790a9f83636f6ea02783d266f3e7d0772b6a6",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "faf7af8aebb8ba36e865ed3e1c8ac5ffb2950c11cde9c3c7bd3f99572e53a2d0",
+    "civi/static/indicator.js": "704e0d51d356ee4cfb0ed4a38a5100d1e1cce5c0a3696649f2a406ca6a07e464",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "18686975e4242ba613a77bd373c284a1e81b25050a25e321a2ff365c60c5f84b",
+    "tests/test_indicator.py": "e9b227b167f78d7f9ae5420fc488136aafd9fd2cf785c3cd215a731dc385005c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "c87d9eb21460921fe3ce7d77035d78a6edc7f4065a90081cb3c9caef2d01e1ed",
+    "tests/test_pi_mdns.py": "546621c10fb5c6e3eb055b35716d7d0c464d056b2f74716851295f59e9b9d4d4",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333"
+  },
+  "web_api_followup": {
+    "report": "docs/WEB_API_REVIEW_2026-11-10.md",
+    "windows_tests": "534 passed, 1 Linux-only skip in 39.95s",
+    "pi_tests": "41 passed, 1 Node-only skip in 36.08s",
+    "pi_isolated_directory": "tmp/web-api-review-20261110-222500",
+    "production_deployed": true,
+    "production_restarted": true,
+    "production_read_checks": true,
+    "radio_mutations": false,
+    "protected_unchanged": true,
+    "user_browser_display_checks": {
+      "windows": "Display OK; browser/version unspecified",
+      "smartphone_chrome": "Display appears OK; OS/version unspecified",
+      "scope": "User-reported visual checks, not all settings actions or fault states"
+    }
+  },
+  "pre_web_states_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "38aba7a6fd172f7d629823b99ab233b7c123a7d3e801f40eb5b837a23db401a5",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "bf9e2b54fd4483153231ebf1dd096e6f30795b6c2814f64258e21af01d5bea3f",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "d23df66d829b703ecc2ce6faf30b25cda8f01c0f318ca8834f831e3884c99128",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4d342da76610d68e2b9a4b7deb4ff18dd604cea5577a79f1c1ac761faef29c99",
+    "civi/pi/lci.py": "388d9bb3257618dc9dd115bff6eb7eba96a61822510b288aea29fd7c528d060d",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "cf6d7e155aee1193b6aca1234ac6427acf0d0e6a3c63d740d5b00a410a2695f1",
+    "civi/pi/panel.py": "6147b5f7d43aaa4efa409c9222f790a9f83636f6ea02783d266f3e7d0772b6a6",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/static/indicator.js": "704e0d51d356ee4cfb0ed4a38a5100d1e1cce5c0a3696649f2a406ca6a07e464",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "18686975e4242ba613a77bd373c284a1e81b25050a25e321a2ff365c60c5f84b",
+    "tests/test_indicator.py": "e9b227b167f78d7f9ae5420fc488136aafd9fd2cf785c3cd215a731dc385005c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "c87d9eb21460921fe3ce7d77035d78a6edc7f4065a90081cb3c9caef2d01e1ed",
+    "tests/test_pi_mdns.py": "546621c10fb5c6e3eb055b35716d7d0c464d056b2f74716851295f59e9b9d4d4",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333",
+    "civi/static/network.js": "78d6a569b92e255bb00835beceff2a416f54aebb22b6d5fa117d03220744f545",
+    "tests/test_web_api_review.py": "7d0667bd375def52a4bd2862b647f978362878e82545fd4b9e093bf7708ecb50"
+  },
+  "web_states_followup": {
+    "report": "docs/WEB_STATES_2026-11-10.md",
+    "windows_tests": "542 passed, 1 Linux-only skip in 39.81s",
+    "pi_tests": "42 passed, 8 Node-only skips in 35.01s",
+    "production_deployed": true,
+    "radio_mutations": false,
+    "lan_changes": false,
+    "real_browser_failure_states_verified": false,
+    "live_assets_verified": true,
+    "restarted": false,
+    "protected_unchanged": true,
+    "user_reconnect_observation": "Session-expired prompt after reconnection; re-sign-in recovery accepted. Subsequent sign-in success and all failure-state displays not inferred.",
+    "user_confirmed_behaviors": [
+      "Old received values disappear after disconnection",
+      "LAN confirmation disabled on deadline expiry or status-read failure"
+    ]
+  },
+  "pre_physical_dhcp_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "38aba7a6fd172f7d629823b99ab233b7c123a7d3e801f40eb5b837a23db401a5",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "bf9e2b54fd4483153231ebf1dd096e6f30795b6c2814f64258e21af01d5bea3f",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "d23df66d829b703ecc2ce6faf30b25cda8f01c0f318ca8834f831e3884c99128",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4d342da76610d68e2b9a4b7deb4ff18dd604cea5577a79f1c1ac761faef29c99",
+    "civi/pi/lci.py": "388d9bb3257618dc9dd115bff6eb7eba96a61822510b288aea29fd7c528d060d",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "cf6d7e155aee1193b6aca1234ac6427acf0d0e6a3c63d740d5b00a410a2695f1",
+    "civi/pi/panel.py": "6147b5f7d43aaa4efa409c9222f790a9f83636f6ea02783d266f3e7d0772b6a6",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/static/indicator.js": "ba27a37b3d2b586a49fa09c1ed16d5aa73bb95bccdd6b48b8024c2109a61f254",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "18686975e4242ba613a77bd373c284a1e81b25050a25e321a2ff365c60c5f84b",
+    "tests/test_indicator.py": "e9b227b167f78d7f9ae5420fc488136aafd9fd2cf785c3cd215a731dc385005c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "c87d9eb21460921fe3ce7d77035d78a6edc7f4065a90081cb3c9caef2d01e1ed",
+    "tests/test_pi_mdns.py": "546621c10fb5c6e3eb055b35716d7d0c464d056b2f74716851295f59e9b9d4d4",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333",
+    "civi/static/network.js": "abbf0626a072fd46dda16b6dfd2ece17736db6f7218c94d645e03bb243879f07",
+    "tests/test_web_api_review.py": "7d0667bd375def52a4bd2862b647f978362878e82545fd4b9e093bf7708ecb50",
+    "civi/static/app.js": "61c318857fcc13d026d568a91bf9b9a5d9596e3dc2193e05c1c41b7a94e14d9f",
+    "tests/test_web_state_transitions.py": "fcdbb4928542a2cdee0709eabb048af7de3a6e4cbc36071d1be70401fee6e8d8"
+  },
+  "physical_dhcp_followup": {
+    "report": "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+    "started": "2026-11-10",
+    "completed": "2026-11-11",
+    "windows_tests": "580 passed, 1 Linux-only skip in 39.01s",
+    "pi_tests": "68 passed, 1 Windows-only skip in 0.90s",
+    "production_fix_deployed": true,
+    "original_static_restored": true,
+    "protected_files_unchanged": true,
+    "windows_server_stopped": true,
+    "windows_firewall_changed": false,
+    "radio_frequency_mode_or_tx_start_writes": false,
+    "unconfirmed_trials_only": true,
+    "boot_lci_confirmed_dhcp_persistence_verified": false,
+    "physical_wlan_negative_probe_completed": false
+  },
+  "pre_dhcp_boot_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "38aba7a6fd172f7d629823b99ab233b7c123a7d3e801f40eb5b837a23db401a5",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "c3124ac9e5a8b617f622f3896ccf950d9566a0b459c1ce27a91f4eadd7bf9885",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "d23df66d829b703ecc2ce6faf30b25cda8f01c0f318ca8834f831e3884c99128",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4d342da76610d68e2b9a4b7deb4ff18dd604cea5577a79f1c1ac761faef29c99",
+    "civi/pi/lci.py": "388d9bb3257618dc9dd115bff6eb7eba96a61822510b288aea29fd7c528d060d",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "6476ff1ed11feff1c994562f2c8edf5a51de2e954a62aa936094be9bbbd8797e",
+    "civi/pi/panel.py": "6147b5f7d43aaa4efa409c9222f790a9f83636f6ea02783d266f3e7d0772b6a6",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/static/indicator.js": "ba27a37b3d2b586a49fa09c1ed16d5aa73bb95bccdd6b48b8024c2109a61f254",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "18686975e4242ba613a77bd373c284a1e81b25050a25e321a2ff365c60c5f84b",
+    "tests/test_indicator.py": "2271ec93b0139a9517970a6df6caec4ccecea5aaeef0f01e9805b1e95c341a0c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "c87d9eb21460921fe3ce7d77035d78a6edc7f4065a90081cb3c9caef2d01e1ed",
+    "tests/test_pi_mdns.py": "546621c10fb5c6e3eb055b35716d7d0c464d056b2f74716851295f59e9b9d4d4",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333",
+    "civi/static/network.js": "abbf0626a072fd46dda16b6dfd2ece17736db6f7218c94d645e03bb243879f07",
+    "tests/test_web_api_review.py": "7d0667bd375def52a4bd2862b647f978362878e82545fd4b9e093bf7708ecb50",
+    "civi/static/app.js": "61c318857fcc13d026d568a91bf9b9a5d9596e3dc2193e05c1c41b7a94e14d9f",
+    "tests/test_web_state_transitions.py": "fcdbb4928542a2cdee0709eabb048af7de3a6e4cbc36071d1be70401fee6e8d8",
+    "tests/test_applied_ipv4.py": "880ccd9429e81d2337395d628df671e1709d215c71c664de5a37946ed3d9fd0c",
+    "tools/windows_pktinfo.py": "80c84c988bbf22e8bfecbcab669a672fed76b268016590b7c0f792b2a1f29319",
+    "tools/windows_dhcp_lab.py": "f411f70120cc42fec5d7998d4e2408f956032819877a6bb4fcc622285274baf6",
+    "tests/test_windows_dhcp_lab.py": "7303d1cc8420105c905671ab3f2982e753becc8ee6a4af15d2e2151d678262b6"
+  },
+  "dhcp_boot_followup": {
+    "date": "2026-11-11",
+    "report": "docs/RPI_DHCP_BOOT_2026-11-11.md",
+    "saved_dhcp_reboot_verified": true,
+    "static_to_lci_dhcp_verified": true,
+    "already_auto_lci_lease_continuity_verified": true,
+    "original_static_restored": true,
+    "test_server_stopped": true,
+    "effective_web_auth": "LAN RESET per-device recovery default; verified locally via HTTPS without disclosing secret",
+    "config_unchanged": true,
+    "windows_tests": "584 passed, 1 Linux-only skip in 40.50s",
+    "pi_related_tests": "24 passed in 2.58s",
+    "helper_error_messages_deployed": true,
+    "new_auto_start": false
+  },
+  "pre_physical_name_collision_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "38aba7a6fd172f7d629823b99ab233b7c123a7d3e801f40eb5b837a23db401a5",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "c3124ac9e5a8b617f622f3896ccf950d9566a0b459c1ce27a91f4eadd7bf9885",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "d23df66d829b703ecc2ce6faf30b25cda8f01c0f318ca8834f831e3884c99128",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4d342da76610d68e2b9a4b7deb4ff18dd604cea5577a79f1c1ac761faef29c99",
+    "civi/pi/lci.py": "2c46db88ac68af2d05755dde2dd425231af9fa589d1ce98eebf014d7c333f4ec",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "6476ff1ed11feff1c994562f2c8edf5a51de2e954a62aa936094be9bbbd8797e",
+    "civi/pi/panel.py": "6147b5f7d43aaa4efa409c9222f790a9f83636f6ea02783d266f3e7d0772b6a6",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/static/indicator.js": "ba27a37b3d2b586a49fa09c1ed16d5aa73bb95bccdd6b48b8024c2109a61f254",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "18686975e4242ba613a77bd373c284a1e81b25050a25e321a2ff365c60c5f84b",
+    "tests/test_indicator.py": "2271ec93b0139a9517970a6df6caec4ccecea5aaeef0f01e9805b1e95c341a0c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "6185ad820bc1b8d079d08fb165baf4f39875be87887f67054ca036140dde6079",
+    "tests/test_pi_mdns.py": "546621c10fb5c6e3eb055b35716d7d0c464d056b2f74716851295f59e9b9d4d4",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333",
+    "civi/static/network.js": "abbf0626a072fd46dda16b6dfd2ece17736db6f7218c94d645e03bb243879f07",
+    "tests/test_web_api_review.py": "7d0667bd375def52a4bd2862b647f978362878e82545fd4b9e093bf7708ecb50",
+    "civi/static/app.js": "61c318857fcc13d026d568a91bf9b9a5d9596e3dc2193e05c1c41b7a94e14d9f",
+    "tests/test_web_state_transitions.py": "fcdbb4928542a2cdee0709eabb048af7de3a6e4cbc36071d1be70401fee6e8d8",
+    "tests/test_applied_ipv4.py": "880ccd9429e81d2337395d628df671e1709d215c71c664de5a37946ed3d9fd0c",
+    "tools/windows_pktinfo.py": "80c84c988bbf22e8bfecbcab669a672fed76b268016590b7c0f792b2a1f29319",
+    "tools/windows_dhcp_lab.py": "f411f70120cc42fec5d7998d4e2408f956032819877a6bb4fcc622285274baf6",
+    "tests/test_windows_dhcp_lab.py": "7303d1cc8420105c905671ab3f2982e753becc8ee6a4af15d2e2151d678262b6",
+    "civi/pi/broker.py": "6c1103bafb17ee33d9a684bf84fa7034687f1d9c549a9ed1d16ddfcee203c93e"
+  },
+  "physical_name_collision_followup": {
+    "date": "2026-11-11",
+    "report": "docs/RPI_NAME_COLLISION_2026-11-11.md",
+    "physical_wired_host_and_service_collision_verified": true,
+    "peer_removed_before_full_pi_reboot": true,
+    "saved_acquired_names_reused_after_full_reboot": true,
+    "original_names_restored_exactly": true,
+    "configuration_auth_and_ipv4_unchanged": true,
+    "peer_records_withdrawn": true,
+    "windows_tests": "599 passed, 1 Linux-only skip in 39.62s",
+    "new_auto_start": false,
+    "pi_related_tests": "49 passed, 1 Windows-only skip in 0.40s"
+  },
+  "physical_mdns_reconnect_followup": {
+    "date": "2026-11-11",
+    "report": "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
+    "same_static_ipv4_link_cycle_verified": true,
+    "hostname_probes": 3,
+    "four_service_group_probes": 3,
+    "first_service_advertisement_seconds": 5.949,
+    "fresh_wired_dns_sd_https_scpi_verified": true,
+    "settings_authentication_unchanged": true,
+    "capture_stopped": true,
+    "product_code_changes": false,
+    "limits": "No competing owner on reconnect; other address modes, speeds and RFC boundary cases remain open."
+  },
+  "physical_mdns_resolver_followup": {
+    "date": "2026-11-11",
+    "report": "docs/RPI_MDNS_RESOLVER_2026-11-11.md",
+    "pi_standard_nss_forward_lookup_verified": true,
+    "pi_standard_nss_synthetic_linklocal_ptr_verified": true,
+    "pi_standard_socket_lookups_verified": true,
+    "fresh_queries_received_on_windows_wired_nic": true,
+    "actual_autoip_peer_reverse_and_reachability_verified": false,
+    "settings_authentication_unchanged": true,
+    "fixture_stopped": true,
+    "product_code_changes": false
+  },
+  "allocated_autoip_resolver_followup": {
+    "date": "2026-11-11",
+    "report": "docs/RPI_MDNS_AUTOIP_2026-11-11.md",
+    "scope": "isolated Pi network namespaces; not physical AutoIP pair",
+    "networkmanager_allocated_autoip": "169.254.127.84",
+    "standard_nss_forward_reverse_verified": true,
+    "tcp_request_reply_verified": true,
+    "namespaces_removed": true,
+    "production_network_config_auth_unchanged": true,
+    "product_code_changes": false
+  },
+  "pre_readiness_20261111_rows": [
+    {
+      "source": "Device",
+      "clause": "1.4.1",
+      "page": 10,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "本表でDevice/API/補足解釈を版固定。認証時の適用版・RFC/IVI参照版の確定が残る。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G12"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.4.2",
+      "page": 14,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "全行の証拠を整理したが総合適合は未達。未採用拡張をコア必須に追加しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G12"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.4.2.1",
+      "page": 14,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "Deviceの残件とIVI従属要件の最終確認が残る。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md"
+      ],
+      "gaps": [
+        "G10",
+        "G12"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.5",
+      "page": 14,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "未適合表示を維持。完了後に資料上の機能宣言を整える。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.6",
+      "page": 14,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "WebにLXI版を宣言していない。完成前に数値を入れない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "1.4.7",
+      "page": 15,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "用語/商標表示を最終公開時に点検。ロゴは未使用。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/LXI.md"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.5.1",
+      "page": 16,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "本体LAN RESETあり。ネットワークから独立した実機復旧を確認済み、全LCI項目は別行。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.5.2",
+      "page": 16,
+      "scope": "必須",
+      "state": "適用判定待ち",
+      "finding": "付属画面・キーボードを恒久的な装置構成に含める必要がある。CLI復旧の実機証拠あり。",
+      "evidence": [
+        "docs/RPI_LAN_RESET.md",
+        "docs/RPI_DESKTOP.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05",
+        "G09"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.5.3",
+      "page": 17,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "LAN RESET文字列による本体確認を要求する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "docs/RPI_LAN_RESET.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "2.4.9.1",
+      "page": 17,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "Pi 4のEthernet/RJ45で通信済み。採用ハードの仕様・電気条件を製品構成へ固定。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ],
+      "gaps": [
+        "G09"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.5.1.1",
+      "page": 19,
+      "scope": "必須",
+      "state": "適用判定待ち",
+      "finding": "本体前面の電源表示の証拠が未確定。Pi既存LED/画面の扱いを決め、不足時のみ追加。",
+      "evidence": [
+        "civi/pi/panel.py",
+        "docs/RPI_PANEL.md"
+      ],
+      "gaps": [
+        "G09"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.5.2.1",
+      "page": 20,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "本体パネルのNormal/Fault/Identifyを実機確認。手動起動時の必須構成・可視性を固定。",
+      "evidence": [
+        "civi/indicator.py",
+        "docs/RPI_PANEL_2026-11-07.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05",
+        "G09"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "2.6.1.1",
+      "page": 22,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "本体ロゴなし。使用許諾/認証経路確定後に電子表示等を整える。",
+      "evidence": [
+        "civi/pi/panel.py"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "3.5.1",
+      "page": 24,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントによる実行機構なし。通常のSCPI設定はLXI Eventではない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "3.5.1.3",
+      "page": 25,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントで起動する測定機能なし。イベント応答時間仕様は対象外。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "3.5.2.1",
+      "page": 27,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント送出/トリガー出力を実装しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "3.7",
+      "page": 27,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントの生成/処理なし。通常の通信ログとは区別。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.1.1",
+      "page": 31,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "IviLxiSyncを要する同期/イベント拡張なし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.3",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント/有線トリガー入力のSource APIなし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント用Arm/Trigger機構なし。無線機のスキャンとは区別。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.2",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント/有線トリガーへのルーティングなし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.3",
+      "page": 34,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントパケットを送出しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.4",
+      "page": 35,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント信号名を実装しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.4.1",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "Arm/Trigger信号を公開しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.4.2",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "対応イベント信号なしと本表に明記。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.5",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXI予約イベント名をベンダー信号に使用しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.4.6",
+      "page": 38,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベント宛先パスを使用しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.5",
+      "page": 39,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "IEEE 1588時刻/タイムスタンプ/アラームをAPI公開しない。無線機の時計設定とは別。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.6",
+      "page": 39,
+      "scope": "イベント/同期機能を実装した場合",
+      "state": "適用外",
+      "finding": "LXIイベントのドメイン機能なし。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.1",
+      "page": 31,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "独立Python 0.13.0は存在。Core/Pythonの最終適合判定は未完了。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md"
+      ],
+      "gaps": [
+        "G01",
+        "G10"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "6.2",
+      "page": 32,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "0.13.1で位置指定を修正。導入済みWindowsドライバーからINSTR/省略形/HiSLIP位置指定で実Pi・IC-7300を読取。通信はraw TCP。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/driver.py",
+        "tests/test_python_driver.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.1",
+      "page": 41,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "実Piで100/1000 Mb/s通信を確認。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.1.2",
+      "page": 41,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "100/1000 Fullの証拠あり。100 Halfと対応を主張する10 Mb/s条件の確認が残る。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "7.2",
+      "page": 41,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "対象有線MACを本体/Webに表示。公開写真のマスクは実機表示と別。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/RPI_PANEL_2026-11-07.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.3",
+      "page": 42,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "リンク切断/復帰と固定IP復帰を実機確認。再接続時の重複チェックは経路別に追試。",
+      "evidence": [
+        "civi/indicator.py",
+        "docs/RPI_UNPLUGGED_BOOT_2026-11-08.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "7.5",
+      "page": 42,
+      "scope": "Auto-MDIX非対応の場合",
+      "state": "適用判定待ち",
+      "finding": "ethtoolのMDI-X Unknownだけでは判定不可。Auto-MDIXを資料/実測で確定し、非対応なら物理ラベル。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ],
+      "gaps": [
+        "G09"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "7.6",
+      "page": 43,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "見出しRULEだが本文should。保存値と再起動後の自動交渉onを実機確認。",
+      "evidence": [
+        "docs/RPI_ETHERNET_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "7.7",
+      "page": 43,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Piへ反映。実識別XMLはeth0だけ。4サービスを有線で新規取得しWLANでは未取得、WLANのIP管理HTTPSは維持。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/network.py",
+        "config.pi.example.toml",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.1",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Linux TCP/UDP/IPv4を利用。実機HTTPS/SCPI/mDNS通信証拠あり。",
+      "evidence": [
+        "civi/__main__.py",
+        "docs/RPI_AUTOIP_TCP_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.2",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "有線/WLANのPing応答を確認。",
+      "evidence": [
+        "civi/pi/ping.py",
+        "docs/RPI_PING.md",
+        "tests/test_ping_control.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.3",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "既定有効とLCI再有効化を実装・確認。",
+      "evidence": [
+        "civi/pi/ping.py",
+        "docs/RPI_PING.md",
+        "tests/test_ping_control.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.4",
+      "page": 45,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Web無効化/保存/再起動保持/復帰を実機確認。",
+      "evidence": [
+        "civi/pi/ping.py",
+        "docs/RPI_PING.md",
+        "tests/test_ping_control.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.6",
+      "page": 46,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "DHCP確定保存後の実Pi再起動・新起動ID/ACK/アドレス取得を追加確認。固定IPからのLCIでも新規取得。リンク再接続/物理重複/特殊オプション等は継続。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.1",
+      "page": 47,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "実PiのDHCP保存・本体再起動と固定IP→LCI後の取得を確認。リンク再接続の組合せ等は継続。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.3",
+      "page": 47,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "実eth0の要求パケットでもoptions 1/3/6を確認。全要求値・全経路の照合は継続。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.5",
+      "page": 47,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "実eth0でgateway/DNS省略のACKでも取得・LAN Normal、別hostname optionでシステム名維持を確認。他の特殊オプション・全経路は継続。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.6",
+      "page": 48,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "実eth0でリース失効後のDHCPアドレス/gateway/DNS破棄とAutoIP移行・ライブLAN Fault保持を確認。一時設定監視を実効IPv4参照に修正。人による今回の本体Fault目視は未確認。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.7",
+      "page": 48,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "実eth0の自然更新ACKでgateway/DNS変更をOS読取まで確認（ACK間隔60.01秒）。確定保存後の再起動等は継続。",
+      "evidence": [
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.6.10",
+      "page": 49,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "AutoIPと固定アドレスPC間の実TCP往復を確認。RFC3927 2.6.2の送信元/ARP/転送全条件は未完。",
+      "evidence": [
+        "civi/pi/linklocal.py",
+        "docs/RPI_AUTOIP_TCP_2026-11-08.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.7",
+      "page": 50,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "開始前重複拒否/使用中IP切断/DHCP DECLINEを隔離Piで確認。物理NIC・全設定/起動経路が残る。",
+      "evidence": [
+        "civi/pi/conflict.py",
+        "docs/RPI_CONFLICT.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.10",
+      "page": 51,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "実eth0のDHCP失効後AutoIPでもライブLAN状態Faultを保持し、新リースでNormal復帰を確認。本体表示ロジック試験は既存、今回のFault画面の新規目視は未確認。",
+      "evidence": [
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.11.1.1",
+      "page": 54,
+      "scope": "DDNS無効化を提供する場合",
+      "state": "適用判定待ち",
+      "finding": "Dynamic DNSの製品としての採用範囲が未確定。mDNS停止はDDNS制御ではない。採用時はoption12/81とLCIを確認。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/LXI_DEVICE_CONFIGURATION.md"
+      ],
+      "gaps": [
+        "G07"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.13",
+      "page": 55,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "固定IP→ローカルLCIでDHCP新規取得、復旧世代更新、稼働中の認証/発見設定反映を確認。既にDHCPのLCIでは有効リースを継続。DDNS採用範囲等は継続。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05",
+        "G07"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.1",
+      "page": 57,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "HTTP1.1/TLS1.2/1.3を実機確認。HTML5構文確認済み。WindowsとスマホChromeの表示はユーザー確認済み。各ブラウザーの設定操作/異常状態確認は残る。 未接続/隔離/状態取得失敗/復帰、LAN試行期限切れとhelper停止時を実JS・模擬HTTPで追加確認。実ブラウザーの異常状態表示と完成構成での判定は残る。 更新後の切断時受信値消去とLAN確定の期限切れ/状態取得失敗時の無効化はユーザー実機確認済み。",
+      "evidence": [
+        "civi/server.py",
+        "docs/RPI_HTTPS_2026-11-07.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py",
+        "docs/WEB_STATES_2026-11-10.md",
+        "tests/test_web_state_transitions.py"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.1.4",
+      "page": 57,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Pi既定443。実Piで443/8443を確認。Windows8443構成は本表のLXI装置対象外。",
+      "evidence": [
+        "config.pi.example.toml",
+        "docs/RPI_HTTPS_2026-11-07.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.1.7",
+      "page": 58,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "/lxiと/lxi/を公開。",
+      "evidence": [
+        "tests/test_lxi.py",
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2",
+      "page": 58,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "NIC宣言のコード差異は修正。識別/版/アドレスは表示するがLXI版はNot claimedで、正式宣言が残る。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G04"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.1",
+      "page": 59,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "表示SOCKETアドレスにboard番号を付けない。",
+      "evidence": [
+        "tests/test_lxi.py",
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3",
+      "page": 59,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Hostname欄は有効・成功した広告済みmDNS名だけを表示。広告なし/無効/失敗時は対象NICのIPv4またはNot assigned。OS設定名を別欄とし、模擬Webで全条件を確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3.2",
+      "page": 60,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "mDNS停止/失敗/未登録時はHostname欄を対象NICのIP代替とし、未検証のOS名を実ホスト名として出さない。模擬応答確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3.3",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "取得mDNS名は.local.形式で表示し、実Avahi/Webで確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2.3.5",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "Descriptionは取得済みサービス名を優先して表示。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.3",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "認証付きWeb Start/Stopと本体の継続Identifyを実機確認。",
+      "evidence": [
+        "tests/test_indicator.py",
+        "docs/RPI_PANEL_2026-11-07.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.4",
+      "page": 61,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "WelcomeからLAN設定へのリンクあり。同期機能を採用しないのでSyncリンクは不要。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5",
+      "page": 62,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "hostname/description/mode/IP/prefix/gateway/DNSの入力あり。prefixがsubnet maskに対応する説明と全保存条件を確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05",
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5.6",
+      "page": 62,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "mDNSのWeb停止/復帰と保持を実Piで確認。",
+      "evidence": [
+        "docs/RPI_MDNS.md",
+        "tests/test_pi_mdns.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5.7",
+      "page": 63,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "空白hostnameの既定値復帰を本番Webでユーザー確認。",
+      "evidence": [
+        "docs/LXI_DEFAULTS_API.md",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5.8",
+      "page": 63,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "空白Descriptionの既定値復帰を本番Webでユーザー確認。",
+      "evidence": [
+        "docs/LXI_DEFAULTS_API.md",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.6",
+      "page": 64,
+      "scope": "同期/イベント拡張を採用した場合",
+      "state": "適用外",
+      "finding": "Clock/Event/Wired Triggerを実装しない。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.8",
+      "page": 64,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "全15 POST経路で未認証/不正認証/CSRFヘッダー欠落/異Origin/変更前パスワードを拒否する試験を追加。既存の受理/保存試験と併用。侵入試験や完全なセキュリティ評価ではない。",
+      "evidence": [
+        "civi/server.py",
+        "civi/auth.py",
+        "tests/test_password.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.9",
+      "page": 64,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "必須Webのロゴなし。未認証のため意図的に掲載しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G11"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.14",
+      "page": 65,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "独自JSONは/api/以下。/lxi以下の実ルートはWelcome/識別/規定XSDに限定。",
+      "evidence": [
+        "civi/server.py",
+        "civi/lxi_api.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.2",
+      "page": 66,
+      "scope": "必須",
+      "state": "未達",
+      "finding": "識別GETとXSD/エラーあり。参照APIの版宣言不足・共通動作を下表へ分解。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/lxi_api.py",
+        "docs/LXI_DEFAULTS_API.md"
+      ],
+      "gaps": [
+        "G04",
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.2.5",
+      "page": 66,
+      "scope": "拡張機能を実装した場合",
+      "state": "適用外",
+      "finding": "採用拡張なし。未実装拡張のFunctionを宣言しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.3",
+      "page": 66,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "PiではAvahiを使用し実広告/応答を確認。RFC6762/6763全条件の証拠ではない。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.1",
+      "page": 67,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "物理eth0でホスト名衝突回避とWeb/XML/広告整合、同一固定IP再接続での3回の再プローブ・再広告を確認。他のRFC境界条件は継続。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md",
+        "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.1.1",
+      "page": 67,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "物理eth0で番号付きホスト名を取得し、相手停止後のPi全体再起動で保存名を再利用。多数衝突等は継続。",
+      "evidence": [
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.3",
+      "page": 67,
+      "scope": "DDNS Updateを提供する場合",
+      "state": "適用判定待ち",
+      "finding": "DDNS採用時にユーザー設定名との一致を確認する。OS搭載だけで採用済みとしない。",
+      "evidence": [
+        "civi/pi/network.py",
+        "civi/pi/discovery.py",
+        "docs/LXI_DEVICE_CONFIGURATION.md"
+      ],
+      "gaps": [
+        "G07"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.3.4",
+      "page": 67,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "希望名/OS名/Avahi名は分離。DHCPサーバーから異なるoption12を返す試験が未実施。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4",
+      "page": 67,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "Avahiで発見とSRV接続先を実試験。相互接続/パケットの全条件は未確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.1",
+      "page": 68,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "物理eth0で共通サービス名(2)への衝突回避と、同一固定IP再接続で4サービスの再プローブ・再広告を確認。多数衝突等の再試行設計は残件。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/discovery_state.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md",
+        "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.2",
+      "page": 68,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "HTTP/LXI/raw/HTTPSを同一取得名で広告。物理衝突後とPi全体再起動後も4サービスのSRV/IP/ポートを確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.2.1",
+      "page": 68,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "本番Webで64byte ASCII→63byte保存と4サービス再広告を確認し復元。UTF-8境界はPi模擬試験で確認。",
+      "evidence": [
+        "civi/network.py",
+        "tests/test_lxi.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.2.3",
+      "page": 68,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "(2)..(101)の有限候補で衝突回避。継続衝突での安全な再試行/収束範囲は未検証。",
+      "evidence": [
+        "civi/discovery_state.py",
+        "civi/pi/discovery.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3",
+      "page": 68,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "HTTP/LXIの必須サービスとTXTを実装。NIC対象と全TXT境界を確認する。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "tests/test_lxi.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.1",
+      "page": 69,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "各サービスへTXTリストを渡す。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.2",
+      "page": 69,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "key=valueをUTF-8へ変換、255byte超過は広告前拒否。",
+      "evidence": [
+        "civi/pi/discovery.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.3",
+      "page": 69,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "送信キーは固定ASCII。受信キーを独自大小文字比較する機構なし。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.4",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "値をUTF-8 bytesへ変換。ASCII識別値も同じ経路。",
+      "evidence": [
+        "civi/pi/discovery.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.6",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "txtversを先頭に生成。",
+      "evidence": [
+        "tests/test_lxi.py",
+        "civi/pi/discovery.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.7",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "独自LXI接頭辞キーを出していない。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.8",
+      "page": 70,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "必須/推奨サービスには標準キーだけを使用、独自キーなし。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.5",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "既定有効。無効保存値は利用者設定であり出荷既定とは分離。",
+      "evidence": [
+        "config.pi.example.toml",
+        "docs/RPI_MDNS.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.5.1",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "本体LCIで装置全体のAvahiを有効化。",
+      "evidence": [
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_MDNS.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.5.2",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "装置全体停止/ソケット起動抑止/再起動保持/復帰を実機確認。",
+      "evidence": [
+        "docs/RPI_MDNS.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.6",
+      "page": 72,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "物理有線でPi標準NSS/socketの別機器.local正引き・模擬PTR逆引き、隔離Piで実AutoIP自動取得相手のNSS正引き・逆引き・TCPを確認。物理AutoIP機器同士とRFC境界条件は別途。",
+      "evidence": [
+        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/RPI_MDNS_RESOLVER_2026-11-11.md",
+        "docs/RPI_MDNS_AUTOIP_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.7",
+      "page": 72,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "希望名/取得名を保存。物理衝突後、相手を停止してPi全体再起動し取得名再利用を確認。元のキャッシュ・設定・認証・固定IPへ復元。",
+      "evidence": [
+        "civi/discovery_state.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md",
+        "docs/RPI_NAME_COLLISION_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.7.1",
+      "page": 73,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "LCI世代更新で取得名を破棄し最終利用者名/既定値に戻す。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "tests/test_pi_lci.py",
+        "tests/test_discovery_names.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.8",
+      "page": 73,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "物理eth0の同一固定IP抜き挿しでホスト名と4サービスを各3回再プローブ後に広告。新規DNS-SD/HTTPS/SCPIも確認。競合所有者のいる再接続等は未確認。",
+      "evidence": [
+        "civi/network.py",
+        "civi/pi/discovery.py",
+        "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
+        "docs/LXI_READINESS_2026-11-11.md"
+      ],
+      "gaps": [
+        "G06"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "11.1",
+      "page": 74,
+      "scope": "必須",
+      "state": "追加検証",
+      "finding": "Core/Python文書同梱。旧IVI3.1参照とGeneration2026の整合、意味的ヘルプ/環境/実機の検証範囲を最終確認。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md"
+      ],
+      "gaps": [
+        "G10"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "11.2",
+      "page": 74,
+      "scope": "必須",
+      "state": "手続待ち",
+      "finding": "IVIドライバーDB未登録。NLの略号照会/登録だけでは本要件を満たさない。",
+      "evidence": [
+        "drivers/civi-ic7300/src/civi_ic7300/NAMING.md",
+        "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md"
+      ],
+      "gaps": [
+        "G10"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "6.5.1",
+      "page": 39,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "6.5.2",
+      "page": 39,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.1.1",
+      "page": 57,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3.11",
+      "page": 71,
+      "scope": "Deprecated",
+      "state": "廃止",
+      "finding": "現行必須の不足には数えない。後継条項を本表で追跡。",
+      "evidence": [
+        "docs/LXI.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.8.1",
+      "page": 64,
+      "scope": "撤回済Permissionの禁止事項",
+      "state": "実装確認",
+      "finding": "空パスワードを許可しない。旧Permissionは撤回済み。",
+      "evidence": [
+        "civi/auth.py",
+        "tests/test_password.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.9/legal-name",
+      "page": 51,
+      "scope": "本文の必須文",
+      "state": "実装確認",
+      "finding": "推奨節内のshallも追跡。共通既定名はDNSラベルとして検証。",
+      "evidence": [
+        "civi/pi/network.py",
+        "civi/defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Interpretations",
+      "clause": "8.14",
+      "page": 6,
+      "scope": "必須",
+      "state": "実装確認",
+      "finding": "公式補足解釈で追加。IPv4 SCPI SOCKETによる制御を提供。",
+      "evidence": [
+        "civi/server.py",
+        "docs/RPI_AUTOIP_TCP_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.5",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "GET識別とエラーの意味的要件を本表へ取り込み。全Security/API実装を要求する解釈にはしない。",
+      "evidence": [
+        "docs/LXI_DEFAULTS_API.md"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.5.1",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "識別XSDは現行公式と一致。ProblemDetailsも編集日を現行へ同期。版/配布出典の確認と記録を継続。",
+      "evidence": [
+        "civi/schemas/InstrumentIdentification-2.0.xsd",
+        "civi/schemas/LXIProblemDetails-1.0.xsd"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.6",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "WebでLXI APIを独立した拡張として列挙していない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.7",
+      "page": 9,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "XMLでLXI API Functionを宣言しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1/public-get",
+      "page": 11,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "GET識別は認証不要。HTTP平文を別途提供する義務とはしない。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1.1",
+      "page": 11,
+      "scope": "保護されたLXI APIを提供した場合",
+      "state": "適用外",
+      "finding": "識別だけでAPI Key機構をコア必須とはしない。保護された/lxi/apiエンドポイントは未採用。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1.2",
+      "page": 11,
+      "scope": "保護されたLXI APIを提供した場合",
+      "state": "適用外",
+      "finding": "LXI-API realmは保護API採用時。独自/apiのCIVI realmを直ちに違反としない。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.1.3",
+      "page": 12,
+      "scope": "LXI Security設定変更を提供した場合",
+      "state": "適用外",
+      "finding": "LXI Security設定変更APIなし。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.2",
+      "page": 12,
+      "scope": "追加LXI API認可を提供した場合",
+      "state": "適用外",
+      "finding": "独自のLXI API認可方式は追加しない。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.3",
+      "page": 12,
+      "scope": "証明書/CSR管理APIを提供した場合",
+      "state": "適用外",
+      "finding": "証明書/CSRをGUID管理するAPIなし。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.1",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "既存XSD適合試験あり。XSD通過と必須意味要件は別で、LXIVersionが未達。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": [
+        "G04",
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.2",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別text/xml、schema/ProblemDetails application/xml、405 Allow、GET/HEADの内容と長さ、no-storeを確認。認証/HTTP例外/ProblemDetailsにも共通保護ヘッダーを統一。",
+      "evidence": [
+        "civi/server.py",
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.3",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "追加検証",
+      "finding": "Gateway識別はradio各状態でも完全な読取を200で返し、shutdownは503。未識別child404、既知だが切断child503。同期GETは202を返さない。完成装置のnormal operation境界の最終判定は継続。 未接続/隔離/状態取得失敗/復帰、LAN試行期限切れとhelper停止時を実JS・模擬HTTPで追加確認。実ブラウザーの異常状態表示と完成構成での判定は残る。",
+      "evidence": [
+        "civi/server.py",
+        "docs/LXI_DEFAULTS_API.md",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py",
+        "docs/WEB_STATES_2026-11-10.md",
+        "tests/test_web_state_transitions.py"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.4",
+      "page": 13,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "規定資源のエラーをProblemDetails application/xmlにする。",
+      "evidence": [
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.5",
+      "page": 14,
+      "scope": "LXI APIで202/保留操作を返す場合",
+      "state": "適用外",
+      "finding": "識別GETは同期読み取りで202を返さずユーザー操作を要求しない。独自IPv4試行APIは別。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.5.1",
+      "page": 14,
+      "scope": "LXI APIで202/保留操作を返す場合",
+      "state": "適用外",
+      "finding": "識別GETは同期読み取りで202を返さずユーザー操作を要求しない。独自IPv4試行APIは別。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.4.5.2",
+      "page": 14,
+      "scope": "LXI APIで202/保留操作を返す場合",
+      "state": "適用外",
+      "finding": "識別GETは同期読み取りで202を返さずユーザー操作を要求しない。独自IPv4試行APIは別。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.6.1",
+      "page": 16,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別専用の互換XSD経路も保持。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.6.2",
+      "page": 16,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "提供schema名/版をURLへ含める。",
+      "evidence": [
+        "civi/server.py",
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.6.3",
+      "page": 16,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別とProblemDetailsの規定XSD経路を提供し取得試験あり。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.10.7",
+      "page": 17,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "認証不要GET、text/xml、旧XSD aliasを試験。全識別内容は別行。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1/identity",
+      "page": 23,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "Manufacturer/Model/SerialNumber/FirmwareRevisionを順序どおり出力しXSD試験。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1-1",
+      "page": 24,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "対象有線InterfaceだけをLXIとして出力。アドレス未取得でもInterfaceを保持。lo/WLANをLXI宣言しない。XSD試験済み。 本番PiのXMLでもeth0だけであることを確認済み。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1-2",
+      "page": 25,
+      "scope": "LXI Event Messagingを実装した場合",
+      "state": "適用外",
+      "finding": "LXI Event Messaging未採用、Domain不要。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.1.1-3",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "未達",
+      "finding": "LXIVersionは意図的に省略。接続無線機には不要でも親ゲートウェイには必要。適合前には宣言しない。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": [
+        "G04"
+      ]
+    },
+    {
+      "source": "API",
+      "clause": "23.11.2-1",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "識別済み無線機のbaseURLをConnectedDevicesへ出力。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.2.1-1",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "baseURL/lxi/identificationを提供。未識別時404、識別後200を試験。",
+      "evidence": [
+        "civi/server.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.2.1-2",
+      "page": 26,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "子のschemaLocationに装置上の絶対XSD URLを含める。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.3.1-1",
+      "page": 27,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "InterfaceType=LXIを対象有線NICだけに限定し、複数NIC模擬入力で確認。 本番PiのXMLでもeth0だけであることを確認済み。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.3.2",
+      "page": 27,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "採用したIPv4項目の順序/表現をXSD試験。省略可能な項目を必須不足とはしない。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.5.1",
+      "page": 29,
+      "scope": "任意Extensionを採用した場合",
+      "state": "適用外",
+      "finding": "Extensionを出力しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.6.1",
+      "page": 29,
+      "scope": "任意拡張を採用した場合",
+      "state": "適用外",
+      "finding": "拡張を宣言しない。将来採用時は各拡張のFunction形式が必要。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.11.7",
+      "page": 29,
+      "scope": "Subinstrumentsを提供した場合",
+      "state": "適用外",
+      "finding": "サブ機器の別制御チャネルを宣言しない。無線機はConnectedDevicesとして扱う。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.18-1",
+      "page": 77,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "40x応答をProblemDetailsに変換、405/404をXSD検証。",
+      "evidence": [
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.18.1.1-1",
+      "page": 77,
+      "scope": "識別APIに適用",
+      "state": "実装確認",
+      "finding": "Titleを必ず出力する。",
+      "evidence": [
+        "civi/lxi_api.py",
+        "tests/test_lxi_defaults.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "API",
+      "clause": "23.19-1",
+      "page": 77,
+      "scope": "保留応答を返す場合",
+      "state": "適用外",
+      "finding": "識別GETで202を返さないのでPending XML不要。",
+      "evidence": [
+        "civi/server.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/dhcp",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "固定IP→ローカルLCIでsaved auto、手動IP除去、新規DHCP ACKと192.168.73.3取得を実機確認。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/autoip",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "AutoIPを有効化する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/ping",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Pingを再有効化する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/password",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "ローカル表示の復旧用パスワードへの切替とライブ反映世代を確認。Pi内だけで保護Web GET認証200を確認。パスワードは収集/出力しない。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/mdns",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "mDNS/DNS-SDを再有効化する。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "civi/pi/transactions.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/ddns",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "適用判定待ち",
+      "finding": "DDNS採用範囲確定後にLCI状態を確認。",
+      "evidence": [
+        "civi/pi/network.py",
+        "docs/LXI_DEVICE_CONFIGURATION.md"
+      ],
+      "gaps": [
+        "G07"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/activation",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "実行中CIVIでローカルLCIの新世代反映とDHCP取得/Normalを確認。全初期化経路の残条件はG05で継続。",
+      "evidence": [
+        "civi/pi/lci.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "8.13/documentation",
+      "page": 55,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "LCIの変更項目と復旧認証をローカル文書に記載。",
+      "evidence": [
+        "docs/RPI_LAN_RESET.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.10/initial-autoip",
+      "page": 51,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "初回DHCP不在からAutoIP取得時はNormalを単体/実機で確認。",
+      "evidence": [
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/RPI_LCI_BOOT_2026-11-08.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.10/expired-autoip",
+      "page": 52,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "実eth0の期限切れ→AutoIP/Fault保持→新リース/Normalを確認。固定IPロールバックでもNormalに復帰。起動/LCI等の解除経路と本体目視の残条件は継続。",
+      "evidence": [
+        "civi/indicator.py",
+        "tests/test_indicator.py",
+        "docs/DHCP_2026-11-08.md",
+        "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
+        "tests/test_applied_ipv4.py"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/model",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/manufacturer",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/serial",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/description",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/software",
+      "page": 59,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/visa",
+      "page": 59,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Web識別情報の該当値をコード/HTML試験で確認。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/lxi-version",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "未達",
+      "finding": "未適合表示を維持し、最終適合判定後に正しい版を宣言。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": [
+        "G04"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/extensions",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "未採用拡張を宣言しない。",
+      "evidence": [
+        "civi/identification.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/hostname",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "mDNS FQDN/IP代替とOS情報の表示上の役割を最終確認。",
+      "evidence": [
+        "civi/identification.py",
+        "docs/MDNS_HOSTNAME_2026-11-08.md"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.2/mac-ip",
+      "page": 58,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "Piの対象有線NICをLXI扱い、他NICは管理用として明記。IP未割当の対象NICもWebに表示。 本番PiのXMLでもeth0だけであることを確認済み。",
+      "evidence": [
+        "civi/identification.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/hostname",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/description",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/mode",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "実eth0でDHCPモードを確定保存し、Pi本体再起動後の保存auto・DHCP取得を確認。元の保存static設定にも一致するよう復元。初期起動時のstaticと合わせ保存モード保持を確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md",
+        "docs/RPI_DHCP_BOOT_2026-11-11.md"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/address",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/gateway",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/dns",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "入力と保存経路あり。実NICで変更/読取/再起動保持の組合せを確認。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/RPI_LAN_SETTINGS.md"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.5/subnet",
+      "page": 62,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "prefix変更/読取時に対応subnet maskを表示。/1,/16,/24,/31,/32と不正入力を実JSで確認。物理NICの保存/再起動保持はG05に継続。",
+      "evidence": [
+        "civi/identification.py",
+        "civi/pi/network.py",
+        "docs/WEB_API_REVIEW_2026-11-10.md",
+        "tests/test_web_api_review.py"
+      ],
+      "gaps": [
+        "G05"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "9.8/nonblank",
+      "page": 64,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "撤回された空パスワード許可を使用しない。",
+      "evidence": [
+        "civi/auth.py",
+        "tests/test_password.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3/required",
+      "page": 69,
+      "scope": "親条項の内訳",
+      "state": "追加検証",
+      "finding": "HTTP/LXI TXT識別4項目と*IDN?の対応あり。未接続/接続後の更新も含め最終ワイヤ確認。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py",
+        "tests/test_lxi.py"
+      ],
+      "gaps": [
+        "G08"
+      ]
+    },
+    {
+      "source": "Device",
+      "clause": "10.4.3/recommended-raw",
+      "page": 70,
+      "scope": "親条項の内訳",
+      "state": "実装確認",
+      "finding": "採用したraw広告も同じ識別TXTを使用し、古いAddressキーを出力しない。",
+      "evidence": [
+        "civi/pi/discovery.py",
+        "civi/network.py"
+      ],
+      "gaps": []
+    },
+    {
+      "source": "Device",
+      "clause": "8.10/identify-fault",
+      "page": 52,
+      "scope": "親条項の状態遷移図",
+      "state": "実装確認",
+      "finding": "実PiでIdentify中に有線を抜きFault優先・Identify解除・本体ACKを確認。再接続でNormal/Identify OFF、利用者の再開始/停止も確認。DHCP失効等は別行。",
+      "evidence": [
+        "civi/pi/panel.py",
+        "civi/indicator.py",
+        "civi/static/indicator.js",
+        "tests/test_indicator.py",
+        "tests/test_lxi_fixes.py",
+        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/RPI_LXI_FIXES_2026-11-10.md"
+      ],
+      "gaps": []
+    }
+  ],
+  "pre_readiness_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "38aba7a6fd172f7d629823b99ab233b7c123a7d3e801f40eb5b837a23db401a5",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "c3124ac9e5a8b617f622f3896ccf950d9566a0b459c1ce27a91f4eadd7bf9885",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "d23df66d829b703ecc2ce6faf30b25cda8f01c0f318ca8834f831e3884c99128",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4d342da76610d68e2b9a4b7deb4ff18dd604cea5577a79f1c1ac761faef29c99",
+    "civi/pi/lci.py": "2c46db88ac68af2d05755dde2dd425231af9fa589d1ce98eebf014d7c333f4ec",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "6476ff1ed11feff1c994562f2c8edf5a51de2e954a62aa936094be9bbbd8797e",
+    "civi/pi/panel.py": "6147b5f7d43aaa4efa409c9222f790a9f83636f6ea02783d266f3e7d0772b6a6",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/static/indicator.js": "ba27a37b3d2b586a49fa09c1ed16d5aa73bb95bccdd6b48b8024c2109a61f254",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "18686975e4242ba613a77bd373c284a1e81b25050a25e321a2ff365c60c5f84b",
+    "tests/test_indicator.py": "2271ec93b0139a9517970a6df6caec4ccecea5aaeef0f01e9805b1e95c341a0c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "6185ad820bc1b8d079d08fb165baf4f39875be87887f67054ca036140dde6079",
+    "tests/test_pi_mdns.py": "546621c10fb5c6e3eb055b35716d7d0c464d056b2f74716851295f59e9b9d4d4",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333",
+    "civi/static/network.js": "abbf0626a072fd46dda16b6dfd2ece17736db6f7218c94d645e03bb243879f07",
+    "tests/test_web_api_review.py": "7d0667bd375def52a4bd2862b647f978362878e82545fd4b9e093bf7708ecb50",
+    "civi/static/app.js": "61c318857fcc13d026d568a91bf9b9a5d9596e3dc2193e05c1c41b7a94e14d9f",
+    "tests/test_web_state_transitions.py": "fcdbb4928542a2cdee0709eabb048af7de3a6e4cbc36071d1be70401fee6e8d8",
+    "tests/test_applied_ipv4.py": "880ccd9429e81d2337395d628df671e1709d215c71c664de5a37946ed3d9fd0c",
+    "tools/windows_pktinfo.py": "aed9542236d6fd2e131dc4db73c4eec4d11a370c337f3b9e8e461cf0bdefb472",
+    "tools/windows_dhcp_lab.py": "f411f70120cc42fec5d7998d4e2408f956032819877a6bb4fcc622285274baf6",
+    "tests/test_windows_dhcp_lab.py": "7303d1cc8420105c905671ab3f2982e753becc8ee6a4af15d2e2151d678262b6",
+    "civi/pi/broker.py": "6c1103bafb17ee33d9a684bf84fa7034687f1d9c549a9ed1d16ddfcee203c93e",
+    "tools/mdns_collision_peer.py": "f1cbe59e1b1c07a6576f1bbaf7bd7a17599ba44fe93c76e202138bdd37df9018",
+    "tests/test_mdns_collision_peer.py": "35189f06a5950c2857e7f841553a64d115a0c828b312663121e495f0d54b3501",
+    "tools/pi_mdns_autoip_check.py": "b473faa7fbfa71279e30938285acf9ca99592faec17e8df75075e5cc595091a8"
+  },
+  "readiness_review_followup": {
+    "date": "2026-11-11",
+    "report": "docs/LXI_READINESS_2026-11-11.md",
+    "configuration": "docs/LXI_DEVICE_CONFIGURATION.md",
+    "windows_tests": "603 passed, 1 skipped; final fixture-only followup 26 passed",
+    "pi_tests": "594 passed, 10 skipped in 60.34s",
+    "driver_typecheck": "12 files strict mypy passed",
+    "conformance_claim": false,
+    "formal_ivi_unit_procedure_completed": false,
+    "ivi_registry_listing": false,
+    "fixed_collision_attempt_limit_removed": true,
+    "local_power_and_lan_display_user_accepted": true,
+    "auto_mdix_label_decision": {
+      "onboard_pi4_bcm54213pe_label_required": false,
+      "basis": "https://www.mouser.com/pdfDocs/BroadcomBCM54213PERGMIIGigabitEthernetTransceiver.pdf",
+      "evidence_kind": "documented MDI crossover detection/correction; no new physical cable test"
+    }
+  },
+  "pre_ivi_receive_code_fingerprints": {
+    "civi/__main__.py": "03558ebb62fa72442bca092e14df740de561fbdd02a5eb84b96470d60e033432",
+    "civi/auth.py": "becadc0dc5988f604aefc77c1c7bfa3197605d36431a5b3382ef21ca9e0da480",
+    "civi/config.py": "5c860b04669ae70c5cbaddc6d2899f41eab939a26be5c821defc0404c08999a1",
+    "civi/defaults.py": "aa0f1d179f14c1ef402400e86483739f18167a9ce2e8b9c6049b1af957de95cb",
+    "civi/discovery_state.py": "e72295220b326b76a6a7974b284c27a308fab5c1387b465294f36278d3196eb6",
+    "civi/identification.py": "42c04ccc04884e545ee664fde564830ee3a0fc3bdd19c22d15ed68f969b72df7",
+    "civi/indicator.py": "c3124ac9e5a8b617f622f3896ccf950d9566a0b459c1ce27a91f4eadd7bf9885",
+    "civi/lxi_api.py": "36881b2a8b696a78dc14988a96c5812ed119fd2eb3474f307b293b5b898b1476",
+    "civi/network.py": "8a77b847bb76c884a733cce4b49613c968324b5260027bbc9d0c5e61a3e39236",
+    "civi/pi/conflict.py": "f4fd508a2f349a31d8ed30256af1126a3c94436cc764d7dcac6a66d445d81fc2",
+    "civi/pi/discovery.py": "4418d660b0a15ffd02fe51facbefe71fe4abb727f7730e262dd7cbdef9ba2aa4",
+    "civi/pi/lci.py": "2c46db88ac68af2d05755dde2dd425231af9fa589d1ce98eebf014d7c333f4ec",
+    "civi/pi/linklocal.py": "a0dcae6c049786cf77e39c328fc46c68583410132a70e5bac3f45bacb9404fc5",
+    "civi/pi/network.py": "6476ff1ed11feff1c994562f2c8edf5a51de2e954a62aa936094be9bbbd8797e",
+    "civi/pi/panel.py": "2a700baf7654f0b408f677d2607e8c0008b6939e9a6a92bfba23adc3551d807e",
+    "civi/pi/ping.py": "e7248a9bd29a0bec6521a53fcb924c074a21529967e1315a6ad956b75dd3c036",
+    "civi/pi/transactions.py": "43bf819f3c8fd69d7d822ff92f261e4d9615af1194f205b53edc69003f0a71c9",
+    "civi/schemas/InstrumentIdentification-2.0.xsd": "f1f549f03cda173c5417c61bb89f19f3953ae95d8c1cdfc3c566286b14571230",
+    "civi/schemas/LXIProblemDetails-1.0.xsd": "f65f848c629f4e2c8577ab66f075b7e1157e9e4c19147b9ed3a7e63bda2e0f1a",
+    "civi/server.py": "12abd1c96f485aae677f83040252ce92294a325017289b42c2a3fcd1d1ce0eaf",
+    "civi/static/indicator.js": "ba27a37b3d2b586a49fa09c1ed16d5aa73bb95bccdd6b48b8024c2109a61f254",
+    "config.pi.example.toml": "dfd743cde506de1109d22fde41a626e22788defb710dd7796f87e4a55120a517",
+    "drivers/civi-ic7300/src/civi_ic7300/driver.py": "99a8d3ae965d97e0c34b4a42a033cc87fd10555aef8db6ee98ab8fe1bc557af4",
+    "tests/test_discovery_names.py": "fa109f49031150297f99548cb91ebd3cfac07142095eb7a36359e8feb057bfba",
+    "tests/test_indicator.py": "2271ec93b0139a9517970a6df6caec4ccecea5aaeef0f01e9805b1e95c341a0c",
+    "tests/test_lxi.py": "b8bf292d939b4b3b4f251836af852a3ab6a8db71e6f02dfd2ba8627feefbb8b7",
+    "tests/test_lxi_defaults.py": "e49cb3c757272e7763bcaada753c80008b1e22e865a9e014d4a1ea0e55438f27",
+    "tests/test_lxi_fixes.py": "c419d3c4391aac8e3376557d54701866c3d1ac6ca93613b46166970f2097577e",
+    "tests/test_password.py": "967f9cd75bd816b13a5d6ad649b309c71ec9f47fc9407f029dce4ff0f9ef5f09",
+    "tests/test_pi_lci.py": "6185ad820bc1b8d079d08fb165baf4f39875be87887f67054ca036140dde6079",
+    "tests/test_pi_mdns.py": "d375f33b80353bf04b1315b0652394769939e6c6b1dc48877bc382f594b0f964",
+    "tests/test_ping_control.py": "729ebe416cc7448815f42752cd96f535daff6c9ff847e8a07f806b462bd88ce9",
+    "tests/test_python_driver.py": "49c559065c49c070a5379de0f604b665caa33797e2e3f1a440ccc54042b76333",
+    "civi/static/network.js": "abbf0626a072fd46dda16b6dfd2ece17736db6f7218c94d645e03bb243879f07",
+    "tests/test_web_api_review.py": "7d0667bd375def52a4bd2862b647f978362878e82545fd4b9e093bf7708ecb50",
+    "civi/static/app.js": "61c318857fcc13d026d568a91bf9b9a5d9596e3dc2193e05c1c41b7a94e14d9f",
+    "tests/test_web_state_transitions.py": "fcdbb4928542a2cdee0709eabb048af7de3a6e4cbc36071d1be70401fee6e8d8",
+    "tests/test_applied_ipv4.py": "880ccd9429e81d2337395d628df671e1709d215c71c664de5a37946ed3d9fd0c",
+    "tools/windows_pktinfo.py": "aed9542236d6fd2e131dc4db73c4eec4d11a370c337f3b9e8e461cf0bdefb472",
+    "tools/windows_dhcp_lab.py": "f411f70120cc42fec5d7998d4e2408f956032819877a6bb4fcc622285274baf6",
+    "tests/test_windows_dhcp_lab.py": "7303d1cc8420105c905671ab3f2982e753becc8ee6a4af15d2e2151d678262b6",
+    "civi/pi/broker.py": "6c1103bafb17ee33d9a684bf84fa7034687f1d9c549a9ed1d16ddfcee203c93e",
+    "tools/mdns_collision_peer.py": "f1cbe59e1b1c07a6576f1bbaf7bd7a17599ba44fe93c76e202138bdd37df9018",
+    "tests/test_mdns_collision_peer.py": "35189f06a5950c2857e7f841553a64d115a0c828b312663121e495f0d54b3501",
+    "tools/pi_mdns_autoip_check.py": "b473faa7fbfa71279e30938285acf9ca99592faec17e8df75075e5cc595091a8"
+  },
+  "ivi_receive_followup": {
+    "date": "2026-11-11",
+    "report": "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
+    "client_version": "0.13.1",
+    "radio_main_version": "1.41",
+    "firmware_source": "owner display report",
+    "core_receive_physical_checks": 40,
+    "receiver_setting_physical_checks": 65,
+    "receiver_properties": 16,
+    "successful_reads": 290,
+    "total_reads": 292,
+    "menu_selectors_read": 216,
+    "worklist_rows_with_scoped_evidence": 110,
+    "original_state_restored": true,
+    "stable_non_meter_results_unchanged": 66,
+    "installed_wheel_readonly_smoke_verified": true,
+    "python_source_hashes_match_installed_wheel": true,
+    "transmit_storage_calibration_writes": false,
+    "full_ivi_procedure_complete": false,
+    "registered": false
+  },
+  "ivi_tx_inhibit_followup": {
+    "date": "2026-11-11",
+    "report": "docs/IVI_TX_INHIBIT_2026-11-11.md",
+    "radio_main_version": "1.42",
+    "firmware_source": "owner report",
+    "client_version": "0.13.1",
+    "physical_parameter_checks": 5,
+    "simulation_parameter_checks": 5,
+    "original_inhibit_false_restored": true,
+    "both_vfos_unchanged": true,
+    "ptt_samples_off": true,
+    "ptt_start_sent": false,
+    "actual_rf_suppression_tested": false,
+    "error_queue_empty": true,
+    "other_apis_retested_on_142": false
+  },
+  "pre_ivi_memory_evidence_fingerprints": {
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "4b47a9e175ec02fd77ec5b9462838d4dccb2be58490b871efb41a8e201baabc1"
+  },
+  "pre_empty_memory_fix_fingerprints": {
+    "civi/static/app.js": "61c318857fcc13d026d568a91bf9b9a5d9596e3dc2193e05c1c41b7a94e14d9f",
+    "tests/test_web_state_transitions.py": "fcdbb4928542a2cdee0709eabb048af7de3a6e4cbc36071d1be70401fee6e8d8"
+  },
+  "pre_selected_memory_fingerprints": {
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "07f2424c947261ff7c609088f4ae1810fdc5d7dd7332f116011c14aa39a69d59",
+    "civi/backend.py": "58b735d9d5b7222816c73b6cc904198ac3b3896b5e20d6e0a6a0d575f85fe51b"
+  },
+  "pre_vfo_copy_evidence_fingerprints": {
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "1413c004adea8f600266321b956c460e28b3f4c34efb8e49df76f9a5e2688902"
+  },
+  "pre_scan_storage_evidence_fingerprints": {
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "291d43479cbedc320576b7900228b6215936c55474698b850d8092ac8dbdc817"
+  },
+  "pre_scan_settings_evidence_fingerprints": {
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "0cdc0fccc849840e35a0cd55bfe963fd717c4217a5c0b6ef23d733db6d15b34a"
+  },
+  "pre_ivi_reconciliation_fingerprints": {
+    "drivers/civi-ic7300/src/civi_ic7300/EVIDENCE.md": "4bab739cd9d63ce1617698ab5cb45a1552d0d6e17a9e144ab204767b8394c378"
+  }
+}

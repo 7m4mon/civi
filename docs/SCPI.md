@@ -1,5 +1,9 @@
 # CIVI SCPI 0.1
 
+`RAD:RESET`で[CIVIが定義する受信基準状態](RECEIVE_RESET.md)へ戻せます。
+無線機のPartial ResetやLAN RESETではありません。引数/問い合わせなし。
+`RAD:RESET;SYST:ERR?`で完了後のエラーを確認してください。
+
 TCP 5025、ASCII、LF終端。CRLFも受理します。最大1行4096バイト、入力待ち32行、共通キュー128件です。設定命令に通常応答はありません。問い合わせを含む1行に対してLF終端の1行を返し、複数の問い合わせ応答を`;`で連結します。
 
 大文字小文字を区別せず、下表の大文字部分の短縮形または全形を各階層で独立に受理します。省略可能部分の途中までの形は受理しません。`;`後の1階層ヘッダーは直前の親を継承し、先頭`:`でルートに戻ります。複数階層を明記したヘッダーもルートとして受理します。共通コマンドは親を変えません。例: `SENS:FREQ 7.1MHz;FREQ?;:RAD:MODE USB;MODE?;*OPC?`。
@@ -77,3 +81,21 @@ WebのSメーターはIC-7300プロファイルの近似表により推定S値�
 実機ではraw設定値が内部の刻みに丸められる場合があります。例: PBT指定160に対して159、NR指定73に対して72。ACKは受理を示しますが厳密な値一致を保証しないため、必要に応じて問い合わせで実値を確認してください。試験条件と結果は[実機記録](HARDWARE_2026-10-17.md)を参照してください。
 
 2026-10-18にPyVISA 1.16.2 / pyvisa-py 0.8.1の`@py` RAW SOCKETで、localhost:5025からCOM25のIC-7300へ実際に接続して基本問い合わせを確認しました。TCPとHTTPSの同時実機操作を含む範囲は[通し試験記録](TCP_VALIDATION_2026-10-18.md)を参照してください。応答中の引用文字列（エラーメッセージ等）にも`;`が含まれうるため、複合問い合わせの応答を単純な`;`分割だけで解釈しないでください。必要なら`SYST:ERR?`を独立した問い合わせとして送信します。
+
+## Pythonクライアントの対応範囲
+
+[統合対応表](PYTHON_SCPI_AUDIT.md)に基本/専用11系統と拡張339定義、短縮/全形の別名、未対応形式と理由をまとめました。ゲートウェイの仕様を変更するものではありません。
+# Unprogrammed user transmit-band slots
+
+`RAD:TXBAND:USER? <index>` returns `FF` for an unprogrammed slot, observed on
+IC-7300 MAIN 1.42. Programmed slots return the validated eleven-byte hexadecimal
+band-edge record. The advertised user-slot count includes empty slots.
+`FF` is a read result only; it is not accepted as a write/delete command.
+
+## Empty displayed memory
+
+When the radio reports `03 FF` / `04 FF` for an empty displayed memory,
+`SENS:FREQ?` / `RAD:MODE?` return `ERROR` and queue a -230 no-operating-value
+error. The connection remains active; background polling continues and values
+resume automatically after returning to a programmed memory or VFO. No zero-Hz
+or previous frequency/mode is substituted. Web displays `Not set (empty memory)`.

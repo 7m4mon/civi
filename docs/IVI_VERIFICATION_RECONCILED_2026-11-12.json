@@ -1,0 +1,145 @@
+{
+  "date": "2026-11-12",
+  "claim": "Evidence reconciliation only; not an IVI/LXI conformance verdict",
+  "rows": 352,
+  "legacy_placeholder_rows": 204,
+  "current_placeholder_rows": 0,
+  "evidence_kind_counts": {
+    "PARTIAL": 4,
+    "PHYSICAL_SCOPED": 163,
+    "LOCAL": 128,
+    "GET_ONLY": 32,
+    "HISTORICAL": 3,
+    "LOCAL_PENDING": 8,
+    "CONTROLLED_PENDING": 14
+  },
+  "followups": {
+    "L-FACTORIES": [
+      "MenuCollection.audio_filter_item",
+      "MenuCollection.bandwidth_item",
+      "MenuCollection.boolean_item",
+      "MenuCollection.date_item",
+      "MenuCollection.rgb_item",
+      "MenuCollection.scope_edges_item",
+      "MenuCollection.time_item",
+      "MenuCollection.utc_offset_item"
+    ],
+    "R-CORE": [
+      "CiviIc7300.constructor",
+      "CiviIc7300.checked",
+      "Utility.query_instrument_status",
+      "Utility.query_instrument_status_enabled",
+      "Utility.reset",
+      "MenuCollection.set_simulated_write_permissions",
+      "RadioOperations.set_simulated_permissions",
+      "IviUtility.query_instrument_status_enabled",
+      "IviUtility.reset"
+    ],
+    "R-RECEIVE": [
+      "Radio.agc_time_code",
+      "Radio.compressor_enabled",
+      "Radio.data_filter",
+      "Radio.filter_width_code",
+      "Radio.frequency_check_enabled",
+      "Radio.ip_plus_alternate_enabled",
+      "Radio.ip_plus_enabled",
+      "Radio.lock_enabled",
+      "Radio.monitor_enabled",
+      "Radio.repeater_tone_hz",
+      "Radio.split_enabled",
+      "Radio.tone_enabled",
+      "Radio.tone_squelch_enabled",
+      "Radio.tone_squelch_hz",
+      "Radio.tuning_step_code",
+      "Radio.twin_peak_filter_enabled",
+      "Radio.tx_bandwidth",
+      "Radio.xit_enabled",
+      "Gains.af_raw",
+      "Gains.anti_vox_raw",
+      "Gains.backlight_raw",
+      "Gains.compression_raw",
+      "Gains.cw_delay_raw",
+      "Gains.cw_pitch_raw",
+      "Gains.cw_speed_raw",
+      "Gains.microphone_raw",
+      "Gains.monitor_raw",
+      "Gains.noise_blanker_raw",
+      "Gains.notch_raw",
+      "Gains.rf_power_raw",
+      "Gains.vox_raw"
+    ],
+    "R-COERCION": [
+      "Gains.noise_reduction_raw",
+      "Gains.pbt_inner_raw",
+      "Gains.pbt_outer_raw"
+    ],
+    "R-SCOPE": [
+      "Scope.write_fixed_edges"
+    ],
+    "R-STORAGE": [
+      "MemoryItem.clear",
+      "MemoryItem.record",
+      "MemoryItem.write_and_read",
+      "KeyerItem.text",
+      "KeyerItem.write_and_read",
+      "BandStackItem.settings",
+      "BandStackItem.write_and_read"
+    ],
+    "R-MENUS": [
+      "MenuItem.value",
+      "MenuItem.write_and_read"
+    ],
+    "C-MENU": [
+      "MenuItem.value",
+      "MenuItem.write_and_read"
+    ],
+    "C-POWER-AUDIO": [
+      "RadioOperations.power_off",
+      "RadioOperations.power_on",
+      "RadioOperations.speak"
+    ],
+    "C-RF": [
+      "RadioOperations.break_in",
+      "RadioOperations.play_voice",
+      "RadioOperations.send_cw",
+      "RadioOperations.start_transmit",
+      "RadioOperations.stop_cw",
+      "RadioOperations.stop_transmit",
+      "RadioOperations.stop_voice",
+      "RadioOperations.tuner",
+      "RadioOperations.vox_enabled"
+    ],
+    "C-LINK": [
+      "MenuItem.value",
+      "MenuItem.write_and_read",
+      "RadioOperations.antenna_output_enabled"
+    ],
+    "C-CALIB": [
+      "MenuItem.value",
+      "MenuItem.write_and_read",
+      "Bands.write_and_read_user",
+      "Bands.write_user"
+    ]
+  },
+  "menu_counts": {
+    "read_instances": 216,
+    "historical_scpi_written": 189,
+    "writable_by_permission": {
+      "menu": 203,
+      "calibration": 2,
+      "link": 10
+    },
+    "followup_counts": {
+      "R-MENUS": 186,
+      "C-MENU": 17,
+      "C-CALIB": 2,
+      "C-LINK": 10,
+      "read_only": 1
+    }
+  },
+  "private_artifacts_are_not_embedded": true,
+  "input_sha256_normalized_utf8_lf": {
+    "docs/HARDWARE_2026-10-17.md": "0bd1cd6066be9c3c2a55ff0e83e681dc8593922a5f9d576dde89b5cd098b3705",
+    "drivers/civi-ic7300/src/civi_ic7300/public-api.json": "63e43cb42feb12797d4a69b2f8fa7584683d7ff3fa7bc4c21098a83b926cbf73"
+  }
+}

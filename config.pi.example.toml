@@ -1,0 +1,41 @@
+# Pi manual-launch configuration. See docs/RPI_HTTPS.md for port 443 permissions.
+backend = "mock" # mock / civ
+manufacturer = "CIVI Project"
+serial_number = "CIVI-0001"
+bind = "0.0.0.0"
+scpi_port = 5025
+web_port = 443
+web_extra_ports = [8443] # Optional compatibility listener
+description = "CIVI CIVI-0001" # Discovery service name, maximum 63 UTF-8 bytes
+password_env = "CIVI_PASSWORD"
+tls_cert = "certs/cert.pem"
+tls_key = "certs/key.pem"
+discovery = true
+profile = "ic7300"
+radio_firmware = "" # Optional manual value; empty = Unknown. Not read over CI-V.
+
+[serial]
+port = "/dev/serial/by-id/REPLACE_WITH_YOUR_RADIO"
+baud = 115200
+radio_address = 148 # 0x94
+controller_address = 224 # 0xE0
+timeout = 1.0
+trace_frames = true # Log CI-V TX/RX frames to stdout and authenticated Web logs
+trace_scope_frames = false # false: sample continuous scope frames every 2 seconds; true: log all
+
+[transmit]
+enabled = false
+max_seconds = 10.0
+web_lease_seconds = 10.0
+
+[permissions]
+menu = false # Allow persistent radio menu writes (reads always available)
+memory = false # Allow memory/keyer/band-stack writes and erasure
+power = false # Allow physical radio power commands
+link = false # Allow changes that may break the CI-V/USB connection
+calibration = false # Reference-frequency / transmit-band changes
+
+[pi_network]
+enabled = true # Manually start the LAN helper; see docs/RPI_LAN_SETTINGS.md
+socket = "/run/civi-lan/control.sock"
+interface = "eth0" # Wired interface monitored by the local LAN/Identify display
