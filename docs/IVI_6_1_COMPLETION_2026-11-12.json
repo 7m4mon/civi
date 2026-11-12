@@ -2341,7 +2341,7 @@
         "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
         "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv",
         "docs/IVI_TX_INHIBIT_2026-11-11.md",
-        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
         "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
       ]
@@ -2527,7 +2527,7 @@
         "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
         "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md",
         "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
-        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
         "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
       ]

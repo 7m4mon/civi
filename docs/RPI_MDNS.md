@@ -56,4 +56,4 @@ This restores the OS service only. If the saved CIVI discovery setting is still 
 
 References: [systemd activation conditions](https://www.freedesktop.org/software/systemd/man/latest/systemd.unit.html), [Avahi configuration](https://github.com/avahi/avahi/blob/master/man/avahi-daemon.conf.5.xml.in), and [LXI requirements matrix](LXI.md).
 
-Final same-day state: the user re-enabled mDNS and Ping after the reboot check. Fresh hostname and LXI service replies returned; Ping replied through both wired and WLAN addresses. The device was left enabled. See the [complete daily record](PROGRESS_2026-11-07.md).
+Final same-day state: the user re-enabled mDNS and Ping after the reboot check. Fresh hostname and LXI service replies returned; Ping replied through both wired and WLAN addresses. The device was left enabled. See the [complete daily record](IMPLEMENTATION_AND_TEST_RESULTS.md).
