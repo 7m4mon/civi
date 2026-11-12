@@ -198,8 +198,7 @@
     "tools/ivi_verification_reconcile.py": "dfcbf948386d078786511fffed36470393bd017d4a8429e011cec215b4322b1f",
     "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv": "d1a12b3c1d85434a9e122ac732b935e05f1b51f95b706dc0c90bc249c0962d51",
     "docs/IVI_MENU_VERIFICATION_2026-11-12.csv": "76a2dc86e329a84d5263dfc457c71cfd8d6759b51ff78eeac6f18627739e6573",
-    "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json": "31fdede1598ed50a0688df78c82ab00cdb8f7d285d83f358381b35ec479ed95b",
-    "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md": "6946e101998198023d362c60f2594bf639860ae33372f3ce6016cd56c9694852"
+    "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json": "31fdede1598ed50a0688df78c82ab00cdb8f7d285d83f358381b35ec479ed95b"
   },
   "rows": [
     {
@@ -299,7 +298,7 @@
       "evidence": [
         "civi/pi/lci.py",
         "docs/RPI_LCI_BOOT_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -313,7 +312,7 @@
       "evidence": [
         "docs/RPI_LAN_RESET.md",
         "docs/RPI_DESKTOP.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -355,7 +354,7 @@
         "civi/pi/panel.py",
         "docs/RPI_PANEL.md",
         "docs/LXI_DEVICE_CONFIGURATION.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -369,7 +368,7 @@
       "evidence": [
         "civi/indicator.py",
         "docs/RPI_PANEL_2026-11-07.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -592,7 +591,7 @@
         "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
         "docs/IVI_VERIFICATION_WORKLIST_2026-11-11.csv",
         "docs/IVI_TX_INHIBIT_2026-11-11.md",
-        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
         "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
       ],
@@ -612,7 +611,7 @@
         "drivers/civi-ic7300/src/civi_ic7300/driver.py",
         "tests/test_python_driver.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -638,7 +637,7 @@
       "finding": "物理100Mbps Full/HalfでSCPI/証明書検証HTTPSを確認し、1000Mbps Full自動交渉へ復元。10Mbps全条件の実測は主張しない。",
       "evidence": [
         "docs/RPI_ETHERNET_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -707,7 +706,7 @@
         "civi/network.py",
         "config.pi.example.toml",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -798,7 +797,7 @@
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
         "docs/RPI_DHCP_BOOT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -813,7 +812,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -828,7 +827,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -845,7 +844,7 @@
         "tests/test_indicator.py",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -860,7 +859,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -889,7 +888,7 @@
       "evidence": [
         "civi/pi/conflict.py",
         "docs/RPI_CONFLICT.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -906,7 +905,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -919,7 +918,7 @@
       "finding": "RFC2136 DDNS UpdateとユーザーDDNS制御は採用しない。mDNS制御と区別。OSのDHCP hostname/server-side登録はCIVI DDNS機能とは宣言しない。採用時に再評価。",
       "evidence": [
         "civi/pi/network.py",
-        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/LXI_DEVICE_CONFIGURATION.md"
       ],
       "gaps": []
@@ -1264,7 +1263,7 @@
         "docs/MDNS_HOSTNAME_2026-11-08.md",
         "docs/RPI_NAME_COLLISION_2026-11-11.md",
         "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -1278,7 +1277,7 @@
       "evidence": [
         "docs/MDNS_HOSTNAME_2026-11-08.md",
         "docs/RPI_NAME_COLLISION_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -1306,7 +1305,7 @@
       "evidence": [
         "civi/pi/discovery.py",
         "docs/DHCP_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -1338,7 +1337,7 @@
         "docs/MDNS_HOSTNAME_2026-11-08.md",
         "docs/RPI_NAME_COLLISION_2026-11-11.md",
         "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -1367,7 +1366,7 @@
         "civi/network.py",
         "tests/test_lxi.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -1383,7 +1382,7 @@
         "civi/discovery_state.py",
         "civi/pi/discovery.py",
         "docs/MDNS_HOSTNAME_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -1538,10 +1537,10 @@
       "state": "実装確認",
       "finding": "Pi標準NSS/socketの.local正引きと169.254 PTR逆引きを有線で確認。実AutoIP割当相手でも隔離Piで正引き・逆引き・TCPを確認。物理AutoIP2台は追加試験。",
       "evidence": [
-        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/RPI_MDNS_RESOLVER_2026-11-11.md",
         "docs/RPI_MDNS_AUTOIP_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -1584,7 +1583,7 @@
         "civi/network.py",
         "civi/pi/discovery.py",
         "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": []
     },
@@ -1599,7 +1598,7 @@
         "drivers/civi-ic7300/src/civi_ic7300/AUDIT.md",
         "drivers/civi-ic7300/src/civi_ic7300/COMPLIANCE.md",
         "docs/IVI_RECEIVE_ACCEPTANCE_2026-11-11.md",
-        "docs/IVI_ADDITIONAL_TESTS_2026-11-12.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/IVI_VERIFICATION_RECONCILED_2026-11-12.json",
         "docs/IVI_MENU_VERIFICATION_2026-11-12.csv"
       ],
@@ -2011,7 +2010,7 @@
       "evidence": [
         "civi/identification.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -2092,7 +2091,7 @@
       "evidence": [
         "civi/identification.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -2458,7 +2457,7 @@
       "evidence": [
         "civi/identification.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -2630,7 +2629,7 @@
         "civi/static/indicator.js",
         "tests/test_indicator.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -2737,7 +2736,7 @@
   "fix_followup": {
     "date": "2026-11-10",
     "client_version": "0.13.1",
-    "report": "docs/LXI_FIXES_2026-11-10.md",
+    "report": "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
     "physical_deployment": true,
     "tests": "522 passed, 1 Linux-only skip in 32.64s",
     "new_regressions": 37
@@ -3239,7 +3238,7 @@
       "evidence": [
         "civi/pi/lci.py",
         "docs/RPI_LCI_BOOT_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3255,7 +3254,7 @@
       "evidence": [
         "docs/RPI_LAN_RESET.md",
         "docs/RPI_DESKTOP.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05",
@@ -3314,7 +3313,7 @@
       "evidence": [
         "civi/indicator.py",
         "docs/RPI_PANEL_2026-11-07.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05",
@@ -3554,7 +3553,7 @@
         "drivers/civi-ic7300/src/civi_ic7300/driver.py",
         "tests/test_python_driver.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -3580,7 +3579,7 @@
       "finding": "100/1000 Fullの証拠あり。100 Halfと対応を主張する10 Mb/s条件の確認が残る。",
       "evidence": [
         "docs/RPI_ETHERNET_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -3652,7 +3651,7 @@
         "civi/network.py",
         "config.pi.example.toml",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -3743,7 +3742,7 @@
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
         "docs/RPI_DHCP_BOOT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3760,7 +3759,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3777,7 +3776,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3796,7 +3795,7 @@
         "tests/test_indicator.py",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3813,7 +3812,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3844,7 +3843,7 @@
       "evidence": [
         "civi/pi/conflict.py",
         "docs/RPI_CONFLICT.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3863,7 +3862,7 @@
         "docs/DHCP_2026-11-08.md",
         "docs/RPI_DHCP_ETHERNET_2026-11-10.md",
         "tests/test_applied_ipv4.py",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G05"
@@ -3878,7 +3877,7 @@
       "finding": "Dynamic DNSの製品としての採用範囲が未確定。mDNS停止はDDNS制御ではない。採用時はoption12/81とLCIを確認。",
       "evidence": [
         "civi/pi/network.py",
-        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/LXI_DEVICE_CONFIGURATION.md"
       ],
       "gaps": [
@@ -4225,7 +4224,7 @@
         "docs/MDNS_HOSTNAME_2026-11-08.md",
         "docs/RPI_NAME_COLLISION_2026-11-11.md",
         "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -4241,7 +4240,7 @@
       "evidence": [
         "docs/MDNS_HOSTNAME_2026-11-08.md",
         "docs/RPI_NAME_COLLISION_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -4273,7 +4272,7 @@
       "evidence": [
         "civi/pi/discovery.py",
         "docs/DHCP_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -4307,7 +4306,7 @@
         "docs/MDNS_HOSTNAME_2026-11-08.md",
         "docs/RPI_NAME_COLLISION_2026-11-11.md",
         "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -4338,7 +4337,7 @@
         "civi/network.py",
         "tests/test_lxi.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -4354,7 +4353,7 @@
         "civi/discovery_state.py",
         "civi/pi/discovery.py",
         "docs/MDNS_HOSTNAME_2026-11-08.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -4511,10 +4510,10 @@
       "state": "追加検証",
       "finding": "物理有線でPi標準NSS/socketの別機器.local正引き・模擬PTR逆引き、隔離Piで実AutoIP自動取得相手のNSS正引き・逆引き・TCPを確認。物理AutoIP機器同士とRFC境界条件は別途。",
       "evidence": [
-        "docs/LXI_AUDIT_2026-11-07.md",
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md",
         "docs/RPI_MDNS_RESOLVER_2026-11-11.md",
         "docs/RPI_MDNS_AUTOIP_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -4559,7 +4558,7 @@
         "civi/network.py",
         "civi/pi/discovery.py",
         "docs/RPI_MDNS_RECONNECT_2026-11-11.md",
-        "docs/LXI_READINESS_2026-11-11.md"
+        "docs/IVI_6_1_COMPLETION_2026-11-12.md"
       ],
       "gaps": [
         "G06"
@@ -4984,7 +4983,7 @@
       "evidence": [
         "civi/identification.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -5065,7 +5064,7 @@
       "evidence": [
         "civi/identification.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -5433,7 +5432,7 @@
       "evidence": [
         "civi/identification.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -5605,7 +5604,7 @@
         "civi/static/indicator.js",
         "tests/test_indicator.py",
         "tests/test_lxi_fixes.py",
-        "docs/LXI_FIXES_2026-11-10.md",
+        "docs/IMPLEMENTATION_AND_TEST_RESULTS.md",
         "docs/RPI_LXI_FIXES_2026-11-10.md"
       ],
       "gaps": []
@@ -5660,7 +5659,7 @@
   },
   "readiness_review_followup": {
     "date": "2026-11-11",
-    "report": "docs/LXI_READINESS_2026-11-11.md",
+    "report": "docs/IVI_6_1_COMPLETION_2026-11-12.md",
     "configuration": "docs/LXI_DEVICE_CONFIGURATION.md",
     "windows_tests": "603 passed, 1 skipped; final fixture-only followup 26 passed",
     "pi_tests": "594 passed, 10 skipped in 60.34s",
